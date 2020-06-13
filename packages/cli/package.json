@@ -14,7 +14,8 @@
   },
   "scripts": {
     "start": "npm run rocket:start",
-    "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/README.md",
+    "build": "npm run rocket:build",
+    "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/",
     "rocket:build": "node src/build/cli.js -c demo/docs",
     "test": "mocha test/**/*.test.js test/*.test.js",
     "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
@@ -31,12 +32,16 @@
   ],
   "dependencies": {
     "@11ty/eleventy": "^0.11.0",
+    "@dakmor/eleventy-plugin-mdjs": "^0.0.1",
+    "@open-wc/building-rollup": "^1.3.1",
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
+    "deepmerge": "^4.2.2",
     "es-dev-server": "^1.54.0",
-    "@dakmor/eleventy-plugin-mdjs": "^0.0.1"
+    "rollup-plugin-copy": "^3.3.0"
   },
   "devDependencies": {
+    "@11ty/eleventy-navigation": "^0.1.5",
     "patch-package": "^6.2.2"
   }
 }

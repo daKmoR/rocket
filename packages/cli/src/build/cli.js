@@ -5,11 +5,11 @@ const copy = require('rollup-plugin-copy');
 const { rollup } = require('rollup');
 const { generateSW } = require('rollup-plugin-workbox');
 const Eleventy = require('@11ty/eleventy');
-const { createMpaConfig } = require('./docs/_building-rollup/createMpaConfig.js');
+const { createMpaConfig } = require('./createMpaConfig.js');
 
-const elev = new Eleventy('./docs', './_site');
-elev.setConfigPathOverride('./docs/.eleventy.js');
-elev.setDryRun(true); // do not write to file system
+// const elev = new Eleventy('./docs', './_site');
+// elev.setConfigPathOverride('./docs/.eleventy.js');
+// elev.setDryRun(true); // do not write to file system
 
 /**
  * @param {object} config
@@ -68,6 +68,13 @@ async function productionBuild(html) {
 }
 
 async function main() {
+  // const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
+  // const absRootDir = path.resolve(config.esDevServer.rootDir);
+  // const relPath = path.relative(absRootDir, process.cwd());
+
+  const elev = new Eleventy('./demo', './__site');
+  elev.setConfigPathOverride('./demo/.eleventy.js');
+
   const htmlFiles = [];
 
   elev.config.filters['hook-for-rocket'] = (html, outputPath, inputPath) => {

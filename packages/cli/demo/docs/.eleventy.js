@@ -1,16 +1,19 @@
 const pluginMdjs = require('@dakmor/eleventy-plugin-mdjs');
+const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 
 module.exports = function (eleventyConfig) {
+  console.log('-----------', eleventyNavigationPlugin);
   eleventyConfig.addPlugin(pluginMdjs);
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
   eleventyConfig.addPassthroughCopy('./styles.css');
   eleventyConfig.addPassthroughCopy('./**/*.{png,gif}');
 
-  eleventyConfig.addCollection('section', function (collection) {
-    // This works _because_ of our current content. Something like https://github.com/Polymer/lit-html/blob/master/docs/.eleventy.js#L37
-    // would be more robust, but there are likely other answers here.
-    return collection.getFilteredByTag('section').reverse();
-  });
+  // eleventyConfig.addCollection('section', function(collection) {
+  //   // This works _because_ of our current content. Something like https://github.com/Polymer/lit-html/blob/master/docs/.eleventy.js#L37
+  //   // would be more robust, but there are likely other answers here.
+  //   return collection.getFilteredByTag('section').reverse();
+  // });
 
   // 11ty needs this as it apparently reads this config from multiple files
   // and only if we provide this hook we can actually override later when we
@@ -19,7 +22,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform('hook-for-rocket');
 
   return {
-    dir: { input: './', output: '../_site-dev' },
+    dir: { input: './', output: './_site-dev' },
     passthroughFileCopy: true,
   };
 };

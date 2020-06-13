@@ -5,16 +5,30 @@
 /* eslint-disable no-console, no-param-reassign */
 const { createConfig, startServer } = require('es-dev-server');
 const path = require('path');
+const fs = require('fs');
 const Eleventy = require('@11ty/eleventy');
 
 const readCommandLineArgs = require('./readCommandLineArgs');
+
+function getFileWithLastUrlDir(url, absRootDir) {
+  const endIndex = url.length - 2;
+  const startIndex = url.lastIndexOf('/', endIndex);
+  const name = url.substring(startIndex + 1, endIndex + 1);
+  const pathTo = url.substring(0, startIndex);
+  const relPath = path.join(pathTo, `${name}.md`);
+  const possibleFile = path.join(absRootDir, relPath);
+  if (fs.existsSync(possibleFile)) {
+    return relPath;
+  }
+  return '';
+}
 
 async function run() {
   const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
   const absRootDir = path.resolve(config.esDevServer.rootDir);
   const relPath = path.relative(absRootDir, process.cwd());
 
-  const elev = new Eleventy(config.configDir, './__site');
+  const elev = new Eleventy('./demo/docs', './__site');
   elev.setConfigPathOverride('./demo/docs/.eleventy.js');
   elev.setDryRun(true); // do not write to file system
   await elev.init();
@@ -28,11 +42,16 @@ async function run() {
     middlewares: [
       async (ctx, next) => {
         if (ctx.path.endsWith('index.html')) {
-          ctx.path = ctx.path.replace('index.html', 'README.md');
+          ctx.path = ctx.path.replace('index.html', 'index.md');
         } else if (ctx.path.endsWith('.html')) {
           ctx.path = ctx.path.replace('.html', '.md');
         } else if (ctx.path.endsWith('/')) {
-          ctx.path += 'README.md';
+          const fileForUrl = getFileWithLastUrlDir(ctx.path, absRootDir);
+          if (fileForUrl) {
+            ctx.path = fileForUrl;
+          } else {
+            ctx.path += 'index.md';
+          }
         }
         return next();
       },
@@ -61,7 +80,9 @@ async function run() {
             };
             await elev.write();
             return {
-              body: body.replace(/href="\//g, 'href="/docs/').replace(/src="\//g, 'src="/docs/'),
+              body: body
+                .replace(/href="\//g, 'href="/packages/cli/demo/docs/')
+                .replace(/src="\//g, 'src="/packages/cli/demo/docs/'),
             };
           }
           return undefined;

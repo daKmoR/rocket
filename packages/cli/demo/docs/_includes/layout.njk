@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/_assets/styles.css">
   </head>
 
   <body>
@@ -10,8 +10,17 @@
       {{ content.html | safe }}
     </main>
 
+    <header>
+      Logo
+    </header>
+
     <nav>
-      {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+      <rocket-navigation>
+        {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({
+            activeListItemClass: "current",
+            activeKey: eleventyNavigation.key
+        }) | safe }}
+      </rocket-navigation>
     </nav>
 
     {% if content.jsCode %}
@@ -19,6 +28,10 @@
         {{ content.jsCode | safe }}
       </script>
     {% endif %}
+
+    <script type="module">
+      import '@dakmor/navigation/rocket-navigation.js';
+    </script>
   </body>
 
 </html>

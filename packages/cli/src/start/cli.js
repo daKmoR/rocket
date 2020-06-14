@@ -11,9 +11,9 @@ const Eleventy = require('@11ty/eleventy');
 const readCommandLineArgs = require('./readCommandLineArgs');
 
 function getFileWithLastUrlDir(url, absRootDir) {
-  const endIndex = url.length - 2;
-  const startIndex = url.lastIndexOf('/', endIndex);
-  const name = url.substring(startIndex + 1, endIndex + 1);
+  const endIndex = url.length - 1;
+  const startIndex = url.lastIndexOf('/', endIndex - 1);
+  const name = url.substring(startIndex + 1, endIndex);
   const pathTo = url.substring(0, startIndex);
   const relPath = path.join(pathTo, `${name}.md`);
   const possibleFile = path.join(absRootDir, relPath);
@@ -72,6 +72,7 @@ async function run() {
               //   absConfigDir,
               //   cur,
               // });
+
               const compare = path.join(relPath, inputPath);
               if (serverPath === `/${compare}`) {
                 body = content;

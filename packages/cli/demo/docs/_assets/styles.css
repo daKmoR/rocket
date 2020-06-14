@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+}
+
+nav {
+  grid-area: sidebar;
+}
+
+main {
+  grid-area: content;
+}
+
+header {
+  grid-area: header;
+  background: #ccc;
+}
+
+body {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 15% 85%;
+  grid-template-areas:
+    'header header'
+    'sidebar content';
+}
+
+rocket-navigation ul {
+  padding: 10px;
+  margin: 0;
+  list-style-type: none;
+}
+
+rocket-navigation > ul {
+  padding: 0;
+}
+
+rocket-navigation a {
+  font-size: 1.1em;
+  line-height: 1.7;
+  font-weight: 700;
+  font-size: 1em;
+  font-weight: 400;
+  display: inline-block;
+  color: #2c3e50;
+  border-left: 0.25rem solid transparent;
+  line-height: 1.4;
+  display: block;
+  box-sizing: border-box;
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@dakmor/navigation",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Rocket stuff",
+  "license": "MIT",
+  "author": "Thomas Allmer",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run rocket:start",
+    "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/README.md",
+    "rocket:build": "node src/build/cli.js -c demo/docs",
+    "test": "mocha test/**/*.test.js test/*.test.js",
+    "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
+  },
+  "files": [
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "storybook",
+    "demo",
+    "demo-states",
+    "testing"
+  ]
+}

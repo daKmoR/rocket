@@ -2,7 +2,6 @@ const pluginMdjs = require('@dakmor/eleventy-plugin-mdjs');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 
 module.exports = function (eleventyConfig) {
-  console.log('-----------', eleventyNavigationPlugin);
   eleventyConfig.addPlugin(pluginMdjs);
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
 

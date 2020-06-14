@@ -26,6 +26,7 @@ async function buildAndWrite(config) {
 }
 
 async function productionBuild(html) {
+  // console.log(html);
   const mpaConfig = createMpaConfig({
     outputDir: '_site',
     legacyBuild: false,
@@ -55,10 +56,8 @@ async function productionBuild(html) {
   mpaConfig.plugins.push(
     copy({
       targets: [
-        { src: 'docs/styles.css', dest },
-        { src: 'docs/demoing/demo/custom-elements.json', dest },
-        { src: 'docs/manifest.json', dest },
-        { src: 'docs/**/*.{png,gif}', dest },
+        { src: './demo/docs/manifest.json', dest },
+        { src: './demo/docs/**/*.{png,gif,jpg,json,css}', dest },
       ],
       flatten: false,
     }),
@@ -72,20 +71,20 @@ async function main() {
   // const absRootDir = path.resolve(config.esDevServer.rootDir);
   // const relPath = path.relative(absRootDir, process.cwd());
 
-  const elev = new Eleventy('./demo', './__site');
-  elev.setConfigPathOverride('./demo/.eleventy.js');
+  const elev = new Eleventy('./demo/docs', './__site');
+  elev.setConfigPathOverride('./demo/docs/.eleventy.js');
+  elev.setDryRun(true);
 
   const htmlFiles = [];
 
   elev.config.filters['hook-for-rocket'] = (html, outputPath, inputPath) => {
     htmlFiles.push({
       html,
-      name: outputPath.substring(8),
+      name: outputPath.substring(9),
       rootDir: path.dirname(path.resolve(inputPath)),
     });
     return html;
   };
-
   await elev.init();
   await elev.write();
 

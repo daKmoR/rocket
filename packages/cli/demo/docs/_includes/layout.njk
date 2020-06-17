@@ -6,22 +6,32 @@
   </head>
 
   <body>
-    <main>
-      {{ content.html | safe }}
-    </main>
+    <div id="wrapper">
+      <main>
+        {{ content.html | safe }}
+      </main>
 
-    <header>
-      Logo
-    </header>
+      <header>
+        Logo
+      </header>
 
-    <nav>
-      <rocket-navigation>
-        {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({
-            activeListItemClass: "current",
-            activeKey: eleventyNavigation.key
-        }) | safe }}
-      </rocket-navigation>
-    </nav>
+      <div id="sidebar">
+        <nav>
+          <rocket-navigation>
+            {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({
+              listItemClass: "menu-item",
+              activeListItemClass: "current",
+              activeKey: eleventyNavigation.key
+          }) | safe }}
+          </rocket-navigation>
+        </nav>
+
+      </div>
+
+      <footer>
+        About
+      </footer>
+    </div>
 
     {% if content.jsCode %}
       <script type="module">

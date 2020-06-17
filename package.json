@@ -6,18 +6,21 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "echo 'no tests in this repo yet'",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
     "lint:prettier": "prettier \"**/*.{js,md}\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.{js,md}\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
+    "test": "npm run test:browser",
+    "test:browser": "web-test-runner packages/**/*.test.js --watch",
     "postinstall": "patch-package"
   },
   "devDependencies": {
     "@changesets/cli": "^2.8.0",
     "@open-wc/eslint-config": "^2.0.0",
+    "@open-wc/testing": "^2.5.18",
+    "@web/test-runner": "^0.5.11",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^1.0.0",

@@ -2,26 +2,42 @@ body {
   margin: 0;
 }
 
-nav {
+header {
+  grid-area: header;
+  background: #ccc;
+}
+
+#sidebar {
   grid-area: sidebar;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+}
+
+rocket-navigation {
+  overflow: auto;
 }
 
 main {
   grid-area: content;
 }
 
-header {
-  grid-area: header;
-  background: #ccc;
+footer {
+  grid-area: footer;
 }
 
-body {
+#wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: minmax(200px, 250px) minmax(300px, 1fr);
   grid-template-areas:
     'header header'
-    'sidebar content';
+    'sidebar content'
+    'footer footer';
 }
 
 rocket-navigation ul {

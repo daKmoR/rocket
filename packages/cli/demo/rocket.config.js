@@ -1,7 +1,8 @@
 module.exports = {
+  inputDir: './docs',
+  outputDir: './_site',
   devServer: {
     rootDir: '../../',
-    nodeResolve: true,
   },
   rollup: config => {
     return config;

@@ -23,6 +23,23 @@ function getFileWithLastUrlDir(url, absRootDir) {
   return '';
 }
 
+async function eleventyRender(elev, relPath, serverPath) {
+  // const serverPath = context.path;
+
+  let body = 'eleventyRender: File not found';
+  elev.config.filters['hook-for-rocket'] = (content, outputPath, inputPath) => {
+    const compare = path.join(relPath, inputPath);
+    if (serverPath === `/${compare}`) {
+      body = content;
+    }
+    return content;
+  };
+  await elev.write();
+  return body
+    .replace(/href="\//g, 'href="/packages/cli/demo/docs/')
+    .replace(/src="\//g, 'src="/packages/cli/demo/docs/');
+}
+
 async function run() {
   const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
   const absRootDir = path.resolve(config.esDevServer.rootDir);
@@ -39,58 +56,30 @@ async function run() {
     watch: true,
     // open: './docs/README.md',
     // open: './packages/cli/demo/docs/README.md',
-    middlewares: [
-      async (ctx, next) => {
-        if (ctx.path.endsWith('index.html')) {
-          ctx.path = ctx.path.replace('index.html', 'index.md');
-        } else if (ctx.path.endsWith('.html')) {
-          ctx.path = ctx.path.replace('.html', '.md');
-        } else if (ctx.path.endsWith('/')) {
-          const fileForUrl = getFileWithLastUrlDir(ctx.path, absRootDir);
-          if (fileForUrl) {
-            ctx.path = fileForUrl;
-          } else {
-            ctx.path += 'index.md';
-          }
-        }
-        return next();
-      },
-    ],
     plugins: [
       {
-        async transform(context) {
-          if (context.path.endsWith('md')) {
-            const serverPath = context.path;
-
-            let body = 'File not found';
-            elev.config.filters['hook-for-rocket'] = (content, outputPath, inputPath) => {
-              // console.log({
-              //   inputPath, // './demo/docs/README.md',
-              //   serverPath, // '/packages/cli/demo/docs/README.md'
-              //   relPath,
-              //   absRootDir,
-              //   absConfigDir,
-              //   cur,
-              // });
-
-              const compare = path.join(relPath, inputPath);
-              if (serverPath === `/${compare}`) {
-                body = content;
-              }
-              return content;
-            };
-            await elev.write();
-            return {
-              body: body
-                .replace(/href="\//g, 'href="/packages/cli/demo/docs/')
-                .replace(/src="\//g, 'src="/packages/cli/demo/docs/'),
-            };
+        async serve(ctx) {
+          ctx.forceHtml = false;
+          let usePath = ctx.path;
+          if (ctx.path.endsWith('index.html')) {
+            usePath = ctx.path.replace('index.html', 'index.md');
+          } else if (ctx.path.endsWith('.html')) {
+            usePath = ctx.path.replace('.html', '.md');
+          } else if (ctx.path.endsWith('/')) {
+            const fileForUrl = getFileWithLastUrlDir(ctx.path, absRootDir);
+            if (fileForUrl) {
+              usePath = fileForUrl;
+            } else {
+              usePath += 'index.md';
+            }
           }
-          return undefined;
-        },
-        resolveMimeType(context) {
-          if (context.path.endsWith('md')) {
-            return 'text/html';
+          if (usePath.endsWith('md')) {
+            const newBody = await eleventyRender(elev, relPath, usePath);
+            ctx.forceHtml = true;
+            return {
+              body: newBody,
+              type: 'html',
+            };
           }
           return undefined;
         },

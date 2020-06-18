@@ -8135,7 +8135,7 @@ rimraf@2.6.3:
   dependencies:
     glob "^7.1.3"
 
-rimraf@^2.2.8, rimraf@^2.6.3:
+rimraf@^2.2.8, rimraf@^2.6.2, rimraf@^2.6.3:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
   integrity sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==
@@ -8164,6 +8164,13 @@ rollup-plugin-babel@^5.0.0-alpha.1:
   dependencies:
     "@babel/helper-module-imports" "^7.7.4"
     rollup-pluginutils "^2.8.2"
+
+rollup-plugin-clear@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-clear/-/rollup-plugin-clear-2.0.7.tgz#27a191bccb3964246ca2aad427e8798cbe87c9b1"
+  integrity sha512-Hg8NC3JcJBO1ofgyQC0IACpyKn/yhHPGZ3C7R3ubNGWUXy9JXHQrewk4J4hVcZznw6SOKayLsaNae596Rwt8Vg==
+  dependencies:
+    rimraf "^2.6.2"
 
 rollup-plugin-copy@^3.3.0:
   version "3.3.0"

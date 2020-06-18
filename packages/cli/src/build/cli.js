@@ -1,11 +1,12 @@
 /* eslint-disable */
 
 const path = require('path');
-const copy = require('rollup-plugin-copy');
 const { rollup } = require('rollup');
 const { generateSW } = require('rollup-plugin-workbox');
 const Eleventy = require('@11ty/eleventy');
 const { createMpaConfig } = require('./createMpaConfig.js');
+const { passthroughCopy } = require('./rollup-plugin-passthrough-copy.js');
+const clear = require('rollup-plugin-clear');
 
 // const elev = new Eleventy('./docs', './_site');
 // elev.setConfigPathOverride('./docs/.eleventy.js');
@@ -52,14 +53,16 @@ async function productionBuild(html) {
     }),
   );
 
-  const dest = '_site/';
   mpaConfig.plugins.push(
-    copy({
-      targets: [
-        { src: './demo/docs/manifest.json', dest },
-        { src: './demo/docs/**/*.{png,gif,jpg,json,css}', dest },
-      ],
-      flatten: false,
+    clear({
+      targets: ['_site'],
+    }),
+  );
+
+  mpaConfig.plugins.push(
+    passthroughCopy({
+      patterns: '**/*.{png,gif,jpg,json,css}',
+      rootDir: './demo/docs',
     }),
   );
 
@@ -76,11 +79,10 @@ async function main() {
   elev.setDryRun(true);
 
   const htmlFiles = [];
-
   elev.config.filters['hook-for-rocket'] = (html, outputPath, inputPath) => {
     htmlFiles.push({
       html,
-      name: outputPath.substring(9),
+      name: outputPath.substring(9), // TODO: generate this
       rootDir: path.dirname(path.resolve(inputPath)),
     });
     return html;

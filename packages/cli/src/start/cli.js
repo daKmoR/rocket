@@ -49,6 +49,7 @@ async function run() {
   elev.setConfigPathOverride('./src/shared/.eleventy.js');
   elev.setDryRun(true); // do not write to file system
   await elev.init();
+  elev.watch();
 
   config.esDevServer = {
     ...config.esDevServer,
@@ -59,7 +60,6 @@ async function run() {
     plugins: [
       {
         async serve(ctx) {
-          ctx.forceHtml = false;
           let usePath = ctx.path;
           if (ctx.path.endsWith('index.html')) {
             usePath = ctx.path.replace('index.html', 'index.md');
@@ -75,7 +75,6 @@ async function run() {
           }
           if (usePath.endsWith('md')) {
             const newBody = await eleventyRender(elev, relPath, usePath);
-            ctx.forceHtml = true;
             return {
               body: newBody,
               type: 'html',

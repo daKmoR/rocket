@@ -5,10 +5,6 @@ eleventyNavigation:
 
 # Welcome to Rocket
 
-```js script
-console.log('me');
-```
-
 some more
 
 \* Are in page h2 headlines which could be shown on desktop in a floating menu on the right?

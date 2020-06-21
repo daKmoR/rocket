@@ -2,32 +2,7 @@ body {
   margin: 0;
 }
 
-header {
-  grid-area: header;
-  background: #ccc;
-}
-
-#sidebar {
-  grid-area: sidebar;
-}
-
-nav {
-  position: sticky;
-  top: 0;
-}
-
-rocket-navigation {
-  overflow: auto;
-}
-
-main {
-  grid-area: content;
-}
-
-footer {
-  grid-area: footer;
-}
-
+/** LAYOUT ****************************************************************************************/
 #wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -40,16 +15,47 @@ footer {
     'footer footer';
 }
 
+.content-width {
+}
+
+/** HEADER ****************************************************************************************/
+header {
+  grid-area: header;
+  background: #ccc;
+  display: flex;
+  justify-content: space-between;
+}
+#github-link {
+  width: 50px;
+}
+#sections ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+#sections ul li {
+  padding: 0 10px;
+}
+
+/** SIDEBAR ***************************************************************************************/
+#sidebar {
+  grid-area: sidebar;
+}
+nav {
+  position: sticky;
+  top: 0;
+}
+rocket-navigation {
+  overflow: auto;
+}
 rocket-navigation ul {
   padding: 10px;
   margin: 0;
   list-style-type: none;
 }
-
 rocket-navigation > ul {
   padding: 0;
 }
-
 rocket-navigation a {
   font-size: 1.1em;
   line-height: 1.7;
@@ -62,4 +68,17 @@ rocket-navigation a {
   line-height: 1.4;
   display: block;
   box-sizing: border-box;
+}
+
+/** MAIN ******************************************************************************************/
+main {
+  grid-area: content;
+}
+
+/** FOOTER ****************************************************************************************/
+footer {
+  grid-area: footer;
+}
+#newsletter {
+  background: #ccc;
 }

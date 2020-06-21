@@ -1,7 +1,8 @@
 ---
+tags: learn
+section: learn
 eleventyNavigation:
   key: Codelabs
-  parent: Learning
 ---
 
 # Codelabs Overview

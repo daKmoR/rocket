@@ -1,6 +1,8 @@
 ---
+tags: header
+section: learn
 eleventyNavigation:
-  key: Learning
+  key: Learn
 ---
 
 # Learning Section

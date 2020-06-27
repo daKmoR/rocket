@@ -8,10 +8,6 @@
 
   <body>
     <div id="wrapper">
-      <main>
-        {{ content.html | safe }}
-      </main>
-
       <header>
         <button id="mobile-menu-trigger">
           <span>Show Menu</span>
@@ -42,30 +38,36 @@
         </a>
       </header>
 
-      <rocket-drawer id="sidebar">
-        <nav slot="content" id="sidebar-nav">
-          <a class="logo-link" href="http://localhost:8000/packages/cli/demo/docs/">
-            🚀
-            <span>Rocket</span>
-          </a>
-          <rocket-navigation>
-            {% if section == 'learn' %}
-              {{ collections.learn | eleventyNavigation | eleventyNavigationToHtml({
+      <div id="content-wrapper">
+
+        <rocket-drawer id="sidebar">
+          <nav slot="content" id="sidebar-nav">
+            <a class="logo-link" href="http://localhost:8000/packages/cli/demo/docs/">
+              🚀
+              <span>Rocket</span>
+            </a>
+            <rocket-navigation>
+              {% if section == 'learn' %}
+                {{ collections.learn | eleventyNavigation | eleventyNavigationToHtml({
                 listItemClass: "menu-item",
                 activeListItemClass: "current",
                 activeKey: eleventyNavigation.key
               }) | safe }}
-            {% endif %}
-            {% if section == 'docs' %}
-              {{ collections.docs | eleventyNavigation | eleventyNavigationToHtml({
+              {% endif %}
+              {% if section == 'docs' %}
+                {{ collections.docs | eleventyNavigation | eleventyNavigationToHtml({
                 listItemClass: "menu-item",
                 activeListItemClass: "current",
                 activeKey: eleventyNavigation.key
               }) | safe }}
-            {% endif %}
-          </rocket-navigation>
-        </nav>
-      </rocket-drawer>
+              {% endif %}
+            </rocket-navigation>
+          </nav>
+        </rocket-drawer>
+        <main>
+          {{ content.html | safe }}
+        </main>
+      </div>
 
       {% include 'partials/footer.njk' %}
     </div>

@@ -8,6 +8,13 @@ function transitionend(el) {
 }
 
 export class RocketDrawer extends OverlayMixin(LitElement) {
+  static get properties() {
+    return {
+      useOverlay: { type: Boolean, reflect: true },
+      useOverlayMediaQuery: { type: String },
+    };
+  }
+
   // eslint-disable-next-line class-methods-use-this
   _defineOverlayConfig() {
     return {
@@ -20,32 +27,35 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
   }
 
   _setupOverlayCtrl() {
-    super._setupOverlayCtrl();
+    if (this.useOverlay) {
+      console.log('setup');
+      super._setupOverlayCtrl();
 
-    /* eslint-disable no-param-reassign */
-    this._overlayCtrl.transitionHide = async ({ _contentWrapperNode }) => {
-      _contentWrapperNode.style.transition = 'transform 0.20s cubic-bezier(0.4, 0.0, 0.2, 1)';
-      _contentWrapperNode.style.transform = 'translateX(-100%)';
-      await transitionend(_contentWrapperNode);
-      _contentWrapperNode.style.display = 'none';
-    };
-    this._overlayCtrl.transitionShow = async ({ _contentWrapperNode }) => {
-      _contentWrapperNode.style.display = 'block';
-      _contentWrapperNode.style.transform = 'translateX(-100%)';
-      _contentWrapperNode.style.transition = 'transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1)';
-      // wait for block to be "active" and then translate otherwise there will be no animation
-      await new Promise(resolve => requestAnimationFrame(resolve));
-      await new Promise(resolve => requestAnimationFrame(resolve));
-      _contentWrapperNode.style.transform = 'translateX(0)';
-      await transitionend(_contentWrapperNode);
-    };
-    /* eslint-enable no-param-reassign */
+      /* eslint-disable no-param-reassign */
+      this._overlayCtrl.transitionHide = async ({ _contentWrapperNode }) => {
+        _contentWrapperNode.style.transition = 'transform 0.20s cubic-bezier(0.4, 0.0, 0.2, 1)';
+        _contentWrapperNode.style.transform = 'translateX(-100%)';
+        await transitionend(_contentWrapperNode);
+        _contentWrapperNode.style.display = 'none';
+      };
+      this._overlayCtrl.transitionShow = async ({ _contentWrapperNode }) => {
+        _contentWrapperNode.style.display = 'block';
+        _contentWrapperNode.style.transform = 'translateX(-100%)';
+        _contentWrapperNode.style.transition = 'transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1)';
+        // wait for block to be "active" and then translate otherwise there will be no animation
+        await new Promise(resolve => requestAnimationFrame(resolve));
+        await new Promise(resolve => requestAnimationFrame(resolve));
+        _contentWrapperNode.style.transform = 'translateX(0)';
+        await transitionend(_contentWrapperNode);
+      };
+      /* eslint-enable no-param-reassign */
 
-    this._overlayCtrl._contentWrapperNode.style.transform = 'translateX(-100%)';
-    this._overlayCtrl._contentWrapperNode.style.willChange = 'transform';
+      this._overlayCtrl._contentWrapperNode.style.transform = 'translateX(-100%)';
+      this._overlayCtrl._contentWrapperNode.style.willChange = 'transform';
 
-    // gesture
-    this.containerEl = this._overlayCtrl._contentWrapperNode;
+      // gesture
+      this.containerEl = this._overlayCtrl._contentWrapperNode;
+    }
   }
 
   updated(changedProps) {
@@ -55,6 +65,14 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
         document.body.addEventListener('touchstart', this.onGestureStart, { passive: true });
       } else {
         document.body.removeEventListener('touchstart', this.onGestureStart);
+      }
+    }
+
+    if (changedProps.has('useOverlay')) {
+      if (this.useOverlay) {
+        this._setupOverlayCtrl();
+      } else {
+        this._teardownOverlayCtrl();
       }
     }
   }
@@ -91,6 +109,8 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
 
   constructor() {
     super();
+    this.useOverlay = false;
+    this.useOverlayMediaQuery = '(max-width: 1024px)';
 
     this.onGestureStart = this.onGestureStart.bind(this);
     this.onGestureMove = this.onGestureMove.bind(this);
@@ -100,6 +120,14 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     this._startX = 0;
     this._currentX = 0;
     this.__touching = false;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.useOverlay = !!window.matchMedia(this.useOverlayMediaQuery).matches;
+    window.matchMedia(this.useOverlayMediaQuery).addListener(query => {
+      this.useOverlay = !!query.matches;
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this

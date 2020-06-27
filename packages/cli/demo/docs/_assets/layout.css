@@ -14,24 +14,30 @@ pre {
 
 /** LAYOUT ****************************************************************************************/
 #wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 100%;
   grid-template-areas:
     'header'
     'content'
-    'footer';
+    'footer'; */
 }
 
-/* .axxx {
-  grid-gap: 10px;
-  grid-template-columns: minmax(200px, 250px) minmax(300px, 1fr);
-  grid-template-areas:
-    'header header'
-    'sidebar content'
-    'footer footer';
-} */
+#content-wrapper {
+  display: flex;
+}
+
+@media screen and (min-width: 1024px) {
+  #wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* grid-gap: 10px;
+    grid-template-columns: minmax(200px, 250px) minmax(300px, 1fr);
+    grid-template-areas:
+      'header header'
+      'sidebar content'
+      'footer footer'; */
+  }
+}
 
 /** HEADER ****************************************************************************************/
 header {
@@ -41,6 +47,9 @@ header {
   border-bottom: 1px solid #ccc;
   align-items: center;
   padding: 10px;
+  position: sticky;
+  top: 0;
+  background: #fff;
 }
 header a {
   text-decoration: none;
@@ -66,16 +75,6 @@ header .logo-link {
 
 /** SIDEBAR ***************************************************************************************/
 #sidebar {
-  /* grid-area: sidebar; */
-  /* position: fixed;
-  background: rgba(0, 0, 0, 0.5);
-  width: 200%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  scroll-behavior: smooth; */
   display: none; /* for loading */
 }
 #sidebar-nav {
@@ -85,10 +84,6 @@ header .logo-link {
   position: fixed;
   top: 0;
   left: 0;
-  /* left: 0;
-  top: 0;
-  background: #fff;
-  width: 40%; */
 }
 rocket-navigation {
   overflow: auto;
@@ -115,43 +110,31 @@ rocket-navigation a {
   box-sizing: border-box;
 }
 
-/* @media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
   #sidebar {
     grid-area: sidebar;
-  }
-  nav {
     position: sticky;
-    top: 0;
-  }
-  rocket-navigation {
-    overflow: auto;
-  }
-  rocket-navigation ul {
-    padding: 10px;
-    margin: 0;
-    list-style-type: none;
-  }
-  rocket-navigation > ul {
-    padding: 0;
-  }
-  rocket-navigation a {
-    font-size: 1.1em;
-    line-height: 1.7;
-    font-weight: 700;
-    font-size: 1em;
-    font-weight: 400;
-    display: inline-block;
-    color: #2c3e50;
-    border-left: 0.25rem solid transparent;
-    line-height: 1.4;
+    height: 100%;
+    left: 0;
+    top: 52px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
     display: block;
-    box-sizing: border-box;
+    min-width: 200px;
   }
-} */
+  #sidebar-nav {
+    width: 100%;
+    position: static;
+  }
+}
 
 /** MAIN ******************************************************************************************/
 main {
   grid-area: content;
+}
+
+main > * {
+  scroll-margin-top: 100px;
 }
 
 /** FOOTER ****************************************************************************************/

@@ -1,11 +1,9 @@
 <!doctype html>
 <html lang="en">
-
   <head>
     {% include 'partials/head-content.njk' %}
     <link rel="stylesheet" href="/_assets/layout.css">
   </head>
-
   <body>
     <div id="wrapper">
       <main>
@@ -13,12 +11,6 @@
       </main>
 
       <header>
-        <button id="mobile-menu-trigger">
-          <span>Show Menu</span>
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewbox="0 0 448 512" class="icon">
-            <path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path>
-          </svg>
-        </button>
         <a class="logo-link" href="http://localhost:8000/packages/cli/demo/docs/">
           🚀
           <span>Rocket</span>
@@ -42,51 +34,9 @@
         </a>
       </header>
 
-      <rocket-drawer id="sidebar">
-        <nav slot="content" id="sidebar-nav">
-          <a class="logo-link" href="http://localhost:8000/packages/cli/demo/docs/">
-            🚀
-            <span>Rocket</span>
-          </a>
-          <rocket-navigation>
-            {% if section == 'learn' %}
-              {{ collections.learn | eleventyNavigation | eleventyNavigationToHtml({
-                listItemClass: "menu-item",
-                activeListItemClass: "current",
-                activeKey: eleventyNavigation.key
-              }) | safe }}
-            {% endif %}
-            {% if section == 'docs' %}
-              {{ collections.docs | eleventyNavigation | eleventyNavigationToHtml({
-                listItemClass: "menu-item",
-                activeListItemClass: "current",
-                activeKey: eleventyNavigation.key
-              }) | safe }}
-            {% endif %}
-          </rocket-navigation>
-        </nav>
-      </rocket-drawer>
-
       {% include 'partials/footer.njk' %}
     </div>
 
     {% include 'partials/pageJs.njk' %}
-
-    <script type="module">
-      import '@dakmor/navigation/rocket-navigation.js';
-      import '@dakmor/drawer/rocket-drawer.js';
-    </script>
-
-    <script type="module">
-      const drawer = document.querySelector('#sidebar');
-
-      // Toggle button
-      document
-        .querySelector('#mobile-menu-trigger')
-        .addEventListener('click', function () {
-          drawer.opened = true;
-        });
-    </script>
-
   </body>
 </html>

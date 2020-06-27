@@ -20,12 +20,14 @@ export class RocketNavigation extends HTMLElement {
   updateCurrentNode() {
     this.currentNode = this.querySelector(this.currentNodeSelector);
     let el = this.currentNode;
-    do {
-      if (el.classList.contains('menu-item')) {
-        el.classList.add('active');
-      }
-      el = el.parentElement;
-    } while (el !== this);
+    if (el) {
+      do {
+        if (el.classList.contains('menu-item')) {
+          el.classList.add('active');
+        }
+        el = el.parentElement;
+      } while (el !== this);
+    }
   }
 
   updateContentNode() {
@@ -38,6 +40,9 @@ export class RocketNavigation extends HTMLElement {
   }
 
   updateOutline() {
+    if (!this.currentNode) {
+      return;
+    }
     const outlineEls = this.contentNode.querySelectorAll('h2');
     if (outlineEls.length > 0) {
       const outline = document.createElement('ul');

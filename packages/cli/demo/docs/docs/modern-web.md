@@ -47,3 +47,11 @@ eleventyNavigation:
 | -                                          | -                                        |
 | **/about/**                                | **About**                                |
 | /about/family                              | Relationship modern-web, open-wc, rocket |
+
+let graph = new DepGraph();
+findDependencies(pages, graph);
+const activePages = graph.dependenciesOf(options.activeKey);
+
+    if (activePages && activePages.includes(entry.key)) {
+      liClass.push('active-tree');
+    }

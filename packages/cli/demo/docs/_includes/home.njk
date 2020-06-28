@@ -12,9 +12,11 @@
           🚀
           <span>Rocket</span>
         </a>
-        {% set navPages = collections.header | eleventyNavigation %}
-        {%- for entry in navPages %}
-          <a href="{{ entry.url | url }}" {% if entry.url == page.url %} class="current" {% endif %}>{{ entry.title }}</a>
+        {%- for entry in collections.header %}
+          <a href="{{ entry.url | url }}" class="
+              {% if entry.url == page.url %} current {% endif %}
+              {% if entry.data.section == section %} active {% endif %}
+            ">{{ entry.data.eleventyNavigation.key }}</a>
         {%- endfor %}
         <a id="github-link" href="https://github.com/dakmor/rocket" aria-label="Rocket on GitHub" rel="noopener noreferrer" target="_blank">
           <span>Github</span>

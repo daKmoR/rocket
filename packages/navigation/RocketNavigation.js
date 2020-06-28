@@ -65,7 +65,7 @@ export class RocketNavigation extends HTMLElement {
   }
 
   connectedCallback() {
-    this.updateCurrentNode();
+    // this.updateCurrentNode();
     this.updateContentNode();
   }
 }

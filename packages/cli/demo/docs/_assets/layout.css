@@ -53,6 +53,9 @@ header .content-area {
 header a {
   text-decoration: none;
 }
+header a.active {
+  color: red;
+}
 header a span,
 header button span {
   display: none;
@@ -99,6 +102,12 @@ header .logo-link {
 #sidebar-nav a {
   text-decoration: none;
   color: #2c3e50;
+}
+#sidebar-nav li.active > a {
+  color: #ee0000;
+}
+#sidebar-nav li.current > a {
+  color: red;
 }
 
 #sidebar-nav li {

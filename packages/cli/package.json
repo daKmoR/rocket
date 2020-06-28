@@ -17,6 +17,7 @@
     "build": "npm run rocket:build",
     "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/",
     "rocket:build": "node src/build/cli.js -c demo/docs",
+    "dev": "node ./eleventyOnly.js",
     "test": "mocha test/**/*.test.js test/*.test.js",
     "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
   },

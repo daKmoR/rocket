@@ -1,0 +1,54 @@
+diff --git a/node_modules/@11ty/eleventy-navigation/eleventy-navigation.js b/node_modules/@11ty/eleventy-navigation/eleventy-navigation.js
+index 792869f..d19776a 100644
+--- a/node_modules/@11ty/eleventy-navigation/eleventy-navigation.js
++++ b/node_modules/@11ty/eleventy-navigation/eleventy-navigation.js
+@@ -62,10 +62,21 @@ function navigationToHtml(pages, options = {}) {
+ 		activeKey: "",
+ 		activeListItemClass: "",
+ 		anchorClass: "",
+-		activeAnchorClass: "",
++    activeAnchorClass: "",
++    activeTreeListClass: "active",
++    activeAnchorListClass: "active",
+ 		showExcerpt: false,
+ 		isChildList: false
+-	}, options);
++  }, options);
++  
++  let activePages = [];
++  if (options.activeKey) {
++    let graph = new DepGraph();
++    findDependencies(pages, graph);
++    try {
++      activePages = graph.dependenciesOf(options.activeKey);
++    } catch (err) { /* no active pages found */ }
++  }
+ 
+ 	let isChildList = !!options.isChildList;
+ 	options.isChildList = true;
+@@ -89,7 +100,7 @@ function navigationToHtml(pages, options = {}) {
+ 
+ 	return pages.length ? `<${options.listElement}${!isChildList && options.listClass ? ` class="${options.listClass}"` : ''}>${pages.map(entry => {
+ 		let liClass = [];
+-		let aClass = [];
++    let aClass = [];
+ 		if(options.listItemClass) {
+ 			liClass.push(options.listItemClass);
+ 		}
+@@ -102,8 +113,14 @@ function navigationToHtml(pages, options = {}) {
+ 			}
+ 			if(options.activeAnchorClass) {
+ 				aClass.push(options.activeAnchorClass);
+-			}
+-		}
++      }
++    }
++    if (options.activeTreeListClass && activePages && activePages.includes(entry.key)) {
++      liClass.push(options.activeTreeListClass);
++    }
++    if (options.activeAnchorListClass && activePages && activePages.includes(entry.key)) {
++      aClass.push(options.activeAnchorListClass);
++    }  
+ 		if(options.listItemHasChildrenClass && entry.children && entry.children.length) {
+ 			liClass.push(options.listItemHasChildrenClass);
+ 		}

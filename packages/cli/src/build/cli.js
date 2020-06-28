@@ -7,6 +7,7 @@ const Eleventy = require('@11ty/eleventy');
 const { createMpaConfig } = require('./createMpaConfig.js');
 const { passthroughCopy } = require('./rollup-plugin-passthrough-copy.js');
 const clear = require('rollup-plugin-clear');
+const visualizer = require('rollup-plugin-visualizer');
 
 // const elev = new Eleventy('./docs', './_site');
 // elev.setConfigPathOverride('./docs/.eleventy.js');
@@ -65,6 +66,8 @@ async function productionBuild(html) {
       rootDir: './demo/docs',
     }),
   );
+
+  mpaConfig.plugins.push(visualizer());
 
   await buildAndWrite(mpaConfig);
 }

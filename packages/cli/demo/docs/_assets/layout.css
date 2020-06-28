@@ -176,10 +176,15 @@ rocket-navigation > ul {
 /** MAIN ******************************************************************************************/
 main {
   padding: 20px;
+  width: 100%;
 }
 
 main > * {
   scroll-margin-top: 60px;
+}
+
+body[layout='home'] main {
+  text-align: center;
 }
 
 @media screen and (min-width: 1024px) {

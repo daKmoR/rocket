@@ -3,14 +3,11 @@
   <head>
     {% include 'partials/head-content.njk' %}
     <link rel="stylesheet" href="/_assets/layout.css">
+    <link rel="stylesheet" href="/_assets/code.css">
   </head>
-  <body>
-    <div id="wrapper">
-      <main>
-        {{ content.html | safe }}
-      </main>
-
-      <header>
+  <body layout="home">
+    <header>
+      <div class="content-area">
         <a class="logo-link" href="http://localhost:8000/packages/cli/demo/docs/">
           🚀
           <span>Rocket</span>
@@ -32,10 +29,18 @@
             </defs>
           </svg>
         </a>
-      </header>
+      </div>
+    </header>
 
-      {% include 'partials/footer.njk' %}
+    <div id="content-wrapper">
+      <div class="content-area">
+        <main class="markdown-body">
+          {{ content.html | safe }}
+        </main>
+      </div>
     </div>
+
+    {% include 'partials/footer.njk' %}
 
     {% include 'partials/pageJs.njk' %}
   </body>

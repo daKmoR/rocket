@@ -46,6 +46,7 @@ export class RocketNavigation extends HTMLElement {
     const outlineEls = this.contentNode.querySelectorAll('h2');
     if (outlineEls.length > 0) {
       const outline = document.createElement('ul');
+      outline.classList.add('outline-wrapper');
       for (const outlineEl of outlineEls) {
         const item = document.createElement('li');
         item.classList.add('outline');

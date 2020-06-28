@@ -4,11 +4,12 @@
   <head>
     {% include 'partials/head-content.njk' %}
     <link rel="stylesheet" href="/_assets/layout.css">
+    <link rel="stylesheet" href="/_assets/code.css">
   </head>
 
-  <body>
-    <div id="wrapper">
-      <header>
+  <body layout="layout">
+    <header>
+      <div class="content-area">
         <button id="mobile-menu-trigger">
           <span>Show Menu</span>
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewbox="0 0 448 512" class="icon">
@@ -36,10 +37,11 @@
             </defs>
           </svg>
         </a>
-      </header>
+      </div>
+    </header>
 
-      <div id="content-wrapper">
-
+    <div id="content-wrapper">
+      <div class="content-area">
         <rocket-drawer id="sidebar">
           <nav slot="content" id="sidebar-nav">
             <a class="logo-link" href="http://localhost:8000/packages/cli/demo/docs/">
@@ -49,28 +51,28 @@
             <rocket-navigation>
               {% if section == 'learn' %}
                 {{ collections.learn | eleventyNavigation | eleventyNavigationToHtml({
-                listItemClass: "menu-item",
-                activeListItemClass: "current",
-                activeKey: eleventyNavigation.key
-              }) | safe }}
+                  listItemClass: "menu-item",
+                  activeListItemClass: "current",
+                  activeKey: eleventyNavigation.key
+                }) | safe }}
               {% endif %}
               {% if section == 'docs' %}
                 {{ collections.docs | eleventyNavigation | eleventyNavigationToHtml({
-                listItemClass: "menu-item",
-                activeListItemClass: "current",
-                activeKey: eleventyNavigation.key
-              }) | safe }}
+                  listItemClass: "menu-item",
+                  activeListItemClass: "current",
+                  activeKey: eleventyNavigation.key
+                }) | safe }}
               {% endif %}
             </rocket-navigation>
           </nav>
         </rocket-drawer>
-        <main>
+        <main class="markdown-body">
           {{ content.html | safe }}
         </main>
       </div>
-
-      {% include 'partials/footer.njk' %}
     </div>
+
+    {% include 'partials/footer.njk' %}
 
     {% include 'partials/pageJs.njk' %}
 

@@ -2,6 +2,7 @@
 layout: learn.njk
 eleventyNavigation:
   key: Codelabs
+  order: 100
 ---
 
 # Codelabs Overview

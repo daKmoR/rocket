@@ -2,6 +2,7 @@
 layout: learn.njk
 eleventyNavigation:
   key: Developing
+  order: 50
 ---
 
 # Developing Overview

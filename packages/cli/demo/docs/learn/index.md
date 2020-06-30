@@ -2,6 +2,7 @@
 layout: learn.njk
 eleventyNavigation:
   key: Learn
+  order: 10
 ---
 
 # Learning Section

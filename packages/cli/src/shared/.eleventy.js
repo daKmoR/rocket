@@ -1,9 +1,9 @@
 const pluginMdjs = require('@dakmor/eleventy-plugin-mdjs');
-const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
+const eleventyRocketNav = require('@dakmor/eleventy-rocket-nav');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginMdjs);
-  eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  eleventyConfig.addPlugin(eleventyRocketNav);
 
   eleventyConfig.addPassthroughCopy('./styles.css');
   eleventyConfig.addPassthroughCopy('./**/*.{png,gif}');

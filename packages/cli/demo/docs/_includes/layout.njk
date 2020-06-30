@@ -53,14 +53,14 @@
             </a>
             <rocket-navigation>
               {% if section == 'learn' %}
-                {{ collections.learn | eleventyNavigation | eleventyNavigationToHtml({
+                {{ collections.learn | rocketNav | rocketNavToHtml({
                   listItemClass: "menu-item",
                   activeListItemClass: "current",
                   activeKey: eleventyNavigation.key
                 }) | safe }}
               {% endif %}
               {% if section == 'docs' %}
-                {{ collections.docs | eleventyNavigation | eleventyNavigationToHtml({
+                {{ collections.docs | rocketNav | rocketNavToHtml({
                   listItemClass: "menu-item",
                   activeListItemClass: "current",
                   activeKey: eleventyNavigation.key

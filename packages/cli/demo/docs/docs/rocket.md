@@ -7,10 +7,10 @@ eleventyNavigation:
 
 # rocket.dev
 
-=> Opinionated Meta Framework on top of (@web, @open-wc, @11ty)
-=> Initial goal mostly server rendered Multi Page App
-=> Compares with next/nuxt
-=> Small!!!
+- Opinionated Meta Framework on top of (@web, @open-wc, @11ty)
+- Initial goal mostly server rendered Multi Page App
+- Compares with next/nuxt
+- Small!!! a
 
 | url                                | desc                            |
 | ---------------------------------- | ------------------------------- |

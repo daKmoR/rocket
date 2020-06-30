@@ -8418,6 +8418,11 @@ safe-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+sax-wasm@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/sax-wasm/-/sax-wasm-1.4.5.tgz#c826a38a89a285cc3aaea26e32f0fe164dbb3aed"
+  integrity sha512-Pk7xPWJpYAjcF4Q2e6EGsC7Hsf8jXgCFSogbC/k1x5o4Igl0Bf90em608+q8r2JTXWJsCUW/A1e5seGpD5hLZQ==
+
 section-matter@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/section-matter/-/section-matter-1.0.0.tgz#e9041953506780ec01d59f292a19c7b850b84167"

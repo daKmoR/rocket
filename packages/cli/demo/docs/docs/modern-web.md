@@ -7,13 +7,13 @@ eleventyNavigation:
 
 # modern-web.dev
 
-=> Web fundamental (that also work with web components)
+- Web fundamental (that also work with web components)
 
 | url                                        | desc                                     |
 | ------------------------------------------ | ---------------------------------------- |
 | -                                          | Homepage                                 |
 | **/learn/**                                | **What is Modern Web? + Features?**      |
-| /learn/guide/                              | - Getting Started                        |
+| 1 - /learn/guide/                          | - Getting Started                        |
 | /learn/dev-setup/                          | - Dev Setup (IDE, Node, ...)             |
 | /learn/codelabs/                           | - Codelabs Overview                      |
 | /learn/codelabs/x/                         | ???                                      |
@@ -23,11 +23,11 @@ eleventyNavigation:
 | /learn/fundaments/browser/                 | -- Browser Basics                        |
 | /learn/fundaments/specs/                   | -- Specs Basics                          |
 | /learn/fundaments/server/                  | -- Web Server Basics                     |
-| /learn/serving/                            | - Serving for development                |
-| /learn/testing/                            | - Testing Basics                         |
-| /learn/documenting/                        | - Documenting/Demoing Basics             |
-| /learn/building/                           | - Building Basics                        |
-| /learn/deploying/                          | - Deploying Basics                       |
+| 1 - /learn/serving/                        | - Serving for development                |
+| 1 - /learn/testing/                        | - Testing Basics                         |
+| 1 - /learn/documenting/                    | - Documenting/Demoing Basics             |
+| 1 - /learn/building/                       | - Building Basics                        |
+| 1 - /learn/deploying/                      | - Deploying Basics                       |
 | -                                          | -                                        |
 | **/docs/**                                 | **Overview Packages**                    |
 | /docs/dev-server/                          | - Dev Server Docs                        |
@@ -47,11 +47,3 @@ eleventyNavigation:
 | -                                          | -                                        |
 | **/about/**                                | **About**                                |
 | /about/family                              | Relationship modern-web, open-wc, rocket |
-
-let graph = new DepGraph();
-findDependencies(pages, graph);
-const activePages = graph.dependenciesOf(options.activeKey);
-
-    if (activePages && activePages.includes(entry.key)) {
-      liClass.push('active-tree');
-    }

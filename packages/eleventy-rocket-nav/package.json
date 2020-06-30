@@ -1,0 +1,17 @@
+{
+  "name": "@dakmor/eleventy-rocket-nav",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "A plugin for creating hierarchical navigation in Eleventy projects. Supports breadcrumbs too!",
+  "main": ".eleventy.js",
+  "keywords": [
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "dependency-graph": "^0.8.1"
+  }
+}

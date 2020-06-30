@@ -113,6 +113,17 @@ header .logo-link {
 #sidebar-nav li {
   padding: 7px 0;
 }
+
+/* Hide 3rd level by default */
+rocket-navigation > ul > li > ul > li > ul {
+  display: none;
+}
+/* Only show 3rd level if level above is active/current */
+li.current > ul,
+li.active > ul {
+  display: block;
+}
+
 rocket-navigation > ul > li > a {
   font-weight: 700;
 }
@@ -122,7 +133,7 @@ rocket-navigation {
   padding: 10px;
 }
 rocket-navigation ul {
-  padding: 7px 0 10px 10px;
+  padding: 7px 0 10px 15px;
   margin: 0;
   list-style-type: none;
 }
@@ -152,10 +163,20 @@ rocket-navigation > ul {
   color: #777;
 }
 #sidebar-nav li.outline a::before {
-  content: '> ';
+  content: '>';
+  margin: 0 4px 0 -1px;
+  display: block;
+  float: left;
 }
 #sidebar-nav li.outline:last-child {
   padding: 0;
+}
+
+li.outline {
+  display: none;
+}
+li.current > ul > li.outline {
+  display: block;
 }
 
 @media screen and (min-width: 1024px) {

@@ -1,0 +1,8 @@
+{% extends 'layout.njk'%}
+{% block sidenav %}
+{{ collections.learn | rocketNav | rocketNavToHtml({
+    listItemClass: "menu-item",
+    activeListItemClass: "current",
+    activeKey: eleventyNavigation.key
+}) | safe }}
+{% endblock %}

@@ -8,6 +8,16 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./styles.css');
   eleventyConfig.addPassthroughCopy('./**/*.{png,gif}');
 
+  eleventyConfig.addCollection('docs', collection => {
+    return [...collection.getFilteredByGlob('./demo/docs/docs/**/*.md')];
+  });
+  eleventyConfig.addCollection('learn', collection => {
+    return [...collection.getFilteredByGlob('./demo/docs/learn/**/*.md')];
+  });
+  eleventyConfig.addCollection('header', collection => {
+    return [...collection.getFilteredByGlob('./demo/docs/*/index.md')];
+  });
+
   // eleventyConfig.addCollection('section', function(collection) {
   //   // This works _because_ of our current content. Something like https://github.com/Polymer/lit-html/blob/master/docs/.eleventy.js#L37
   //   // would be more robust, but there are likely other answers here.

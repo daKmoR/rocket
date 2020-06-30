@@ -1,6 +1,5 @@
 ---
-tags: header
-section: learn
+layout: learn.njk
 eleventyNavigation:
   key: Learn
 ---

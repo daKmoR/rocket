@@ -1,6 +1,5 @@
 ---
-tags: learn
-section: learn
+layout: learn.njk
 eleventyNavigation:
   key: Codelabs
 ---

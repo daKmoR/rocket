@@ -19,20 +19,8 @@
               <span>Rocket</span>
             </a>
             <rocket-navigation>
-              {% if section == 'learn' %}
-                {{ collections.learn | rocketNav | rocketNavToHtml({
-                  listItemClass: "menu-item",
-                  activeListItemClass: "current",
-                  activeKey: eleventyNavigation.key
-                }) | safe }}
-              {% endif %}
-              {% if section == 'docs' %}
-                {{ collections.docs | rocketNav | rocketNavToHtml({
-                  listItemClass: "menu-item",
-                  activeListItemClass: "current",
-                  activeKey: eleventyNavigation.key
-                }) | safe }}
-              {% endif %}
+              {% block sidenav %}
+              {% endblock %}
             </rocket-navigation>
           </nav>
         </rocket-drawer>

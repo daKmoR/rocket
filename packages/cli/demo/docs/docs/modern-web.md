@@ -1,6 +1,5 @@
 ---
-tags: docs
-section: docs
+layout: docs.njk
 eleventyNavigation:
   key: modern-web.dev
 ---

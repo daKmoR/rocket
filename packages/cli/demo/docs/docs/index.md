@@ -1,6 +1,5 @@
 ---
-tags: header
-section: docs
+layout: docs.njk
 eleventyNavigation:
   key: Docs
 ---

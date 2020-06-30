@@ -152,30 +152,30 @@ rocket-navigation > ul {
 #sidebar-nav .logo-link span {
   padding-left: 10px;
 }
-#sidebar-nav ul.outline-wrapper {
+#sidebar-nav ul.anchor-wrapper {
   padding-top: 0;
   padding-bottom: 0;
 }
-#sidebar-nav ul.outline-wrapper + ul {
+#sidebar-nav ul.anchor-wrapper + ul {
   padding-top: 0;
 }
-#sidebar-nav li.outline a {
+#sidebar-nav li.anchor a {
   color: #777;
 }
-#sidebar-nav li.outline a::before {
+#sidebar-nav li.anchor a::before {
   content: '>';
   margin: 0 4px 0 -1px;
   display: block;
   float: left;
 }
-#sidebar-nav li.outline:last-child {
+#sidebar-nav li.anchor:last-child {
   padding: 0;
 }
 
-li.outline {
+li.anchor {
   display: none;
 }
-li.current > ul > li.outline {
+li.current > ul > li.anchor {
   display: block;
 }
 

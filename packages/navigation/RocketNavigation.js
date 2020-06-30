@@ -2,12 +2,17 @@ export class RocketNavigation extends HTMLElement {
   // static get observedAttributes() {
   //   return ['content-node-selector'];
   // }
-  // constructor() {
-  //   super();
-  //   this.currentNode = null;
-  //   this.currentNodeSelector = '.current';
-  //   this.contentNodeSelector = 'main';
-  // }
+  constructor() {
+    super();
+    // this.currentNode = null;
+    // this.currentNodeSelector = '.current';
+    // this.contentNodeSelector = 'main';
+    this.addEventListener('click', ev => {
+      if (ev.target.classList.contains('anchor')) {
+        this.dispatchEvent(new Event('close-overlay', { bubbles: true }));
+      }
+    });
+  }
   // attributeChangedCallback(name, oldValue, newValue) {
   //   if (name === 'content-node-selector') {
   //     this.contentNodeSelector = newValue;

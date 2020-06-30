@@ -28,7 +28,6 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
 
   _setupOverlayCtrl() {
     if (this.useOverlay) {
-      console.log('setup');
       super._setupOverlayCtrl();
 
       /* eslint-disable no-param-reassign */

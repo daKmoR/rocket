@@ -83,7 +83,7 @@ function findNavigationEntries(nodes = [], key = '') {
           pluginType: 'eleventy-navigation',
           parentKey: entry.key,
           title: heading.text,
-          outline: true,
+          anchor: true,
         }));
         entry.children = [...anchors, ...findNavigationEntries(nodes, entry.key)];
       }
@@ -201,9 +201,9 @@ function navigationToHtml(pages, options = {}) {
             liClass.push(options.listItemHasChildrenClass);
           }
 
-          if (entry.outline) {
-            liClass.push('outline');
-            aClass.push('outline');
+          if (entry.anchor) {
+            liClass.push('anchor');
+            aClass.push('anchor');
           }
 
           return `<${options.listItemElement}${

@@ -3,6 +3,12 @@ tags: ['header']
 section: blog
 eleventyNavigation:
   key: Blog
+layout: blog-overview.njk
+pagination:
+  data: collections.post
+  size: 10
+  reverse: true
+  alias: posts
 ---
 
 # Blog Section

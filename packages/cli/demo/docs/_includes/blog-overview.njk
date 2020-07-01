@@ -5,20 +5,23 @@
     <link rel="stylesheet" href="/_assets/layout.css">
     <link rel="stylesheet" href="/_assets/code.css">
   </head>
-  <body layout="home">
+  <body>
     {% include 'partials/header.njk' %}
 
     <div id="content-wrapper">
       <div class="content-area">
-        <main>
-          {% for post in posts %}
-            <article>
-              <h1>
-                <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-              </h1>
-              {{ post.date }}
-            </article>
-          {% endfor %}
+        <main class="markdown-body">
+          {{ content.html | safe }}
+          <div id="articles">
+            {% for post in posts %}
+              <article>
+                <h2>
+                  <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+                </h2>
+                {{ post.date }}
+              </article>
+            {% endfor %}
+          </div>
         </main>
       </div>
     </div>

@@ -1,10 +1,9 @@
 ---
+title: modern-web.dev
 layout: docs.njk
 eleventyNavigation:
   key: modern-web.dev
 ---
-
-# modern-web.dev
 
 - Web fundamental (that also work with web components)
 

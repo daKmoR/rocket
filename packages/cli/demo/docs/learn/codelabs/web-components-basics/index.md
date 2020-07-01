@@ -1,11 +1,10 @@
 ---
+title: Web Components Basics
 layout: learn.njk
 eleventyNavigation:
   key: Web Components Basics
   parent: Codelabs
 ---
-
-## Introduction
 
 In this codelab, you will learn about the basics of Web Components and how they work.
 

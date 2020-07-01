@@ -1,12 +1,11 @@
 ---
+title: open-wc.org
 layout: docs.njk
 eleventyNavigation:
   key: open-wc.org
 ---
 
-# open-wc.org
-
-=> => Web Component fundamentals
+- Web Component fundamentals
 
 | url                                            | desc                                         |
 | ---------------------------------------------- | -------------------------------------------- |
@@ -54,14 +53,3 @@ eleventyNavigation:
 | -                                              | -                                            |
 | **/legacy/**                                   | **Legacy Overview**                          |
 | /legacy/karma-\*                               | - Karma                                      |
-
---- below could be a completely separate entry point? e.g on main page [Guide][docs] ---
-
-- Docs open-wc.org/docs/
-  - eslint-config open-wc.org/docs/eslint-config/
-  - init open-wc.org/docs/init/
-  - karma-esm open-wc.org/docs/karma-esm/
-  - testing-helpers open-wc.org/docs/testing-helpers/
-  - chai a11y axe open-wc.org/docs/...
-  - semantic-dom-diff open-wc.org/docs/
-  - storybook-addon-markdown-docs open-wc.org/docs/

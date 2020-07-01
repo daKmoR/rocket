@@ -14,6 +14,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection('learn', collection => {
     return [...collection.getFilteredByGlob('./demo/docs/learn/**/*.md')];
   });
+  eleventyConfig.addCollection('post', collection => {
+    return [...collection.getFilteredByGlob('./demo/docs/blog/**/*.md')];
+  });
   eleventyConfig.addCollection('header', collection => {
     return [...collection.getFilteredByGlob('./demo/docs/*/index.md')];
   });

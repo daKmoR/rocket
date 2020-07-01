@@ -1,11 +1,10 @@
 ---
+title: Custom Elements
 layout: learn.njk
 eleventyNavigation:
   key: Custom Elements
   parent: Web Components Basics
 ---
-
-## Custom Elements
 
 First, we will take a look at the most important Web Component feature: Custom Elements.
 

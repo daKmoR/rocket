@@ -1,7 +1,8 @@
 ---
+title: Development Server
 layout: docs.njk
 eleventyNavigation:
   key: Dev Server
 ---
 
-# Dev Server
+You need it

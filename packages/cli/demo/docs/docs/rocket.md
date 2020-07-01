@@ -1,15 +1,14 @@
 ---
+title: rocket.dev
 layout: docs.njk
 eleventyNavigation:
   key: rocket.dev
 ---
 
-# rocket.dev
-
 - Opinionated Meta Framework on top of (@web, @open-wc, @11ty)
 - Initial goal mostly server rendered Multi Page App
 - Compares with next/nuxt
-- Small!!! a
+- Small!!!
 
 | url                                | desc                            |
 | ---------------------------------- | ------------------------------- |

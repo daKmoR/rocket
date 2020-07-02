@@ -35,7 +35,7 @@
               </svg>
             </a>{{ title }}</h1>
           {{ content.html | safe }}
-          {% block previousNext %}{% endblock %}
+          {% include 'partials/previousNext.njk' %}
         </main>
       </div>
     </div>

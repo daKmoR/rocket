@@ -1,6 +1,20 @@
 const pluginMdjs = require('@dakmor/eleventy-plugin-mdjs');
 const eleventyRocketNav = require('@dakmor/eleventy-rocket-nav');
 
+const addPrevNextUrls = items => {
+  items.forEach((item, index) => {
+    const prev = index - 1;
+    const next = index + 1;
+    if (items[prev]) {
+      item.data.previousUrl = items[prev].url;
+    }
+    if (items[next]) {
+      item.data.nextUrl = items[next].url;
+    }
+  });
+  return items;
+};
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginMdjs);
   eleventyConfig.addPlugin(eleventyRocketNav);
@@ -13,6 +27,7 @@ module.exports = function (eleventyConfig) {
     docs.forEach(page => {
       page.data.section = 'docs';
     });
+    docs = addPrevNextUrls(docs);
     return docs;
   });
   eleventyConfig.addCollection('learn', collection => {
@@ -39,7 +54,7 @@ module.exports = function (eleventyConfig) {
       }
       return order + depthOffset;
     };
-    return learn.sort(function (a, b) {
+    learn = learn.sort(function (a, b) {
       const orderA = a.data.eleventyNavigation.order || getOrder(a.data.eleventyNavigation.parent);
       const orderB = b.data.eleventyNavigation.order || getOrder(b.data.eleventyNavigation.parent);
       if (orderA < orderB) {
@@ -50,6 +65,8 @@ module.exports = function (eleventyConfig) {
       }
       return 0;
     });
+    learn = addPrevNextUrls(learn);
+    return learn;
   });
   eleventyConfig.addCollection('post', collection => {
     return [...collection.getFilteredByGlob('./demo/docs/blog/**/*.md')];

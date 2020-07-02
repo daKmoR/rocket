@@ -1,6 +1,5 @@
 ---
 title: open-wc.org
-layout: docs.njk
 eleventyNavigation:
   key: open-wc.org
 ---

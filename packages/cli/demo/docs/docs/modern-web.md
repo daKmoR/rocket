@@ -1,6 +1,5 @@
 ---
 title: modern-web.dev
-layout: docs.njk
 eleventyNavigation:
   key: modern-web.dev
 ---

@@ -9,10 +9,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./**/*.{png,gif}');
 
   eleventyConfig.addCollection('docs', collection => {
-    return [...collection.getFilteredByGlob('./demo/docs/docs/**/*.md')];
+    const docs = [...collection.getFilteredByGlob('./demo/docs/docs/**/*.md')];
+    docs.forEach(page => {
+      page.data.section = 'docs';
+    });
+    return docs;
   });
   eleventyConfig.addCollection('learn', collection => {
-    return [...collection.getFilteredByGlob('./demo/docs/learn/**/*.md')];
+    const learn = [...collection.getFilteredByGlob('./demo/docs/learn/**/*.md')];
+    learn.forEach(page => {
+      page.data.section = 'learn';
+    });
+    return learn;
   });
   eleventyConfig.addCollection('post', collection => {
     return [...collection.getFilteredByGlob('./demo/docs/blog/**/*.md')];

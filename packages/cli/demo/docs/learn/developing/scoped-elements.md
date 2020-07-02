@@ -1,6 +1,5 @@
 ---
 title: Scoped Elements
-layout: learn.njk
 eleventyNavigation:
   key: Scoped Elements
   parent: Developing

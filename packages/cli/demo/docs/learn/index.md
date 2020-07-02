@@ -1,6 +1,5 @@
 ---
 title: Learning Section
-layout: learn.njk
 eleventyNavigation:
   key: Learn
   order: 10

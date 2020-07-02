@@ -1,6 +1,5 @@
 ---
 title: Web Components Basics
-layout: learn.njk
 eleventyNavigation:
   key: Web Components Basics
   parent: Codelabs

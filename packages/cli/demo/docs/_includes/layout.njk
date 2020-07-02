@@ -19,7 +19,11 @@
               <span>Rocket</span>
             </a>
             <rocket-navigation>
-              {% block sidenav %}{% endblock %}
+              {{ collections[section] | rocketNav | rocketNavToHtml({
+                  listItemClass: "menu-item",
+                  activeListItemClass: "current",
+                  activeKey: eleventyNavigation.key
+              }) | safe }}
             </rocket-navigation>
           </nav>
         </rocket-drawer>

@@ -1,6 +1,5 @@
 ---
 title: rocket.dev
-layout: docs.njk
 eleventyNavigation:
   key: rocket.dev
 ---

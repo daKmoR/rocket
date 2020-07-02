@@ -1,6 +1,5 @@
 ---
 title: Custom Elements
-layout: learn.njk
 eleventyNavigation:
   key: Custom Elements
   parent: Web Components Basics

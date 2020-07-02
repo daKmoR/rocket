@@ -1,6 +1,5 @@
 ---
 title: Developing Overview
-layout: learn.njk
 eleventyNavigation:
   key: Developing
   order: 50

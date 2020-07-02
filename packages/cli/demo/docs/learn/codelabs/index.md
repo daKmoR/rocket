@@ -1,6 +1,5 @@
 ---
 title: Codelabs Overview
-layout: learn.njk
 eleventyNavigation:
   key: Codelabs
   order: 100

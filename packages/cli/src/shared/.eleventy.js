@@ -15,7 +15,15 @@ const addPrevNextUrls = items => {
   return items;
 };
 
+// console.log('CONFIG: side effect');
+
+const readCommandLineArgs = require('../start/readCommandLineArgs');
+
 module.exports = function (eleventyConfig) {
+  const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
+  const inputDir = config.configDir;
+
+  // console.log('CONFIG: execute', config);
   eleventyConfig.addPlugin(pluginMdjs);
   eleventyConfig.addPlugin(eleventyRocketNav);
 
@@ -23,7 +31,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./**/*.{png,gif}');
 
   eleventyConfig.addCollection('docs', collection => {
-    let docs = [...collection.getFilteredByGlob('./demo/docs/docs/**/*.md')];
+    let docs = [...collection.getFilteredByGlob(`${inputDir}/docs/**/*.md`)];
     docs.forEach(page => {
       page.data.section = 'docs';
     });
@@ -31,7 +39,7 @@ module.exports = function (eleventyConfig) {
     return docs;
   });
   eleventyConfig.addCollection('learn', collection => {
-    let learn = [...collection.getFilteredByGlob('./demo/docs/learn/**/*.md')];
+    let learn = [...collection.getFilteredByGlob(`${inputDir}/learn/**/*.md`)];
     learn.forEach(page => {
       page.data.section = 'learn';
     });
@@ -69,13 +77,13 @@ module.exports = function (eleventyConfig) {
     return learn;
   });
   eleventyConfig.addCollection('post', collection => {
-    return [...collection.getFilteredByGlob('./demo/docs/blog/**/*.md')];
+    return [...collection.getFilteredByGlob(`${inputDir}/blog/**/*.md`)];
   });
   eleventyConfig.addCollection('header', collection => {
     return [
-      ...collection.getFilteredByGlob('./demo/docs/learn/index.md'),
-      ...collection.getFilteredByGlob('./demo/docs/docs/index.md'),
-      ...collection.getFilteredByGlob('./demo/docs/blog/index.md'),
+      ...collection.getFilteredByGlob(`${inputDir}/learn/index.md`),
+      ...collection.getFilteredByGlob(`${inputDir}/docs/index.md`),
+      ...collection.getFilteredByGlob(`${inputDir}/blog/index.md`),
     ];
   });
 
@@ -92,7 +100,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform('hook-for-rocket');
 
   return {
-    dir: { input: './', output: './_site-dev' },
+    dir: {
+      input: inputDir,
+      output: './_site-dev',
+      // includes: '../packages/cli/demo/docs/_includes/',
+      // data: '../packages/cli/demo/docs/_data/',
+    },
     passthroughFileCopy: true,
   };
 };

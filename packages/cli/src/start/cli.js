@@ -12,20 +12,25 @@ const eleventyPlugin = require('./eleventyPlugin');
 
 async function run() {
   const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
-  const absRootDir = path.resolve(config.esDevServer.rootDir);
+  const absRootDir = config.esDevServer.rootDir
+    ? path.resolve(config.esDevServer.rootDir)
+    : process.cwd();
 
-  const elev = new Eleventy('./demo/docs', './__site');
-  elev.setConfigPathOverride('./src/shared/.eleventy.js');
+  const elev = new Eleventy();
+  // 11ty always wants a relative path to cwd - why?
+  const rel = path.relative(process.cwd(), path.join(__dirname, '..'));
+  const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.js');
+  elev.setConfigPathOverride(relCwdPathToConfig);
+
   elev.setDryRun(true); // do not write to file system
   await elev.init();
   elev.watch();
 
   config.esDevServer = {
-    ...config.esDevServer,
     nodeResolve: true,
     watch: true,
-    // open: './docs/README.md',
-    // open: './packages/cli/demo/docs/README.md',
+    ...config.esDevServer,
+    open: config.esDevServer.open ? config.esDevServer.open : `${config.configDir}/`,
     plugins: [eleventyPlugin({ elev, absRootDir })],
   };
 

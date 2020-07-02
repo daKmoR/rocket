@@ -1,8 +1,7 @@
 ---
-title: Guide
-layout: learn.njk
+title: Developing Overview
 eleventyNavigation:
-  key: Guide
+  key: Developing
   order: 50
 ---
 

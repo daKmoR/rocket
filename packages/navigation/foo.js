@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const fs = require('fs');
 const { SaxEventType, SAXParser } = require('sax-wasm');
 

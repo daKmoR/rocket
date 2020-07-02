@@ -12,6 +12,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "dependency-graph": "^0.8.1"
+    "dependency-graph": "^0.8.1",
+    "sax-wasm": "^1.4.5"
   }
 }

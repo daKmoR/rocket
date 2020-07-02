@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-bitwise */
 const { DepGraph } = require('dependency-graph');
 
 const fs = require('fs');
@@ -7,10 +9,9 @@ const saxPath = require.resolve('sax-wasm/lib/sax-wasm.wasm');
 const saxWasmBuffer = fs.readFileSync(saxPath);
 
 // Instantiate
-const options = { highWaterMark: 32 * 1024 }; // 32k chunks
 const parser = new SAXParser(
   SaxEventType.Attribute | SaxEventType.OpenTag | SaxEventType.Text | SaxEventType.CloseTag,
-  options,
+  { highWaterMark: 32 * 1024 }, // 32k chunks
 );
 parser.prepareWasm(saxWasmBuffer);
 
@@ -66,10 +67,10 @@ function findNavigationEntries(nodes = [], key = '') {
   }
 
   return pages
-    .sort(function (a, b) {
+    .sort((a, b) => {
       return (a.order || 0) - (b.order || 0);
     })
-    .map(function (entry) {
+    .map(entry => {
       if (!entry.title) {
         entry.title = entry.key;
       }
@@ -126,7 +127,7 @@ function navigationToHtml(pages, options = {}) {
     listItemClass: '',
     listItemHasChildrenClass: '',
     activeKey: '',
-    activeListItemClass: '',
+    activeListItemClass: 'current',
     anchorClass: '',
     activeAnchorClass: '',
     activeTreeListClass: 'active',

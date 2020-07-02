@@ -18,7 +18,11 @@ module.exports = function (eleventyConfig) {
     return [...collection.getFilteredByGlob('./demo/docs/blog/**/*.md')];
   });
   eleventyConfig.addCollection('header', collection => {
-    return [...collection.getFilteredByGlob('./demo/docs/*/index.md')];
+    return [
+      ...collection.getFilteredByGlob('./demo/docs/learn/index.md'),
+      ...collection.getFilteredByGlob('./demo/docs/docs/index.md'),
+      ...collection.getFilteredByGlob('./demo/docs/blog/index.md'),
+    ];
   });
 
   // eleventyConfig.addCollection('section', function(collection) {

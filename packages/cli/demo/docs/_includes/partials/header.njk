@@ -6,14 +6,14 @@
         <path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path>
       </svg>
     </button>
-    <a class="logo-link" href="http://localhost:8000/packages/cli/demo/docs/">
+    <a class="logo-link" href="/">
       🚀
       <span>Rocket</span>
     </a>
     {%- for entry in collections.header %}
       <a href="{{ entry.url | url }}" class="
               {% if entry.url == page.url %} current {% endif %}
-              {% if entry.data.section == section %} active {% endif %}
+              {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
             ">{{ entry.data.eleventyNavigation.key }}</a>
     {%- endfor %}
     <a id="github-link" href="https://github.com/dakmor/rocket" aria-label="Rocket on GitHub" rel="noopener noreferrer" target="_blank">

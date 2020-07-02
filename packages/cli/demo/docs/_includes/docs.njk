@@ -1,0 +1,34 @@
+{% extends 'layout.njk'%}
+{% block sidenav %}
+{{ collections.docs | rocketNav | rocketNavToHtml({
+    listItemClass: "menu-item",
+    activeListItemClass: "current",
+    activeKey: eleventyNavigation.key
+}) | safe }}
+{% endblock %}
+{% block previousNext %}
+{% set previous = -1 %}
+{% set next = -1 %}
+{% set found = 0 %}
+{% for doc in collections.docs %}
+    {% if doc.url === page.url %}
+        {% set found = 1 %}
+    {% endif %}
+    {% if found === 0 %}
+        {% set previous = doc %}
+    {% endif %}
+    {% if found === 2 %}
+        {% set next = doc %}
+        {% set found = 3 %}
+    {% endif %}
+    {% if found === 1 %}
+        {% set found = 2 %}
+    {% endif %}
+{% endfor %}
+{% if previous != -1 %}
+    <a href="{{previous.url}}">Previous</a>
+{% endif %}
+{% if next != -1 %}
+    <a href="{{next.url}}">Next</a>
+{% endif %}
+{% endblock %}

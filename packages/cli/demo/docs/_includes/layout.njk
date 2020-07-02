@@ -35,6 +35,7 @@
               </svg>
             </a>{{ title }}</h1>
           {{ content.html | safe }}
+          {% block previousNext %}{% endblock %}
         </main>
       </div>
     </div>

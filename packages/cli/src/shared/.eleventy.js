@@ -20,7 +20,36 @@ module.exports = function (eleventyConfig) {
     learn.forEach(page => {
       page.data.section = 'learn';
     });
-    return learn;
+    const keyedOrder = {};
+    learn.forEach(item => {
+      if (item.data.eleventyNavigation.key) {
+        if (item.data.eleventyNavigation.order) {
+          keyedOrder[item.data.eleventyNavigation.key] = item.data.eleventyNavigation.order + 1;
+        } else {
+          keyedOrder[item.data.eleventyNavigation.key] = item.data.eleventyNavigation.parent;
+        }
+      }
+    });
+    const getOrder = parent => {
+      let order = keyedOrder[parent];
+      let depthOffset = 0;
+      while (typeof order === 'string') {
+        order = keyedOrder[order];
+        depthOffset += 1;
+      }
+      return order + depthOffset;
+    };
+    return learn.sort(function (a, b) {
+      const orderA = a.data.eleventyNavigation.order || getOrder(a.data.eleventyNavigation.parent);
+      const orderB = b.data.eleventyNavigation.order || getOrder(b.data.eleventyNavigation.parent);
+      if (orderA < orderB) {
+        return -1;
+      }
+      if (orderB < orderA) {
+        return 1;
+      }
+      return 0;
+    });
   });
   eleventyConfig.addCollection('post', collection => {
     return [...collection.getFilteredByGlob('./demo/docs/blog/**/*.md')];

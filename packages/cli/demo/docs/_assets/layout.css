@@ -152,13 +152,6 @@ rocket-navigation > ul {
 #sidebar-nav .logo-link span {
   padding-left: 10px;
 }
-#sidebar-nav ul.anchor-wrapper {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-#sidebar-nav ul.anchor-wrapper + ul {
-  padding-top: 0;
-}
 #sidebar-nav li.anchor a {
   color: #777;
 }

@@ -16,17 +16,27 @@ const addPrevNextUrls = items => {
   return items;
 };
 
-// console.log('CONFIG: side effect');
-
 const readCommandLineArgs = require('../start/readCommandLineArgs');
 
 module.exports = function (eleventyConfig) {
   const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
   const configDir = config.configDir;
   const inputDir = path.join(configDir, 'docs');
-  const pathPrefix = 'packages/cli/demo/docs';
+  let templatePathPrefix = '/packages/cli/demo/docs';
+  let includesDir = '../packages/cli/demo/docs/_includes/';
+  let dataDir = '../packages/cli/demo/docs/_data/';
+  let pathPrefix = '/docs/';
 
-  console.log('CONFIG: execute');
+  // demo
+  pathPrefix = '/packages/cli/demo/docs/';
+  includesDir = './_includes/';
+  dataDir = './_data/';
+  templatePathPrefix = pathPrefix;
+
+  eleventyConfig.addFilter('themeUrl', function (url) {
+    return path.join(templatePathPrefix, url);
+  });
+
   eleventyConfig.addPlugin(pluginMdjs);
   eleventyConfig.addPlugin(eleventyRocketNav);
 
@@ -88,16 +98,8 @@ module.exports = function (eleventyConfig) {
       ...collection.getFilteredByGlob(`${inputDir}/docs/index.md`),
       ...collection.getFilteredByGlob(`${inputDir}/blog/index.md`),
     ];
-    // console.log({ header, globPath, inputDir });
-
     return header;
   });
-
-  // eleventyConfig.addCollection('section', function(collection) {
-  //   // This works _because_ of our current content. Something like https://github.com/Polymer/lit-html/blob/master/docs/.eleventy.js#L37
-  //   // would be more robust, but there are likely other answers here.
-  //   return collection.getFilteredByTag('section').reverse();
-  // });
 
   // 11ty needs this as it apparently reads this config from multiple files
   // and only if we provide this hook we can actually override later when we
@@ -107,12 +109,10 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
-      // input: inputDir,
-      // output: './_site-dev',
-      // includes: '../packages/cli/demo/docs/_includes/',
-      // data: '../packages/cli/demo/docs/_data/',
+      includes: includesDir,
+      data: dataDir,
     },
-    pathPrefix: '/packages/cli/demo/docs/',
+    pathPrefix,
     passthroughFileCopy: true,
   };
 };

@@ -48,7 +48,7 @@ async function run() {
     nodeResolve: true,
     watch: true,
     ...config.esDevServer,
-    open: config.esDevServer.open ? config.esDevServer.open : `${config.configDir}/`,
+    open: config.esDevServer.open ? config.esDevServer.open : `${inputDir}/`,
     plugins: [eleventyPlugin({ elev, absRootDir })],
   };
 

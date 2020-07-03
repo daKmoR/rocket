@@ -14,7 +14,7 @@ module.exports = function readCommandLineArgs() {
         name: 'config-dir',
         alias: 'c',
         type: String,
-        defaultValue: './docs',
+        defaultValue: '.',
       },
     ],
     { partial: true },
@@ -38,7 +38,7 @@ module.exports = function readCommandLineArgs() {
       name: 'config-dir',
       alias: 'c',
       type: String,
-      defaultValue: './docs',
+      defaultValue: '.',
       description: 'Location of storybook configuration',
     },
     {

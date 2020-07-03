@@ -28,9 +28,12 @@ const eleventyPlugin = require('./eleventyPlugin');
 
 async function run() {
   const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
-  const absRootDir = config.esDevServer.rootDir
-    ? path.resolve(config.esDevServer.rootDir)
+  const absRootDir = config.devServer.rootDir
+    ? path.resolve(config.devServer.rootDir)
     : process.cwd();
+
+  // console.log(config);
+  // process.exit();
 
   const inputDir = path.join(config.configDir, './docs');
 
@@ -44,15 +47,15 @@ async function run() {
   await elev.init();
   elev.watch();
 
-  config.esDevServer = {
+  config.devServer = {
     nodeResolve: true,
     watch: true,
-    ...config.esDevServer,
-    open: config.esDevServer.open ? config.esDevServer.open : `${inputDir}/`,
+    ...config.devServer,
+    open: config.devServer.open ? config.devServer.open : `${config.pathPrefix}`,
     plugins: [eleventyPlugin({ elev, absRootDir })],
   };
 
-  startServer(createConfig(config.esDevServer));
+  startServer(createConfig(config.devServer));
 
   ['exit', 'SIGINT'].forEach(event => {
     // @ts-ignore

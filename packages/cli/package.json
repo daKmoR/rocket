@@ -15,7 +15,7 @@
   "scripts": {
     "start": "npm run rocket:start",
     "build": "npm run rocket:build",
-    "rocket:start": "node src/start/cli.js -c demo --root-dir ../../ --open packages/cli/demo/docs/",
+    "rocket:start": "node src/start/cli.js -c demo",
     "rocket:build": "node src/build/cli.js -c demo",
     "dev": "node ./eleventyOnly.js",
     "test": "mocha test/**/*.test.js test/*.test.js",
@@ -26,10 +26,12 @@
     "src"
   ],
   "keywords": [
-    "storybook",
+    "rocket",
+    "docs",
+    "ssg",
     "demo",
-    "demo-states",
-    "testing"
+    "11ty",
+    "rollup"
   ],
   "dependencies": {
     "@11ty/eleventy": "^0.11.0",

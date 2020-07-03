@@ -22,16 +22,8 @@ module.exports = function (eleventyConfig) {
   const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
   const configDir = config.configDir;
   const inputDir = path.join(configDir, 'docs');
-  let templatePathPrefix = '/packages/cli/demo/docs';
-  let includesDir = '../packages/cli/demo/docs/_includes/';
-  let dataDir = '../packages/cli/demo/docs/_data/';
-  let pathPrefix = '/docs/';
-
-  // demo
-  pathPrefix = '/packages/cli/demo/docs/';
-  includesDir = './_includes/';
-  dataDir = './_data/';
-  templatePathPrefix = pathPrefix;
+  const { templatePathPrefix, pathPrefix } = config;
+  const { data: dataDir, includes: includesDir } = config.dir;
 
   eleventyConfig.addFilter('themeUrl', function (url) {
     return path.join(templatePathPrefix, url);

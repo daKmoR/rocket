@@ -1,6 +1,15 @@
+// pathPrefix = '/packages/cli/demo/docs/';
+// includesDir = './_includes/';
+// dataDir = './_data/';
+// templatePathPrefix = pathPrefix;
+
 module.exports = {
-  inputDir: './docs',
-  outputDir: './_site',
+  dir: {
+    includes: './_includes/',
+    data: './_data/',
+  },
+  pathPrefix: '/packages/cli/demo/docs/',
+  templatePathPrefix: '/packages/cli/demo/docs/',
   devServer: {
     rootDir: '../../',
   },

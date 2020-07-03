@@ -20,17 +20,12 @@ module.exports = function readCommandLineArgs() {
     { partial: true },
   );
   const rocketFilePath = path.join(process.cwd(), tmpConfig['config-dir'], 'rocket.config.js');
-  const rocketDir = path.dirname(rocketFilePath);
 
-  let rocketJs = { esDevServer: {} };
+  let rocketConfig = { devServer: {} };
   if (fs.existsSync(rocketFilePath)) {
     // eslint-disable-next-line import/no-dynamic-require, global-require
-    rocketJs = require(rocketFilePath);
-    if (rocketJs.files) {
-      rocketJs.files = typeof rocketJs.files === 'string' ? [rocketJs.files] : rocketJs.files;
-      rocketJs.files = rocketJs.files.map(entry => path.join(rocketDir, entry));
-    }
-    rocketJs.esDevServer = rocketJs.esDevServer || {};
+    rocketConfig = require(rocketFilePath);
+    rocketConfig.devServer = rocketConfig.devServer || {};
   }
 
   const cliOptions = [
@@ -41,17 +36,10 @@ module.exports = function readCommandLineArgs() {
       defaultValue: '.',
       description: 'Location of storybook configuration',
     },
-    {
-      name: 'files',
-      defaultValue: rocketJs.files || './files/*.files.{js,mdx}',
-      description: 'List of story files e.g. --files files/*.files.\\{js,mdx\\}',
-    },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
-  // console.log(cliOptions);
 
   const rocketArgs = commandLineArgs(cliOptions, { partial: true });
-  rocketArgs.files = typeof rocketArgs.files === 'string' ? [rocketArgs.files] : rocketArgs.files;
 
   if ('help' in rocketArgs) {
     /* eslint-disable-next-line no-console */
@@ -60,7 +48,7 @@ module.exports = function readCommandLineArgs() {
         {
           header: 'rocket-start',
           content: `
-          rocket start command. Wraps the es-dev-server, adding rocket specific functionality. All regular es-dev-server commands are available.
+          rocket start command. Wraps the dev-server, adding rocket specific functionality. All regular dev-server commands are available.
 
           Usage: \`rocket-start [options...]\`
         `.trim(),
@@ -70,7 +58,7 @@ module.exports = function readCommandLineArgs() {
           optionList: cliOptions,
         },
         {
-          header: 'es-dev-server options',
+          header: 'dev-server options',
           content: '',
           optionList: esDevServerCliOptions,
         },
@@ -84,10 +72,20 @@ module.exports = function readCommandLineArgs() {
   });
 
   return {
-    files: rocketArgs.files,
+    pathPrefix: '/docs/',
+    templatePathPrefix: '/packages/cli/demo/docs',
+    ...rocketConfig,
     configDir: rocketArgs['config-dir'],
-    setupMdjsPlugins: rocketJs.setupMdjsPlugins,
+    dir: {
+      includes: '../packages/cli/demo/docs/_includes/',
+      data: '../packages/cli/demo/docs/_data/',
+      ...rocketConfig.dir,
+    },
+
     // command line args read from regular es-dev-server
-    esDevServer: esDevServerConfig,
+    devServer: {
+      ...rocketConfig.devServer,
+      ...esDevServerConfig,
+    },
   };
 };

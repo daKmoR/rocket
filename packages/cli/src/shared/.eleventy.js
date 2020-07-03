@@ -1,5 +1,6 @@
 const pluginMdjs = require('@dakmor/eleventy-plugin-mdjs');
 const eleventyRocketNav = require('@dakmor/eleventy-rocket-nav');
+const path = require('path');
 
 const addPrevNextUrls = items => {
   items.forEach((item, index) => {
@@ -21,9 +22,11 @@ const readCommandLineArgs = require('../start/readCommandLineArgs');
 
 module.exports = function (eleventyConfig) {
   const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
-  const inputDir = config.configDir;
+  const configDir = config.configDir;
+  const inputDir = path.join(configDir, 'docs');
+  const pathPrefix = 'packages/cli/demo/docs';
 
-  // console.log('CONFIG: execute', config);
+  console.log('CONFIG: execute');
   eleventyConfig.addPlugin(pluginMdjs);
   eleventyConfig.addPlugin(eleventyRocketNav);
 
@@ -80,11 +83,14 @@ module.exports = function (eleventyConfig) {
     return [...collection.getFilteredByGlob(`${inputDir}/blog/**/*.md`)];
   });
   eleventyConfig.addCollection('header', collection => {
-    return [
+    const header = [
       ...collection.getFilteredByGlob(`${inputDir}/learn/index.md`),
       ...collection.getFilteredByGlob(`${inputDir}/docs/index.md`),
       ...collection.getFilteredByGlob(`${inputDir}/blog/index.md`),
     ];
+    // console.log({ header, globPath, inputDir });
+
+    return header;
   });
 
   // eleventyConfig.addCollection('section', function(collection) {
@@ -101,11 +107,12 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
-      input: inputDir,
-      output: './_site-dev',
+      // input: inputDir,
+      // output: './_site-dev',
       // includes: '../packages/cli/demo/docs/_includes/',
       // data: '../packages/cli/demo/docs/_data/',
     },
+    pathPrefix: '/packages/cli/demo/docs/',
     passthroughFileCopy: true,
   };
 };

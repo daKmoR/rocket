@@ -24,7 +24,7 @@ async function getFileWithLastUrlDir(browserPath, absRootDir) {
   }
 }
 
-async function getEleventyRenderedFile(elev, absRootDir, absFilePath) {
+async function getEleventyRenderedFile(elev, absFilePath) {
   let body = 'eleventyRender: File not found';
   elev.config.filters['hook-for-rocket'] = (content, outputPath, inputPath) => {
     const currentAbsFilePath = path.join(process.cwd(), inputPath);
@@ -35,13 +35,8 @@ async function getEleventyRenderedFile(elev, absRootDir, absFilePath) {
     }
     return content;
   };
-
   await elev.write();
-
-  // TODO: Make this work outside this repository
-  return body
-    .replace(/href="\//g, 'href="/packages/cli/demo/docs/')
-    .replace(/src="\//g, 'src="/packages/cli/demo/docs/');
+  return body;
 }
 
 function eleventyPlugin({ absRootDir, elev }) {
@@ -78,7 +73,7 @@ function eleventyPlugin({ absRootDir, elev }) {
         return undefined;
       }
 
-      const newBody = await getEleventyRenderedFile(elev, absRootDir, absFilePath);
+      const newBody = await getEleventyRenderedFile(elev, absFilePath);
       if (!newBody) {
         return undefined;
       }

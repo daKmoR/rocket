@@ -10,13 +10,31 @@ const Eleventy = require('@11ty/eleventy');
 const readCommandLineArgs = require('./readCommandLineArgs');
 const eleventyPlugin = require('./eleventyPlugin');
 
+/* 
+  inputDir: ./docs
+  configDir: ./
+  server-root: ./
+  cwd: /
+
+  serverUrl: /docs
+
+  inputDir: ./docs
+  configDir: ./demo
+  cwd: packages/cli/  
+  server-root: ../../
+
+  serverUrl: /packages/cli/docs
+*/
+
 async function run() {
   const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
   const absRootDir = config.esDevServer.rootDir
     ? path.resolve(config.esDevServer.rootDir)
     : process.cwd();
 
-  const elev = new Eleventy();
+  const inputDir = path.join(config.configDir, './docs');
+
+  const elev = new Eleventy(inputDir, '_site');
   // 11ty always wants a relative path to cwd - why?
   const rel = path.relative(process.cwd(), path.join(__dirname, '..'));
   const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.js');

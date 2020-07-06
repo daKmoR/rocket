@@ -3,8 +3,9 @@ title: Blog Post Overview
 layout: blog-overview.njk
 eleventyNavigation:
   key: Blog
+  order: -30
 pagination:
-  data: collections.post
+  data: collections.blog
   size: 10
   reverse: true
   alias: posts

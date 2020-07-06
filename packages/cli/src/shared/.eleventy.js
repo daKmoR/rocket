@@ -1,6 +1,7 @@
 const pluginMdjs = require('@dakmor/eleventy-plugin-mdjs');
 const eleventyRocketNav = require('@dakmor/eleventy-rocket-nav');
 const path = require('path');
+const fs = require('fs');
 
 const addPrevNextUrls = items => {
   items.forEach((item, index) => {
@@ -16,6 +17,14 @@ const addPrevNextUrls = items => {
   return items;
 };
 
+const { readdirSync } = require('fs');
+
+function getDirectories(source) {
+  return readdirSync(source, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name);
+}
+
 const readCommandLineArgs = require('../start/readCommandLineArgs');
 
 module.exports = function (eleventyConfig) {
@@ -28,70 +37,93 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter('themeUrl', function (url) {
     return path.join(templatePathPrefix, url);
   });
-
+  eleventyConfig.addPassthroughCopy('./**/*.{png,gif,jpg,svg,css}');
   eleventyConfig.addPlugin(pluginMdjs);
   eleventyConfig.addPlugin(eleventyRocketNav);
 
-  eleventyConfig.addPassthroughCopy('./styles.css');
-  eleventyConfig.addPassthroughCopy('./**/*.{png,gif}');
+  const sectionNames = getDirectories(inputDir);
+  const headerCollectionPaths = [];
+  for (const section of sectionNames) {
+    const fullPath = path.join(inputDir, section);
+    const indexSection = path.join(fullPath, 'index.md');
+    if (fs.existsSync(indexSection)) {
+      // add to header
+      headerCollectionPaths.push(indexSection);
 
-  eleventyConfig.addCollection('docs', collection => {
-    let docs = [...collection.getFilteredByGlob(`${inputDir}/docs/**/*.md`)];
-    docs.forEach(page => {
-      page.data.section = 'docs';
-    });
-    docs = addPrevNextUrls(docs);
-    return docs;
-  });
-  eleventyConfig.addCollection('learn', collection => {
-    let learn = [...collection.getFilteredByGlob(`${inputDir}/learn/**/*.md`)];
-    learn.forEach(page => {
-      page.data.section = 'learn';
-    });
-    const keyedOrder = {};
-    learn.forEach(item => {
-      if (item.data.eleventyNavigation.key) {
-        if (item.data.eleventyNavigation.order) {
-          keyedOrder[item.data.eleventyNavigation.key] = item.data.eleventyNavigation.order + 1;
-        } else {
-          keyedOrder[item.data.eleventyNavigation.key] = item.data.eleventyNavigation.parent;
-        }
-      }
-    });
-    const getOrder = parent => {
-      let order = keyedOrder[parent];
-      let depthOffset = 0;
-      while (typeof order === 'string') {
-        order = keyedOrder[order];
-        depthOffset += 1;
-      }
-      return order + depthOffset;
-    };
-    learn = learn.sort(function (a, b) {
-      const orderA = a.data.eleventyNavigation.order || getOrder(a.data.eleventyNavigation.parent);
-      const orderB = b.data.eleventyNavigation.order || getOrder(b.data.eleventyNavigation.parent);
-      if (orderA < orderB) {
-        return -1;
-      }
-      if (orderB < orderA) {
-        return 1;
-      }
-      return 0;
-    });
-    learn = addPrevNextUrls(learn);
-    return learn;
-  });
-  eleventyConfig.addCollection('post', collection => {
-    return [...collection.getFilteredByGlob(`${inputDir}/blog/**/*.md`)];
-  });
+      // add to specific collection
+      eleventyConfig.addCollection(section, collection => {
+        let docs = [...collection.getFilteredByGlob(`${inputDir}/${section}/**/*.md`)];
+        docs.forEach(page => {
+          page.data.section = section;
+        });
+        docs = addPrevNextUrls(docs);
+        return docs;
+      });
+    }
+  }
+
   eleventyConfig.addCollection('header', collection => {
-    const header = [
-      ...collection.getFilteredByGlob(`${inputDir}/learn/index.md`),
-      ...collection.getFilteredByGlob(`${inputDir}/docs/index.md`),
-      ...collection.getFilteredByGlob(`${inputDir}/blog/index.md`),
-    ];
-    return header;
+    let headers = [];
+    for (const headerCollectionPath of headerCollectionPaths) {
+      headers = [...headers, ...collection.getFilteredByGlob(headerCollectionPath)];
+      console.log({
+        headerCollectionPath,
+        headers,
+      });
+    }
+    headers = headers.sort((a, b) => {
+      const aOrder = (a.data && a.data.eleventyNavigation && a.data.eleventyNavigation.order) || 0;
+      const bOrder = (b.data && b.data.eleventyNavigation && b.data.eleventyNavigation.order) || 0;
+      return aOrder - bOrder;
+    });
+    return headers;
   });
+
+  // eleventyConfig.addCollection('post', collection => {
+  //   return [...collection.getFilteredByGlob(`${inputDir}/blog/**/*.md`)];
+  // });
+
+  // eleventyConfig.addCollection('learn', collection => {
+  //   let learn = [...collection.getFilteredByGlob(`${inputDir}/learn/**/*.md`)];
+  //   learn.forEach(page => {
+  //     page.data.section = 'learn';
+  //   });
+  //   const keyedOrder = {};
+  //   learn.forEach(item => {
+  //     if (item.data.eleventyNavigation.key) {
+  //       if (item.data.eleventyNavigation.order) {
+  //         keyedOrder[item.data.eleventyNavigation.key] = item.data.eleventyNavigation.order + 1;
+  //       } else {
+  //         keyedOrder[item.data.eleventyNavigation.key] = item.data.eleventyNavigation.parent;
+  //       }
+  //     }
+  //   });
+  //   const getOrder = parent => {
+  //     let order = keyedOrder[parent];
+  //     let depthOffset = 0;
+  //     while (typeof order === 'string') {
+  //       order = keyedOrder[order];
+  //       depthOffset += 1;
+  //     }
+  //     return order + depthOffset;
+  //   };
+  //   learn = learn.sort(function (a, b) {
+  //     const orderA = a.data.eleventyNavigation.order || getOrder(a.data.eleventyNavigation.parent);
+  //     const orderB = b.data.eleventyNavigation.order || getOrder(b.data.eleventyNavigation.parent);
+  //     if (orderA < orderB) {
+  //       return -1;
+  //     }
+  //     if (orderB < orderA) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   });
+  //   learn = addPrevNextUrls(learn);
+  //   return learn;
+  // });
+  // eleventyConfig.addCollection('post', collection => {
+  //   return [...collection.getFilteredByGlob(`${inputDir}/blog/**/*.md`)];
+  // });
 
   // 11ty needs this as it apparently reads this config from multiple files
   // and only if we provide this hook we can actually override later when we

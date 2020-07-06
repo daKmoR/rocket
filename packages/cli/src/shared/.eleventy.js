@@ -56,7 +56,7 @@ module.exports = function (eleventyConfig) {
         docs.forEach(page => {
           page.data.section = section;
         });
-        docs = addPrevNextUrls(docs);
+        // docs = addPrevNextUrls(docs);
         return docs;
       });
     }
@@ -66,10 +66,6 @@ module.exports = function (eleventyConfig) {
     let headers = [];
     for (const headerCollectionPath of headerCollectionPaths) {
       headers = [...headers, ...collection.getFilteredByGlob(headerCollectionPath)];
-      console.log({
-        headerCollectionPath,
-        headers,
-      });
     }
     headers = headers.sort((a, b) => {
       const aOrder = (a.data && a.data.eleventyNavigation && a.data.eleventyNavigation.order) || 0;

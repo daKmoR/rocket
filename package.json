@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "start": "npm run rocket:start",
+    "build": "npm run rocket:build",
     "rocket:start": "node packages/cli/src/start/cli.js",
     "rocket:build": "node packages/cli/src/build/cli.js",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",

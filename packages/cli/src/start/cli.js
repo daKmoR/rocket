@@ -32,12 +32,9 @@ async function run() {
     ? path.resolve(config.devServer.rootDir)
     : process.cwd();
 
-  // console.log(config);
   // process.exit();
 
-  const inputDir = path.join(config.configDir, './docs');
-
-  const elev = new Eleventy(inputDir, '_site');
+  const elev = new Eleventy(config.inputDir, '_site');
   // 11ty always wants a relative path to cwd - why?
   const rel = path.relative(process.cwd(), path.join(__dirname, '..'));
   const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.js');

@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy-navigation": "^0.1.5",
-    "patch-package": "^6.2.2"
+    "patch-package": "^6.2.2",
+    "@dakmor/launch": "^0.0.1"
   }
 }

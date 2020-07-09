@@ -6,7 +6,7 @@ layout: home.njk
 
 # Rocket
 
-The modern web setup with less complexity
+The modern web setup for static sites with a sprinkle of JavaScript.
 
 ## Why Rocket.dev?
 

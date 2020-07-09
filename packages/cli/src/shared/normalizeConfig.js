@@ -26,9 +26,9 @@ function normalizeConfig(inConfig) {
   const data = path.relative(inputDir, absData);
 
   // dev Server needs the paths to be absolute to the server root
-  const devServerRootDir = devServer.rootDir ? devServer.rootDir : process.cwd();
+  devServer.rootDir = devServer.rootDir ? devServer.rootDir : process.cwd();
   const absTemplatePrefix = resolvedNodePackagePath('@dakmor/launch/');
-  const templatePathPrefix = path.join('/', path.relative(devServerRootDir, absTemplatePrefix));
+  const templatePathPrefix = path.join('/', path.relative(devServer.rootDir, absTemplatePrefix));
 
   return {
     pathPrefix: '/docs/',

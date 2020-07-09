@@ -23,3 +23,5 @@ packages/*/yarn.lock
 
 ## build output
 dist
+_site
+stats.html

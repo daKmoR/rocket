@@ -43,7 +43,6 @@ async function run() {
   const rel = path.relative(process.cwd(), path.join(__dirname, '..'));
   const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.js');
   elev.setConfigPathOverride(relCwdPathToConfig);
-
   elev.setDryRun(true); // do not write to file system
   await elev.init();
   elev.watch();

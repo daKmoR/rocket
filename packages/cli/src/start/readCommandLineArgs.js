@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const {
@@ -7,36 +5,14 @@ const {
   commandLineOptions: esDevServerCliOptions,
 } = require('es-dev-server');
 
-const { resolvedNodePackagePath } = require('../shared/resolvedNodePackagePath.js');
-
 module.exports = function readCommandLineArgs() {
-  const tmpConfig = commandLineArgs(
-    [
-      {
-        name: 'config-dir',
-        alias: 'c',
-        type: String,
-        defaultValue: '.',
-      },
-    ],
-    { partial: true },
-  );
-  const rocketFilePath = path.join(process.cwd(), tmpConfig['config-dir'], 'rocket.config.js');
-
-  let rocketConfig = { devServer: {} };
-  if (fs.existsSync(rocketFilePath)) {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
-    rocketConfig = require(rocketFilePath);
-    rocketConfig.devServer = rocketConfig.devServer || {};
-  }
-
   const cliOptions = [
     {
       name: 'config-dir',
       alias: 'c',
       type: String,
       defaultValue: '.',
-      description: 'Location of storybook configuration',
+      description: 'Location of rocket configuration',
     },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
@@ -72,37 +48,10 @@ module.exports = function readCommandLineArgs() {
     defaultConfigDir: rocketArgs['config-dir'],
   });
 
-  const devServer = {
-    ...rocketConfig.devServer,
-    ...esDevServerConfig,
-  };
-
-  const inputDir = path.join(rocketArgs['config-dir'], './docs');
-
-  const absIncludes = resolvedNodePackagePath('@dakmor/launch/_includes/');
-  const absData = resolvedNodePackagePath('@dakmor/launch/_data/');
-  // 11ty always wants a relative path to inputDir - why?
-  const includes = path.relative(inputDir, absIncludes);
-  const data = path.relative(inputDir, absData);
-
-  // dev Server needs the paths to be absolute to the server root
-  const devServerRootDir = devServer.rootDir ? devServer.rootDir : process.cwd();
-  const absTemplatePrefix = resolvedNodePackagePath('@dakmor/launch/');
-  const templatePathPrefix = path.join('/', path.relative(devServerRootDir, absTemplatePrefix));
-
   return {
-    pathPrefix: '/docs/',
-    templatePathPrefix,
-    ...rocketConfig,
     configDir: rocketArgs['config-dir'],
-    inputDir,
-    dir: {
-      includes,
-      data,
-      ...rocketConfig.dir,
-    },
 
     // command line args read from regular es-dev-server
-    devServer,
+    devServer: esDevServerConfig,
   };
 };

@@ -9,6 +9,9 @@ const { passthroughCopy } = require('./rollup-plugin-passthrough-copy.js');
 const clear = require('rollup-plugin-clear');
 const visualizer = require('rollup-plugin-visualizer');
 
+const readCommandLineArgs = require('./readCommandLineArgs.js');
+const { normalizeConfig } = require('../shared/normalizeConfig.js');
+
 // const elev = new Eleventy('./docs', './_site');
 // elev.setConfigPathOverride('./docs/.eleventy.js');
 // elev.setDryRun(true); // do not write to file system
@@ -73,11 +76,13 @@ async function productionBuild(html) {
 }
 
 async function main() {
-  // const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
+  const commandLineConfig = /** @type {ServerConfig & { configDir: string }} */ (readCommandLineArgs());
+  const config = normalizeConfig(commandLineConfig);
+
   // const absRootDir = path.resolve(config.esDevServer.rootDir);
   // const relPath = path.relative(absRootDir, process.cwd());
 
-  const elev = new Eleventy('./demo/docs', './__site');
+  const elev = new Eleventy(config.inputDir, '_site');
   elev.setConfigPathOverride('./src/shared/.eleventy.js');
   elev.setDryRun(true);
 

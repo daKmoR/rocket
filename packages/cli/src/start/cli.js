@@ -7,8 +7,9 @@ const { createConfig, startServer } = require('es-dev-server');
 const path = require('path');
 const Eleventy = require('@11ty/eleventy');
 
-const readCommandLineArgs = require('./readCommandLineArgs');
+const readCommandLineArgs = require('./readCommandLineArgs.js');
 const eleventyPlugin = require('./eleventyPlugin');
+const { normalizeConfig } = require('../shared/normalizeConfig.js');
 
 /* 
   inputDir: ./docs
@@ -27,7 +28,10 @@ const eleventyPlugin = require('./eleventyPlugin');
 */
 
 async function run() {
-  const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
+  const commandLineConfig = /** @type {ServerConfig & { configDir: string }} */ (readCommandLineArgs());
+  const config = normalizeConfig(commandLineConfig);
+  // console.log(config);
+
   const absRootDir = config.devServer.rootDir
     ? path.resolve(config.devServer.rootDir)
     : process.cwd();

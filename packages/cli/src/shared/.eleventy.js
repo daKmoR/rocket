@@ -2,6 +2,10 @@ const pluginMdjs = require('@dakmor/eleventy-plugin-mdjs');
 const eleventyRocketNav = require('@dakmor/eleventy-rocket-nav');
 const path = require('path');
 const fs = require('fs');
+const { readdirSync } = require('fs');
+
+const readCommandLineArgs = require('../start/readCommandLineArgs');
+const { normalizeConfig } = require('./normalizeConfig');
 
 const addPrevNextUrls = items => {
   items.forEach((item, index) => {
@@ -17,18 +21,16 @@ const addPrevNextUrls = items => {
   return items;
 };
 
-const { readdirSync } = require('fs');
-
 function getDirectories(source) {
   return readdirSync(source, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name);
 }
 
-const readCommandLineArgs = require('../start/readCommandLineArgs');
-
 module.exports = function (eleventyConfig) {
-  const config = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
+  const commandLineConfig = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
+  const config = normalizeConfig(commandLineConfig);
+  // console.log(config);
   const configDir = config.configDir;
   const inputDir = path.join(configDir, 'docs');
   const { templatePathPrefix, pathPrefix } = config;

@@ -1,5 +1,18 @@
 const path = require('path');
 
+/**
+ * Resolves a file/folder path which can contain bare modules.
+ *
+ * @example
+ * resolvedNodePackagePath('@foo/bar/some-folder');
+ * => /absolute/path/node_modules/@foo/bar/some-folder
+ *
+ * resolvedNodePackagePath('@foo/bar');
+ * => /absolute/path/node_modules/@foo/bar/
+ *
+ * @param {string} resolvePath Path to resolve
+ * @return {string} Resolved path
+ */
 function resolvedNodePackagePath(resolvePath) {
   const hasNamespace = resolvePath.includes('@');
   const parts = resolvePath.split(path.sep);

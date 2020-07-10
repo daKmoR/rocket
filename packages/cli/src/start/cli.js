@@ -51,7 +51,7 @@ async function run() {
     nodeResolve: true,
     watch: true,
     ...config.devServer,
-    open: config.devServer.open ? config.devServer.open : `${config.pathPrefix}`,
+    open: config.devServer.open ? config.devServer.open : `${config.pathPrefix}/`,
     plugins: [eleventyPlugin({ elev, absRootDir })],
   };
 

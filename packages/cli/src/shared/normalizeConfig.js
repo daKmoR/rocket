@@ -31,7 +31,8 @@ function normalizeConfig(inConfig) {
   const templatePathPrefix = path.join('/', path.relative(devServer.rootDir, absTemplatePrefix));
 
   return {
-    pathPrefix: '/docs/',
+    // pathPrefix can NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
+    pathPrefix: '/docs',
     templatePathPrefix,
     ...config,
     configDir: inConfig.configDir,

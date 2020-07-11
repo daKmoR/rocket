@@ -40,7 +40,7 @@ pre {
 header {
   border-bottom: 1px solid #ccc;
   align-items: center;
-  padding: 10px;
+  padding: 10px 15px;
   position: sticky;
   top: 0;
   background: #fff;
@@ -66,6 +66,7 @@ header button span {
   height: 20px;
   box-sizing: content-box;
   background: none;
+  padding: 0;
 }
 #github-link {
   color: #000;
@@ -193,6 +194,9 @@ li.current > ul > li.anchor {
   }
   rocket-navigation {
     padding: 0;
+  }
+  body:not([layout='with-sidebar']) #sidebar {
+    display: none;
   }
 }
 

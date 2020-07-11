@@ -7,17 +7,14 @@
     <link rel="stylesheet" href="{{ '/_assets/markdown.css' | themeUrl }}">
   </head>
 
-  <body layout="layout">
+  <body layout="with-sidebar">
     {% include 'partials/header.njk' %}
 
     <div id="content-wrapper">
       <div class="content-area">
         <rocket-drawer id="sidebar">
           <nav slot="content" id="sidebar-nav">
-            <a class="logo-link" href="http://localhost:8000/packages/cli/demo/docs/">
-              🚀
-              <span>Rocket</span>
-            </a>
+            {% include 'partials/logoLink.njk' %}
             <rocket-navigation>
               {{ collections[section] | rocketNav | rocketNavToHtml({
                   listItemClass: "menu-item",
@@ -43,22 +40,6 @@
     {% include 'partials/footer.njk' %}
 
     {% include 'partials/pageJs.njk' %}
-
-    <script type="module">
-      import '@dakmor/navigation/rocket-navigation.js';
-      import '@dakmor/drawer/rocket-drawer.js';
-    </script>
-
-    <script type="module">
-      const drawer = document.querySelector('#sidebar');
-
-      // Toggle button
-      document
-        .querySelector('#mobile-menu-trigger')
-        .addEventListener('click', function () {
-          drawer.opened = true;
-        });
-    </script>
-
+    {% include 'partials/mobileNavigationJs.njk' %}
   </body>
 </html>

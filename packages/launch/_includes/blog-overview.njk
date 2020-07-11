@@ -5,11 +5,30 @@
     <link rel="stylesheet" href="{{ '/_assets/layout.css' | themeUrl }}">
     <link rel="stylesheet" href="{{ '/_assets/markdown.css' | themeUrl }}">
   </head>
-  <body>
+  <body layout="blog-overview">
     {% include 'partials/header.njk' %}
 
     <div id="content-wrapper">
       <div class="content-area">
+        <rocket-drawer id="sidebar">
+          <nav slot="content" id="sidebar-nav">
+            {% include 'partials/logoLink.njk' %}
+            <rocket-navigation>
+              <ul>
+                {%- for entry in collections.header %}
+                  <li>
+                    <a href="{{ entry.url | url }}" class="
+                          {% if entry.url == page.url %} current {% endif %}
+                          {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
+                        ">{{ entry.data.eleventyNavigation.key }}</a>
+                  </li>
+                {%- endfor %}
+              </ul>
+              <hr>
+              <a href="{{ site.helpUrl | url }}">Help and Feedback</a>
+            </rocket-navigation>
+          </nav>
+        </rocket-drawer>
         <main class="markdown-body">
           {{ content.html | safe }}
           <div id="articles">
@@ -29,5 +48,6 @@
     {% include 'partials/footer.njk' %}
 
     {% include 'partials/pageJs.njk' %}
+    {% include 'partials/mobileNavigationJs.njk' %}
   </body>
 </html>

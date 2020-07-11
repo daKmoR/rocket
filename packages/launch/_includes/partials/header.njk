@@ -13,7 +13,7 @@
               {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
             ">{{ entry.data.eleventyNavigation.key }}</a>
     {%- endfor %}
-    <a id="github-link" href="{{ site.githubUrl }}" aria-label="Rocket on GitHub" rel="noopener noreferrer" target="_blank">
+    <a id="github-link" href="{{ site.githubUrl }}" aria-label="{{ site.name }} on GitHub" rel="noopener noreferrer" target="_blank">
       <span>Github</span>
       <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 17 16" fill="none" id="github-logo">
         <g clip-path="url(githublogo)">

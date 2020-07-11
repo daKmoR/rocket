@@ -20,4 +20,8 @@ module.exports = {
   url,
   githubUrl: 'https://github.com/dakmor/rocket',
   helpUrl: 'https://github.com/daKmoR/rocket/issues',
+  logo: {
+    path: '/_assets/logo.svg',
+    alt: 'Rocket Logo',
+  },
 };

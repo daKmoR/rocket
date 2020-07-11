@@ -20,6 +20,11 @@ pre {
   overflow: auto;
 }
 
+.logo-link img {
+  width: 30px;
+  height: 30px;
+}
+
 /** LAYOUT ****************************************************************************************/
 #content-wrapper .content-area {
   display: flex;

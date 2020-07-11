@@ -14,48 +14,18 @@
 
   <div id="footer-menu">
     <div class="content-area">
-      <nav>
-        <h3>discover</h3>
-        <ul>
-          <li>
-            <a href="#">Design resources</a>
-          </li>
-          <li>
-            <a href="#">Team</a>
-          </li>
-          <li>
-            <a href="#">Blog</a>
-          </li>
-        </ul>
-      </nav>
-      <nav>
-        <h3>follow</h3>
-        <ul>
-          <li>
-            <a href="#">Github</a>
-          </li>
-          <li>
-            <a href="#">Twitter</a>
-          </li>
-          <li>
-            <a href="#">Slack</a>
-          </li>
-        </ul>
-      </nav>
-      <nav>
-        <h3>support</h3>
-        <ul>
-          <li>
-            <a href="#">Sponsor Modern Web</a>
-          </li>
-          <li>
-            <a href="#">Contribute</a>
-          </li>
-          <li>
-            <a href="#">Modern Web Consulting</a>
-          </li>
-        </ul>
-      </nav>
+      {% for category in footer %}
+        <nav>
+          <h3>{{category.name}}</h3>
+          <ul>
+            {% for entry in category.children %}
+              <li>
+                <a href="{{entry.href | url}}">{{entry.text}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endfor %}
     </div>
   </div>
 </footer>

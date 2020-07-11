@@ -9,7 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
-  color: #2c3e50;
+  color: var(--primary-text-color);
 }
 
 * {
@@ -57,9 +57,15 @@ header .content-area {
 }
 header a {
   text-decoration: none;
+  color: var(--primary-text-color);
+  transition: color 0.3s linear;
+}
+header a:hover,
+header a.active {
+  color: var(--primary-color);
 }
 header a.active {
-  color: red;
+  transition-duration: 0s;
 }
 header a span,
 header button span {
@@ -107,13 +113,13 @@ header .logo-link {
 }
 #sidebar-nav a {
   text-decoration: none;
-  color: #2c3e50;
+  color: var(--primary-text-color);
 }
 #sidebar-nav li.active > a {
-  color: #ee0000;
+  text-decoration: underline;
 }
 #sidebar-nav li.current > a {
-  color: red;
+  color: var(--primary-color);
 }
 
 #sidebar-nav li {
@@ -158,8 +164,12 @@ rocket-navigation > ul {
 #sidebar-nav .logo-link span {
   padding-left: 10px;
 }
+#sidebar-nav li.anchor {
+  padding: 4px 0;
+}
 #sidebar-nav li.anchor a {
-  color: #777;
+  color: var(--secondary-color);
+  font-size: 14px;
 }
 #sidebar-nav li.anchor a::before {
   content: '>';
@@ -168,7 +178,7 @@ rocket-navigation > ul {
   float: left;
 }
 #sidebar-nav li.anchor:last-child {
-  padding: 7px 0 0 0;
+  padding: 4px 0 0 0;
 }
 
 li.anchor {
@@ -265,7 +275,7 @@ body[layout='home'] main {
 }
 #footer-menu a {
   text-decoration: none;
-  color: #333;
+  color: var(--primary-text-color);
   padding: 5px 0;
   display: block;
 }

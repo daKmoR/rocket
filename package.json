@@ -18,7 +18,11 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "test": "npm run test:browser",
     "test:browser": "web-test-runner packages/**/*.test.js --watch",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "changeset": "changeset",
+    "release": "npm run test && changeset version && changeset publish",
+    "release:version": "changeset version",
+    "release:publish": "changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.8.0",

@@ -5,4 +5,4 @@ eleventyNavigation:
   order: -40
 ---
 
-Use the default them [@rocket/launch](./launch-theme/index.md).
+Use the default theme [@rocket/launch](./launch-theme/index.md).

@@ -1,5 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const { mdjsProcess, mdjsProcessPlugins } = require('@mdjs/core');
+const visit = require('unist-util-visit');
 
 const plugins = mdjsProcessPlugins.map(pluginObj => {
   if (pluginObj.name === 'htmlHeading') {
@@ -37,6 +37,28 @@ const plugins = mdjsProcessPlugins.map(pluginObj => {
     };
   }
   return pluginObj;
+});
+
+function adjustLinks() {
+  return tree => {
+    visit(tree, 'link', node => {
+      const { url } = node;
+      if (url.endsWith('.md')) {
+        // remark works by modifying nodes directly
+        // eslint-disable-next-line no-param-reassign
+        node.url = url.substring(0, url.lastIndexOf('/') + 1);
+      }
+    });
+
+    return tree;
+  };
+}
+
+const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'markdown');
+// add plugin right after markdown
+plugins.splice(markdownPluginIndex, 0, {
+  name: 'adjustLinks',
+  plugin: adjustLinks,
 });
 
 function eleventyUnified() {

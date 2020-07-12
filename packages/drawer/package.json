@@ -6,7 +6,7 @@
   },
   "description": "Rocket stuff",
   "license": "MIT",
-  "author": "Thomas Allmer",
+  "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "scripts": {
     "dev": "es-dev-server --node-resolve --root-dir ../../ --open packages/drawer/ --watch",

@@ -1,5 +1,5 @@
 ---
-title: Blog Post Overview
+title: Rocket Blog
 layout: blog-overview.njk
 eleventyNavigation:
   key: Blog
@@ -11,6 +11,4 @@ pagination:
   alias: posts
 ---
 
-\* Are in page h2 headlines which could be shown on desktop in a floating menu on the right?
-
-First and second Levels are always shown (3rd is only shown when in active main or 2nd)
+Discover articles from the core team and contributors about Rocket, tips and tricks included!

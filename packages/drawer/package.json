@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/drawer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publishConfig": {
     "access": "public"
   },
@@ -28,7 +28,7 @@
     "testing"
   ],
   "dependencies": {
-    "@lion/overlays": "^0.16.6",
+    "@lion/overlays": "0.16.6",
     "lit-element": "^2.3.1"
   }
 }

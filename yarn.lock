@@ -1037,6 +1037,13 @@
     human-id "^1.0.2"
     prettier "^1.18.2"
 
+"@d4kmor/launch@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@d4kmor/launch/-/launch-0.0.2.tgz#8b5198fd4b5f6d7694449a8e859bdaac170b6a48"
+  integrity sha512-SseV9DA2OStlNofDzMwuLgB7SyoS3IL6UNBcVLl2ips9KHHw8oKCjV7DOQbLEWs94r7Whl3ZqyM00Q5JxJ1DTg==
+  dependencies:
+    "@d4kmor/cli" "^0.0.2"
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"

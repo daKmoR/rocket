@@ -1,5 +1,5 @@
 {
-  "name": "@dakmor/launch",
+  "name": "@d4kmor/launch",
   "version": "0.0.2",
   "publishConfig": {
     "access": "public"
@@ -27,6 +27,6 @@
     "testing"
   ],
   "dependencies": {
-    "@dakmor/cli": "^0.0.2"
+    "@d4kmor/cli": "^0.0.2"
   }
 }

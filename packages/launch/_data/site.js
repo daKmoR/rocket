@@ -1,4 +1,4 @@
-const { getRocketValues } = require('@dakmor/cli');
+const { getRocketValues } = require('@d4kmor/cli');
 
 const defaultValues = getRocketValues();
 

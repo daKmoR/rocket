@@ -1,5 +1,5 @@
-const pluginMdjs = require('@dakmor/eleventy-plugin-mdjs');
-const eleventyRocketNav = require('@dakmor/eleventy-rocket-nav');
+const pluginMdjs = require('@d4kmor/eleventy-plugin-mdjs');
+const eleventyRocketNav = require('@d4kmor/eleventy-rocket-nav');
 const path = require('path');
 const fs = require('fs');
 const { readdirSync } = require('fs');

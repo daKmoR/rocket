@@ -1,5 +1,5 @@
 {
-  "name": "@dakmor/eleventy-plugin-mdjs",
+  "name": "@d4kmor/eleventy-plugin-mdjs",
   "version": "0.0.2",
   "publishConfig": {
     "access": "public"

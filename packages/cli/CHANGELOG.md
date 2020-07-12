@@ -1,10 +1,11 @@
-# @dakmor/cli
+# @d4kmor/cli
 
 ## 0.0.2
+
 ### Patch Changes
 
 - Initial Release
 - Updated dependencies [undefined]
-  - @dakmor/eleventy-plugin-mdjs@0.0.2
-  - @dakmor/eleventy-rocket-nav@0.0.2
-  - @dakmor/navigation@0.0.2
+  - @d4kmor/eleventy-plugin-mdjs@0.0.2
+  - @d4kmor/eleventy-rocket-nav@0.0.2
+  - @d4kmor/navigation@0.0.2

@@ -19,15 +19,15 @@ function normalizeConfig(inConfig) {
 
   const inputDir = path.join(inConfig.configDir, './docs');
 
-  const absIncludes = resolvedNodePackagePath('@dakmor/launch/_includes/');
-  const absData = resolvedNodePackagePath('@dakmor/launch/_data/');
+  const absIncludes = resolvedNodePackagePath('@d4kmor/launch/_includes/');
+  const absData = resolvedNodePackagePath('@d4kmor/launch/_data/');
   // 11ty always wants a relative path to inputDir - why?
   const includes = path.relative(inputDir, absIncludes);
   const data = path.relative(inputDir, absData);
 
   // dev Server needs the paths to be absolute to the server root
   devServer.rootDir = devServer.rootDir ? devServer.rootDir : process.cwd();
-  const absTemplatePrefix = resolvedNodePackagePath('@dakmor/launch/');
+  const absTemplatePrefix = resolvedNodePackagePath('@d4kmor/launch/');
   const templatePathPrefix = path.join('/', path.relative(devServer.rootDir, absTemplatePrefix));
 
   return {

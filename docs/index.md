@@ -2,7 +2,7 @@
 layout: home.njk
 ---
 
-<img src="{{ site.logo.path | url }}" alt="{{ site.logo.alt }}" width="120" height="120"/>
+<img src="{{ site.logo.url }}" alt="{{ site.logo.alt }}" width="120" height="120"/>
 
 # Rocket
 

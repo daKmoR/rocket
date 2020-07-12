@@ -25,5 +25,8 @@
     "demo",
     "demo-states",
     "testing"
-  ]
+  ],
+  "dependencies": {
+    "@dakmor/cli": "^0.0.1"
+  }
 }

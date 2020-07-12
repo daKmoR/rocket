@@ -58,11 +58,11 @@ async function productionBuild(html, config) {
 
   mpaConfig.plugins.push(
     passthroughCopy({
-      patterns: ['**/*.{png,gif,jpg,json,css}'],
+      patterns: ['**/*.{png,gif,jpg,json,css,svg}'],
       rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
     }),
     passthroughCopy({
-      patterns: [`${config.templatePathPrefix.substring(1)}/**/*.{png,gif,jpg,json,css}`],
+      patterns: [`${config.templatePathPrefix.substring(1)}/**/*.{png,gif,jpg,json,css,svg}`],
       rootDir: config.devServer.rootDir,
     }),
   );

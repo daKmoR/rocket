@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const path = require('path');
 const { rollup } = require('rollup');
 const { generateSW } = require('rollup-plugin-workbox');

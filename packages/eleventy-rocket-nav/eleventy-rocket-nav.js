@@ -11,7 +11,7 @@ const saxWasmBuffer = fs.readFileSync(saxPath);
 // Instantiate
 const parser = new SAXParser(
   SaxEventType.Attribute | SaxEventType.OpenTag | SaxEventType.Text | SaxEventType.CloseTag,
-  { highWaterMark: 32 * 1024 }, // 32k chunks
+  { highWaterMark: 64 * 1024 }, // 64k chunks
 );
 parser.prepareWasm(saxWasmBuffer);
 

@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/eleventy-plugin-mdjs",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },

@@ -1037,13 +1037,6 @@
     human-id "^1.0.2"
     prettier "^1.18.2"
 
-"@d4kmor/launch@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@d4kmor/launch/-/launch-0.0.2.tgz#8b5198fd4b5f6d7694449a8e859bdaac170b6a48"
-  integrity sha512-SseV9DA2OStlNofDzMwuLgB7SyoS3IL6UNBcVLl2ips9KHHw8oKCjV7DOQbLEWs94r7Whl3ZqyM00Q5JxJ1DTg==
-  dependencies:
-    "@d4kmor/cli" "^0.0.2"
-
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -1109,7 +1102,7 @@
     lit-element "^2.2.1"
     lit-html "^1.0.0"
 
-"@lion/overlays@^0.16.6":
+"@lion/overlays@0.16.6":
   version "0.16.6"
   resolved "https://registry.yarnpkg.com/@lion/overlays/-/overlays-0.16.6.tgz#990f664ffe9659fa2fd49371b6c8beaefeb1cd4e"
   integrity sha512-3/Q8LE8O9cC6SVFhf6hp7eQIDBExyLAX5nm2NM9TWAKoX/0b/quAYSfoE0XOTs+8tUAeMBe5N89OghZh6rJXrA==

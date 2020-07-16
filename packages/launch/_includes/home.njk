@@ -28,6 +28,28 @@
           </nav>
         </rocket-drawer>
         <main class="markdown-body">
+          <img src="{{ site.logo.url }}" alt="{{ site.logo.alt }}" width="120" height="120"/>
+          <h1>{{ title }}</h1>
+
+          <p>{{slogan}}</p>
+
+          <div class="call-to-action-list">
+            {% for callToAction in callToActionItems %}
+              <a class="call-to-action" href="{{ callToAction.href }}">{{ callToAction.text | safe }}</a>
+            {% endfor %}
+          </div>
+
+          <h2>{{ reasonHeader }}</h2>
+
+          <div class="reasons">
+            {% for reason in reasons %}
+              <div>
+                <h4>{{ reason.header }}</h4>
+                {{ reason.text | safe }}
+              </div>
+            {% endfor %}
+          </div>
+
           {{ content.html | safe }}
           {% include 'partials/previousNext.njk' %}
         </main>

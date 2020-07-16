@@ -225,10 +225,6 @@ main > * {
   scroll-margin-top: 60px;
 }
 
-body[layout='home'] main {
-  text-align: center;
-}
-
 @media screen and (min-width: 1024px) {
   main {
     padding: 15px 0 0 0;
@@ -278,4 +274,75 @@ body[layout='home'] main {
   color: var(--primary-text-color);
   padding: 5px 0;
   display: block;
+}
+
+/** HOME ******************************************************************************************/
+
+body[layout='home'] main > img {
+  display: block;
+  margin: 0 auto;
+}
+body[layout='home'] main > h1,
+body[layout='home'] main > h2,
+body[layout='home'] main > p {
+  text-align: center;
+  border-bottom: none;
+}
+
+body[layout='home'] .reasons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+body[layout='home'] .reasons > div {
+  flex: 0 1 280px;
+  margin: 0 20px;
+}
+
+body[layout='home'] .markdown-body .call-to-action {
+  margin: 10px;
+}
+
+.markdown-body .call-to-action-list {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.markdown-body .call-to-action {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px 24px;
+  border: 1px solid #b02e2e;
+  border-radius: 8px;
+  background: #ff5656;
+  background: linear-gradient(to bottom, #ff5656, #b02e2e);
+  text-shadow: #681b1b 1px 1px 1px;
+  font: normal normal bold 20px arial;
+  color: #ffffff;
+  text-decoration: none;
+}
+.markdown-body .call-to-action:hover,
+.markdown-body .call-to-action:focus {
+  border: 1px solid #cf3636;
+  background: #ff6767;
+  background: linear-gradient(to bottom, #ff6767, #d33737);
+  color: #ffffff;
+  text-decoration: none;
+}
+.markdown-body .call-to-action:active {
+  background: #b02e2e;
+  background: linear-gradient(to bottom, #b02e2e, #b02e2e);
+}
+
+.markdown-body .call-to-action svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 3px;
+}
+
+.markdown-body .call-to-action path {
+  fill: #fff;
 }

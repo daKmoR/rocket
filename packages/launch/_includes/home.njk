@@ -35,7 +35,7 @@
 
           <div class="call-to-action-list">
             {% for callToAction in callToActionItems %}
-              <a class="call-to-action" href="{{ callToAction.href }}">{{ callToAction.text | safe }}</a>
+              <a class="call-to-action" href="{{ callToAction.href | url }}">{{ callToAction.text | safe }}</a>
             {% endfor %}
           </div>
 

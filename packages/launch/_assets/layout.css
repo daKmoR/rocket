@@ -23,6 +23,13 @@ pre {
 .logo-link img {
   width: 30px;
   height: 30px;
+  vertical-align: middle;
+}
+
+hr {
+  border: 1px solid #ccc;
+  border-top: 0;
+  margin: 30px -10px 10px -10px;
 }
 
 /** LAYOUT ****************************************************************************************/
@@ -276,33 +283,7 @@ main > * {
   display: block;
 }
 
-/** HOME ******************************************************************************************/
-
-body[layout='home'] main > img {
-  display: block;
-  margin: 0 auto;
-}
-body[layout='home'] main > h1,
-body[layout='home'] main > h2,
-body[layout='home'] main > p {
-  text-align: center;
-  border-bottom: none;
-}
-
-body[layout='home'] .reasons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-body[layout='home'] .reasons > div {
-  flex: 0 1 280px;
-  margin: 0 20px;
-}
-
-body[layout='home'] .markdown-body .call-to-action {
-  margin: 10px;
-}
+/** CALL TO ACTION ********************************************************************************/
 
 .markdown-body .call-to-action-list {
   text-align: center;
@@ -345,4 +326,32 @@ body[layout='home'] .markdown-body .call-to-action {
 
 .markdown-body .call-to-action path {
   fill: #fff;
+}
+
+/** HOME ******************************************************************************************/
+
+body[layout='home'] main > img {
+  display: block;
+  margin: 0 auto;
+}
+body[layout='home'] main > h1,
+body[layout='home'] main > h2,
+body[layout='home'] main > p {
+  text-align: center;
+  border-bottom: none;
+}
+
+body[layout='home'] .reasons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+body[layout='home'] .reasons > div {
+  flex: 0 1 280px;
+  margin: 0 20px;
+}
+
+body[layout='home'] .markdown-body .call-to-action {
+  margin: 10px;
 }

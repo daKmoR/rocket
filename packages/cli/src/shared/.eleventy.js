@@ -58,6 +58,7 @@ module.exports = function (eleventyConfig) {
         docs.forEach(page => {
           page.data.section = section;
         });
+        docs = docs.filter(page => page.inputPath !== `./${indexSection}`);
         // docs = addPrevNextUrls(docs);
         return docs;
       });

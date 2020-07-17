@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.1.2
+
+### Patch Changes
+
+- Nicer Footer
+
 ## 0.1.1
 
 ### Patch Changes

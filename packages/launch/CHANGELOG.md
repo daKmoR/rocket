@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.1.4
+
+### Patch Changes
+
+- footer auto size
+
 ## 0.1.3
 
 ### Patch Changes

@@ -10,6 +10,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   color: var(--primary-text-color);
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
 }
 
 * {
@@ -234,7 +237,7 @@ li.current > ul > li.anchor {
 
 /** MAIN ******************************************************************************************/
 #content-wrapper {
-  min-height: 70vh;
+  min-height: 60vh;
 }
 
 main {
@@ -258,8 +261,8 @@ footer {
   margin-top: 50px;
   border-top: 1px solid #eaeaea;
   background-color: #f3f3f3;
-  padding: 40px 0 20px 0;
-  min-height: calc(100vh - 70vh - 102px);
+  padding: 40px 0;
+  flex-grow: 1;
 }
 
 #newsletter {

@@ -263,6 +263,9 @@ footer {
   background-color: #f3f3f3;
   padding: 40px 0;
   flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 }
 
 #newsletter {

@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.1.5
+
+### Patch Changes
+
+- footer again
+
 ## 0.1.4
 
 ### Patch Changes

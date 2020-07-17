@@ -65,6 +65,7 @@ function getRocketValues() {
     logoUrl,
     cssVariablesUrl,
     cssStyleUrl,
+    newsletter: false,
   };
 }
 

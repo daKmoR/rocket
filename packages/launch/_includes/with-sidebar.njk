@@ -19,8 +19,10 @@
                   activeListItemClass: "current",
                   activeKey: eleventyNavigation.key
               }) | safe }}
-              <hr>
-              <a href="{{ site.helpUrl | url }}">Help and Feedback</a>
+              <div class="sidebar-bottom">
+                <hr>
+                <a href="{{ site.helpUrl | url }}">Help and Feedback</a>
+              </div>
             </rocket-navigation>
           </nav>
         </rocket-drawer>

@@ -29,6 +29,7 @@ pre {
 hr {
   border: none;
   height: 1px;
+  background: #ccc;
 }
 
 /** LAYOUT ****************************************************************************************/
@@ -131,7 +132,7 @@ header .logo-link {
 #sidebar-nav li {
   padding: 7px 0;
 }
-#sidebar hr {
+#sidebar-nav hr {
   margin: 30px -10px 10px -10px;
 }
 
@@ -209,6 +210,9 @@ li.current > ul > li.anchor {
     min-width: 260px;
     z-index: 10;
   }
+  #sidebar .sidebar-bottom {
+    display: none;
+  }
   #sidebar hr {
     margin: 30px 0 10px 0;
     background: linear-gradient(90deg, rgba(204, 204, 204, 1) 0%, rgba(255, 255, 255, 0) 80%);
@@ -246,6 +250,10 @@ main > * {
 }
 
 /** FOOTER ****************************************************************************************/
+footer {
+  margin-top: 50px;
+}
+
 #newsletter {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.101562);
   padding: 20px;

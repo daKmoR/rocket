@@ -5,6 +5,10 @@
       {
         "text": "Blog",
         "href": "/blog/"
+      },
+      {
+        "text": "Help and Feedback",
+        "href": "https://github.com/daKmoR/rocket/issues"
       }
     ]
   },

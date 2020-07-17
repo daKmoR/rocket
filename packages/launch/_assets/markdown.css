@@ -10,6 +10,10 @@
   vertical-align: text-bottom;
 }
 
+.markdown-body {
+  min-height: 250px;
+}
+
 .markdown-body .anchor {
   float: left;
   line-height: 1;

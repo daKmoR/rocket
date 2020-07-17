@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.1.1
+
+### Patch Changes
+
+- Style updates
+- Updated dependencies [undefined]
+  - @d4kmor/cli@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes

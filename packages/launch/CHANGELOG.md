@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.1.6
+
+### Patch Changes
+
+- Add readme
+
 ## 0.1.5
 
 ### Patch Changes

@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-npm i @d4kmor/cli
+npm i @d4kmor/cli patch-package
 ```
 
 ## Usage

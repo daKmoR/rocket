@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.1.8
+
+### Patch Changes
+
+- handle long menu and submenu
+
 ## 0.1.7
 
 ### Patch Changes

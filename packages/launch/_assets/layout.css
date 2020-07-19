@@ -120,6 +120,8 @@ header .logo-link {
   position: fixed;
   top: 0;
   left: 0;
+  max-height: 100vh;
+  overflow: auto;
 }
 #sidebar-nav a {
   text-decoration: none;
@@ -139,11 +141,11 @@ header .logo-link {
   margin: 30px -10px 10px -10px;
 }
 
-/* Hide 3rd level by default */
-rocket-navigation > ul > li > ul > li > ul {
+/* Hide below 3rd level by default */
+rocket-navigation > ul > li > ul > li ul {
   display: none;
 }
-/* Only show 3rd level if level above is active/current */
+/* Only show below 3rd level if level above is active/current */
 li.current > ul,
 li.active > ul {
   display: block;
@@ -213,6 +215,7 @@ li.current > ul > li.anchor {
     min-width: 260px;
     z-index: 10;
     margin-top: 18px;
+    margin-right: 15px;
   }
   #sidebar .sidebar-bottom {
     display: none;

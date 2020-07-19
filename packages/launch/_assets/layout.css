@@ -212,6 +212,7 @@ li.current > ul > li.anchor {
     display: block;
     min-width: 260px;
     z-index: 10;
+    margin-top: 18px;
   }
   #sidebar .sidebar-bottom {
     display: none;

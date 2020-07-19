@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.1.7
+
+### Patch Changes
+
+- menu margin if content shorter then menu
+
 ## 0.1.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.1.2
+
+### Patch Changes
+
+- speed improvement
+
 ## 0.1.1
 
 ### Patch Changes

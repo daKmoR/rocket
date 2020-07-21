@@ -49,6 +49,8 @@ function getHeadingsOfHtml(html) {
   return headings;
 }
 
+const headingsCache = new Map();
+
 function findNavigationEntries(nodes = [], key = '') {
   const pages = [];
   for (const entry of nodes) {
@@ -75,8 +77,13 @@ function findNavigationEntries(nodes = [], key = '') {
         entry.title = entry.key;
       }
       if (entry.key) {
-        const headings = getHeadingsOfHtml(entry.templateContent.html);
-
+        if (!headingsCache.has(entry.templateContent.html)) {
+          headingsCache.set(
+            entry.templateContent.html,
+            getHeadingsOfHtml(entry.templateContent.html),
+          );
+        }
+        const headings = headingsCache.get(entry.templateContent.html);
         const anchors = headings.map(heading => ({
           key: heading.text + Math.random(),
           parent: entry.key,

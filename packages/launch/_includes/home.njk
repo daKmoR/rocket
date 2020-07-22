@@ -32,7 +32,8 @@
         <main class="markdown-body">
           <img class="page-logo" src="{{ site.logoUrl }}" alt="{{ site.logoAlt }}" width="120" height="120"/>
 
-          <img class="page-background" src="/docs/_assets/home-background.svg"/>
+          {{ '/_assets/home-background.svg' | inputPath | inlineSvgUrl | safe }}
+
           <h1 class="page-title">{{ title }}</h1>
 
           <p class="page-slogan">{{slogan}}</p>

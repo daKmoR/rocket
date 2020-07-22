@@ -56,6 +56,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter('themePath', function (url) {
     return path.join('packages', 'launch', url);
   });
+
+  eleventyConfig.addFilter('inputPath', function (url) {
+    return path.join(inputDir, url);
+  });
+
   eleventyConfig.addPassthroughCopy('./**/*.{png,gif,jpg,svg,css}');
   eleventyConfig.addPlugin(pluginMdjs);
   eleventyConfig.addPlugin(eleventyRocketNav);

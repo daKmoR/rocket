@@ -27,6 +27,20 @@ function getDirectories(source) {
     .map(dirent => dirent.name);
 }
 
+function inlineSvgUrl(file) {
+  let relativeFilePath = `.${file}`;
+  if (path.extname(file) != '.svg') {
+    throw new Error('svgContents requires a filetype of svg');
+  }
+  let data = fs.readFileSync(relativeFilePath, function (err, contents) {
+    if (err) {
+      throw new Error(err);
+    }
+    return contents;
+  });
+  return data.toString('utf8');
+}
+
 module.exports = function (eleventyConfig) {
   const commandLineConfig = /** @type {ServerConfig & { files: string[], configDir: string }} */ (readCommandLineArgs());
   const config = normalizeConfig(commandLineConfig);
@@ -77,6 +91,8 @@ module.exports = function (eleventyConfig) {
     });
     return headers;
   });
+
+  eleventyConfig.addFilter('inlineSvgUrl', inlineSvgUrl);
 
   // eleventyConfig.addCollection('post', collection => {
   //   return [...collection.getFilteredByGlob(`${inputDir}/blog/**/*.md`)];

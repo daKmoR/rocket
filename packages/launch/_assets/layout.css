@@ -23,7 +23,7 @@ pre {
   overflow: auto;
 }
 
-.logo-link img {
+.logo-link svg {
   width: 30px;
   height: 30px;
   vertical-align: middle;
@@ -53,12 +53,13 @@ hr {
 
 /** HEADER ****************************************************************************************/
 header {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--primary-color-darker);
   align-items: center;
   padding: 10px 15px;
   position: sticky;
   top: 0;
-  background: #fff;
+  background: linear-gradient(to bottom, var(--primary-color-lighter), var(--primary-color));
+  z-index: 100;
 }
 header .content-area {
   display: flex;
@@ -67,12 +68,12 @@ header .content-area {
 }
 header a {
   text-decoration: none;
-  color: var(--primary-text-color);
+  color: var(--contrast-color-light, #fff);
   transition: color 0.3s linear;
 }
 header a:hover,
 header a.active {
-  color: var(--primary-color);
+  color: var(--contrast-color-dark, #000);
 }
 header a.active {
   transition-duration: 0s;
@@ -88,18 +89,24 @@ header button span {
   box-sizing: content-box;
   background: none;
   padding: 0;
+  color: var(--contrast-color-light, #fff);
 }
 #github-link {
-  color: #000;
+  color: var(--contrast-color-light, #fff);
   width: 30px;
+  margin-right: 0;
 }
 header .logo-link {
   display: none;
+  color: var(--contrast-color-light, #fff);
 }
 
 @media screen and (min-width: 1024px) {
-  header {
-    z-index: 100;
+  header a {
+    margin-right: 50px;
+  }
+  header a:nth-of-type(2) {
+    margin-left: auto;
   }
   #mobile-menu-trigger {
     display: none;
@@ -175,6 +182,11 @@ rocket-navigation > ul {
   height: 52px;
   line-height: 52px;
   padding-left: 10px;
+
+  /* same as header */
+  border-bottom: 1px solid var(--primary-color-darker);
+  background: linear-gradient(to bottom, var(--primary-color-lighter), var(--primary-color));
+  color: #fff;
 }
 #sidebar-nav .logo-link span {
   padding-left: 10px;
@@ -247,6 +259,7 @@ li.current > ul > li.anchor {
 main {
   padding: 20px;
   width: 100%;
+  position: relative;
 }
 
 main > * {
@@ -321,27 +334,22 @@ footer {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  padding: 12px 24px;
-  border: 1px solid #b02e2e;
-  border-radius: 8px;
-  background: #ff5656;
-  background: linear-gradient(to bottom, #ff5656, #b02e2e);
-  text-shadow: #681b1b 1px 1px 1px;
+  padding: 12px 20px;
+  border: 1px solid var(--primary-color);
+  border-radius: 24px;
+  background: linear-gradient(to bottom, var(--primary-color-lighter), var(--primary-color));
+  text-shadow: var(--primary-color-darker) 1px 1px 1px;
   font: normal normal bold 20px arial;
   color: #ffffff;
   text-decoration: none;
 }
 .markdown-body .call-to-action:hover,
 .markdown-body .call-to-action:focus {
-  border: 1px solid #cf3636;
-  background: #ff6767;
-  background: linear-gradient(to bottom, #ff6767, #d33737);
-  color: #ffffff;
+  background: linear-gradient(to bottom, var(--primary-color), var(--primary-color-darker));
   text-decoration: none;
 }
 .markdown-body .call-to-action:active {
-  background: #b02e2e;
-  background: linear-gradient(to bottom, #b02e2e, #b02e2e);
+  background: var(--primary-color-darker);
 }
 
 .markdown-body .call-to-action svg {
@@ -361,15 +369,23 @@ body[layout='home'] main {
   padding-top: 50px;
 }
 
-body[layout='home'] main > img {
+body[layout='home'] .page-title {
+  color: var(--primary-color);
+  font-size: 50px;
+}
+
+body[layout='home'] .page-logo {
   display: block;
   margin: 0 auto;
 }
-body[layout='home'] main > h1,
-body[layout='home'] main > h2,
-body[layout='home'] main > p {
+body[layout='home'] .page-title,
+body[layout='home'] .reason-header,
+body[layout='home'] .page-slogan {
   text-align: center;
   border-bottom: none;
+}
+body[layout='home'] .page-slogan {
+  font-size: 25px;
 }
 
 body[layout='home'] .reason-header {
@@ -384,9 +400,16 @@ body[layout='home'] .reasons {
 
 body[layout='home'] .reasons > div {
   flex: 0 1 280px;
-  margin: 0 20px;
+  margin: 10px 30px;
+  flex-grow: 1;
 }
 
 body[layout='home'] .markdown-body .call-to-action {
   margin: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  body[layout='home'] header .logo-link {
+    color: var(--contrast-color-dark, #000);
+  }
 }

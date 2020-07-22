@@ -1,0 +1,45 @@
+body[layout='home'] .markdown-body .call-to-action:nth-of-type(2) {
+  --primary-color: #222;
+  --primary-color-lighter: #333;
+  --primary-color-darker: #000;
+}
+
+body[layout='home'] .page-background {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  body[layout='home'] .page-title,
+  body[layout='home'] .page-slogan {
+    text-align: left;
+  }
+
+  body[layout='home'] .page-title {
+    margin-top: 150px;
+  }
+
+  body[layout='home'] .page-slogan {
+    max-width: 500px;
+  }
+
+  body[layout='home'] .markdown-body .call-to-action-list {
+    text-align: left;
+  }
+
+  body[layout='home'] header {
+    background: transparent;
+    border-bottom: none;
+  }
+
+  body[layout='home'] .page-background {
+    display: block;
+    position: absolute;
+    top: -52px;
+    right: -60px;
+    z-index: -1;
+  }
+
+  body[layout='home'] .page-logo {
+    display: none;
+  }
+}

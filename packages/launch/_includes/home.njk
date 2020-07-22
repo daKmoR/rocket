@@ -30,10 +30,12 @@
           </nav>
         </rocket-drawer>
         <main class="markdown-body">
-          <img src="{{ site.logoUrl }}" alt="{{ site.logoAlt }}" width="120" height="120"/>
-          <h1>{{ title }}</h1>
+          <img class="page-logo" src="{{ site.logoUrl }}" alt="{{ site.logoAlt }}" width="120" height="120"/>
 
-          <p>{{slogan}}</p>
+          <img class="page-background" src="/docs/_assets/home-background.svg"/>
+          <h1 class="page-title">{{ title }}</h1>
+
+          <p class="page-slogan">{{slogan}}</p>
 
           <div class="call-to-action-list">
             {% for callToAction in callToActionItems %}

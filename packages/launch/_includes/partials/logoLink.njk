@@ -1,4 +1,4 @@
 <a class="logo-link" href="{{ '/' | url }}">
-  <img src="{{ site.logoUrl }}" alt="{{ site.logoAlt }}"/>
+  {{ site.logoUrl | inlineSvgUrl | safe }}
   <span>{{ site.name }}</span>
 </a>

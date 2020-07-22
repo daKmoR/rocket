@@ -2,7 +2,7 @@
   <div class="content-area">
     <button id="mobile-menu-trigger">
       <span>Show Menu</span>
-      {{ '/_assets/burger-menu.svg' | themeUrl | inlineSvgUrl | safe }}
+      {{ '/_assets/burger-menu.svg' | themePath | inlineSvgUrl | safe }}
     </button>
     {% include 'partials/logoLink.njk' %}
     {%- for entry in collections.header %}
@@ -13,7 +13,7 @@
     {%- endfor %}
     <a id="github-link" href="{{ site.githubUrl }}" aria-label="{{ site.name }} on GitHub" rel="noopener noreferrer" target="_blank">
       <span>Github</span>
-      {{ '/_assets/github-logo.svg' | themeUrl | inlineSvgUrl | safe }}
+      {{ '/_assets/github-logo.svg' | themePath | inlineSvgUrl | safe }}
     </a>
   </div>
 </header>

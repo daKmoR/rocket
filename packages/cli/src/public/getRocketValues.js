@@ -40,9 +40,13 @@ function getRocketValues() {
 
   const userLogoPath = path.join(config.inputDir, '_assets', 'logo.svg');
   const defaultLogoPath = path.join('/', config.templatePathPrefix, '_assets', 'logo.svg');
-  const logoUrl = fs.existsSync(userLogoPath)
-    ? urlFilter(path.join('/', '_assets', 'logo.svg'))
-    : defaultLogoPath;
+  let logoPath = defaultLogoPath;
+  let logoUrl = defaultLogoPath;
+
+  if (fs.existsSync(userLogoPath)) {
+    logoUrl = urlFilter(path.join('/', '_assets', 'logo.svg'));
+    logoPath = userLogoPath;
+  }
 
   const userCssVariablesPath = path.join(config.inputDir, '_assets', 'variables.css');
   const defaultCssVariablesPath = path.join(
@@ -62,6 +66,7 @@ function getRocketValues() {
 
   return {
     url,
+    logoPath,
     logoUrl,
     cssVariablesUrl,
     cssStyleUrl,

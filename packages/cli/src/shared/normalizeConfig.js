@@ -18,6 +18,7 @@ function normalizeConfig(inConfig) {
   };
 
   const inputDir = path.join(inConfig.configDir, './docs');
+  const themePath = resolvedNodePackagePath('@d4kmor/launch/');
 
   const absIncludes = resolvedNodePackagePath('@d4kmor/launch/_includes/');
   const absData = resolvedNodePackagePath('@d4kmor/launch/_data/');
@@ -27,13 +28,13 @@ function normalizeConfig(inConfig) {
 
   // dev Server needs the paths to be absolute to the server root
   devServer.rootDir = devServer.rootDir ? devServer.rootDir : process.cwd();
-  const absTemplatePrefix = resolvedNodePackagePath('@d4kmor/launch/');
-  const templatePathPrefix = path.join('/', path.relative(devServer.rootDir, absTemplatePrefix));
+  const templatePathPrefix = path.join('/', path.relative(devServer.rootDir, themePath));
 
   return {
     // pathPrefix can NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
     pathPrefix: '/docs',
     templatePathPrefix,
+    themePath,
     ...config,
     configDir: inConfig.configDir,
     inputDir,

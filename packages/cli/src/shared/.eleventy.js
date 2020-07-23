@@ -28,11 +28,11 @@ function getDirectories(source) {
 }
 
 function inlineSvgUrl(file) {
-  let relativeFilePath = file.startsWith('/') ? `.${file}` : `./${file}`;
+  // let relativeFilePath = file.startsWith('/') ? `.${file}` : `./${file}`;
   if (path.extname(file) != '.svg') {
     throw new Error('svgContents requires a filetype of svg');
   }
-  let data = fs.readFileSync(relativeFilePath, function (err, contents) {
+  let data = fs.readFileSync(file, function (err, contents) {
     if (err) {
       throw new Error(err);
     }
@@ -47,14 +47,14 @@ module.exports = function (eleventyConfig) {
   // console.log(config);
   const configDir = config.configDir;
   const inputDir = path.join(configDir, 'docs');
-  const { templatePathPrefix, pathPrefix } = config;
+  const { templatePathPrefix, pathPrefix, themePath } = config;
   const { data: dataDir, includes: includesDir } = config.dir;
 
   eleventyConfig.addFilter('themeUrl', function (url) {
     return path.join(templatePathPrefix, url);
   });
   eleventyConfig.addFilter('themePath', function (url) {
-    return path.join('packages', 'launch', url);
+    return path.join(themePath, url);
   });
 
   eleventyConfig.addFilter('inputPath', function (url) {

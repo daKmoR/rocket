@@ -1,8 +1,11 @@
 html {
   --primary-color: #e63946;
-  --secondary-color: #1d3557;
+  --primary-color-lighter: #e25761;
+  --primary-color-darker: #a22831;
+  --primary-color-accent: #cee5f6;
+
+  --contract-color-light: #fff;
+  --contract-color-dark: #1d3557;
 
   --primary-text-color: #2c3e50;
-  --primary-light-color: #a8dadc;
-  --secondary-light-color: #f1faee;
 }

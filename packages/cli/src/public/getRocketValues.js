@@ -5,6 +5,10 @@ const urlFilter = require('@11ty/eleventy/src/Filters/Url.js');
 
 const { normalizeConfig } = require('../shared/normalizeConfig.js');
 
+function selectPath(userPath, defaultPath = false) {
+  return fs.existsSync(userPath) ? userPath : defaultPath;
+}
+
 function getRocketValues() {
   let url = '/';
 
@@ -38,16 +42,22 @@ function getRocketValues() {
   };
   const config = normalizeConfig(commandLineConfig);
 
+  // User logo at _assets/logo.svg
   const userLogoPath = path.join(config.inputDir, '_assets', 'logo.svg');
   const defaultLogoPath = path.join('/', config.templatePathPrefix, '_assets', 'logo.svg');
   let logoPath = defaultLogoPath;
   let logoUrl = defaultLogoPath;
-
   if (fs.existsSync(userLogoPath)) {
     logoUrl = urlFilter(path.join('/', '_assets', 'logo.svg'));
     logoPath = userLogoPath;
   }
 
+  // User home background at _assets/home-background.svg
+  const homeBackgroundPath = selectPath(
+    path.join(config.inputDir, '_assets', 'home-background.svg'),
+  );
+
+  // User CSS variables at _assets/variables.css
   const userCssVariablesPath = path.join(config.inputDir, '_assets', 'variables.css');
   const defaultCssVariablesPath = path.join(
     '/',
@@ -59,6 +69,7 @@ function getRocketValues() {
     ? urlFilter(path.join('/', '_assets', 'variables.css'))
     : defaultCssVariablesPath;
 
+  // User CSS at _assets/style.css
   const userCssStylePath = path.join(config.inputDir, '_assets', 'style.css');
   const cssStyleUrl = fs.existsSync(userCssStylePath)
     ? urlFilter(path.join('/', '_assets', 'style.css'))
@@ -70,6 +81,7 @@ function getRocketValues() {
     logoUrl,
     cssVariablesUrl,
     cssStyleUrl,
+    homeBackgroundPath,
     newsletter: false,
   };
 }

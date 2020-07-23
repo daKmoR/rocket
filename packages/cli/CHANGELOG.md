@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.1.4
+
+### Patch Changes
+
+- Auto Select home background svg if available
+
 ## 0.1.2
 
 ### Patch Changes

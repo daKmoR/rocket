@@ -3,7 +3,7 @@
   <head>
     {% include 'partials/head-content.njk' %}
   </head>
-  <body layout="home">
+  <body layout="home" {% if site.homeBackgroundPath %} class="has-background" {% endif %}>
     {% include 'partials/header.njk' %}
 
     <div id="content-wrapper">
@@ -32,7 +32,9 @@
         <main class="markdown-body">
           <img class="page-logo" src="{{ site.logoUrl }}" alt="{{ site.logoAlt }}" width="120" height="120"/>
 
-          {{ '/_assets/home-background.svg' | inputPath | inlineSvgUrl | safe }}
+          {% if site.homeBackgroundPath %}
+            {{ site.homeBackgroundPath | inlineSvgUrl | safe }}
+          {% endif %}
 
           <h1 class="page-title">{{ title }}</h1>
 

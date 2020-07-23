@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.1.9
+
+### Patch Changes
+
+- Auto Select home background svg if available
+- Updated dependencies [undefined]
+  - @d4kmor/cli@0.1.4
+
 ## 0.1.8
 
 ### Patch Changes

@@ -40,18 +40,22 @@ const plugins = mdjsProcessPlugins.map(pluginObj => {
 });
 
 function adjustLinks() {
+  // remark works by modifying nodes directly
+  /* eslint-disable no-param-reassign */
   return tree => {
     visit(tree, 'link', node => {
       const { url } = node;
       if (url.endsWith('.md')) {
-        // remark works by modifying nodes directly
-        // eslint-disable-next-line no-param-reassign
-        node.url = url.substring(0, url.lastIndexOf('/') + 1);
+        if (url.endsWith('index.md')) {
+          node.url = url.substring(0, url.lastIndexOf('/') + 1);
+        } else {
+          node.url = `${url.substring(0, url.length - 3)}/`;
+        }
       }
     });
-
     return tree;
   };
+  /* eslint-enable no-param-reassign */
 }
 
 const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'markdown');

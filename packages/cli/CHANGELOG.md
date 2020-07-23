@@ -1,5 +1,13 @@
 # @d4kmor/cli
 
+## 0.1.6
+
+### Patch Changes
+
+- Support markdown links to .md files
+- Updated dependencies [undefined]
+  - @d4kmor/eleventy-plugin-mdjs@0.1.1
+
 ## 0.1.5
 
 ### Patch Changes

@@ -30,10 +30,14 @@
           </nav>
         </rocket-drawer>
         <main class="markdown-body">
-          <img class="page-logo" src="{{ site.logoUrl }}" alt="{{ site.logoAlt }}" width="120" height="120"/>
+          {% if site.logoColorPath %}
+            {{ site.logoColorPath | inlineSvgPath | modifySvg({ addRootClass: 'page-logo' }) | safe }}
+          {% else %}
+            {{ site.logoPath | inlineSvgPath | modifySvg({ addRootClass: 'page-logo' }) | safe }}
+          {% endif %}
 
           {% if site.homeBackgroundPath %}
-            {{ site.homeBackgroundPath | inlineSvgUrl | safe }}
+            {{ site.homeBackgroundPath | inlineSvgPath | modifySvg({ addRootClass: 'page-background' }) | safe }}
           {% endif %}
 
           <h1 class="page-title">{{ title }}</h1>

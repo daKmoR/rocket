@@ -42,7 +42,7 @@ function getRocketValues() {
   };
   const config = normalizeConfig(commandLineConfig);
 
-  // User logo at _assets/logo.svg
+  // user logo at _assets/logo.svg
   const userLogoPath = path.join(config.inputDir, '_assets', 'logo.svg');
   const defaultLogoPath = path.join('/', config.templatePathPrefix, '_assets', 'logo.svg');
   let logoPath = defaultLogoPath;
@@ -52,12 +52,15 @@ function getRocketValues() {
     logoPath = userLogoPath;
   }
 
-  // User home background at _assets/home-background.svg
+  // user home background at _assets/home-background.svg
   const homeBackgroundPath = selectPath(
     path.join(config.inputDir, '_assets', 'home-background.svg'),
   );
 
-  // User CSS variables at _assets/variables.css
+  // user color logo
+  const logoColorPath = selectPath(path.join(config.inputDir, '_assets', 'logo-color.svg'));
+
+  // user CSS variables at _assets/variables.css
   const userCssVariablesPath = path.join(config.inputDir, '_assets', 'variables.css');
   const defaultCssVariablesPath = path.join(
     '/',
@@ -78,6 +81,7 @@ function getRocketValues() {
   return {
     url,
     logoPath,
+    logoColorPath,
     logoUrl,
     cssVariablesUrl,
     cssStyleUrl,

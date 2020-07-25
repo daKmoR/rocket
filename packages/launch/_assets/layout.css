@@ -13,6 +13,8 @@ body {
   display: flex;
   flex-flow: column;
   min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 * {
@@ -377,6 +379,7 @@ body[layout='home'] .page-title {
 body[layout='home'] .page-logo {
   display: block;
   margin: 0 auto;
+  width: 35vw;
 }
 body[layout='home'] .page-title,
 body[layout='home'] .reason-header,

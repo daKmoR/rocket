@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.1.10
+
+### Patch Changes
+
+- introduce color logo
+- Updated dependencies [undefined]
+  - @d4kmor/cli@0.1.7
+
 ## 0.1.9
 
 ### Patch Changes

@@ -27,18 +27,24 @@ function getDirectories(source) {
     .map(dirent => dirent.name);
 }
 
-function inlineSvgUrl(file) {
-  // let relativeFilePath = file.startsWith('/') ? `.${file}` : `./${file}`;
-  if (path.extname(file) != '.svg') {
+function inlineSvgPath(filePath) {
+  if (path.extname(filePath) != '.svg') {
     throw new Error('svgContents requires a filetype of svg');
   }
-  let data = fs.readFileSync(file, function (err, contents) {
+  let data = fs.readFileSync(filePath, function (err, contents) {
     if (err) {
       throw new Error(err);
     }
     return contents;
   });
   return data.toString('utf8');
+}
+
+function modifySvg(svgText, options) {
+  const insertAt = svgText.indexOf('<svg') + 4;
+  return `${svgText.substr(0, insertAt)} class="${options.addRootClass}" ${svgText.substr(
+    insertAt,
+  )}`;
 }
 
 module.exports = function (eleventyConfig) {
@@ -100,7 +106,8 @@ module.exports = function (eleventyConfig) {
     return headers;
   });
 
-  eleventyConfig.addFilter('inlineSvgUrl', inlineSvgUrl);
+  eleventyConfig.addFilter('inlineSvgPath', inlineSvgPath);
+  eleventyConfig.addFilter('modifySvg', modifySvg);
 
   // eleventyConfig.addCollection('post', collection => {
   //   return [...collection.getFilteredByGlob(`${inputDir}/blog/**/*.md`)];

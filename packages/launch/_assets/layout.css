@@ -380,6 +380,7 @@ body[layout='home'] .page-logo {
   display: block;
   margin: 0 auto;
   width: 35vw;
+  max-width: 250px;
 }
 body[layout='home'] .page-title,
 body[layout='home'] .reason-header,

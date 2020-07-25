@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.1.11
+
+### Patch Changes
+
+- colored svgs as images
+- Updated dependencies [undefined]
+  - @d4kmor/cli@0.1.8
+
 ## 0.1.10
 
 ### Patch Changes

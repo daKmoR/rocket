@@ -31,13 +31,13 @@
         </rocket-drawer>
         <main class="markdown-body">
           {% if site.logoColorPath %}
-            {{ site.logoColorPath | inlineSvgPath | modifySvg({ addRootClass: 'page-logo' }) | safe }}
+            <img class="page-logo" src="{{ site.logoColorUrl }}" alt="{{ site.title }} Logo"/>
           {% else %}
             {{ site.logoPath | inlineSvgPath | modifySvg({ addRootClass: 'page-logo' }) | safe }}
           {% endif %}
 
-          {% if site.homeBackgroundPath %}
-            {{ site.homeBackgroundPath | inlineSvgPath | modifySvg({ addRootClass: 'page-background' }) | safe }}
+          {% if site.homeBackgroundUrl %}
+            <img class="page-background" src="{{ site.homeBackgroundUrl }}" role="presentation"/>
           {% endif %}
 
           <h1 class="page-title">{{ title }}</h1>

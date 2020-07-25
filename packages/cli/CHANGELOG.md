@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.1.8
+
+### Patch Changes
+
+- colored svgs as images
+
 ## 0.1.7
 
 ### Patch Changes

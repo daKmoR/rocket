@@ -5,8 +5,29 @@ const urlFilter = require('@11ty/eleventy/src/Filters/Url.js');
 
 const { normalizeConfig } = require('../shared/normalizeConfig.js');
 
-function selectPath(userPath, defaultPath = false) {
-  return fs.existsSync(userPath) ? userPath : defaultPath;
+function chooseFile(userPath, config) {
+  const userPathParts = userPath.split('/');
+
+  const finalUserPath = path.join(config.inputDir, ...userPathParts);
+  if (fs.existsSync(finalUserPath)) {
+    return {
+      path: finalUserPath,
+      url: urlFilter(path.join('/', ...userPathParts)),
+    };
+  }
+
+  const finalFallbackPath = path.join(config.themePath, ...userPathParts);
+  if (fs.existsSync(finalFallbackPath)) {
+    return {
+      path: finalFallbackPath,
+      url: path.join('/', config.templatePathPrefix, ...userPathParts),
+    };
+  }
+
+  return {
+    path: '',
+    url: '',
+  };
 }
 
 function getRocketValues() {
@@ -42,50 +63,24 @@ function getRocketValues() {
   };
   const config = normalizeConfig(commandLineConfig);
 
-  // user logo at _assets/logo.svg
-  const userLogoPath = path.join(config.inputDir, '_assets', 'logo.svg');
-  const defaultLogoPath = path.join('/', config.templatePathPrefix, '_assets', 'logo.svg');
-  let logoPath = defaultLogoPath;
-  let logoUrl = defaultLogoPath;
-  if (fs.existsSync(userLogoPath)) {
-    logoUrl = urlFilter(path.join('/', '_assets', 'logo.svg'));
-    logoPath = userLogoPath;
-  }
-
-  // user home background at _assets/home-background.svg
-  const homeBackgroundPath = selectPath(
-    path.join(config.inputDir, '_assets', 'home-background.svg'),
-  );
-
-  // user color logo
-  const logoColorPath = selectPath(path.join(config.inputDir, '_assets', 'logo-color.svg'));
-
-  // user CSS variables at _assets/variables.css
-  const userCssVariablesPath = path.join(config.inputDir, '_assets', 'variables.css');
-  const defaultCssVariablesPath = path.join(
-    '/',
-    config.templatePathPrefix,
-    '_assets',
-    'variables.css',
-  );
-  const cssVariablesUrl = fs.existsSync(userCssVariablesPath)
-    ? urlFilter(path.join('/', '_assets', 'variables.css'))
-    : defaultCssVariablesPath;
-
-  // User CSS at _assets/style.css
-  const userCssStylePath = path.join(config.inputDir, '_assets', 'style.css');
-  const cssStyleUrl = fs.existsSync(userCssStylePath)
-    ? urlFilter(path.join('/', '_assets', 'style.css'))
-    : '';
+  const logo = chooseFile('_assets/logo.svg', config);
+  const homeBackground = chooseFile('_assets/home-background.svg', config);
+  const logoColor = chooseFile('_assets/logo-color.svg', config);
+  const cssVariables = chooseFile('_assets/variables.css', config);
+  const cssStyle = chooseFile('_assets/style.css', config);
 
   return {
     url,
-    logoPath,
-    logoColorPath,
-    logoUrl,
-    cssVariablesUrl,
-    cssStyleUrl,
-    homeBackgroundPath,
+    logoPath: logo.path,
+    logoUrl: logo.url,
+    logoColorPath: logoColor.path,
+    logoColorUrl: logoColor.url,
+    cssVariablesPath: cssVariables.path,
+    cssVariablesUrl: cssVariables.url,
+    cssStylePath: cssStyle.path,
+    cssStyleUrl: cssStyle.url,
+    homeBackgroundPath: homeBackground.path,
+    homeBackgroundUrl: homeBackground.url,
     newsletter: false,
   };
 }

@@ -1,7 +1,7 @@
 <header>
   <div class="content-area">
     <button id="mobile-menu-trigger">
-      <span>Show Menu</span>
+      <span class="sr-only">Show Menu</span>
       {{ '/_assets/burger-menu.svg' | themePath | inlineSvgPath | safe }}
     </button>
     {% if layout === "home.njk" and site.homeBackgroundPath %}
@@ -24,7 +24,7 @@
             ">{{ entry.data.eleventyNavigation.key }}</a>
     {%- endfor %}
     <a id="github-link" href="{{ site.githubUrl }}" aria-label="{{ site.name }} on GitHub" rel="noopener noreferrer" target="_blank">
-      <span>Github</span>
+      <span class="sr-only">Github</span>
       {{ '/_assets/github-logo.svg' | themePath | inlineSvgPath | safe }}
     </a>
   </div>

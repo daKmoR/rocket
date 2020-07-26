@@ -31,6 +31,15 @@ pre {
   vertical-align: middle;
 }
 
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 hr {
   border: none;
   height: 1px;
@@ -80,10 +89,6 @@ header a.active {
 }
 header a.active {
   transition-duration: 0s;
-}
-header a span,
-header button span {
-  display: none;
 }
 #mobile-menu-trigger {
   border: none;

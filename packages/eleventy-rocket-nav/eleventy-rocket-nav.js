@@ -99,6 +99,31 @@ function findNavigationEntries(nodes = [], key = '') {
     });
 }
 
+function rocketPageAnchors(nodes, { title }) {
+  for (const entry of nodes) {
+    if (entry.data && entry.data.title === title) {
+      if (!headingsCache.has(entry.templateContent.html)) {
+        headingsCache.set(
+          entry.templateContent.html,
+          getHeadingsOfHtml(entry.templateContent.html),
+        );
+      }
+      const headings = headingsCache.get(entry.templateContent.html);
+      const anchors = headings.map(heading => ({
+        key: heading.text + Math.random(),
+        parent: entry.key,
+        url: `${entry.url}#${heading.id}`,
+        pluginType: 'eleventy-navigation',
+        parentKey: entry.key,
+        title: heading.text,
+        anchor: true,
+      }));
+      return anchors;
+    }
+  }
+  return [];
+}
+
 function findDependencies(pages, depGraph, parentKey) {
   for (const page of pages) {
     depGraph.addNode(page.key, page);
@@ -148,6 +173,7 @@ function navigationToHtml(pages, options = {}) {
   if (options.activeKey) {
     const graph = new DepGraph();
     findDependencies(pages, graph);
+
     try {
       activePages = graph.dependenciesOf(options.activeKey);
     } catch (err) {
@@ -229,5 +255,6 @@ function navigationToHtml(pages, options = {}) {
 module.exports = {
   findNavigationEntries,
   findBreadcrumbEntries,
+  rocketPageAnchors,
   toHtml: navigationToHtml,
 };

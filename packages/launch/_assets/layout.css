@@ -141,6 +141,7 @@ rocket-navigation li.current > a {
   color: var(--primary-color);
 }
 
+/* line on the left to indicate current page */
 rocket-navigation li.current > a::before {
   content: '';
   height: 1.6em;
@@ -168,6 +169,7 @@ li.active > ul {
   display: block;
 }
 
+rocket-navigation h3,
 rocket-navigation > ul > li > a {
   font-weight: bold;
   color: var(--primary-color);
@@ -272,6 +274,27 @@ li.current > ul > li.anchor {
   body:not([layout='with-sidebar']) #sidebar {
     display: none;
   }
+}
+
+/* for blog detail page */
+rocket-navigation h3 {
+  font-size: 16px;
+  margin: 0 0 7px 0;
+}
+
+.sidebar-tags h3 {
+  margin-top: 40px;
+}
+.sidebar-tags .tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sidebar-tags .tag {
+  background: #ccc;
+  margin: 5px 0 0 5px;
+  padding: 5px 10px;
+  box-sizing: content-box;
+  border-radius: 20px;
 }
 
 /** MAIN ******************************************************************************************/

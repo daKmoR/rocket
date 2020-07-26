@@ -12,10 +12,10 @@ body[layout='home'] .markdown-body .call-to-action:nth-of-type(2) {
   }
 }
 
-rocket-navigation a {
+rocket-navigation {
   font-family: 'Quicksand', sans-serif;
 }
 
-header a {
+header {
   font-family: 'Quicksand', sans-serif;
 }

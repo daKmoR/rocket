@@ -68,6 +68,7 @@ function getRocketValues() {
   const logoColor = chooseFile('_assets/logo-color.svg', config);
   const cssVariables = chooseFile('_assets/variables.css', config);
   const cssStyle = chooseFile('_assets/style.css', config);
+  const htmlHead = chooseFile('_assets/head.html', config);
 
   return {
     url,
@@ -81,6 +82,8 @@ function getRocketValues() {
     cssStyleUrl: cssStyle.url,
     homeBackgroundPath: homeBackground.path,
     homeBackgroundUrl: homeBackground.url,
+    htmlHeadPath: htmlHead.path,
+    htmlHeadUrl: htmlHead.url,
     newsletter: false,
   };
 }

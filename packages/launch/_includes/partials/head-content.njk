@@ -41,3 +41,7 @@
 {% if site.cssStyleUrl %}
   <link rel="stylesheet" href="{{ site.cssStyleUrl }}">
 {% endif %}
+
+{% if site.htmlHeadPath %}
+  {% include site.htmlHeadPath %}
+{% endif %}

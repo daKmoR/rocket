@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.1.12
+
+### Patch Changes
+
+- sidebar style
+- Updated dependencies [undefined]
+  - @d4kmor/cli@0.1.9
+
 ## 0.1.11
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.1.9
+
+### Patch Changes
+
+- sidebar style
+
 ## 0.1.8
 
 ### Patch Changes

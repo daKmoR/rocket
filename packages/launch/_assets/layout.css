@@ -72,6 +72,7 @@ header a {
   text-decoration: none;
   color: var(--contrast-color-light, #fff);
   transition: color 0.3s linear;
+  font-weight: bold;
 }
 header a:hover,
 header a.active {
@@ -132,21 +133,28 @@ header .logo-link {
   max-height: 100vh;
   overflow: auto;
 }
-#sidebar-nav a {
+rocket-navigation a {
   text-decoration: none;
   color: var(--primary-text-color);
 }
-#sidebar-nav li.active > a {
-  text-decoration: underline;
-}
-#sidebar-nav li.current > a {
+rocket-navigation li.current > a {
   color: var(--primary-color);
 }
 
-#sidebar-nav li {
+rocket-navigation li.current > a::before {
+  content: '';
+  height: 1.6em;
+  width: 4px;
+  background: var(--primary-color);
+  position: absolute;
+  left: 0;
+  margin-top: -2px;
+}
+
+rocket-navigation li {
   padding: 7px 0;
 }
-#sidebar-nav hr {
+rocket-navigation hr {
   margin: 30px -10px 10px -10px;
 }
 
@@ -161,8 +169,17 @@ li.active > ul {
 }
 
 rocket-navigation > ul > li > a {
-  font-weight: 700;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-transform: uppercase;
 }
+rocket-navigation > ul > li > ul a {
+  font-weight: bold;
+}
+rocket-navigation > ul > li > ul a.anchor {
+  font-weight: normal;
+}
+
 rocket-navigation {
   overflow: auto;
   display: block;
@@ -197,14 +214,18 @@ rocket-navigation > ul {
   padding: 4px 0;
 }
 #sidebar-nav li.anchor a {
-  color: var(--secondary-color);
-  font-size: 14px;
+  position: relative;
 }
-#sidebar-nav li.anchor a::before {
-  content: '>';
-  margin: 0 4px 0 -1px;
+#sidebar-nav li.anchor a:hover::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: url(./octicon.svg);
+  background-size: contain;
+  left: -16px;
+  top: 0;
   display: block;
-  float: left;
 }
 #sidebar-nav li.anchor:last-child {
   padding: 4px 0 0 0;

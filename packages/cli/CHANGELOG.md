@@ -1,5 +1,13 @@
 # @d4kmor/cli
 
+## 0.1.10
+
+### Patch Changes
+
+- updates
+- Updated dependencies [undefined]
+  - @d4kmor/eleventy-rocket-nav@0.1.2
+
 ## 0.1.9
 
 ### Patch Changes

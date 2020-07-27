@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/cli",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "publishConfig": {
     "access": "public"
   },
@@ -36,7 +36,7 @@
   "dependencies": {
     "@11ty/eleventy": "^0.11.0",
     "@d4kmor/eleventy-plugin-mdjs": "^0.1.1",
-    "@d4kmor/eleventy-rocket-nav": "^0.1.1",
+    "@d4kmor/eleventy-rocket-nav": "^0.1.2",
     "@d4kmor/navigation": "^0.1.0",
     "@open-wc/building-rollup": "^1.5.0",
     "command-line-args": "^5.1.1",
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy-navigation": "^0.1.5",
-    "@d4kmor/launch": "^0.1.12",
+    "@d4kmor/launch": "^0.1.13",
     "patch-package": "^6.2.2"
   }
 }

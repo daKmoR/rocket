@@ -10,11 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ pageTitle }}</title>
 
-<meta name="generator" content="11ty 0.10.0">
-{# <link rel="manifest" href="/manifest.json">
-<link rel="icon" type="image/png" href="/favicon.png"/>
-<link rel="apple-touch-icon" href="/icons/icon-128x128.png"/>
-<meta name="theme-color" content="#127afb"/> #}
+<meta name="generator" content="rocket 0.1">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" href="{{ '/favicon.png' | url }}"/>
+<link rel="apple-touch-icon" href="{{ '/_assets/icons/icon-128x128.png' | url }}"/>
+<meta name="theme-color" content="#127afb"/>
 
 {% if site.url !== '/' %}
   <link rel="canonical" href="{{ currentUrl }}"/>
@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="{{ site.name }}"/>
 <meta property="og:title" content="{{ pageTitle }}"/>
 <meta property="og:type" content="website"/>
-{# <meta property="og:image" content="/logo.png"> #}
+<meta property="og:image" content="{{ '/_assets/logo.svg' | url }}"/>
 <meta property="og:url" content="{{ currentUrl }}"/>
 
 <meta name="twitter:creator" content="@modern_web_dev"/>

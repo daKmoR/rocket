@@ -2,7 +2,6 @@
 
 const path = require('path');
 const { rollup } = require('rollup');
-const { generateSW } = require('rollup-plugin-workbox');
 const clear = require('rollup-plugin-clear');
 const visualizer = require('rollup-plugin-visualizer');
 const Eleventy = require('@11ty/eleventy');
@@ -31,26 +30,8 @@ async function productionBuild(html, config) {
     outputDir: config.outputPath,
     legacyBuild: false,
     html: { html },
-    injectServiceWorker: false,
-    workbox: false,
+    injectServiceWorker: true,
   });
-
-  mpaConfig.plugins.push(
-    generateSW({
-      globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
-      swDest: path.join(process.cwd(), config.outputPath, 'service-worker.js'),
-      globDirectory: path.join(process.cwd(), config.outputPath),
-      globPatterns: ['**/*.{html,js,json,css,webmanifest,png,gif}'],
-      skipWaiting: true,
-      clientsClaim: true,
-      runtimeCaching: [
-        {
-          urlPattern: 'polyfills/*.js',
-          handler: 'CacheFirst',
-        },
-      ],
-    }),
-  );
 
   mpaConfig.plugins.push(
     clear({

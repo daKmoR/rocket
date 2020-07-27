@@ -8,7 +8,7 @@
       {% if site.logoColorPath %}
         <a class="logo-link" href="{{ '/' | url }}">
           {{ site.logoColorPath | inlineSvgPath | safe }}
-          <span>{{ site.name }}</span>
+          <span class="sr-only">{{ site.name }}</span>
         </a>
       {% else %}
         {% include 'partials/logoLink.njk' %}

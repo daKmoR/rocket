@@ -11,10 +11,14 @@
 <title>{{ pageTitle }}</title>
 
 <meta name="generator" content="rocket 0.1">
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" type="image/png" href="{{ '/favicon.png' | url }}"/>
-<link rel="apple-touch-icon" href="{{ '/_assets/icons/icon-128x128.png' | url }}"/>
-<meta name="theme-color" content="#127afb"/>
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/_assets/apple-touch-icon.png' | url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/_assets/favicon-32x32.png' | url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/_assets/favicon-16x16.png' | url }}">
+<link rel="manifest" href="{{ '/webmanifest.json' | url }}">
+<link rel="mask-icon" href="{{ '/_assets/safari-pinned-tab.svg' | url }}" color="{{ site.iconColorMaskIcon }}">
+<meta name="msapplication-TileColor" content="{{ site.iconColorMsapplicationTileColor }}">
+<meta name="theme-color" content="{{ site.iconColorThemeColor }}">
 
 {% if site.url !== '/' %}
   <link rel="canonical" href="{{ currentUrl }}"/>

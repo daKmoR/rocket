@@ -19,8 +19,8 @@
       "type": "image/png"
     },
     {
-      "src": "./_assets/icons/maskable-icon-128x128.png",
-      "sizes": "128x128",
+      "src": "./_assets/icons/maskable-icon-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }

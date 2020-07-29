@@ -31,6 +31,9 @@ async function productionBuild(html, config) {
     legacyBuild: false,
     html: { html },
     injectServiceWorker: true,
+    workbox: {
+      swDest: `${config.outputPath}/service-worker.js`,
+    },
   });
 
   mpaConfig.plugins.push(

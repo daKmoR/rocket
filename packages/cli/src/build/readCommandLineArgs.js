@@ -10,6 +10,13 @@ module.exports = function readCommandLineArgs() {
       defaultValue: '.',
       description: 'Location of rocket configuration',
     },
+    {
+      name: 'mode',
+      alias: 'm',
+      type: String,
+      defaultValue: 'full',
+      description: 'What build to run [full, site, optimize]',
+    },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
 
@@ -17,5 +24,6 @@ module.exports = function readCommandLineArgs() {
 
   return {
     configDir: args['config-dir'],
+    mode: args.mode,
   };
 };

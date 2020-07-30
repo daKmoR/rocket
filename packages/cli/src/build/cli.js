@@ -30,10 +30,12 @@ async function productionBuild(html, config) {
     outputDir: config.outputPath,
     legacyBuild: false,
     html: { html },
-    injectServiceWorker: true,
-    workbox: {
-      swDest: `${config.outputPath}/service-worker.js`,
-    },
+    // injectServiceWorker: {
+    //   registerUrl: '/service-worker.js',
+    // },
+    // workbox: {
+    //   swDest: `${config.outputPath}/service-worker.js`,
+    // },
   });
 
   mpaConfig.plugins.push(
@@ -58,34 +60,66 @@ async function productionBuild(html, config) {
   await buildAndWrite(mpaConfig);
 }
 
-async function main() {
-  const commandLineConfig = /** @type {ServerConfig & { configDir: string }} */ (readCommandLineArgs());
-  const config = normalizeConfig(commandLineConfig);
-  config.outputPath = '_site';
+class RocketCli {
+  constructor() {
+    const commandLineConfig = /** @type {ServerConfig & { configDir: string }} */ (readCommandLineArgs());
+    this.config = normalizeConfig(commandLineConfig);
+    this.config.outputPath = '_site';
+  }
 
-  const elev = new Eleventy(config.inputDir, config.outputPath);
-  // 11ty always wants a relative path to cwd - why?
-  const rel = path.relative(process.cwd(), path.join(__dirname, '..'));
-  const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.js');
-  elev.setConfigPathOverride(relCwdPathToConfig);
-  elev.setDryRun(true); // do not write to file system
-  elev.config.pathPrefix = ''; // TODO: for build we generally do not want a pathPrefix - make it configurable
-  await elev.init();
+  build() {
+    const { mode } = this.config;
+    switch (mode) {
+      case 'full':
+        this.buildFull();
+        break;
+      case 'site':
+        this.buildSite();
+        break;
+      /* no default */
+    }
+  }
 
-  const htmlFiles = [];
-  elev.config.filters['hook-for-rocket'] = (html, outputPath, inputPath) => {
-    const name = path.relative(config.outputPath, outputPath);
-    htmlFiles.push({
-      html,
-      name,
-      rootDir: path.dirname(path.resolve(inputPath)),
-    });
-    return html;
-  };
-  await elev.init();
-  await elev.write();
+  async setupEleventy() {
+    if (!this.elev) {
+      const { inputDir, outputPath } = this.config;
+      const elev = new Eleventy(inputDir, outputPath);
+      // 11ty always wants a relative path to cwd - why?
+      const rel = path.relative(process.cwd(), path.join(__dirname, '..'));
+      const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.js');
+      elev.setConfigPathOverride(relCwdPathToConfig);
 
-  await productionBuild(htmlFiles, config);
+      elev.config.pathPrefix = ''; // TODO: for build we generally do not want a pathPrefix - make it configurable
+      if (this.config.mode === 'full') {
+        elev.setDryRun(true); // do not write to file system
+      }
+      await elev.init();
+
+      this.elev = elev;
+    }
+  }
+
+  async buildSite() {
+    await this.setupEleventy();
+    await this.elev.write();
+  }
+
+  async buildFull() {
+    await this.setupEleventy();
+    const htmlFiles = [];
+    this.elev.config.filters['hook-for-rocket'] = (html, outputPath, inputPath) => {
+      const name = path.relative(this.config.outputPath, outputPath);
+      htmlFiles.push({
+        html,
+        name,
+        rootDir: path.dirname(path.resolve(inputPath)),
+      });
+      return html;
+    };
+    await this.elev.write();
+    await productionBuild(htmlFiles, this.config);
+  }
 }
 
-main();
+const cli = new RocketCli();
+cli.build();

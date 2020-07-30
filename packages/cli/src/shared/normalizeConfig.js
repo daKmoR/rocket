@@ -36,6 +36,7 @@ function normalizeConfig(inConfig) {
     templatePathPrefix,
     themePath,
     ...config,
+    ...inConfig,
     configDir: inConfig.configDir,
     inputDir,
     dir: {

@@ -10,6 +10,7 @@
     "build": "npm run rocket:build",
     "rocket:start": "node packages/cli/src/start/cli.js",
     "rocket:build": "node packages/cli/src/build/cli.js",
+    "rocket:build:site": "node packages/cli/src/build/cli.js --mode=site",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
     "lint:prettier": "prettier \"**/*.{js,md}\" --check --ignore-path .gitignore",

@@ -5,7 +5,7 @@ const { rollup } = require('rollup');
 const clear = require('rollup-plugin-clear');
 const visualizer = require('rollup-plugin-visualizer');
 const Eleventy = require('@11ty/eleventy');
-const { createMpaConfig } = require('./createMpaConfig.js');
+const { createMpaConfig } = require('@open-wc/building-rollup');
 const { passthroughCopy } = require('./rollup-plugin-passthrough-copy.js');
 
 const readCommandLineArgs = require('./readCommandLineArgs.js');
@@ -30,12 +30,7 @@ async function productionBuild(html, config) {
     outputDir: config.outputPath,
     legacyBuild: false,
     html: { html },
-    // injectServiceWorker: {
-    //   registerUrl: '/service-worker.js',
-    // },
-    // workbox: {
-    //   swDest: `${config.outputPath}/service-worker.js`,
-    // },
+    injectServiceWorker: true,
   });
 
   mpaConfig.plugins.push(

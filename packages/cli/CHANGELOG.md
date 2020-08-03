@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.1.11
+
+### Patch Changes
+
+- Updates
+
 ## 0.1.10
 
 ### Patch Changes

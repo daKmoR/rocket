@@ -45,7 +45,7 @@ async function productionBuild(html, config) {
       rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
     }),
     passthroughCopy({
-      patterns: [`${config.templatePathPrefix.substring(1)}/**/*.{png,gif,jpg,json,css,svg}`],
+      patterns: [`${config.templatePathPrefix.substring(1)}/**/*.{png,gif,jpg,json,css,svg,ico}`],
       rootDir: config.devServer.rootDir,
     }),
   );
@@ -102,8 +102,12 @@ class RocketCli {
   async buildFull() {
     await this.setupEleventy();
     const htmlFiles = [];
-    this.elev.config.filters['hook-for-rocket'] = (html, outputPath, inputPath) => {
-      const name = path.relative(this.config.outputPath, outputPath);
+
+    const that = this;
+    this.elev.config.filters['hook-for-rocket'] = function hook(html, outputPath) {
+      const { inputPath } = this;
+
+      const name = path.relative(that.config.outputPath, outputPath);
       htmlFiles.push({
         html,
         name,

@@ -26,7 +26,8 @@ async function getFileWithLastUrlDir(browserPath, absRootDir) {
 
 async function getEleventyRenderedFile(elev, absFilePath) {
   let body = 'eleventyRender: File not found';
-  elev.config.filters['hook-for-rocket'] = (content, outputPath, inputPath) => {
+  elev.config.filters['hook-for-rocket'] = function hook(content) {
+    const { inputPath } = this;
     const currentAbsFilePath = path.join(process.cwd(), inputPath);
 
     // check if this is the file we're looking for

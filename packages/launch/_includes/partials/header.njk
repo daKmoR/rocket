@@ -23,9 +23,12 @@
               {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
             ">{{ entry.data.eleventyNavigation.key }}</a>
     {%- endfor %}
-    <a id="github-link" href="{{ site.githubUrl }}" aria-label="{{ site.name }} on GitHub" rel="noopener noreferrer" target="_blank">
-      <span class="sr-only">Github</span>
-      {{ '/_assets/github-logo.svg' | themePath | inlineSvgPath | safe }}
+
+    {%- for entry in site.socialLinks %}
+    <a class="social-link" href="{{ entry.url }}" aria-label="{{ site.name }} on {{ entry.name }}" rel="noopener noreferrer" target="_blank">
+      <span class="sr-only">{{ entry.name }}</span>
+      <img src="{{ entry.image }}" alt="{{ entry.alt }}"/>
     </a>
+    {%- endfor %}
   </div>
 </header>

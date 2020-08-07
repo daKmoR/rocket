@@ -3,9 +3,13 @@ html {
   --primary-color-lighter: #e25761;
   --primary-color-darker: #a22831;
   --primary-color-accent: #cee5f6;
-
-  --contract-color-light: #fff;
-  --contract-color-dark: #1d3557;
-
   --primary-text-color: #2c3e50;
+
+  /* Contrast colors */
+  --contrast-color-light: #fff;
+  --contrast-color-dark: #1d3557;
+
+  /* background-colors */
+  --page-background: white;
+  --footer-background: rgba(0, 0, 0, 0.1);
 }

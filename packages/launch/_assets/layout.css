@@ -4,8 +4,18 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
@@ -56,6 +66,7 @@ hr {
     max-width: 1200px;
     margin: 0 auto;
   }
+
   .content-area {
     max-width: 1200px;
     margin: 0 auto;
@@ -72,24 +83,29 @@ header {
   background: linear-gradient(to bottom, var(--primary-color-lighter), var(--primary-color));
   z-index: 100;
 }
+
 header .content-area {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 header a {
   text-decoration: none;
   color: var(--contrast-color-light, #fff);
   transition: color 0.3s linear;
   font-weight: bold;
 }
+
 header a:hover,
 header a.active {
   color: var(--contrast-color-dark, #000);
 }
+
 header a.active {
   transition-duration: 0s;
 }
+
 #mobile-menu-trigger {
   border: none;
   width: 20px;
@@ -99,11 +115,13 @@ header a.active {
   padding: 0;
   color: var(--contrast-color-light, #fff);
 }
+
 #github-link {
   color: var(--contrast-color-light, #fff);
   width: 30px;
   margin-right: 0;
 }
+
 header .logo-link {
   display: none;
   color: var(--contrast-color-light, #fff);
@@ -113,12 +131,15 @@ header .logo-link {
   header a {
     margin-right: 50px;
   }
+
   header a:nth-of-type(2) {
     margin-left: auto;
   }
+
   #mobile-menu-trigger {
     display: none;
   }
+
   header .logo-link {
     display: block;
   }
@@ -128,8 +149,9 @@ header .logo-link {
 #sidebar {
   display: none; /* for loading */
 }
+
 #sidebar-nav {
-  background: #fff;
+  background: var(--page-background, #fff);
   width: 80%;
   height: 100%;
   position: fixed;
@@ -138,10 +160,12 @@ header .logo-link {
   max-height: 100vh;
   overflow: auto;
 }
+
 rocket-navigation a {
   text-decoration: none;
   color: var(--primary-text-color);
 }
+
 rocket-navigation li.current > a {
   color: var(--primary-color);
 }
@@ -160,6 +184,7 @@ rocket-navigation li.current > a::before {
 rocket-navigation li {
   padding: 7px 0;
 }
+
 rocket-navigation hr {
   margin: 30px -10px 10px -10px;
 }
@@ -168,6 +193,7 @@ rocket-navigation hr {
 rocket-navigation > ul > li > ul > li ul {
   display: none;
 }
+
 /* Only show below 3rd level if level above is active/current */
 li.current > ul,
 li.active > ul {
@@ -180,9 +206,11 @@ rocket-navigation > ul > li > a {
   color: var(--primary-color);
   text-transform: uppercase;
 }
+
 rocket-navigation > ul > li > ul a {
   font-weight: bold;
 }
+
 rocket-navigation > ul > li > ul a.anchor {
   font-weight: normal;
 }
@@ -192,11 +220,13 @@ rocket-navigation {
   display: block;
   padding: 10px;
 }
+
 rocket-navigation ul {
   padding: 7px 0 10px 15px;
   margin: 0;
   list-style-type: none;
 }
+
 rocket-navigation > ul {
   padding: 0;
 }
@@ -212,17 +242,21 @@ rocket-navigation > ul {
   /* same as header */
   border-bottom: 1px solid var(--primary-color-darker);
   background: linear-gradient(to bottom, var(--primary-color-lighter), var(--primary-color));
-  color: #fff;
+  color: var(--contrast-color-light, #fff);
 }
+
 #sidebar-nav .logo-link span {
   padding-left: 10px;
 }
+
 #sidebar-nav li.anchor {
   padding: 4px 0;
 }
+
 #sidebar-nav li.anchor a {
   position: relative;
 }
+
 #sidebar-nav li.anchor a:hover::before {
   content: '';
   position: absolute;
@@ -234,6 +268,7 @@ rocket-navigation > ul {
   top: 0;
   display: block;
 }
+
 #sidebar-nav li.anchor:last-child {
   padding: 4px 0 0 0;
 }
@@ -241,6 +276,7 @@ rocket-navigation > ul {
 li.anchor {
   display: none;
 }
+
 li.current > ul > li.anchor {
   display: block;
 }
@@ -259,23 +295,29 @@ li.current > ul > li.anchor {
     margin-top: 18px;
     margin-right: 15px;
   }
+
   #sidebar .sidebar-bottom {
     display: none;
   }
+
   #sidebar hr {
     margin: 30px 0 10px 0;
     background: linear-gradient(90deg, rgba(204, 204, 204, 1) 0%, rgba(255, 255, 255, 0) 80%);
   }
+
   #sidebar-nav {
     width: 100%;
     position: static;
   }
+
   #sidebar .logo-link {
     display: none;
   }
+
   rocket-navigation {
     padding: 0 15px 0 0;
   }
+
   body:not([layout='with-sidebar']) #sidebar {
     display: none;
   }
@@ -290,10 +332,12 @@ rocket-navigation h3 {
 .sidebar-tags h3 {
   margin-top: 40px;
 }
+
 .sidebar-tags .tags {
   display: flex;
   flex-wrap: wrap;
 }
+
 .sidebar-tags .tag {
   background: #ccc;
   margin: 5px 0 0 5px;
@@ -328,25 +372,12 @@ main > * {
 footer {
   margin-top: 50px;
   border-top: 1px solid #eaeaea;
-  background-color: #f3f3f3;
+  background-color: var(--footer-background-color, rgba(0, 0, 0, 0.1));
   padding: 40px 0;
   flex-grow: 1;
   display: flex;
   flex-flow: column;
   justify-content: center;
-}
-
-#newsletter {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.101562);
-  padding: 20px;
-  text-align: center;
-  margin-top: 20px;
-  background-color: #fafafa;
-  border-top: 1px solid #eaeaea;
-  border-bottom: 1px solid #eaeaea;
-}
-#newsletter h4 {
-  margin: 0;
 }
 
 #footer-menu .content-area {
@@ -367,6 +398,7 @@ footer {
   list-style-type: none;
   padding: 0;
 }
+
 #footer-menu a {
   text-decoration: none;
   color: var(--primary-text-color);
@@ -391,14 +423,16 @@ footer {
   background: linear-gradient(to bottom, var(--primary-color-lighter), var(--primary-color));
   text-shadow: var(--primary-color-darker) 1px 1px 1px;
   font: normal normal bold 20px arial;
-  color: #ffffff;
+  color: var(--contrast-color-light, #fff);
   text-decoration: none;
 }
+
 .markdown-body .call-to-action:hover,
 .markdown-body .call-to-action:focus {
   background: linear-gradient(to bottom, var(--primary-color), var(--primary-color-darker));
   text-decoration: none;
 }
+
 .markdown-body .call-to-action:active {
   background: var(--primary-color-darker);
 }
@@ -431,12 +465,14 @@ body[layout='home'] .page-logo {
   width: 35vw;
   max-width: 250px;
 }
+
 body[layout='home'] .page-title,
 body[layout='home'] .reason-header,
 body[layout='home'] .page-slogan {
   text-align: center;
   border-bottom: none;
 }
+
 body[layout='home'] .page-slogan {
   font-size: 25px;
 }
@@ -500,6 +536,7 @@ body[layout='home'].has-background .page-background {
   body[layout='home'].has-background .page-logo {
     display: none;
   }
+
   body[layout='home'].has-background header .logo-link {
     color: var(--contrast-color-dark, #000);
   }

@@ -1,5 +1,11 @@
 # @d4kmor/eleventy-rocket-nav
 
+## 0.1.3
+
+### Patch Changes
+
+- Updates
+
 ## 0.1.2
 
 ### Patch Changes

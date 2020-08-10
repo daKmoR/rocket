@@ -27,7 +27,11 @@
     {%- for entry in site.socialLinks %}
     <a class="social-link" href="{{ entry.url }}" aria-label="{{ site.name }} on {{ entry.name }}" rel="noopener noreferrer" target="_blank">
       <span class="sr-only">{{ entry.name }}</span>
-      <img src="{{ entry.image }}" alt="{{ entry.alt }}"/>
+      {% if entry.image %}
+        <img src="{{ entry.image }}" alt="{{ entry.alt }}"/>
+      {% else %}
+        {{ '/_assets/NAME-logo.svg' | replace("NAME", entry.name) | lower | themePath | inlineSvgPath | safe }}
+      {% endif %}
     </a>
     {%- endfor %}
   </div>

@@ -1,5 +1,13 @@
 # @d4kmor/cli
 
+## 0.1.15
+
+### Patch Changes
+
+- Support relative links in not index.md files
+- Updated dependencies [undefined]
+  - @d4kmor/eleventy-plugin-mdjs@0.1.3
+
 ## 0.1.14
 
 ### Patch Changes

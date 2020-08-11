@@ -1,5 +1,11 @@
 # @d4kmor/eleventy-plugin-mdjs
 
+## 0.1.3
+
+### Patch Changes
+
+- Support relative links in not index.md files
+
 ## 0.1.2
 
 ### Patch Changes

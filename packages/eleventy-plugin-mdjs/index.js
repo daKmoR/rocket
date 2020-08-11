@@ -40,17 +40,35 @@ const plugins = mdjsProcessPlugins.map(pluginObj => {
   return pluginObj;
 });
 
-function adjustLinks() {
+function isInternalLink(link) {
+  if (link.startsWith('http') || link.startsWith('/')) {
+    return false;
+  }
+  return true;
+}
+
+function adjustLinks(options) {
   // remark works by modifying nodes directly
   /* eslint-disable no-param-reassign */
   return tree => {
-    visit(tree, 'link', node => {
-      const { url } = node;
-      if (url.endsWith('.md')) {
-        if (url.endsWith('index.md')) {
-          node.url = url.substring(0, url.lastIndexOf('/') + 1);
-        } else {
-          node.url = `${url.substring(0, url.length - 3)}/`;
+    visit(tree, 'element', node => {
+      if (node.tagName === 'a') {
+        const href = node.properties && node.properties.href ? node.properties.href : undefined;
+        const { inputPath } = options.page;
+        if (isInternalLink(href) && href.endsWith('.md')) {
+          if (href.endsWith('index.md')) {
+            node.properties.href = href.substring(0, href.lastIndexOf('/') + 1);
+          } else {
+            node.properties.href = `${href.substring(0, href.length - 3)}/`;
+          }
+
+          if (inputPath.endsWith('.md')) {
+            if (inputPath.endsWith('index.md')) {
+              // nothing
+            } else {
+              node.properties.href = `../${node.properties.href}`;
+            }
+          }
         }
       }
     });
@@ -59,26 +77,37 @@ function adjustLinks() {
   /* eslint-enable no-param-reassign */
 }
 
-const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'markdown');
-
-// add plugin right after markdown
-plugins.splice(markdownPluginIndex + 1, 0, {
-  name: 'adjustLinks',
-  plugin: adjustLinks,
-});
-
+// add plugins right after markdown
+const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'remark2rehype');
 plugins.splice(markdownPluginIndex + 1, 0, {
   name: 'footnotes',
   plugin: footnotes,
   options: { inlineNotes: true },
 });
 
+// add plugins right after remark2rehype
+const remark2rehypePluginIndex = plugins.findIndex(plugin => plugin.name === 'remark2rehype');
+plugins.splice(remark2rehypePluginIndex + 1, 0, {
+  name: 'adjustLinks',
+  plugin: adjustLinks,
+});
+
 function eleventyUnified() {
   return {
     set: () => {},
-    render: async str => {
+    render: async (str, options) => {
+      const pluginsWithPage = plugins.map(plugin => {
+        if (plugin.options) {
+          // eslint-disable-next-line no-param-reassign
+          plugin.options.page = options.page;
+        } else {
+          // eslint-disable-next-line no-param-reassign
+          plugin.options = { page: options.page };
+        }
+        return plugin;
+      });
       const result = await mdjsProcess(str, {
-        plugins,
+        plugins: pluginsWithPage,
       });
       return result;
     },

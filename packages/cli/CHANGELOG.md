@@ -1,5 +1,13 @@
 # @d4kmor/cli
 
+## 0.1.14
+
+### Patch Changes
+
+- Footnotes, Build update, socialLinks
+- Updated dependencies [undefined]
+  - @d4kmor/eleventy-plugin-mdjs@0.1.2
+
 ## 0.1.13
 
 ### Patch Changes

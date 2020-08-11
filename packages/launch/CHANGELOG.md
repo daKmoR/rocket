@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.1.16
+
+### Patch Changes
+
+- Footnotes, Build update, socialLinks
+- Updated dependencies [undefined]
+  - @d4kmor/cli@0.1.14
+
 ## 0.1.15
 
 ### Patch Changes

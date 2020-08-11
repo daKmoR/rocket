@@ -6,7 +6,12 @@ module.exports = {
   ...defaultValues,
   name: 'Rocket',
   shortDesc: 'Rocket is the way to build fast static websites with a sprinkle of javascript',
-  githubUrl: 'https://github.com/dakmor/rocket',
+  socialLinks: [
+    {
+      name: 'GitHub',
+      url: 'https://github.com/dakmor/rocket',
+    },
+  ],
   helpUrl: 'https://github.com/daKmoR/rocket/issues',
   logoAlt: 'Rocket Logo',
   iconColorMaskIcon: '#3f93ce',

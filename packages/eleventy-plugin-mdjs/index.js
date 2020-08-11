@@ -1,5 +1,6 @@
 const { mdjsProcess, mdjsProcessPlugins } = require('@mdjs/core');
 const visit = require('unist-util-visit');
+const footnotes = require('remark-footnotes');
 
 const plugins = mdjsProcessPlugins.map(pluginObj => {
   if (pluginObj.name === 'htmlHeading') {
@@ -59,10 +60,17 @@ function adjustLinks() {
 }
 
 const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'markdown');
+
 // add plugin right after markdown
-plugins.splice(markdownPluginIndex, 0, {
+plugins.splice(markdownPluginIndex + 1, 0, {
   name: 'adjustLinks',
   plugin: adjustLinks,
+});
+
+plugins.splice(markdownPluginIndex + 1, 0, {
+  name: 'footnotes',
+  plugin: footnotes,
+  options: { inlineNotes: true },
 });
 
 function eleventyUnified() {

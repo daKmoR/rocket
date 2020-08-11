@@ -27,6 +27,7 @@
   ],
   "dependencies": {
     "@mdjs/core": "^0.3.2",
-    "unist-util-visit": "^2.0.3"
+    "unist-util-visit": "^2.0.3",
+    "remark-footnotes": "^1.0.0"
   }
 }

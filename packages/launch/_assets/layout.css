@@ -220,11 +220,11 @@ rocket-navigation ul {
   padding: 7px 0 10px 15px;
   margin: 0;
   list-style-type: none;
-  position: relative;
 }
 
 rocket-navigation > ul {
   padding: 0;
+  position: relative;
 }
 
 #sidebar-nav .logo-link {

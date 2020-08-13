@@ -54,7 +54,7 @@
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  color: var(--markdown-body, #24292e);
+  color: var(--markdown-body, --page-background);
   line-height: 1.5;
   font-family:
     -apple-system,

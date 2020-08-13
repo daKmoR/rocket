@@ -1,0 +1,27 @@
+<script type="module">
+  import { installDarkModeHandler } from 'pwa-helper-components';
+  import '@thepassle/generic-components/generic-switch.js';
+
+  const darkModeToggle = document.querySelector('generic-switch');
+  const html = document.getElementsByTagName('html')[0];
+
+  installDarkModeHandler((darkmode) => {
+    if(darkmode) {
+      darkModeToggle.setAttribute('checked', '');
+      html.classList.add('dark');
+    } else {
+      darkModeToggle.removeAttribute('checked');
+      html.classList.remove('dark');
+    }
+  });
+
+  darkModeToggle.addEventListener('checked-changed', function () {
+    if (html.classList.contains('dark')) {
+      html.classList.remove('dark');
+      localStorage.setItem('darkmode', 'false');
+    } else {
+      html.classList.add('dark');
+      localStorage.setItem('darkmode', 'true');
+    }
+  });
+</script>

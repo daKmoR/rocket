@@ -6,7 +6,7 @@ body[layout='home'] .markdown-body .call-to-action:nth-of-type(2) {
 
 @media screen and (min-width: 1024px) {
   body[layout='home'].has-background .page-background {
-    top: -127px;
+    top: -140px;
     right: -463px;
     transform: rotate(45deg);
   }

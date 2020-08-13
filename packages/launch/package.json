@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/launch",
-  "version": "0.2.0",
+  "version": "0.1.16",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,10 @@
     "testing"
   ],
   "dependencies": {
-    "@d4kmor/cli": "^0.2.0",
-    "@d4kmor/drawer": "^0.1.0"
+    "@d4kmor/cli": "^0.1.14",
+    "@d4kmor/drawer": "^0.1.0",
+    "@thepassle/generic-components": "^0.1.2",
+    "generic-components": "^0.1.12",
+    "pwa-helper-components": "^0.2.10"
   }
 }

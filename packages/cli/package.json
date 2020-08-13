@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/cli",
-  "version": "0.2.0",
+  "version": "0.1.15",
   "publishConfig": {
     "access": "public"
   },
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy-navigation": "^0.1.5",
-    "@d4kmor/launch": "^0.2.0",
+    "@d4kmor/launch": "^0.1.16",
     "patch-package": "^6.2.2"
   }
 }

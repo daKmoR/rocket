@@ -12,4 +12,26 @@ html {
   /* background-colors */
   --page-background: white;
   --footer-background: rgba(0, 0, 0, 0.1);
+
+  --text-color: black;
+}
+
+html.dark {
+  --primary-color: #e63946;
+  --primary-color-lighter: #e25761;
+  --primary-color-darker: #a22831;
+  --primary-color-accent: #cee5f6;
+  --primary-text-color: #eee;
+
+  /* Contrast colors */
+  --contrast-color-light: #fff;
+  --contrast-color-dark: #1d3557;
+
+  /* background-colors */
+  --page-background: #333;
+  --footer-background: #4f4f4f;
+
+  --text-color: white;
+
+  --markdown-octicon-link: white;
 }

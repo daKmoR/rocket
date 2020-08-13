@@ -1,11 +1,5 @@
 # @d4kmor/cli
 
-## 0.2.0
-
-### Minor Changes
-
-- Add new layout with-index and auto assign blog-details layout
-
 ## 0.1.15
 
 ### Patch Changes

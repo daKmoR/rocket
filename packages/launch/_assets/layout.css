@@ -10,6 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   color: var(--primary-text-color);
+  background-color: var(--page-background);
   display: flex;
   flex-flow: column;
   min-height: 100vh;
@@ -38,6 +39,52 @@ pre {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+
+generic-switch::part(button) {
+  height: 20px;
+  width: 40px;
+}
+
+generic-switch::part(thumb) {
+  right: 20px;
+  border: solid 1px #4d4d4d;
+  border-radius: 50%;
+  width: calc(50% - 2px);
+  height: calc(100% - 2px);
+  background-color: white;
+}
+generic-switch[checked]::part(thumb) {
+  right: 0px;
+}
+generic-switch::part(track) {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #4d4d4d;
+}
+
+generic-switch[checked]::part(track)::before {
+  content: '🌞';
+  position: absolute;
+  left: 2px;
+  top: 4px;
+  line-height: 14px;
+}
+
+generic-switch::part(track)::before {
+  content: '🌛';
+  position: absolute;
+  left: 22px;
+  top: 4px;
+  line-height: 14px;
+}
+
+generic-switch {
+  margin-right: 50px;
+  --generic-switch-focus: 0 0 2px 3px #e63a46;
 }
 
 hr {
@@ -220,11 +267,11 @@ rocket-navigation ul {
   padding: 7px 0 10px 15px;
   margin: 0;
   list-style-type: none;
+  position: relative;
 }
 
 rocket-navigation > ul {
   padding: 0;
-  position: relative;
 }
 
 #sidebar-nav .logo-link {
@@ -368,12 +415,13 @@ main > * {
 footer {
   margin-top: 50px;
   border-top: 1px solid #eaeaea;
-  background-color: var(--footer-background-color, rgba(0, 0, 0, 0.1));
+  background-color: var(--footer-background, rgba(0, 0, 0, 0.1));
   padding: 40px 0;
   flex-grow: 1;
   display: flex;
   flex-flow: column;
   justify-content: center;
+  color: var(--text-color);
 }
 
 #footer-menu .content-area {
@@ -467,6 +515,7 @@ body[layout='home'] .reason-header,
 body[layout='home'] .page-slogan {
   text-align: center;
   border-bottom: none;
+  color: var(--text-color);
 }
 
 body[layout='home'] .page-slogan {
@@ -481,6 +530,7 @@ body[layout='home'] .reasons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  color: var(--text-color);
 }
 
 body[layout='home'] .reasons > div {

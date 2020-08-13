@@ -52,6 +52,11 @@
     time-require "^0.1.2"
     valid-url "^1.0.9"
 
+"@a11y/focus-trap@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@a11y/focus-trap/-/focus-trap-1.0.5.tgz#0748189c37ca21255c702aa5de3ee00ed4821d22"
+  integrity sha512-3JOd6g+BALysWS8LNf0qdB8ltR651H/RCLAvUmfS0LIHwHO579XfjZUIZbURYiAZrcbp1CBAq4QZ2YwKNQZ1hw==
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3", "@babel/code-frame@^7.5.5":
   version "7.10.3"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.3.tgz#324bcfd8d35cd3d47dae18cde63d752086435e9a"
@@ -1427,6 +1432,13 @@
   dependencies:
     ejs "^2.6.1"
     magic-string "^0.25.0"
+
+"@thepassle/generic-components@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@thepassle/generic-components/-/generic-components-0.1.2.tgz#50826aa619884e7fb265cc5a9836138a3b58cb73"
+  integrity sha512-1Og/I+1HJfADvxmgezl7PlUohuS9s6X2cjcO1Rn7PyQwigNk8FznyLRIcedRG+KQSfuocRva6OL1DvTtV1y8wA==
+  dependencies:
+    "@a11y/focus-trap" "^1.0.5"
 
 "@types/accepts@*":
   version "1.3.5"
@@ -3719,6 +3731,11 @@ elegant-spinner@^1.0.1:
   resolved "https://registry.yarnpkg.com/elegant-spinner/-/elegant-spinner-1.0.1.tgz#db043521c95d7e303fd8f345bedc3349cfb0729e"
   integrity sha1-2wQ1IcldfjA/2PNFvtwzSc+wcp4=
 
+eleventy@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/eleventy/-/eleventy-1.0.6.tgz#938fa5c85e9c6372010ac1852a41d86b9dac4561"
+  integrity sha512-IzaPK0P5eF/jm5qdOzrzq2947FFRKpZwHT8AR1WpGI4tTpkLnzwQF02p9m0o5XQQ4dypBExp69fUHViEiHUWpQ==
+
 emitter-mixin@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/emitter-mixin/-/emitter-mixin-0.0.3.tgz#5948cb286f2e48edc3b251a7cfc1f7883396d65c"
@@ -4636,6 +4653,14 @@ g-status@^2.0.2:
     arrify "^1.0.1"
     matcher "^1.0.0"
     simple-git "^1.85.0"
+
+generic-components@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/generic-components/-/generic-components-0.1.12.tgz#1098b32a16d60463a9205791a7a76b473b740b9f"
+  integrity sha512-kq+xU2xnFUH2ZVGfNgNhQrneJ+rerDXGKH0UQ14IqVarcU8t/0ru6dJ7xrKZ9Yo2ZJHKClLK7uBOkwdRb5BhwA==
+  dependencies:
+    normalize.css "^7.0.0"
+    prop-types "^15.6.0"
 
 gensync@^1.0.0-beta.1:
   version "1.0.0-beta.1"
@@ -6300,7 +6325,7 @@ longest@^1.0.1:
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
   integrity sha1-MKCy2jj3N3DoKUoNIuZiXtd9AJc=
 
-loose-envify@^1.0.0:
+loose-envify@^1.0.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -6851,6 +6876,11 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
+normalize.css@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-7.0.0.tgz#abfb1dd82470674e0322b53ceb1aaf412938e4bf"
+  integrity sha1-q/sd2CRwZ04DIrU86xqvQSk45L8=
+
 npm-path@^2.0.2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/npm-path/-/npm-path-2.0.4.tgz#c641347a5ff9d6a09e4d9bce5580c4f505278e64"
@@ -6890,7 +6920,7 @@ nunjucks@^3.2.1:
   optionalDependencies:
     chokidar "^3.3.0"
 
-object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
@@ -7567,6 +7597,15 @@ promise@^7.0.1:
   dependencies:
     asap "~2.0.3"
 
+prop-types@^15.6.0:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.8.1"
+
 property-expr@^1.5.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-1.5.1.tgz#22e8706894a0c8e28d58735804f6ba3a3673314f"
@@ -7740,6 +7779,11 @@ puppeteer-core@^3.3.0:
     unbzip2-stream "^1.3.3"
     ws "^7.2.3"
 
+pwa-helper-components@^0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/pwa-helper-components/-/pwa-helper-components-0.2.10.tgz#c3e2c4f9dec7d204ddd61e1fc5ac99cc0ac97f89"
+  integrity sha512-0qxa/mFM4ssqFHNB1ka+MPefBh/lAVp+fAkWTxfqPsLXaKMt1g0PHQ8OVAr4qOWPQqYW4wuUpf6ljD/YQGmlzQ==
+
 qs@6.2.3:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.3.tgz#1cfcb25c10a9b2b483053ff39f5dfc9233908cfe"
@@ -7769,6 +7813,11 @@ raw-body@^2.3.2, raw-body@^2.3.3:
     http-errors "1.7.3"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+react-is@^16.8.1:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+  integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 read-pkg-up@^1.0.1:
   version "1.0.1"

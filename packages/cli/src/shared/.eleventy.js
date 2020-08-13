@@ -85,6 +85,9 @@ module.exports = function (eleventyConfig) {
         let docs = [...collection.getFilteredByGlob(`${inputDir}/${section}/**/*.md`)];
         docs.forEach(page => {
           page.data.section = section;
+          if (section === 'blog') {
+            page.data.layout = 'blog-details.njk';
+          }
         });
         docs = docs.filter(page => page.inputPath !== `./${indexSection}`);
         // docs = addPrevNextUrls(docs);

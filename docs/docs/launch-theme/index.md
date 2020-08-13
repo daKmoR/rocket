@@ -1,5 +1,6 @@
 ---
 title: Launch Theme Index
+layout: with-index.njk
 eleventyNavigation:
   key: Launch Theme
   order: 10

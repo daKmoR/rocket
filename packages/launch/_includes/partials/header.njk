@@ -1,3 +1,4 @@
+{% include 'partials/darkModeJs.njk' %}
 <header>
   <div class="content-area">
     <button id="mobile-menu-trigger">
@@ -23,6 +24,8 @@
               {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
             ">{{ entry.data.eleventyNavigation.key }}</a>
     {%- endfor %}
+
+    <generic-switch label="Toggle darkmode"></generic-switch>
 
     {%- for entry in site.socialLinks %}
     <a class="social-link" href="{{ entry.url }}" aria-label="{{ site.name }} on {{ entry.name }}" rel="noopener noreferrer" target="_blank">

@@ -1,0 +1,69 @@
+<script type="module">
+  import { installDarkModeHandler } from 'pwa-helper-components';
+  import '@thepassle/generic-components/generic-switch.js';
+  const darkModeToggle = document.querySelector('generic-switch');
+  const html = document.getElementsByTagName('html')[0];
+  installDarkModeHandler((darkmode) => {
+    if(darkmode) {
+      darkModeToggle.setAttribute('checked', '');
+      html.classList.add('dark');
+    } else {
+      darkModeToggle.removeAttribute('checked');
+      html.classList.remove('dark');
+    }
+  });
+  ['keydown', 'click'].forEach(event => {
+    darkModeToggle.addEventListener(event, (e) => {
+      switch(event) {
+        case 'keydown':
+          if(e.keyCode === 32 || e.keyCode === 13) {
+            e.preventDefault();
+            handleToggle();
+          }
+          break;
+        case 'click':
+          handleToggle();
+          break;
+        default:
+          break;
+      }
+    });
+  });
+  function handleToggle() {
+    if (html.classList.contains('dark')) {
+      html.classList.remove('dark');
+      localStorage.setItem('darkmode', 'false');
+    } else {
+      html.classList.add('dark');
+      localStorage.setItem('darkmode', 'true');
+    }
+  }
+</script>
+<noscript>
+  <style type="text/css">
+    @media (prefers-color-scheme: dark) {
+      html {
+        --primary-color: #e63946;
+        --primary-color-lighter: #e25761;
+        --primary-color-darker: #a22831;
+        --primary-color-accent: #cee5f6;
+        --primary-text-color: #eee;
+
+        /* Contrast colors */
+        --contrast-color-light: #fff;
+        --contrast-color-dark: #1d3557;
+
+        /* background-colors */
+        --page-background: #333;
+        --footer-background: #4f4f4f;
+
+        --text-color: white;
+
+        --markdown-octicon-link: white;
+        --markdown-syntax-background-color: #a0a0a0;
+        --markdown-link-color: #fb7881;
+        --markdown-blockquote-color: #c9e3ff;
+      }
+    }
+  </style>
+</noscript>

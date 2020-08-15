@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.2.2
+
+### Patch Changes
+
+- Improve blog views
+
 ## 0.2.1
 
 ### Patch Changes

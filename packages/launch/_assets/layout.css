@@ -41,13 +41,12 @@ pre {
   overflow: hidden;
 }
 
-
-generic-switch::part(button) {
+.light-dark-switch::part(button) {
   height: 20px;
   width: 40px;
 }
 
-generic-switch::part(thumb) {
+.light-dark-switch::part(thumb) {
   right: 20px;
   border: solid 1px #4d4d4d;
   border-radius: 50%;
@@ -55,10 +54,10 @@ generic-switch::part(thumb) {
   height: calc(100% - 2px);
   background-color: white;
 }
-generic-switch[checked]::part(thumb) {
+.light-dark-switch[checked]::part(thumb) {
   right: 0px;
 }
-generic-switch::part(track) {
+.light-dark-switch::part(track) {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -66,7 +65,7 @@ generic-switch::part(track) {
   background-color: #4d4d4d;
 }
 
-generic-switch[checked]::part(track)::before {
+.light-dark-switch[checked]::part(track)::before {
   content: '🌞';
   position: absolute;
   left: 2px;
@@ -74,7 +73,7 @@ generic-switch[checked]::part(track)::before {
   line-height: 14px;
 }
 
-generic-switch::part(track)::before {
+.light-dark-switch::part(track)::before {
   content: '🌛';
   position: absolute;
   left: 22px;
@@ -82,7 +81,7 @@ generic-switch::part(track)::before {
   line-height: 14px;
 }
 
-generic-switch {
+.light-dark-switch {
   margin-right: 50px;
   --generic-switch-focus: 0 0 2px 3px #e63a46;
 }
@@ -169,6 +168,10 @@ header .logo-link {
   color: var(--contrast-color-light, #fff);
 }
 
+header .light-dark-switch {
+  display: none;
+}
+
 @media screen and (min-width: 1024px) {
   header a {
     margin-right: 50px;
@@ -183,6 +186,10 @@ header .logo-link {
   }
 
   header .logo-link {
+    display: block;
+  }
+
+  header .light-dark-switch {
     display: block;
   }
 }
@@ -201,6 +208,15 @@ header .logo-link {
   left: 0;
   max-height: 100vh;
   overflow: auto;
+}
+
+rocket-navigation .light-dark-switch {
+  margin-bottom: 10px;
+}
+
+rocket-navigation .light-dark-switch::part(label) {
+  order: 10;
+  margin-left: 10px;
 }
 
 rocket-navigation a {

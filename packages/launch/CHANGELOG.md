@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.2.3
+
+### Patch Changes
+
+- Expose colors for tables
+
 ## 0.2.2
 
 ### Patch Changes

@@ -453,7 +453,7 @@
 
 .markdown-body table td,
 .markdown-body table th {
-  border: 1px solid #dfe2e5;
+  border: 1px solid var(--markdown-table-border-color, #dfe2e5);
   padding: 6px 13px;
 }
 

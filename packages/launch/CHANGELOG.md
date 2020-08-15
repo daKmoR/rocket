@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.2.1
+
+### Patch Changes
+
+- Add light dark mode toggle
+
 ## 0.2.0
 
 ### Minor Changes

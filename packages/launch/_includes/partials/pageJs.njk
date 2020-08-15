@@ -3,3 +3,14 @@
     {{ content.jsCode | safe }}
   </script>
 {% endif %}
+
+{% if site.analytics %}
+  <script type="module">
+    window.ga = window.ga || ((...args) => (ga.q = ga.q || []).push(args));
+
+    ga('create', '{{ site.analytics }}', 'auto');
+    ga('set', 'transport', 'beacon');
+    ga('send', 'pageview');
+  </script>
+  <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+{% endif %}

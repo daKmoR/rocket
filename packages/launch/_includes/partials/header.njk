@@ -25,17 +25,17 @@
             ">{{ entry.data.eleventyNavigation.key }}</a>
     {%- endfor %}
 
-    <generic-switch label="Toggle darkmode"></generic-switch>
+    <launch-dark-switch class="light-dark-switch" label="Toggle darkmode"></launch-dark-switch>
 
     {%- for entry in site.socialLinks %}
-    <a class="social-link" href="{{ entry.url }}" aria-label="{{ site.name }} on {{ entry.name }}" rel="noopener noreferrer" target="_blank">
-      <span class="sr-only">{{ entry.name }}</span>
-      {% if entry.image %}
-        <img src="{{ entry.image }}" alt="{{ entry.alt }}"/>
-      {% else %}
-        {{ '/_assets/NAME-logo.svg' | replace("NAME", entry.name) | lower | themePath | inlineSvgPath | safe }}
-      {% endif %}
-    </a>
+      <a class="social-link" href="{{ entry.url }}" aria-label="{{ site.name }} on {{ entry.name }}" rel="noopener noreferrer" target="_blank">
+        <span class="sr-only">{{ entry.name }}</span>
+        {% if entry.image %}
+          <img src="{{ entry.image }}" alt="{{ entry.alt }}"/>
+        {% else %}
+          {{ '/_assets/NAME-logo.svg' | replace("NAME", entry.name) | lower | themePath | inlineSvgPath | safe }}
+        {% endif %}
+      </a>
     {%- endfor %}
   </div>
 </header>

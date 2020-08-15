@@ -41,6 +41,11 @@ pre {
   overflow: hidden;
 }
 
+.light-dark-switch {
+  /* disabled for now */
+  display: none !important;
+}
+
 .light-dark-switch::part(button) {
   height: 20px;
   width: 40px;

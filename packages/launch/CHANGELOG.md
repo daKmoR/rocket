@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.2.6
+
+### Patch Changes
+
+- Social Media Image, site description per page
+- Updated dependencies [undefined]
+  - @d4kmor/cli@0.2.2
+
 ## 0.2.5
 
 ### Patch Changes

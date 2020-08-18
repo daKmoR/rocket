@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.2.2
+
+### Patch Changes
+
+- Social Media Image, site description per page
+
 ## 0.2.1
 
 ### Patch Changes

@@ -30,7 +30,7 @@
 {% if socialMediaImage %}
   {% set _socialMediaImage = socialMediaImage %}
 {% endif %}
-<meta property="og:image" content="{{ _socialMediaImage | url }}"/>
+<meta property="og:image" content="{{ site.url }}{{ _socialMediaImage | url }}"/>
 <meta property="og:url" content="{{ currentUrl }}"/>
 
 <meta name="twitter:card" content="summary_large_image"/>

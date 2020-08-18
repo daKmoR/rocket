@@ -4,8 +4,6 @@
 {% endif %}
 {% set currentUrl = site.url + page.url %}
 
-{% set metaDesc = site.shortDesc %}
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ pageTitle }}</title>
@@ -27,20 +25,22 @@
 <meta property="og:site_name" content="{{ site.name }}"/>
 <meta property="og:title" content="{{ pageTitle }}"/>
 <meta property="og:type" content="website"/>
+
 {% set _socialMediaImage = site.socialMediaImage %}
 {% if socialMediaImage %}
   {% set _socialMediaImage = socialMediaImage %}
 {% endif %}
-
 <meta property="og:image" content="{{ _socialMediaImage | url }}"/>
 <meta property="og:url" content="{{ currentUrl }}"/>
 
 <meta name="twitter:card" content="summary_large_image"/>
 
-{% if metaDesc %}
-  <meta name="description" content="{{ metaDesc }}"/>
-  <meta property="og:description" content="{{ metaDesc }}"/>
+{% set _description = site.description %}
+{% if description %}
+  {% set _description = description %}
 {% endif %}
+<meta name="description" content="{{ _description }}"/>
+<meta property="og:description" content="{{ _description }}"/>
 
 <link rel="stylesheet" href="{{ site.cssVariablesUrl }}">
 <link rel="stylesheet" href="{{ '/_assets/layout.css' | themeUrl }}">

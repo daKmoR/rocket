@@ -1,6 +1,7 @@
 ---
 title: Learning Rocket
 socialMediaImage: 'foo.jpg'
+description: 'foo'
 eleventyNavigation:
   key: Learn
   order: -50

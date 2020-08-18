@@ -85,6 +85,7 @@ function getRocketValues() {
     htmlHeadPath: htmlHead.path,
     htmlHeadUrl: htmlHead.url,
     newsletter: false,
+    socialMediaImage: '/_assets/social-media-image.jpg',
   };
 }
 

@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.2.1
+
+### Patch Changes
+
+- fix: service worker reload and favicon paths
+
 ## 0.2.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/launch",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,7 @@
     "testing"
   ],
   "dependencies": {
-    "@d4kmor/cli": "^0.2.0",
+    "@d4kmor/cli": "^0.2.1",
     "@d4kmor/drawer": "^0.1.0"
   }
 }

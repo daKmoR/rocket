@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.2.5
+
+### Patch Changes
+
+- fix: service worker reload and favicon paths
+- Updated dependencies [undefined]
+  - @d4kmor/cli@0.2.1
+
 ## 0.2.4
 
 ### Patch Changes

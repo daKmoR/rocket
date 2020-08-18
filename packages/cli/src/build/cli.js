@@ -39,13 +39,15 @@ async function productionBuild(html, config) {
     }),
   );
 
+  const copyPattern = '**/*.{png,gif,jpg,json,css,svg,ico,html}';
+
   mpaConfig.plugins.push(
     passthroughCopy({
-      patterns: ['**/*.{png,gif,jpg,json,css,svg,ico}'],
+      patterns: [copyPattern],
       rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
     }),
     passthroughCopy({
-      patterns: [`${config.templatePathPrefix.substring(1)}/**/*.{png,gif,jpg,json,css,svg,ico}`],
+      patterns: [`${config.templatePathPrefix.substring(1)}/${copyPattern}`],
       rootDir: config.devServer.rootDir,
     }),
   );

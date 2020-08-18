@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.2.7
+
+### Patch Changes
+
+- Full image url for twitter
+
 ## 0.2.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.2.3
+
+### Patch Changes
+
+- Support a 404.html page out of the box for Multi Page Applications
+
 ## 0.2.2
 
 ### Patch Changes

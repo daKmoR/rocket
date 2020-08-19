@@ -52,11 +52,6 @@
     time-require "^0.1.2"
     valid-url "^1.0.9"
 
-"@a11y/focus-trap@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@a11y/focus-trap/-/focus-trap-1.0.5.tgz#0748189c37ca21255c702aa5de3ee00ed4821d22"
-  integrity sha512-3JOd6g+BALysWS8LNf0qdB8ltR651H/RCLAvUmfS0LIHwHO579XfjZUIZbURYiAZrcbp1CBAq4QZ2YwKNQZ1hw==
-
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3", "@babel/code-frame@^7.5.5":
   version "7.10.3"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.3.tgz#324bcfd8d35cd3d47dae18cde63d752086435e9a"
@@ -1223,10 +1218,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@open-wc/building-rollup@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@open-wc/building-rollup/-/building-rollup-1.7.0.tgz#d519adef4427eff93386c185eefe773a99be229b"
-  integrity sha512-o9krE3qR/TiOVf6eEjf7NrK99FxPUld6npy5+bycshX4m4G0sUANbWF1ySBwqLXyXuDboqIZSRoVlw9EI5fSTA==
+"@open-wc/building-rollup@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@open-wc/building-rollup/-/building-rollup-1.7.1.tgz#9db8bf8f366575c2fc47423e37dd0901cdadd9bc"
+  integrity sha512-KptiteMVfcaB96CBLUL2e1A/X6qEcnxCKMHfef9b2iMy8tuBPUtm0+gzIlv/FyTSW8Fh4HIeb+SdYgA22I2BkA==
   dependencies:
     "@babel/core" "^7.9.0"
     "@babel/helpers" "^7.9.2"
@@ -1432,13 +1427,6 @@
   dependencies:
     ejs "^2.6.1"
     magic-string "^0.25.0"
-
-"@thepassle/generic-components@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@thepassle/generic-components/-/generic-components-0.1.4.tgz#16bae5eb719c26cd8328b482688570c820a9ca63"
-  integrity sha512-YZJaG4qZocPgYX3gBRWJKMFxTH9NhmwPOVzLP+D9QceX7SDwxjJ8oH3cBth5JXm2UX4L/48ltuQmIjbCzXfckA==
-  dependencies:
-    "@a11y/focus-trap" "^1.0.5"
 
 "@types/accepts@*":
   version "1.3.5"
@@ -7751,11 +7739,6 @@ puppeteer-core@^3.3.0:
     tar-fs "^2.0.0"
     unbzip2-stream "^1.3.3"
     ws "^7.2.3"
-
-pwa-helper-components@^0.2.10:
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/pwa-helper-components/-/pwa-helper-components-0.2.10.tgz#c3e2c4f9dec7d204ddd61e1fc5ac99cc0ac97f89"
-  integrity sha512-0qxa/mFM4ssqFHNB1ka+MPefBh/lAVp+fAkWTxfqPsLXaKMt1g0PHQ8OVAr4qOWPQqYW4wuUpf6ljD/YQGmlzQ==
 
 qs@6.2.3:
   version "6.2.3"

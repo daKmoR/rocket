@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.2.8
+
+### Patch Changes
+
+- Improve sidebar navigation by always linking to first sub page item and indicationg currently active anchor page
+
 ## 0.2.7
 
 ### Patch Changes

@@ -18,7 +18,7 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "test": "npm run test:browser",
-    "test:browser": "web-test-runner packages/**/*.test.js --watch",
+    "test:browser": "web-test-runner packages/**/*.test.js --watch --node-resolve",
     "postinstall": "patch-package",
     "changeset": "changeset",
     "release": "npm run test && changeset version && changeset publish",
@@ -29,12 +29,13 @@
     "@changesets/cli": "^2.8.0",
     "@open-wc/eslint-config": "^2.0.0",
     "@open-wc/testing": "^2.5.18",
-    "@web/test-runner": "^0.5.11",
+    "@web/test-runner": "^0.7.3",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^1.0.0",
     "lint-staged": "^8.0.0",
-    "prettier": "^2.0.4"
+    "prettier": "^2.0.4",
+    "sinon": "^9.0.3"
   },
   "eslintConfig": {
     "extends": [

@@ -1,70 +1,59 @@
 export class RocketNavigation extends HTMLElement {
-  // static get observedAttributes() {
-  //   return ['content-node-selector'];
-  // }
   constructor() {
     super();
-    // this.currentNode = null;
-    // this.currentNodeSelector = '.current';
-    // this.contentNodeSelector = 'main';
+    this.list = [];
+    this.__scrollHandler = this.__scrollHandler.bind(this);
+  }
+
+  connectedCallback() {
     this.addEventListener('click', ev => {
-      if (ev.target.classList.contains('anchor')) {
+      const el = ev.target;
+      if (el.classList.contains('anchor')) {
         this.dispatchEvent(new Event('close-overlay', { bubbles: true }));
       }
+      const links = el.parentElement.querySelectorAll('ul a');
+      if (links.length > 1) {
+        const subLink = links[1];
+        if (!subLink.classList.contains('anchor')) {
+          ev.preventDefault();
+          subLink.click();
+        }
+      }
     });
+
+    const anchors = this.querySelectorAll('li.current a.anchor');
+
+    for (const anchor of anchors) {
+      const headline = document.getElementById(anchor.hash.substring(1));
+      this.list.push({
+        top: headline.getBoundingClientRect().top,
+        headline,
+        anchor,
+      });
+    }
+
+    // TODO: debounce
+    window.addEventListener('scroll', this.__scrollHandler);
+
+    this.__scrollHandler();
   }
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   if (name === 'content-node-selector') {
-  //     this.contentNodeSelector = newValue;
-  //     this.updateContentNode();
-  //   }
-  // }
-  // updateCurrentNode() {
-  //   this.currentNode = this.querySelector(this.currentNodeSelector);
-  //   let el = this.currentNode;
-  //   if (el) {
-  //     do {
-  //       if (el.classList.contains('menu-item')) {
-  //         el.classList.add('active');
-  //       }
-  //       el = el.parentElement;
-  //     } while (el !== this);
-  //   }
-  // }
-  // updateContentNode() {
-  //   if (this.isConnected) {
-  //     this.contentNode = document.querySelector(this.contentNodeSelector);
-  //     if (this.contentNode) {
-  //       this.updateOutline();
-  //     }
-  //   }
-  // }
-  // updateOutline() {
-  //   if (!this.currentNode) {
-  //     return;
-  //   }
-  //   const outlineEls = this.contentNode.querySelectorAll('h2');
-  //   if (outlineEls.length > 0) {
-  //     const outline = document.createElement('ul');
-  //     outline.classList.add('outline-wrapper');
-  //     for (const outlineEl of outlineEls) {
-  //       const item = document.createElement('li');
-  //       item.classList.add('outline');
-  //       const link = document.createElement('a');
-  //       link.href = `#${outlineEl.id}`;
-  //       link.innerText = outlineEl.innerText;
-  //       item.appendChild(link);
-  //       outline.appendChild(item);
-  //     }
-  //     if (this.currentNode.children.length > 1) {
-  //       this.currentNode.firstElementChild.insertAdjacentElement('afterend', outline);
-  //     } else {
-  //       this.currentNode.appendChild(outline);
-  //     }
-  //   }
-  // }
-  // connectedCallback() {
-  //   // this.updateCurrentNode();
-  //   this.updateContentNode();
-  // }
+
+  __scrollHandler() {
+    for (const listObj of this.list) {
+      listObj.top = listObj.headline.getBoundingClientRect().top;
+    }
+    const sorted = this.list.sort((a, b) => Math.abs(a.top) - Math.abs(b.top));
+
+    for (let i = 0; i < sorted.length; i += 1) {
+      if (i === 0) {
+        sorted[0].anchor.parentElement.classList.add('current');
+      } else {
+        sorted[i].anchor.parentElement.classList.remove('current');
+      }
+    }
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('scroll', this.__scrollHandler);
+  }
 }

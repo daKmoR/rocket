@@ -59,6 +59,78 @@ The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile t
 
 You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
 
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
+The target option defines what version of javascript to compile down to. This is primary for supporting older browsers.
+
+The default target is `auto`. If this is configured we look at the browser's user agent. If you're on the latest version of a browser that adopts modern javascript syntax at a reasonable pace, we skip any compilation work.
+
+The current set of browsers are Chrome, Firefox and Edge. Otherwise we compile to `es2017`. Because esbuild is so fast, this is not noticeable.
+
+You can override this behavior by setting the `target` option yourself. If it is set to `esnext`, we skip any compilation for js files.
+
 ## Examples
 
 **Typescript:**

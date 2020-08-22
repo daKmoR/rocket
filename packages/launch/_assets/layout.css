@@ -435,6 +435,8 @@ main {
   padding: 20px;
   width: 100%;
   position: relative;
+  /* makes sure that code blocks don't grow bigger then main => see https://css-tricks.com/preventing-a-grid-blowout/ */
+  min-width: 0;
 }
 
 main > * {
@@ -446,6 +448,13 @@ main > * {
     padding: 15px 0 0 0;
     z-index: 50;
   }
+}
+
+.content-footer {
+  border-top: 1px solid var(--primary-lines-color);
+  margin-top: 100px;
+  padding-top: 20px;
+  text-align: center;
 }
 
 /** FOOTER ****************************************************************************************/

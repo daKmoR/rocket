@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.2.10
+
+### Patch Changes
+
+- Add "edit page on github" link and make sure code blocks don't make main wider
+
 ## 0.2.9
 
 ### Patch Changes

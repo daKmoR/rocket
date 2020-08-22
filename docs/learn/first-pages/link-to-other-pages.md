@@ -15,3 +15,7 @@ Standard markdown applies and you can link via
 ```md
 [visible label](./path/to/other-page/)
 ```
+
+```
+❌ TypeError: Failed to fetch dynamically imported module: http://localhost:9685/demo/learn/test-runner-getting-started/test/sum.test.js ajslkdöf jasköd fjkaös djföasd fjaös dkf
+```

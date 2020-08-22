@@ -4,6 +4,7 @@ html {
   --primary-color-darker: #a22831;
   --primary-color-accent: #cee5f6;
   --primary-text-color: #2c3e50;
+  --primary-lines-color: #ccc;
 
   /* Contrast colors */
   --contrast-color-light: #fff;

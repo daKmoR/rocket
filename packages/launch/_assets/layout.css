@@ -1,5 +1,8 @@
-html {
-  scroll-behavior: smooth;
+/* smooth scroll only if there is no preference for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {

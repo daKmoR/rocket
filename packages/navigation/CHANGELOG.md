@@ -1,5 +1,11 @@
 # @d4kmor/navigation
 
+## 0.1.3
+
+### Patch Changes
+
+- clean up dependencies
+
 ## 0.1.2
 
 ### Patch Changes

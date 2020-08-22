@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.2.4
+
+### Patch Changes
+
+- clean up dependencies
+
 ## 0.2.3
 
 ### Patch Changes

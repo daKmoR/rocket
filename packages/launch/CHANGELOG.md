@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.2.9
+
+### Patch Changes
+
+- clean up dependencies
+- Updated dependencies [undefined]
+  - @d4kmor/navigation@0.1.3
+
 ## 0.2.8
 
 ### Patch Changes

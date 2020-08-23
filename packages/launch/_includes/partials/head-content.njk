@@ -1,12 +1,15 @@
-{% set pageTitle = title %}
+{% set _pageTitle = title %}
 {% if title != site.name %}
-  {% set pageTitle = title + ': ' + site.name %}
+  {% set _pageTitle = title + ': ' + site.name %}
+{% endif %}
+{% if pageTitle %}
+  {% set _pageTitle = pageTitle %}
 {% endif %}
 {% set currentUrl = site.url + page.url %}
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ pageTitle }}</title>
+<title>{{ _pageTitle }}</title>
 
 <meta name="generator" content="rocket 0.1">
 
@@ -23,7 +26,7 @@
 {% endif %}
 
 <meta property="og:site_name" content="{{ site.name }}"/>
-<meta property="og:title" content="{{ pageTitle }}"/>
+<meta property="og:title" content="{{ _pageTitle }}"/>
 <meta property="og:type" content="website"/>
 
 {% set _socialMediaImage = site.socialMediaImage %}

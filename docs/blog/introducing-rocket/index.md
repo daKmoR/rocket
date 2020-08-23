@@ -1,6 +1,6 @@
 ---
 title: Introducing rocket - effective static content with some javascript
-published: false
+published: true
 description: Write Interactive Demos Using Markdown and JavaScript
 date: 2020-07-30
 tags: [markdown, javascript, webcomponents, demos]

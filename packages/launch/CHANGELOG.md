@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.2.11
+
+### Patch Changes
+
+- Allow to define pageTitle for each page; show only published blog posts in the blog overview
+
 ## 0.2.10
 
 ### Patch Changes

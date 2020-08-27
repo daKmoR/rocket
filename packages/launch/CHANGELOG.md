@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.2.12
+
+### Patch Changes
+
+- Add edit link to blogs + use page.date
+
 ## 0.2.11
 
 ### Patch Changes

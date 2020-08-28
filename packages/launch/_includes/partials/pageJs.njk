@@ -16,18 +16,24 @@
 {% endif %}
 
 <script>
-  if ('serviceWorker' in navigator) {
-    let refreshing;
-    navigator
-      .serviceWorker
-      .addEventListener('controllerchange', () => {
-        if (refreshing) {
-          return;
+  async function handleUpdate() {
+    const oldSw = (await navigator.serviceWorker.getRegistration())?.active?.state;
+
+    if ("serviceWorker"in navigator) {
+      let refreshing;
+
+      navigator.serviceWorker.addEventListener('controllerchange', async () => {
+        if (refreshing) return;
+
+        const newSw = (await navigator.serviceWorker.getRegistration())?.active?.state;
+
+        if(oldSw === 'activated' && newSw === 'activating') {
+          refreshing = true;
+          window.location.reload();
         }
-        refreshing = true;
-        window
-          .location
-          .reload();
       });
+    }
   }
+
+  handleUpdate();
 </script>

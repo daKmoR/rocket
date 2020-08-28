@@ -30,7 +30,7 @@
           {% if site.logoColorPath %}
             <img class="page-logo" src="{{ site.logoColorUrl }}" alt="{{ site.title }} Logo"/>
           {% else %}
-            {{ site.logoPath | inlineSvgPath | modifySvg({ addRootClass: 'page-logo' }) | safe }}
+            {{ site.logoPath | inlineFilePath | modifySvg({ addRootClass: 'page-logo' }) | safe }}
           {% endif %}
 
           {% if site.homeBackgroundUrl %}

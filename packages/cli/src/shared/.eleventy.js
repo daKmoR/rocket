@@ -27,10 +27,7 @@ function getDirectories(source) {
     .map(dirent => dirent.name);
 }
 
-function inlineSvgPath(filePath) {
-  if (path.extname(filePath) != '.svg') {
-    throw new Error('svgContents requires a filetype of svg');
-  }
+function inlineFilePath(filePath) {
   let data = fs.readFileSync(filePath, function (err, contents) {
     if (err) {
       throw new Error(err);
@@ -109,7 +106,7 @@ module.exports = function (eleventyConfig) {
     return headers;
   });
 
-  eleventyConfig.addFilter('inlineSvgPath', inlineSvgPath);
+  eleventyConfig.addFilter('inlineFilePath', inlineFilePath);
   eleventyConfig.addFilter('modifySvg', modifySvg);
 
   // eleventyConfig.addCollection('post', collection => {

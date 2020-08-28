@@ -2,12 +2,12 @@
   <div class="content-area">
     <button id="mobile-menu-trigger">
       <span class="sr-only">Show Menu</span>
-      {{ '/_assets/burger-menu.svg' | themePath | inlineSvgPath | safe }}
+      {{ '/_assets/burger-menu.svg' | themePath | inlineFilePath | safe }}
     </button>
     {% if layout === "home.njk" and site.homeBackgroundPath %}
       {% if site.logoColorPath %}
         <a class="logo-link" href="{{ '/' | url }}">
-          {{ site.logoColorPath | inlineSvgPath | safe }}
+          {{ site.logoColorPath | inlineFilePath | safe }}
           <span class="sr-only">{{ site.name }}</span>
         </a>
       {% else %}
@@ -32,7 +32,7 @@
         {% if entry.image %}
           <img src="{{ entry.image }}" alt="{{ entry.alt }}"/>
         {% else %}
-          {{ '/_assets/NAME-logo.svg' | replace("NAME", entry.name) | lower | themePath | inlineSvgPath | safe }}
+          {{ '/_assets/NAME-logo.svg' | replace("NAME", entry.name) | lower | themePath | inlineFilePath | safe }}
         {% endif %}
       </a>
     {%- endfor %}

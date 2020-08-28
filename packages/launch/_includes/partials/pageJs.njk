@@ -16,24 +16,5 @@
 {% endif %}
 
 <script>
-  async function handleUpdate() {
-    const oldSw = (await navigator.serviceWorker.getRegistration())?.active?.state;
-
-    if ("serviceWorker"in navigator) {
-      let refreshing;
-
-      navigator.serviceWorker.addEventListener('controllerchange', async () => {
-        if (refreshing) return;
-
-        const newSw = (await navigator.serviceWorker.getRegistration())?.active?.state;
-
-        if(oldSw === 'activated' && newSw === 'activating') {
-          refreshing = true;
-          window.location.reload();
-        }
-      });
-    }
-  }
-
-  handleUpdate();
+  {{ 'js/handleServiceWorker.js' | themePath | inlineFilePath | safe }}
 </script>

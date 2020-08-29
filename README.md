@@ -1,4 +1,4 @@
-> This is PRE ALPHA... it requires manually patching of @11ty/eleventy and @lion/overlays
+> This is PRE ALPHA... it requires manually patching of @lion/overlays
 
 # Rocket
 

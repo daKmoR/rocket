@@ -1,5 +1,17 @@
 # @d4kmor/launch
 
+## 0.2.14
+
+### Patch Changes
+
+- Add js to npm artifact
+
+## 0.2.13
+
+### Patch Changes
+
+- Update service worker refresh handling
+
 ## 0.2.12
 
 ### Patch Changes

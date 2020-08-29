@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/launch",
-  "version": "0.2.12",
+  "version": "0.2.14",
   "publishConfig": {
     "access": "public"
   },
@@ -21,7 +21,7 @@
     "_data",
     "_includes",
     "*.js",
-    "src"
+    "js"
   ],
   "keywords": [
     "storybook",

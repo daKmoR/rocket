@@ -6,16 +6,16 @@ body[layout='home'] .markdown-body .call-to-action:nth-of-type(2) {
 
 @media screen and (min-width: 1024px) {
   body[layout='home'].has-background .page-background {
-    top: -140px;
+    top: -165px;
     right: -463px;
     transform: rotate(45deg);
   }
 }
 
 rocket-navigation {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 header {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }

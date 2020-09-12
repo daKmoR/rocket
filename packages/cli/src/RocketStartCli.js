@@ -1,6 +1,6 @@
-import esDevServer from 'es-dev-server';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { startDevServer } from '@web/dev-server';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -10,27 +10,13 @@ import Eleventy from '@11ty/eleventy';
 
 import { eleventyPlugin } from './start/eleventyPlugin.js';
 
-const {
-  readCommandLineArgs: readDevServerCommandLineArgs,
-  createConfig,
-  startServer,
-} = esDevServer;
-
-/** @typedef {import('es-dev-server').Config} ServerConfig */
-
-/* eslint-disable no-console, no-param-reassign */
-
 export class RocketStartCli {
   constructor({ config, argv }) {
-    const devServerOptions = readDevServerCommandLineArgs(argv, {
-      defaultConfigDir: config.configDir,
-    });
-
+    this.__argv = argv;
     this.config = {
       ...config,
       devServer: {
         ...config.devServer,
-        ...devServerOptions,
       },
     };
   }
@@ -57,7 +43,12 @@ export class RocketStartCli {
       plugins: [eleventyPlugin({ elev, absRootDir })],
     };
 
-    startServer(createConfig(devServerConfig));
+    await startDevServer({
+      config: devServerConfig,
+      readCliArgs: true,
+      readFileConfig: false,
+      argv: this.__argv,
+    });
 
     ['exit', 'SIGINT'].forEach(event => {
       process.on(event, () => {

@@ -74,7 +74,6 @@ export async function normalizeConfig(inConfig) {
       ...config.dir,
     },
 
-    // command line args read from regular es-dev-server
     devServer,
   };
 }

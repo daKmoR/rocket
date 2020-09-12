@@ -56,6 +56,10 @@ module.exports = {
     data: '_data',
   },
 
+  // setupPlugins: plugins => {
+  //   plugins.push(new BuildPlugin());
+  // },
+
   // TODO: support these config options
   dataDir: '_data',
   setupUnifiedPlugins: [addOcticonToHeadlines, addSupportForFoodnotes],

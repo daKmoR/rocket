@@ -9,7 +9,7 @@
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "scripts": {
-    "dev": "es-dev-server --node-resolve --root-dir ../../ --open packages/drawer/ --watch",
+    "dev": "web-dev-server --node-resolve --root-dir ../../ --open packages/drawer/ --watch",
     "rocket:build": "node src/build/cli.js -c demo/docs",
     "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/README.md",
     "start": "npm run rocket:start",

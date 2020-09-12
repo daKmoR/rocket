@@ -51,6 +51,8 @@ export function eleventyPlugin({ absRootDir, elev }) {
   let fileWatcher;
 
   return {
+    name: 'eleventyPlugin',
+
     serverStart(args) {
       ({ fileWatcher } = args);
     },

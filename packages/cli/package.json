@@ -9,17 +9,17 @@
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "bin": {
-    "rocket-start": "src/start/cli.js",
-    "rocket-build": "src/build/cli.js"
+    "rocket": "src/cli.js"
   },
   "scripts": {
-    "start": "npm run rocket:start",
     "build": "npm run rocket:build",
-    "rocket:start": "node src/start/cli.js -c demo",
-    "rocket:build": "node src/build/cli.js -c demo",
     "dev": "node ./eleventyOnly.js",
+    "rocket:build": "node src/cli.js build -c demo",
+    "rocket:start": "node src/cli.js start -c demo",
+    "start": "npm run rocket:start",
     "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
+    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm test",
+    "xtest:watch": "mocha test/**/*.test.js --parallel --watch"
   },
   "files": [
     "*.js",
@@ -35,13 +35,15 @@
   ],
   "dependencies": {
     "@11ty/eleventy": "^0.11.0",
-    "@d4kmor/eleventy-plugin-mdjs": "^0.1.3",
+    "@d4kmor/eleventy-plugin-mdjs-unified": "^0.1.3",
     "@d4kmor/eleventy-rocket-nav": "^0.1.3",
     "@open-wc/building-rollup": "^1.8.0",
+    "@web/config-loader": "^0.1.2",
+    "@web/rollup-plugin-copy": "^0.1.1",
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
     "deepmerge": "^4.2.2",
-    "es-dev-server": "^1.57.2",
+    "es-dev-server": "^1.57.4",
     "glob": "^7.1.6",
     "rollup": "^2.16.0",
     "rollup-plugin-clear": "^2.0.7",
@@ -52,5 +54,9 @@
     "@11ty/eleventy-navigation": "^0.1.5",
     "@d4kmor/launch": "^0.2.13",
     "patch-package": "^6.2.2"
-  }
+  },
+  "exports": {
+    "require": "./index.cjs"
+  },
+  "type": "module"
 }

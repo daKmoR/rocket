@@ -25,3 +25,4 @@ packages/*/yarn.lock
 dist
 _site
 stats.html
+__eleventySettings.json

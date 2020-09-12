@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { getRocketValues } = require('@d4kmor/cli');
 
 const defaultValues = getRocketValues();

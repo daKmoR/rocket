@@ -1,13 +1,19 @@
-/* eslint-disable no-param-reassign */
-const fs = require('fs').promises;
-const path = require('path');
+import { promises as fs } from 'fs';
+import path from 'path';
 
 const REGEXP_TO_FILE_PATH = new RegExp('/', 'g');
 
+/**
+ * @param {string} browserPath
+ */
 function toFilePath(browserPath) {
   return browserPath.replace(REGEXP_TO_FILE_PATH, path.sep);
 }
 
+/**
+ * @param {string} browserPath
+ * @param {string} absRootDir
+ */
 async function getFileWithLastUrlDir(browserPath, absRootDir) {
   const endIndex = browserPath.length - 1;
   const startIndex = browserPath.lastIndexOf('/', endIndex - 1);
@@ -40,7 +46,7 @@ async function getEleventyRenderedFile(elev, absFilePath) {
   return body;
 }
 
-function eleventyPlugin({ absRootDir, elev }) {
+export function eleventyPlugin({ absRootDir, elev }) {
   /** @type {import('chokidar').FSWatcher} */
   let fileWatcher;
 
@@ -84,5 +90,3 @@ function eleventyPlugin({ absRootDir, elev }) {
     },
   };
 }
-
-module.exports = eleventyPlugin;

@@ -9,9 +9,9 @@
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "scripts": {
-    "start": "npm run rocket:start",
-    "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/README.md",
     "rocket:build": "node src/build/cli.js -c demo/docs",
+    "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/README.md",
+    "start": "npm run rocket:start",
     "test": "mocha test/**/*.test.js test/*.test.js",
     "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
   },
@@ -20,7 +20,6 @@
     "src"
   ],
   "keywords": [
-    "storybook",
     "demo",
     "demo-states",
     "testing"

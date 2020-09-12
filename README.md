@@ -5,14 +5,14 @@
 ## Installation
 
 ```bash
-npm i @d4kmor/cli patch-package
+npm i @d4kmor/cli @d4kmor/launch
 ```
 
 ## Usage
 
 ```json
 "scripts": {
-  "start": "rocket-start",
-  "build": "rocket-build",
+  "start": "rocket start",
+  "build": "rocket build",
 }
 ```

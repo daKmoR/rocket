@@ -7,7 +7,6 @@
   "description": "Rocket stuff",
   "license": "MIT",
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
-  "main": "index.js",
   "bin": {
     "rocket": "src/cli.js"
   },
@@ -22,7 +21,10 @@
     "xtest:watch": "mocha test/**/*.test.js --parallel --watch"
   },
   "files": [
+    "*.cjs",
     "*.js",
+    "*.mjs",
+    "dist",
     "src"
   ],
   "keywords": [

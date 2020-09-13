@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.3.1
+
+### Patch Changes
+
+- d79da48: Add entry file to npm package
+
 ## 0.3.0
 
 ### Minor Changes

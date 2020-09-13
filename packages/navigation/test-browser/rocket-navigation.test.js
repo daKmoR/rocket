@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { aTimeout, expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../rocket-navigation.js';
 
@@ -56,5 +56,62 @@ describe('rocket-navigation', () => {
 
     links[1].click();
     expect(anchorSpy).to.not.be.called;
+  });
+
+  it('will mark the currently "active" headline in the menu', async () => {
+    function addBlock(headline, length = 5) {
+      return html`
+        <h2 id="${headline}">${headline}</h2>
+        ${new Array(length).fill(html`<p>text content</p>`)}
+      `;
+    }
+
+    const wrapper = await fixture(html`
+      <div id="anchor-test-wrapper">
+        <rocket-navigation>
+          <ul>
+            <li class="menu-item current">
+              <a>Page with anchors</a>
+              <ul>
+                <li class="menu-item anchor">
+                  <a class="anchor" href="#top">Anchor</a>
+                </li>
+                <li class="menu-item anchor">
+                  <a class="anchor" href="#middle">Anchor</a>
+                </li>
+                <li class="menu-item anchor">
+                  <a class="anchor" href="#bottom">Anchor</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </rocket-navigation>
+        <div id="anchor-test-content">
+          ${addBlock('top', 10)} ${addBlock('middle', 30)} ${addBlock('bottom', 10)}
+        </div>
+      </div>
+      <style>
+        #anchor-test-wrapper {
+          display: flex;
+        }
+      </style>
+    `);
+    await aTimeout(0);
+    const anchorLis = wrapper.querySelectorAll('.menu-item.anchor');
+    expect(anchorLis[0]).to.have.class('current');
+    expect(anchorLis[1]).to.not.have.class('current');
+    expect(anchorLis[2]).to.not.have.class('current');
+
+    document.querySelector('#middle').scrollIntoView();
+    await aTimeout(20);
+    expect(anchorLis[0]).to.not.have.class('current');
+    expect(anchorLis[1]).to.have.class('current');
+    expect(anchorLis[2]).to.not.have.class('current');
+
+    document.querySelector('#bottom').scrollIntoView();
+    await aTimeout(20);
+    expect(anchorLis[0]).to.not.have.class('current');
+    expect(anchorLis[1]).to.not.have.class('current');
+    expect(anchorLis[2]).to.have.class('current');
   });
 });

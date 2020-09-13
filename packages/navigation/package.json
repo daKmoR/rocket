@@ -9,19 +9,22 @@
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "scripts": {
-    "rocket:build": "node src/build/cli.js -c demo/docs",
-    "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/README.md",
-    "start": "npm run rocket:start",
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
+    "test": "cd ../../ && yarn test:browser \"packages/navigation2/test/**/*.test.js\"",
+    "test:watch": "yarn test --watch"
   },
   "files": [
+    "*.d.ts",
     "*.js",
+    "dist",
     "src"
   ],
   "keywords": [
-    "demo",
-    "demo-states",
-    "testing"
-  ]
+    "rocket",
+    "navigation"
+  ],
+  "types": "dist/index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "type": "module"
 }

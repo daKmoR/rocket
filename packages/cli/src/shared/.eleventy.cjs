@@ -3,6 +3,7 @@ const eleventyRocketNav = require('@d4kmor/eleventy-rocket-nav');
 const path = require('path');
 const fs = require('fs');
 const { readdirSync } = require('fs');
+const { getComputedConfigSync } = require('../public/computedConfig.cjs');
 
 function getDirectories(source) {
   return readdirSync(source, { withFileTypes: true })
@@ -28,7 +29,7 @@ function modifySvg(svgText, options) {
 }
 
 module.exports = function (eleventyConfig) {
-  const config = require(path.join(process.cwd(), '__eleventySettings.json'));
+  const config = getComputedConfigSync();
 
   const configDir = config.configDir;
   const inputDir = path.join(configDir, 'docs');

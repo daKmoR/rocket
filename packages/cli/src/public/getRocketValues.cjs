@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const urlFilter = require('@11ty/eleventy/src/Filters/Url.js');
+const { getComputedConfig } = require('./computedConfig.cjs');
 
 function chooseFile(userPath, config) {
   const userPathParts = userPath.split('/');
@@ -27,7 +28,7 @@ function chooseFile(userPath, config) {
   };
 }
 
-function getRocketValues() {
+async function getRocketValues() {
   let url = '/';
 
   // handling netlify previews
@@ -44,8 +45,7 @@ function getRocketValues() {
     /* no default */
   }
 
-  const config = require(path.join(process.cwd(), '__eleventySettings.json'));
-
+  const config = await getComputedConfig();
   const logo = chooseFile('_assets/logo.svg', config);
   const homeBackground = chooseFile('_assets/home-background.svg', config);
   const logoColor = chooseFile('_assets/logo-color.svg', config);

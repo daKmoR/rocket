@@ -1,10 +1,11 @@
 import commandLineArgs from 'command-line-args';
-import { promises as fs } from 'fs';
-import path from 'path';
 import { normalizeConfig } from './normalizeConfig.js';
 
 import { RocketBuildCli } from './RocketBuildCli.js';
 import { RocketStartCli } from './RocketStartCli.js';
+import computedConfig from './public/computedConfig.cjs';
+
+const { updateComputedConfig, cleanupComputedConfig } = computedConfig;
 
 export class RocketCli {
   constructor({ argv } = { argv: undefined }) {
@@ -27,15 +28,21 @@ export class RocketCli {
       command: options.command,
       configDir: options['config-dir'],
     };
+
+    // this.cleanupRocket = this.cleanupRocket.bind(this);
+    // [`exit`, `SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach(eventType => {
+    //   process.on(eventType, this.cleanupRocket);
+    // });
+  }
+
+  async cleanupRocket() {
+    await cleanupComputedConfig();
   }
 
   async setup() {
     this.config = await normalizeConfig(this.argvConfig);
 
-    await fs.writeFile(
-      path.join(process.cwd(), '__eleventySettings.json'),
-      JSON.stringify(this.config, null, 2),
-    );
+    await updateComputedConfig(this.config);
   }
 
   async run() {

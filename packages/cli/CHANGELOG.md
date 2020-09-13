@@ -1,5 +1,17 @@
 # @d4kmor/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- d51bcf1: Start of restructure, add some tests and types
+
+### Patch Changes
+
+- Updated dependencies [d51bcf1]
+  - @d4kmor/eleventy-plugin-mdjs-unified@0.2.0
+  - @d4kmor/eleventy-rocket-nav@0.2.0
+
 ## 0.2.5
 
 ### Patch Changes

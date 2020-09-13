@@ -257,7 +257,7 @@ rocket-navigation a:hover {
 }
 
 /* line on the left to indicate current page */
-rocket-navigation > ul > li > ul > li.current ul > li.current::before {
+rocket-navigation > ul > li > ul li.current ul li.anchor.current::before {
   content: '';
   height: 1.6em;
   width: 3px;
@@ -271,7 +271,7 @@ rocket-navigation li {
   padding: 7px 0;
 }
 
-rocket-navigation > ul > li > ul > li.current a {
+rocket-navigation > ul > li > ul li.current a:not(.anchor) {
   font-weight: bold;
 }
 

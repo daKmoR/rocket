@@ -1,5 +1,18 @@
 # @d4kmor/launch
 
+## 0.3.0
+
+### Minor Changes
+
+- d51bcf1: Start of restructure, add some tests and types
+- 4d6b81b: Styling improvements. Added outside paddings to make it look nicer on smaller viewports. Made footer and header widths consistent with content width. Changed header bar to be white which looks cleaner. Changed the sidebar nav styles to be cleaner. Made the call to action buttons cleaner looking. Made the spacing around the mobile menu button consistent. Changed the reasons section to use CSS grid to make it look more consistent on different viewports by specifying grid gaps, instead of doing it with margins.
+
+### Patch Changes
+
+- Updated dependencies [d51bcf1]
+  - @d4kmor/drawer@0.2.0
+  - @d4kmor/navigation@0.2.0
+
 ## 0.2.14
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @d4kmor/navigation
 
+## 0.2.0
+
+### Minor Changes
+
+- d51bcf1: Start of restructure, add some tests and types
+
 ## 0.1.3
 
 ### Patch Changes

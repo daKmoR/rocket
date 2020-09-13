@@ -308,7 +308,8 @@ rocket-navigation > ul > li > ul a {
 rocket-navigation {
   overflow: auto;
   display: block;
-  padding: 10px;
+  margin-top: 40px;
+  padding: 0 20px;
 }
 
 rocket-navigation ul {
@@ -365,14 +366,13 @@ li.current > ul > li.anchor {
     position: sticky;
     height: 100%;
     left: 0;
-    top: 120px;
+    top: 70px;
     overflow-y: auto;
     scroll-behavior: smooth;
     display: block;
     min-width: 260px;
     z-index: 10;
-    margin-top: 18px;
-    margin-right: 15px;
+    margin-right: 50px;
   }
 
   #sidebar .sidebar-bottom {
@@ -394,7 +394,7 @@ li.current > ul > li.anchor {
   }
 
   rocket-navigation {
-    padding: 0 15px 0 0;
+    padding: 0 25px 0 0;
   }
 
   body:not([layout='with-sidebar']) #sidebar {
@@ -432,7 +432,6 @@ rocket-navigation h3 {
 /** MAIN ******************************************************************************************/
 #content-wrapper {
   min-height: 60vh;
-  margin-top: 30px;
 }
 
 body[layout='home'] #content-wrapper {
@@ -444,15 +443,15 @@ main {
   position: relative;
   /* makes sure that code blocks don't grow bigger then main => see https://css-tricks.com/preventing-a-grid-blowout/ */
   min-width: 0;
+  margin-top: 40px;
 }
 
 main > * {
-  scroll-margin-top: 60px;
+  scroll-margin-top: 85px;
 }
 
 @media screen and (min-width: 1024px) {
   main {
-    padding: 15px 0 0 0;
     z-index: 50;
   }
 }

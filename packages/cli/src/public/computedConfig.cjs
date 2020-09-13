@@ -40,4 +40,5 @@ module.exports = {
   getComputedConfig,
   getComputedConfigSync,
   cleanupComputedConfig,
+  COMPUTED_CONFIG_PATH,
 };

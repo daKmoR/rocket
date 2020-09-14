@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.3.2
+
+### Patch Changes
+
+- 41c5bc8: Support functions in rocket config by using an es module singleton instead of a file storage
+
 ## 0.3.1
 
 ### Patch Changes

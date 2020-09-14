@@ -5,7 +5,7 @@ import { RocketBuildCli } from './RocketBuildCli.js';
 import { RocketStartCli } from './RocketStartCli.js';
 import computedConfig from './public/computedConfig.cjs';
 
-const { updateComputedConfig, cleanupComputedConfig } = computedConfig;
+const { updateComputedConfig } = computedConfig;
 
 export class RocketCli {
   constructor({ argv } = { argv: undefined }) {
@@ -28,26 +28,12 @@ export class RocketCli {
       command: options.command,
       configDir: options['config-dir'],
     };
-
-    this.__needsCleanup = true;
-
-    this.cleanup = this.cleanup.bind(this);
-    ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM'].forEach(eventType => {
-      process.on(eventType, this.cleanup);
-    });
-  }
-
-  /**
-   * TODO: check why cleanup get's called 2 times even when using a guard
-   */
-  async cleanup() {
-    await cleanupComputedConfig();
   }
 
   async setup() {
     this.config = await normalizeConfig(this.argvConfig);
 
-    await updateComputedConfig(this.config);
+    updateComputedConfig(this.config);
   }
 
   async run() {

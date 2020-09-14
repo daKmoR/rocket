@@ -1,11 +1,10 @@
 import chai from 'chai';
-import fs from 'fs';
 import { RocketCli } from '../src/RocketCli.js';
 import computedConfig from '../src/public/computedConfig.cjs';
 
 const { expect } = chai;
 
-const { COMPUTED_CONFIG_PATH } = computedConfig;
+const { getComputedConfig } = computedConfig;
 
 describe('RocketCli', () => {
   let cli;
@@ -28,17 +27,9 @@ describe('RocketCli', () => {
     expect(cli.config.command).to.equal('build');
   });
 
-  it('does create and cleanup a computed config file', async () => {
+  it('does stores the computed config', async () => {
     cli = new RocketCli();
-    // no config when we start
-    expect(fs.existsSync(COMPUTED_CONFIG_PATH)).to.be.false;
-
-    // has a config after setup
     await cli.setup();
-    expect(fs.existsSync(COMPUTED_CONFIG_PATH)).to.be.true;
-
-    // cleans it up
-    await cli.cleanup();
-    expect(fs.existsSync(COMPUTED_CONFIG_PATH)).to.be.false;
+    expect(getComputedConfig()).to.not.deep.equal({});
   });
 });

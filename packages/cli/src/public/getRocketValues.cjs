@@ -45,7 +45,7 @@ async function getRocketValues() {
     /* no default */
   }
 
-  const config = await getComputedConfig();
+  const config = getComputedConfig();
   const logo = chooseFile('_assets/logo.svg', config);
   const homeBackground = chooseFile('_assets/home-background.svg', config);
   const logoColor = chooseFile('_assets/logo-color.svg', config);

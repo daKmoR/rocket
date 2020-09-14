@@ -1,4 +1,4 @@
-const footnotes = require('remark-footnotes');
+// const footnotes = require('remark-footnotes');
 
 function addOcticonToHeadlines(plugins) {
   return plugins.map(pluginObj => {
@@ -40,28 +40,27 @@ function addOcticonToHeadlines(plugins) {
   });
 }
 
-function addSupportForFoodnotes(plugins) {
-  // add right after markdown
-  const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'remark2rehype');
-  plugins.splice(markdownPluginIndex + 1, 0, {
-    name: 'footnotes',
-    plugin: footnotes,
-    options: { inlineNotes: true },
-  });
-  return plugins;
-}
+// function addSupportForFoodnotes(plugins) {
+//   // add right after markdown
+//   const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'remark2rehype');
+//   plugins.splice(markdownPluginIndex + 1, 0, {
+//     name: 'footnotes',
+//     plugin: footnotes,
+//     options: { inlineNotes: true },
+//   });
+//   return plugins;
+// }
 
 module.exports = {
   dir: {
     data: '_data',
   },
+  setupUnifiedPlugins: [addOcticonToHeadlines],
 
+  // TODO: support these config options
   // setupPlugins: plugins => {
   //   plugins.push(new BuildPlugin());
   // },
-
-  // TODO: support these config options
-  dataDir: '_data',
-  setupUnifiedPlugins: [addOcticonToHeadlines, addSupportForFoodnotes],
-  eleventy: {},
+  // dataDir: '_data',
+  // eleventy: {},
 };

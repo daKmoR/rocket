@@ -3,7 +3,7 @@ const eleventyRocketNav = require('@d4kmor/eleventy-rocket-nav');
 const path = require('path');
 const fs = require('fs');
 const { readdirSync } = require('fs');
-const { getComputedConfigSync } = require('../public/computedConfig.cjs');
+const { getComputedConfig } = require('../public/computedConfig.cjs');
 
 function getDirectories(source) {
   return readdirSync(source, { withFileTypes: true })
@@ -29,7 +29,7 @@ function modifySvg(svgText, options) {
 }
 
 module.exports = function (eleventyConfig) {
-  const config = getComputedConfigSync();
+  const config = getComputedConfig();
 
   const configDir = config.configDir;
   const inputDir = path.join(configDir, 'docs');
@@ -48,7 +48,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy(`${inputDir}/**/*.{png,gif,jpg,svg,css,xml,json,js}`);
-  eleventyConfig.addPlugin(pluginMdjs);
+  eleventyConfig.addPlugin(pluginMdjs, { setupUnifiedPlugins: config.setupUnifiedPlugins });
   eleventyConfig.addPlugin(eleventyRocketNav);
 
   const sectionNames = getDirectories(inputDir);

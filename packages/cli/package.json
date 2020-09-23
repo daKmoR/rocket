@@ -17,7 +17,7 @@
     "rocket:start": "node src/cli.js start -c demo",
     "start": "npm run rocket:start",
     "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm test",
+    "test:watch": "onchange 'src/**/*.{js,cjs}' 'test/**/*.js' -- npm test",
     "xtest:watch": "mocha test/**/*.test.js --parallel --watch"
   },
   "files": [
@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy-navigation": "^0.1.5",
+    "@d4kmor/core": "^0.0.0",
     "@d4kmor/launch": "^0.3.0",
     "patch-package": "^6.2.2"
   },

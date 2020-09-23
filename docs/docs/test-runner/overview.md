@@ -28,7 +28,7 @@ Check out these example projects for a full setup.
 - [preact jsx](https://github.com/modernweb-dev/web/tree/master/demo/projects/preact-jsx)
 - [preact tsx](https://github.com/modernweb-dev/web/tree/master/demo/projects/preact-tsx)
 
-# Web Test Runner Core
+## Web Test Runner Core
 
 Core package for Web Test Runner. Manages running the tests. Has a modular architecture, delegating most of the work to the separate parts and implementations.
 

@@ -89,12 +89,15 @@ Examples on how to insert a plugin right after creating the markdown AST.
 const pluginMdjs = require('@d4kmor/eleventy-plugin-mdjs');
 
 function addPluginForMarkdownAst(plugins) {
-  // add plugins right after markdown
-  const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'remark2rehype');
-  plugins.splice(markdownPluginIndex + 1, 0, {
-    name: 'plugin-for-markdown-ast',
-    plugin: pluginForMarkdownAst,
-  });
+  // only add it if it's not already there
+  if (plugins.findIndex(plugin => plugin.name === 'pluginForMarkdownAst') === -1) {
+    // add plugins right after markdown
+    const markdownPluginIndex = plugins.findIndex(plugin => plugin.name === 'markdown');
+    plugins.splice(markdownPluginIndex + 1, 0, {
+      name: 'pluginForMarkdownAst',
+      plugin: pluginForMarkdownAst,
+    });
+  }
   return plugins;
 }
 
@@ -111,12 +114,15 @@ Examples on how to insert a plugin right after creating the rehype AST.
 const pluginMdjs = require('@d4kmor/eleventy-plugin-mdjs');
 
 function addPluginForRehypeAst(plugins) {
-  // add plugins right after remark2rehype
-  const remark2rehypePluginIndex = plugins.findIndex(plugin => plugin.name === 'remark2rehype');
-  plugins.splice(remark2rehypePluginIndex + 1, 0, {
-    name: 'plugin-for-rehype-ast',
-    plugin: pluginForRehypeAst,
-  });
+  // only add it if it's not already there
+  if (plugins.findIndex(plugin => plugin.name === 'pluginForRehypeAst') === -1) {
+    // add plugins right after remark2rehype
+    const remark2rehypePluginIndex = plugins.findIndex(plugin => plugin.name === 'remark2rehype');
+    plugins.splice(remark2rehypePluginIndex + 1, 0, {
+      name: 'pluginForRehypeAst',
+      plugin: pluginForRehypeAst,
+    });
+  }
   return plugins;
 }
 

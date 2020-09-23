@@ -17,6 +17,9 @@
     },
     {
       "path": "../eleventy-rocket-nav/tsconfig.json"
+    },
+    {
+      "path": "../core/tsconfig.json"
     }
   ],
   "include": [

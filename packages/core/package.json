@@ -1,0 +1,33 @@
+{
+  "name": "@d4kmor/core",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Launch Theme for Rocket",
+  "license": "MIT",
+  "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
+  "scripts": {
+    "build:package": "rimraf dist && esbuild --platform=node --format=cjs --bundle --outfile=dist/title.cjs ./src/title/index.js",
+    "build:types": "tsc -p tsconfig.build.types.json",
+    "test": "cd ../../ && yarn test:browser \"packages/navigation2/test/**/*.test.js\"",
+    "test:watch": "yarn test --watch"
+  },
+  "files": [
+    "*.js",
+    "dist",
+    "dist-types",
+    "src"
+  ],
+  "keywords": [
+    "rocket"
+  ],
+  "types": "dist-types/title/index.d.ts",
+  "exports": {
+    "./title": {
+      "require": "./dist/title.cjs",
+      "default": "./src/title/index.js"
+    }
+  },
+  "type": "module"
+}

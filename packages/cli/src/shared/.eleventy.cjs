@@ -1,8 +1,11 @@
-const pluginMdjs = require('@d4kmor/eleventy-plugin-mdjs-unified');
-const eleventyRocketNav = require('@d4kmor/eleventy-rocket-nav');
 const path = require('path');
 const fs = require('fs');
 const { readdirSync } = require('fs');
+
+const pluginMdjs = require('@d4kmor/eleventy-plugin-mdjs-unified');
+const eleventyRocketNav = require('@d4kmor/eleventy-rocket-nav');
+const { processContentWithTitle } = require('@d4kmor/core/title');
+
 const { getComputedConfig } = require('../public/computedConfig.cjs');
 
 function getDirectories(source) {
@@ -64,12 +67,24 @@ module.exports = function (eleventyConfig) {
       eleventyConfig.addCollection(section, collection => {
         let docs = [...collection.getFilteredByGlob(`${inputDir}/${section}/**/*.md`)];
         docs.forEach(page => {
+          page.data.addTitleHeadline = true;
+          const titleData = processContentWithTitle(
+            page.template.inputContent,
+            page.template._templateRender._engineName,
+          );
+          if (titleData) {
+            page.data.title = titleData.title;
+            page.data.eleventyNavigation = { ...titleData.eleventyNavigation };
+            page.data.addTitleHeadline = false;
+          }
+
           page.data.section = section;
           if (section === 'blog') {
             page.data.layout = 'blog-details.njk';
           }
         });
         docs = docs.filter(page => page.inputPath !== `./${indexSection}`);
+
         // docs = addPrevNextUrls(docs);
         return docs;
       });

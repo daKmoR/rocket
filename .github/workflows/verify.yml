@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: Build Pacakges
+      - name: Build Packages
         run: yarn build:packages
 
       - name: Lint

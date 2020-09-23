@@ -1,10 +1,4 @@
----
-title: Favicon
-eleventyNavigation:
-  parent: Deploy
-  key: Favicon
-  order: -50
----
+# Deploy >> Favicon
 
 Rocket is a fundamentally straight forward way to generate static pages while still allowing to sprinkle in some JavaScript where needed.
 

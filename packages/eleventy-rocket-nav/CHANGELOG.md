@@ -1,5 +1,11 @@
 # @d4kmor/eleventy-rocket-nav
 
+## 0.2.1
+
+### Patch Changes
+
+- 1819f5f: Wasm needs to get enough memory so it can access bigger html files. Now up to 256kB.
+
 ## 0.2.0
 
 ### Minor Changes

@@ -1,10 +1,4 @@
----
-title: Working with your first pages
-eleventyNavigation:
-  key: Getting Started
-  parent: First Pages
-  order: 10
----
+# First Pages >> Getting Started ||10
 
 Once you have your first page up you probably wonder what more you can do.
 

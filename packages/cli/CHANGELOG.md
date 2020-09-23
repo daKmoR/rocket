@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.4.1
+
+### Patch Changes
+
+- 652b5e7: Make @d4kmor/core a real dependency
+
 ## 0.4.0
 
 ### Minor Changes

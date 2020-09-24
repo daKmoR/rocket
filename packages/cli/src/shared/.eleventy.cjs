@@ -67,17 +67,6 @@ module.exports = function (eleventyConfig) {
       eleventyConfig.addCollection(section, collection => {
         let docs = [...collection.getFilteredByGlob(`${inputDir}/${section}/**/*.md`)];
         docs.forEach(page => {
-          page.data.addTitleHeadline = true;
-          const titleData = processContentWithTitle(
-            page.template.inputContent,
-            page.template._templateRender._engineName,
-          );
-          if (titleData) {
-            page.data.title = titleData.title;
-            page.data.eleventyNavigation = { ...titleData.eleventyNavigation };
-            page.data.addTitleHeadline = false;
-          }
-
           page.data.section = section;
           if (section === 'blog') {
             page.data.layout = 'blog-details.njk';
@@ -90,6 +79,24 @@ module.exports = function (eleventyConfig) {
       });
     }
   }
+
+  // adds title from markdown headline to all pages
+  eleventyConfig.addCollection('--workaround-to-get-all-pages--', collection => {
+    const docs = collection.getAll();
+    docs.forEach(page => {
+      page.data.addTitleHeadline = true;
+      const titleData = processContentWithTitle(
+        page.template.inputContent,
+        page.template._templateRender._engineName,
+      );
+      if (titleData) {
+        page.data.title = titleData.title;
+        page.data.eleventyNavigation = { ...titleData.eleventyNavigation };
+        page.data.addTitleHeadline = false;
+      }
+    });
+    return docs;
+  });
 
   eleventyConfig.addCollection('header', collection => {
     let headers = [];

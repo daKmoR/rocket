@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/cli",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "publishConfig": {
     "access": "public"
   },
@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "@11ty/eleventy": "^0.11.0",
-    "@d4kmor/core": "^0.1.0",
+    "@d4kmor/core": "^0.1.1",
     "@d4kmor/eleventy-plugin-mdjs-unified": "^0.3.0",
     "@d4kmor/eleventy-rocket-nav": "^0.2.1",
     "@open-wc/building-rollup": "^1.8.0",

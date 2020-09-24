@@ -1,5 +1,13 @@
 # @d4kmor/cli
 
+## 0.4.2
+
+### Patch Changes
+
+- f0acb1d: Make sure the hierarchy makes sense when using markdown headlines
+- Updated dependencies [f0acb1d]
+  - @d4kmor/core@0.1.1
+
 ## 0.4.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.4.3
+
+### Patch Changes
+
+- 8dec626: Extract title from markdown headline on all pages
+
 ## 0.4.2
 
 ### Patch Changes

@@ -1,4 +1,5 @@
 ---
+'@d4kmor/cli': patch
 '@d4kmor/core': patch
 ---
 

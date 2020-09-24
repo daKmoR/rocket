@@ -21,6 +21,7 @@ export function parseTitle(inTitle) {
   /** @type EleventyPage */
   const data = {};
   let title = inTitle;
+  let key = inTitle;
   let order = 0;
   let navigationTitle = title;
   let parent;
@@ -32,9 +33,11 @@ export function parseTitle(inTitle) {
     title = parts.join(' ');
     navigationTitle = parts[parts.length - 1];
     if (parts.length >= 2) {
-      parent = parts[parts.length - 2];
+      const parentParts = [...parts];
+      parentParts.pop();
+      parent = parentParts.join(' >> ');
       if (parts.length >= 3) {
-        title = `${parent} ${parts[parts.length - 1]}`;
+        title = `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
       }
     }
   }
@@ -44,16 +47,18 @@ export function parseTitle(inTitle) {
       .split('||')
       .map(part => part.trim())
       .filter(Boolean);
-    title = parts.join(' ');
-    navigationTitle = navigationTitle.split('||').map(part => part.trim())[0];
-    if (parts.length === 2) {
-      title = parts[0];
-      order = parseInt(parts[1]);
+    if (parts.length !== 2) {
+      throw new Error('You can use || only once in `parseTitle`');
     }
+
+    navigationTitle = navigationTitle.split('||').map(part => part.trim())[0];
+    key = key.split('||').map(part => part.trim())[0];
+    title = parts[0];
+    order = parseInt(parts[1]);
   }
   data.title = title;
   data.eleventyNavigation = {
-    key: inTitle,
+    key,
     title: navigationTitle,
     order,
   };

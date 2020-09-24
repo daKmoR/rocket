@@ -42,7 +42,7 @@ describe('parseTitle', () => {
       eleventyNavigation: {
         title: 'Baz',
         key: 'Foo >> Bar >> Baz',
-        parent: 'Bar',
+        parent: 'Foo >> Bar',
         order: 0,
       },
     });
@@ -53,13 +53,29 @@ describe('parseTitle', () => {
       title: 'heading',
       eleventyNavigation: {
         title: 'heading',
-        key: 'heading ||4',
+        key: 'heading',
         order: 4,
+      },
+    });
+
+    expect(parseTitle('Foo >> Bar >> Baz ||4')).to.deep.equal({
+      title: 'Bar Baz',
+      eleventyNavigation: {
+        title: 'Baz',
+        key: 'Foo >> Bar >> Baz',
+        order: 4,
+        parent: 'Foo >> Bar',
       },
     });
   });
 
   it('throws if no string is provided', async () => {
     expect(() => parseTitle()).to.throw('You need to provide a string to `parseTitle`');
+  });
+
+  it('throws if trying to define two orders', async () => {
+    expect(() => parseTitle('Foo || Bar || 10')).to.throw(
+      'You can use || only once in `parseTitle`',
+    );
   });
 });

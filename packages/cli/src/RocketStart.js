@@ -1,5 +1,6 @@
-import { promises as fs } from 'fs';
 import path from 'path';
+import { startDevServer } from '@web/dev-server';
+import { promises as fs } from 'fs';
 
 const REGEXP_TO_FILE_PATH = new RegExp('/', 'g');
 
@@ -30,23 +31,9 @@ async function getFileWithLastUrlDir(browserPath, absRootDir) {
   }
 }
 
-async function getEleventyRenderedFile(elev, absFilePath) {
-  let body = 'eleventyRender: File not found';
-  elev.config.filters['hook-for-rocket'] = function hook(content) {
-    const { inputPath } = this;
-    const currentAbsFilePath = path.join(process.cwd(), inputPath);
+const pageCache = {};
 
-    // check if this is the file we're looking for
-    if (currentAbsFilePath === absFilePath) {
-      body = content;
-    }
-    return content;
-  };
-  await elev.write();
-  return body;
-}
-
-export function eleventyPlugin({ absRootDir, elev }) {
+function eleventyPlugin({ absRootDir }) {
   /** @type {import('chokidar').FSWatcher} */
   let fileWatcher;
 
@@ -82,7 +69,7 @@ export function eleventyPlugin({ absRootDir, elev }) {
         return undefined;
       }
 
-      const newBody = await getEleventyRenderedFile(elev, absFilePath);
+      const newBody = pageCache[absFilePath];
       if (!newBody) {
         return undefined;
       }
@@ -91,4 +78,50 @@ export function eleventyPlugin({ absRootDir, elev }) {
       return { body: newBody, type: 'html' };
     },
   };
+}
+
+export class RocketStart {
+  command = 'start';
+
+  async setup({ config, argv }) {
+    this.__argv = argv;
+    this.config = {
+      ...config,
+      devServer: {
+        ...config.devServer,
+      },
+    };
+  }
+
+  async inspectRenderedHtml({ inputPath, html }) {
+    const currentAbsFilePath = path.join(process.cwd(), inputPath);
+    pageCache[currentAbsFilePath] = html;
+  }
+
+  async execute() {
+    const absRootDir = this.config.devServer.rootDir
+      ? path.resolve(this.config.devServer.rootDir)
+      : process.cwd();
+
+    const devServerConfig = {
+      nodeResolve: true,
+      watch: true,
+      ...this.config.devServer,
+      open: this.config.devServer.open ? this.config.devServer.open : `${this.config.pathPrefix}/`,
+      plugins: [eleventyPlugin({ absRootDir })],
+    };
+
+    await startDevServer({
+      config: devServerConfig,
+      readCliArgs: true,
+      readFileConfig: false,
+      argv: this.__argv,
+    });
+
+    ['exit', 'SIGINT'].forEach(event => {
+      process.on(event, () => {
+        process.exit(0);
+      });
+    });
+  }
 }

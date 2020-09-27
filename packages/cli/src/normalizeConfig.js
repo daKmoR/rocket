@@ -68,10 +68,13 @@ export async function normalizeConfig(inConfig) {
     themePackage,
     configDir: config.configDir,
     inputDir,
+    outputDir: '_site',
+    watch: true,
     dir: {
       includes,
       data,
       ...config.dir,
+      output: '_site',
     },
 
     devServer,

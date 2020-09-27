@@ -29,8 +29,10 @@ describe('normalizeConfig', () => {
       command: 'help',
       configDir,
       devServer: {},
+      outputDir: '_site',
       pathPrefix: '/docs',
       themePackage: '@d4kmor/launch',
+      watch: true,
     });
   });
 
@@ -61,9 +63,12 @@ describe('normalizeConfig', () => {
       dir: {
         data: 'override/path/_data',
         includes: 'override/as/would/be/relative',
+        output: '_site',
       },
+      outputDir: '_site',
       pathPrefix: '/docs',
       themePackage: '@d4kmor/launch',
+      watch: true,
     });
   });
 
@@ -87,9 +92,12 @@ describe('normalizeConfig', () => {
       dir: {
         data: 'override/path/_data',
         includes: 'override/as/would/be/relative',
+        output: '_site',
       },
+      outputDir: '_site',
       pathPrefix: '/docs',
       themePackage: '@d4kmor/launch',
+      watch: true,
     });
   });
 });

@@ -18,6 +18,7 @@
     "release": "changeset publish && yarn format",
     "rocket:build": "node packages/cli/src/cli.js build",
     "rocket:build:site": "node packages/cli/src/cli.js build --mode=site",
+    "rocket:search": "node packages/cli/src/cli.js search",
     "rocket:start": "node packages/cli/src/cli.js start",
     "start": "npm run rocket:start",
     "test": "yarn test:node && yarn test:browser",
@@ -101,6 +102,7 @@
     "printWidth": 100,
     "trailingComma": "all"
   },
+  "type": "module",
   "workspaces": [
     "packages/*"
   ]

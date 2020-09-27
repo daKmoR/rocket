@@ -1,0 +1,33 @@
+{
+  "name": "@d4kmor/search",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Search Plugin for Rocket",
+  "license": "MIT",
+  "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
+  "scripts": {
+    "test": "mocha test/**/*.test.js test/*.test.js",
+    "test:watch": "onchange 'src/**/*.{js,cjs}' 'test/**/*.js' -- npm test"
+  },
+  "files": [
+    "*.js",
+    "dist",
+    "dist-types",
+    "src"
+  ],
+  "keywords": [
+    "rocket",
+    "search"
+  ],
+  "dependencies": {
+    "minisearch": "^3.0.0"
+  },
+  "exports": {
+    ".": {
+      "default": "./src/index.js"
+    }
+  },
+  "type": "module"
+}

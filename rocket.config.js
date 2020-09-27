@@ -1,4 +1,5 @@
 // const footnotes = require('remark-footnotes');
+import { RocketSearch } from '@d4kmor/search';
 
 function addOcticonToHeadlines(plugins) {
   return plugins.map(pluginObj => {
@@ -51,16 +52,18 @@ function addOcticonToHeadlines(plugins) {
 //   return plugins;
 // }
 
-module.exports = {
+export default {
   dir: {
     data: '_data',
   },
   setupUnifiedPlugins: [addOcticonToHeadlines],
 
+  setupPlugins: plugins => {
+    plugins.push(new RocketSearch());
+    return plugins;
+  },
+
   // TODO: support these config options
-  // setupPlugins: plugins => {
-  //   plugins.push(new BuildPlugin());
-  // },
   // dataDir: '_data',
   // eleventy: {},
 };

@@ -9,7 +9,7 @@ import path from 'path';
 import Eleventy from '@11ty/eleventy';
 import { fileURLToPath } from 'url';
 
-const { updateComputedConfig } = computedConfig;
+const { setComputedConfig } = computedConfig;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -44,7 +44,7 @@ export class RocketCli {
 
     this.plugins = this.config.setupPlugins(this.plugins);
 
-    updateComputedConfig(this.config);
+    setComputedConfig(this.config);
   }
 
   async setupEleventy() {

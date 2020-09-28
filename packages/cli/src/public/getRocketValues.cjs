@@ -6,11 +6,6 @@ const { getComputedConfig } = require('./computedConfig.cjs');
 function chooseFile(userPath, config) {
   const userPathParts = userPath.split('/');
 
-  // console.log({
-  //   inputDir: config.inputDir,
-  //   userPathParts,
-  // });
-
   const finalUserPath = path.join(config.inputDir, ...userPathParts);
   if (fs.existsSync(finalUserPath)) {
     return {

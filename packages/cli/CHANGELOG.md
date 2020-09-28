@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.5.0
+
+### Minor Changes
+
+- 161d479: Add alpha plugin system + search via cli
+
 ## 0.4.3
 
 ### Patch Changes

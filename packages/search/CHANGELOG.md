@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.1.0
+
+### Minor Changes
+
+- 161d479: Add alpha plugin system + search via cli
+
 ## 0.1.1
 
 ### Patch Changes

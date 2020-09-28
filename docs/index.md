@@ -2,7 +2,8 @@
 title: Rocket
 layout: home.njk
 slogan: The modern web setup for static sites with a sprinkle of JavaScript.
-callToActionItems: [{ text: 'Learn', href: '/learn/' }, { text: 'Browse Docs', href: '/docs/' }]
+callToActionItems:
+  [{ text: 'Follow Guides', href: '/guides/' }, { text: 'Browse Docs', href: '/docs/' }]
 reasonHeader: Why Rocket?
 reasons:
   [

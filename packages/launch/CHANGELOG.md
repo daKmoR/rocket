@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.4.1
+
+### Patch Changes
+
+- f96ba62: Update @lion/overlays and adjust code to no longer require a patch
+- Updated dependencies [f96ba62]
+  - @d4kmor/drawer@0.2.1
+
 ## 0.4.0
 
 ### Minor Changes

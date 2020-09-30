@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.5.1
+
+### Patch Changes
+
+- f96ba62: Update @lion/overlays and adjust code to no longer require a patch
+
 ## 0.5.0
 
 ### Minor Changes

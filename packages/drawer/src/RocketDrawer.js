@@ -31,29 +31,29 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
       super._setupOverlayCtrl();
 
       /* eslint-disable no-param-reassign */
-      this._overlayCtrl.transitionHide = async ({ _contentWrapperNode }) => {
-        _contentWrapperNode.style.transition = 'transform 0.20s cubic-bezier(0.4, 0.0, 0.2, 1)';
-        _contentWrapperNode.style.transform = 'translateX(-100%)';
-        await transitionend(_contentWrapperNode);
-        _contentWrapperNode.style.display = 'none';
+      this._overlayCtrl.transitionHide = async ({ contentNode }) => {
+        contentNode.style.transition = 'transform 0.20s cubic-bezier(0.4, 0.0, 0.2, 1)';
+        contentNode.style.transform = 'translateX(-100%)';
+        await transitionend(contentNode);
+        // contentNode.style.display = 'none';
       };
-      this._overlayCtrl.transitionShow = async ({ _contentWrapperNode }) => {
-        _contentWrapperNode.style.display = 'block';
-        _contentWrapperNode.style.transform = 'translateX(-100%)';
-        _contentWrapperNode.style.transition = 'transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1)';
-        // wait for block to be "active" and then translate otherwise there will be no animation
+      this._overlayCtrl.transitionShow = async ({ contentNode }) => {
+        contentNode.style.display = 'block';
+        contentNode.style.transform = 'translateX(-100%)';
+        contentNode.style.transition = 'transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1)';
+        // wait for display block to be "updated in the dom" and then translate otherwise there will be no animation
         await new Promise(resolve => requestAnimationFrame(resolve));
         await new Promise(resolve => requestAnimationFrame(resolve));
-        _contentWrapperNode.style.transform = 'translateX(0)';
-        await transitionend(_contentWrapperNode);
+        contentNode.style.transform = 'translateX(0)';
+        await transitionend(contentNode);
       };
       /* eslint-enable no-param-reassign */
 
-      this._overlayCtrl._contentWrapperNode.style.transform = 'translateX(-100%)';
-      this._overlayCtrl._contentWrapperNode.style.willChange = 'transform';
+      this._overlayCtrl.contentNode.style.transform = 'translateX(-100%)';
+      this._overlayCtrl.contentNode.style.willChange = 'transform';
 
       // gesture
-      this.containerEl = this._overlayCtrl._contentWrapperNode;
+      this.containerEl = this._overlayCtrl.contentNode;
     }
   }
 
@@ -71,7 +71,9 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
       if (this.useOverlay) {
         this._setupOverlayCtrl();
       } else {
-        this._teardownOverlayCtrl();
+        if (this._overlayCtrl) {
+          this._teardownOverlayCtrl();
+        }
       }
     }
   }
@@ -138,7 +140,7 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     this._timestamp = new Date().getTime();
     this._velocity = 0;
 
-    this._overlayCtrl._contentWrapperNode.style.transition = '';
+    this._overlayCtrl.contentNode.style.transition = '';
 
     document.body.addEventListener('touchmove', this.onGestureMove, { passive: true });
     document.body.addEventListener('touchend', this.onGestureEnd, { passive: true });
@@ -191,7 +193,7 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
       endOpenedState = percentageVisible >= 0.5;
     }
 
-    this._overlayCtrl._contentWrapperNode.style.transition =
+    this._overlayCtrl.contentNode.style.transition =
       'transform 0.20s cubic-bezier(0.4, 0.0, 0.2, 1)';
 
     this.containerEl.style.transform = '';

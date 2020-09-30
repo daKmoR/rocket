@@ -14,7 +14,6 @@
     "lint:eslint": "eslint --ext .ts,.js,.mjs,.cjs .",
     "lint:prettier": "node node_modules/prettier/bin-prettier.js \"**/*.{ts,js,mjs,cjs,md}\" --check --ignore-path .eslintignore",
     "lint:ts": "rimraf packages/*/tsconfig.tsbuildinfo && tsc --build",
-    "postinstall": "patch-package",
     "release": "changeset publish && yarn format",
     "rocket:build": "node packages/cli/src/cli.js build",
     "rocket:build:site": "node packages/cli/src/cli.js build --mode=site",

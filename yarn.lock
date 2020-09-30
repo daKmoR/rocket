@@ -1135,24 +1135,24 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@lion/core@0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@lion/core/-/core-0.7.2.tgz#d96dbfda896a44efe1a7feefabc4626cd1394aa5"
-  integrity sha512-1Z5DMOXOZ9RZMB9UCJWmv2PVRjh7TJNhdMX6OhaTkfUQuEonPJLCy45DMOjcirfub5885zm3n7GFpv9DKES63g==
+"@lion/core@0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@lion/core/-/core-0.13.0.tgz#a6eefb645a27189852ea53288994f36790055e26"
+  integrity sha512-nNpvsObncLkIkgwcSrBtH0yomAdTBFfRHk3FU2tF+ZcuKVcUoRdMMQiOy5QmHbp7gk2UdCWAM/7Wwe3YPTNxUg==
   dependencies:
-    "@open-wc/dedupe-mixin" "^1.2.1"
-    "@open-wc/scoped-elements" "^1.0.3"
-    lit-element "^2.2.1"
-    lit-html "^1.0.0"
+    "@open-wc/dedupe-mixin" "^1.2.18"
+    "@open-wc/scoped-elements" "^1.2.2"
+    lit-element "~2.4.0"
+    lit-html "^1.3.0"
 
-"@lion/overlays@0.16.6":
-  version "0.16.6"
-  resolved "https://registry.yarnpkg.com/@lion/overlays/-/overlays-0.16.6.tgz#990f664ffe9659fa2fd49371b6c8beaefeb1cd4e"
-  integrity sha512-3/Q8LE8O9cC6SVFhf6hp7eQIDBExyLAX5nm2NM9TWAKoX/0b/quAYSfoE0XOTs+8tUAeMBe5N89OghZh6rJXrA==
+"@lion/overlays@^0.20.0":
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/@lion/overlays/-/overlays-0.20.0.tgz#b78c40f6db64f0b7a489b0ee275536af0e4d94ed"
+  integrity sha512-51fUh5GmSDzYyVk9Hd+bk4nCA04Ja0blIgO1hRCZykIIyZR68X6O8V2MBu0yYdcmU+uLACBx7gyKsnio0bJhpQ==
   dependencies:
-    "@lion/core" "0.7.2"
+    "@lion/core" "0.13.0"
     popper.js "^1.15.0"
-    singleton-manager "1.1.0"
+    singleton-manager "1.1.2"
 
 "@manypkg/find-root@^1.1.0":
   version "1.1.0"
@@ -1332,7 +1332,7 @@
     "@open-wc/semantic-dom-diff" "^0.13.16"
     "@types/chai" "^4.1.7"
 
-"@open-wc/dedupe-mixin@^1.2.1", "@open-wc/dedupe-mixin@^1.3.0":
+"@open-wc/dedupe-mixin@^1.2.18", "@open-wc/dedupe-mixin@^1.3.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@open-wc/dedupe-mixin/-/dedupe-mixin-1.3.0.tgz#0df5d438285fc3482838786ee81895318f0ff778"
   integrity sha512-UfdK1MPnR6T7f3svzzYBfu3qBkkZ/KsPhcpc3JYhsUY4hbpwNF9wEQtD4Z+/mRqMTJrKg++YSxIxE0FBhY3RIw==
@@ -1357,7 +1357,7 @@
     "@open-wc/rollup-plugin-html" "^1.2.4"
     polyfills-loader "^1.7.2"
 
-"@open-wc/scoped-elements@^1.0.3", "@open-wc/scoped-elements@^1.2.2":
+"@open-wc/scoped-elements@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@open-wc/scoped-elements/-/scoped-elements-1.2.2.tgz#e1eb9fbbedf2ba56ca07174bf17e7910da9964a7"
   integrity sha512-C3JU79gNBmcxqKqZ8aTargPmBBwQvyws6lhfZ+9I0NH8SKk0k6ExjzyUwsDa2i/kbhBuUE5NebaDZJM5Jw4/6w==
@@ -5723,14 +5723,14 @@ listr@^0.14.2:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
-lit-element@^2.2.1, lit-element@^2.3.1:
+lit-element@^2.2.1, lit-element@^2.3.1, lit-element@~2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/lit-element/-/lit-element-2.4.0.tgz#b22607a037a8fc08f5a80736dddf7f3f5d401452"
   integrity sha512-pBGLglxyhq/Prk2H91nA0KByq/hx/wssJBQFiYqXhGDvEnY31PRGYf1RglVzyLeRysu0IHm2K0P196uLLWmwFg==
   dependencies:
     lit-html "^1.1.1"
 
-lit-html@^1.0.0, lit-html@^1.1.1, lit-html@^1.2.1:
+lit-html@^1.0.0, lit-html@^1.1.1, lit-html@^1.2.1, lit-html@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-1.3.0.tgz#c80f3cc5793a6dea6c07172be90a70ab20e56034"
   integrity sha512-0Q1bwmaFH9O14vycPHw8C/IeHMk/uSDldVLIefu/kfbTBGIc44KGH6A8p1bDfxUfHdc8q6Ct7kQklWoHgr4t1Q==
@@ -7996,10 +7996,10 @@ simple-git@^1.85.0:
   dependencies:
     debug "^4.0.1"
 
-singleton-manager@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/singleton-manager/-/singleton-manager-1.1.0.tgz#f423185d3485688201ac7e59f6afce0bebb208d2"
-  integrity sha512-h3XOcgN1Ms9UFYvJH4NHBeXk6vwoIKl4/gbp60p8lwJYdtzZIsm+kfdOw2uT99jkeXdR3+ytpZfwi+Us06C8/g==
+singleton-manager@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/singleton-manager/-/singleton-manager-1.1.2.tgz#35c90b9f86012e4bc3342183a39fae27e8f05f24"
+  integrity sha512-U1nD22iUUVSWY7ST5iB0ca+qFZcXwtP6nf8Gp0WP/u4gqOs83gdOsOS6d4glhvcJ751ERJfDbaMoqDA0pPk+yA==
 
 sinon-chai@^3.3.0:
   version "3.5.0"

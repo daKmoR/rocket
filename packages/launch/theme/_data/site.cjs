@@ -1,12 +1,7 @@
-const { getRocketValues } = require('@d4kmor/cli');
-
-module.exports = async function () {
-  const defaultValues = await getRocketValues();
+module.exports = function () {
   return {
-    ...defaultValues,
     name: 'Rocket',
     description: 'Rocket is the way to build fast static websites with a sprinkle of javascript',
-    url: 'https://rocketjs.org',
     socialLinks: [
       {
         name: 'GitHub',

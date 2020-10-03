@@ -1,4 +1,4 @@
 <a class="logo-link" href="{{ '/' | url }}">
-  {{ site.logoPath | inlineFilePath | safe }}
+  {{ '_assets/logo.svg' | asset | toAbsPath | inlineFilePath | safe }}
   <span>{{ site.name }}</span>
 </a>

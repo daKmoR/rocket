@@ -5,7 +5,7 @@
 {% if pageTitle %}
   {% set _pageTitle = pageTitle %}
 {% endif %}
-{% set currentUrl = site.url + page.url %}
+{% set currentUrl = siteUrl + page.url %}
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
 <meta name="msapplication-TileColor" content="{{ site.iconColorMsapplicationTileColor }}">
 <meta name="theme-color" content="{{ site.iconColorThemeColor }}">
 
-{% if site.url !== '/' %}
+{% if siteUrl !== '/' %}
   <link rel="canonical" href="{{ currentUrl }}"/>
 {% endif %}
 
@@ -33,7 +33,7 @@
 {% if socialMediaImage %}
   {% set _socialMediaImage = socialMediaImage %}
 {% endif %}
-<meta property="og:image" content="{{ site.url }}{{ _socialMediaImage | url }}"/>
+<meta property="og:image" content="{{ siteUrl }}{{ _socialMediaImage | url }}"/>
 <meta property="og:url" content="{{ currentUrl }}"/>
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -45,13 +45,12 @@
 <meta name="description" content="{{ _description }}"/>
 <meta property="og:description" content="{{ _description }}"/>
 
-<link rel="stylesheet" href="{{ site.cssVariablesUrl }}">
-<link rel="stylesheet" href="{{ '/_assets/layout.css' | themeUrl }}">
-<link rel="stylesheet" href="{{ '/_assets/markdown.css' | themeUrl }}">
-{% if site.cssStyleUrl %}
-  <link rel="stylesheet" href="{{ site.cssStyleUrl }}">
-{% endif %}
+<link rel="stylesheet" href="{{ '/_assets/variables.css' | asset | url }}">
+<link rel="stylesheet" href="{{ '/_assets/layout.css' | asset | url }}">
+<link rel="stylesheet" href="{{ '/_assets/markdown.css' | asset | url }}">
 
-{% if site.htmlHeadPath %}
-  {% include site.htmlHeadPath %}
-{% endif %}
+<!-- TODO: skip adding if not overwritten in user page -->
+<link rel="stylesheet" href="{{ '/_assets/style.css' | asset | url }}">
+
+{% set headHtmlFile = '/_assets/head.html' | toAbsPath %}
+{% include headHtmlFile %}

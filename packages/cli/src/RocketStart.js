@@ -109,6 +109,7 @@ export class RocketStart {
       ...this.config.devServer,
       open: this.config.devServer.open ? this.config.devServer.open : `${this.config.pathPrefix}/`,
       plugins: [eleventyPlugin({ absRootDir })],
+      clearTerminalOnReload: false,
     };
 
     await startDevServer({

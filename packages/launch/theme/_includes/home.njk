@@ -3,7 +3,7 @@
   <head>
     {% include 'partials/head-content.njk' %}
   </head>
-  <body layout="home" {% if site.homeBackgroundPath %} class="has-background" {% endif %}>
+  <body layout="home" home-layout="{{rocketLaunch.homeLayout}}">
     {% include 'partials/header.njk' %}
 
     <div id="content-wrapper">
@@ -27,14 +27,10 @@
           </nav>
         </rocket-drawer>
         <main class="markdown-body">
-          {% if site.logoColorPath %}
-            <img class="page-logo" src="{{ site.logoColorUrl }}" alt="{{ site.title }} Logo"/>
-          {% else %}
-            {{ site.logoPath | inlineFilePath | modifySvg({ addRootClass: 'page-logo' }) | safe }}
-          {% endif %}
+          <img class="page-logo" src="{{ '_assets/logo.svg' | asset | url }}" alt="{{ site.title }} Logo"/>
 
-          {% if site.homeBackgroundUrl %}
-            <img class="page-background" src="{{ site.homeBackgroundUrl }}" role="presentation"/>
+          {% if rocketLaunch.homeLayout === 'background' %}
+            <img class="page-background" src="{{ '_assets/home-background.svg' | asset | url }}" role="presentation"/>
           {% endif %}
 
           <h1 class="page-title">{{ title }}</h1>

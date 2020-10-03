@@ -609,34 +609,34 @@ body[layout='home'] .markdown-body .call-to-action:nth-child(1) {
 }
 
 /** HOME WITH BACKGROUND **************************************************************************/
-body[layout='home'].has-background .page-background {
+body[layout='home'][home-layout='background'] .page-background {
   display: none;
 }
 
 @media screen and (min-width: 1024px) {
-  body[layout='home'].has-background .page-title,
-  body[layout='home'].has-background .page-slogan {
+  body[layout='home'][home-layout='background'] .page-title,
+  body[layout='home'][home-layout='background'] .page-slogan {
     text-align: left;
   }
 
-  body[layout='home'].has-background .page-title {
+  body[layout='home'][home-layout='background'] .page-title {
     margin-top: 110px;
   }
 
-  body[layout='home'].has-background .page-slogan {
+  body[layout='home'][home-layout='background'] .page-slogan {
     max-width: 500px;
   }
 
-  body[layout='home'].has-background .markdown-body .call-to-action-list {
+  body[layout='home'][home-layout='background'] .markdown-body .call-to-action-list {
     text-align: left;
   }
 
-  body[layout='home'].has-background header {
+  body[layout='home'][home-layout='background'] header {
     background: transparent;
     border-bottom: none;
   }
 
-  body[layout='home'].has-background .page-background {
+  body[layout='home'][home-layout='background'] .page-background {
     display: block;
     position: absolute;
     top: -52px;
@@ -644,11 +644,11 @@ body[layout='home'].has-background .page-background {
     z-index: -1;
   }
 
-  body[layout='home'].has-background .page-logo {
+  body[layout='home'][home-layout='background'] .page-logo {
     display: none;
   }
 
-  body[layout='home'].has-background header .logo-link {
+  body[layout='home'][home-layout='background'] header .logo-link {
     color: var(--contrast-color-dark, #000);
   }
 }

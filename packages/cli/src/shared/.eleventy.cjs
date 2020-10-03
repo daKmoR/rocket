@@ -42,12 +42,27 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter('themeUrl', function (url) {
     return path.join(templatePathPrefix, url);
   });
-  eleventyConfig.addFilter('themePath', function (url) {
-    return path.join(themePath, url);
+
+  eleventyConfig.addFilter('assetPath', function (inPath) {
+    const foo = inPath.replace('_assets/', '._merged_assets/');
+    const bar = path.join(config.inputPath, foo);
+    return bar;
   });
 
-  eleventyConfig.addFilter('inputPath', function (url) {
-    return path.join(inputDir, url);
+  eleventyConfig.addFilter('asset', function (inPath) {
+    return inPath.replace('_assets/', '._merged_assets/');
+  });
+
+  eleventyConfig.addFilter('toAbsPath', function (inPath) {
+    return path.join(config.inputPath, inPath);
+  });
+
+  eleventyConfig.addFilter('themePath', function (inPath) {
+    return path.join(themePath, inPath);
+  });
+
+  eleventyConfig.addFilter('inputPath', function (inPath) {
+    return path.join(inputDir, inPath);
   });
 
   eleventyConfig.addPassthroughCopy(`${inputDir}/**/*.{png,gif,jpg,svg,css,xml,json,js}`);

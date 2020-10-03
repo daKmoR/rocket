@@ -2,17 +2,13 @@
   <div class="content-area">
     <button id="mobile-menu-trigger">
       <span class="sr-only">Show Menu</span>
-      {{ '/_assets/burger-menu.svg' | themePath | inlineFilePath | safe }}
+      {{ '/_assets/burger-menu.svg' | asset | toAbsPath | inlineFilePath | safe }}
     </button>
-    {% if layout === "home.njk" and site.homeBackgroundPath %}
-      {% if site.logoColorPath %}
-        <a class="logo-link" href="{{ '/' | url }}">
-          {{ site.logoColorPath | inlineFilePath | safe }}
-          <span class="sr-only">{{ site.name }}</span>
-        </a>
-      {% else %}
-        {% include 'partials/logoLink.njk' %}
-      {% endif %}
+    {% if layout === "home.njk" and rocketLaunch.homeLayout === "background" %}
+      <a class="logo-link" href="{{ '/' | url }}">
+        {{ '_assets/logo.svg' | asset | toAbsPath | inlineFilePath | safe }}
+        <span class="sr-only">{{ site.name }}</span>
+      </a>
     {% else %}
       {% include 'partials/logoLink.njk' %}
     {% endif %}
@@ -32,9 +28,11 @@
         {% if entry.image %}
           <img src="{{ entry.image }}" alt="{{ entry.alt }}"/>
         {% else %}
-          {{ '/_assets/NAME-logo.svg' | replace("NAME", entry.name) | lower | themePath | inlineFilePath | safe }}
+          {{ '/_assets/brand-logos/NAME.svg' | replace("NAME", entry.name) | lower | asset | toAbsPath | inlineFilePath | safe }}
         {% endif %}
       </a>
     {%- endfor %}
+
+    {% include 'search/input.njk' %}
   </div>
 </header>

@@ -1,20 +1,18 @@
 import commandLineArgs from 'command-line-args';
 import { normalizeConfig } from './normalizeConfig.js';
 
-import { RocketStart } from './RocketStart.js';
-import { RocketBuild } from './RocketBuild.js';
 import computedConfig from './public/computedConfig.cjs';
 
 import path from 'path';
 import Eleventy from '@11ty/eleventy';
 import { fileURLToPath } from 'url';
+import fs from 'fs-extra';
 
 const { setComputedConfig } = computedConfig;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export class RocketCli {
-  plugins = [new RocketStart(), new RocketBuild()];
   updateComplete;
 
   constructor({ argv } = { argv: undefined }) {
@@ -42,8 +40,6 @@ export class RocketCli {
   async setup() {
     this.config = await normalizeConfig(this.argvConfig);
 
-    this.plugins = this.config.setupPlugins(this.plugins);
-
     setComputedConfig(this.config);
   }
 
@@ -58,6 +54,18 @@ export class RocketCli {
           that.updateComplete = new Promise(resolve => {
             that.__finishBuild = resolve;
           });
+
+          for (const folder of ['_assets', '_data', '_includes']) {
+            const to = path.join(that.config.inputDir, `._merged${folder}`);
+            await fs.emptyDir(to);
+            for (const sourceDir of that.config.themePathes) {
+              const from = path.join(sourceDir, folder);
+              if (fs.existsSync(from)) {
+                await fs.copy(from, to);
+              }
+            }
+          }
+
           await super.write();
           await that.update();
           that.__finishBuild();
@@ -103,7 +111,7 @@ export class RocketCli {
     await this.setup();
 
     if (this.config) {
-      for (const plugin of this.plugins) {
+      for (const plugin of this.config.plugins) {
         if (this.config.command === plugin.command) {
           await plugin.setup({ config: this.config, argv: this.subArgv });
 
@@ -119,7 +127,7 @@ export class RocketCli {
     if (this.config) {
       await this.updateComplete;
 
-      for (const plugin of this.plugins) {
+      for (const plugin of this.config.plugins) {
         if (this.config.command === plugin.command && typeof plugin.execute === 'function') {
           await plugin.execute();
         }
@@ -131,7 +139,7 @@ export class RocketCli {
 
       // Build Phase
       if (this.config.command === 'build') {
-        for (const plugin of this.plugins) {
+        for (const plugin of this.config.plugins) {
           if (typeof plugin.build === 'function') {
             await plugin.build();
           }
@@ -150,7 +158,7 @@ export class RocketCli {
       const url = page.data.page.url;
       const { inputPath, outputPath } = page;
 
-      for (const plugin of this.plugins) {
+      for (const plugin of this.config.plugins) {
         if (
           this.config.command === plugin.command &&
           typeof plugin.inspectRenderedHtml === 'function'

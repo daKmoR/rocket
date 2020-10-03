@@ -16,5 +16,5 @@
 {% endif %}
 
 <script>
-  {{ 'js/handleServiceWorker.js' | themePath | inlineFilePath | safe }}
+  {{ '_assets/handleServiceWorker.js' | asset | toAbsPath | inlineFilePath | safe }}
 </script>

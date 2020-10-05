@@ -15,7 +15,8 @@
     "*.js",
     "dist",
     "dist-types",
-    "src"
+    "src",
+    "theme"
   ],
   "keywords": [
     "rocket",

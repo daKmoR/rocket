@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.1.1
+
+### Patch Changes
+
+- 7085e98: Add themes support
+
 ## 0.1.0
 
 ### Minor Changes

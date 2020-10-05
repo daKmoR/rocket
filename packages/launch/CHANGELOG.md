@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.2
+
+### Patch Changes
+
+- 7085e98: Add themes support
+
 ## 0.4.1
 
 ### Patch Changes

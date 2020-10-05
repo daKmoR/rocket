@@ -5,12 +5,12 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "composite": true,
     "allowJs": true,
     "checkJs": true
   },
   "references": [],
-  "include": ["src", "index.js"],
+  "include": ["src", "theme", "index.js"],
   "exclude": ["src/browser", "tests", "dist"]
 }

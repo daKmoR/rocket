@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.1.2
+
+### Patch Changes
+
+- aba5731: Add theme files to the npm package
+
 ## 0.1.1
 
 ### Patch Changes

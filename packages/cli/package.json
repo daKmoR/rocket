@@ -43,7 +43,7 @@
     "@open-wc/building-rollup": "^1.8.0",
     "@web/config-loader": "^0.1.2",
     "@web/dev-server": "^0.0.11",
-    "@web/rollup-plugin-copy": "^0.1.1",
+    "@web/rollup-plugin-copy": "^0.1.2",
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
     "deepmerge": "^4.2.2",

@@ -34,34 +34,14 @@ function modifySvg(svgText, options) {
 module.exports = function (eleventyConfig) {
   const config = getComputedConfig();
 
-  const configDir = config.configDir;
-  const inputDir = path.join(configDir, 'docs');
-  const { templatePathPrefix, pathPrefix, themePath } = config;
-  const { data: dataDir, includes: includesDir } = config.dir;
-
-  eleventyConfig.addFilter('themeUrl', function (url) {
-    return path.join(templatePathPrefix, url);
-  });
-
-  eleventyConfig.addFilter('assetPath', function (inPath) {
-    const foo = inPath.replace('_assets/', '._merged_assets/');
-    const bar = path.join(config.inputPath, foo);
-    return bar;
-  });
+  const { pathPrefix, inputDir, configDir, outputDir } = config;
+  const { data, includes } = config.eleventy.dir;
 
   eleventyConfig.addFilter('asset', function (inPath) {
     return inPath.replace('_assets/', '._merged_assets/');
   });
 
   eleventyConfig.addFilter('toAbsPath', function (inPath) {
-    return path.join(config.inputPath, inPath);
-  });
-
-  eleventyConfig.addFilter('themePath', function (inPath) {
-    return path.join(themePath, inPath);
-  });
-
-  eleventyConfig.addFilter('inputPath', function (inPath) {
     return path.join(inputDir, inPath);
   });
 
@@ -129,16 +109,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter('inlineFilePath', inlineFilePath);
   eleventyConfig.addFilter('modifySvg', modifySvg);
 
-  // 11ty needs this as it apparently reads this config from multiple files
-  // and only if we provide this hook we can actually override later when we
-  // programmatically trigger 11ty
-  // @TODO: create an issue and find a nicer way to add this transformer
-  eleventyConfig.addTransform('hook-for-rocket');
-
   return {
     dir: {
-      includes: includesDir,
-      data: dataDir,
+      includes,
+      data,
+      output: outputDir,
     },
     pathPrefix,
     passthroughFileCopy: true,

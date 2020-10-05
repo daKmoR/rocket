@@ -3,9 +3,19 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { normalizeConfig } from '../src/normalizeConfig.js';
 
+const { expect } = chai;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const { expect } = chai;
+function removeAllPaths(config) {
+  const configNoPaths = { ...config };
+  delete configNoPaths.devServer.rootDir;
+  delete configNoPaths.configDir;
+  delete configNoPaths._configDirCwdRelative;
+  delete configNoPaths.inputDir;
+  delete configNoPaths._inputDirConfigDirRelative;
+  delete configNoPaths._themePathes;
+  return configNoPaths;
+}
 
 describe('normalizeConfig', () => {
   it('makes sure essential settings are there', async () => {
@@ -14,25 +24,30 @@ describe('normalizeConfig', () => {
       configDir,
     });
 
+    // testing pathes is always a little more complicted 😅
     expect(config.devServer.rootDir).to.exist;
-    expect(config.themePath).to.match(/launch\/theme$/);
-    expect(config.templatePathPrefix).to.match(/launch\/theme$/);
+    expect(config.configDir).to.equal(configDir);
+    expect(config._configDirCwdRelative).to.not.equal(configDir);
+    expect(config._configDirCwdRelative).to.match(/test\/fixtures\/empty$/);
     expect(config.inputDir).to.match(/empty\/docs$/);
+    expect(config._inputDirConfigDirRelative).to.equal('docs');
+    expect(config._themePathes[0]).to.match(/empty\/docs$/);
 
-    const configNoPaths = { ...config };
-    delete configNoPaths.devServer.rootDir;
-    delete configNoPaths.themePath;
-    delete configNoPaths.templatePathPrefix;
-    delete configNoPaths.inputDir;
-    delete configNoPaths.dir;
-    expect(configNoPaths).to.deep.equal({
+    expect(removeAllPaths(config)).to.deep.equal({
       command: 'help',
-      configDir,
       devServer: {},
       outputDir: '_site',
       pathPrefix: '/docs',
-      themePackage: '@d4kmor/launch',
       watch: true,
+      setupUnifiedPlugins: [],
+      themes: [],
+      plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
+      eleventy: {
+        dir: {
+          data: '._merged_data',
+          includes: '._merged_includes',
+        },
+      },
     });
   });
 
@@ -43,32 +58,25 @@ describe('normalizeConfig', () => {
       devServer: {
         more: 'settings',
       },
-      dir: {
-        data: 'override/path/_data',
-        includes: 'override/as/would/be/relative',
-      },
     });
 
-    const configNoPaths = { ...config };
-    delete configNoPaths.devServer.rootDir;
-    delete configNoPaths.themePath;
-    delete configNoPaths.templatePathPrefix;
-    delete configNoPaths.inputDir;
-    expect(configNoPaths).to.deep.equal({
+    expect(removeAllPaths(config)).to.deep.equal({
       command: 'help',
-      configDir,
       devServer: {
         more: 'settings',
       },
-      dir: {
-        data: 'override/path/_data',
-        includes: 'override/as/would/be/relative',
-        output: '_site',
-      },
       outputDir: '_site',
       pathPrefix: '/docs',
-      themePackage: '@d4kmor/launch',
       watch: true,
+      setupUnifiedPlugins: [],
+      themes: [],
+      plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
+      eleventy: {
+        dir: {
+          data: '._merged_data',
+          includes: '._merged_includes',
+        },
+      },
     });
   });
 
@@ -78,26 +86,23 @@ describe('normalizeConfig', () => {
       configDir,
     });
 
-    const configNoPaths = { ...config };
-    delete configNoPaths.devServer.rootDir;
-    delete configNoPaths.themePath;
-    delete configNoPaths.templatePathPrefix;
-    delete configNoPaths.inputDir;
-    expect(configNoPaths).to.deep.equal({
+    expect(removeAllPaths(config)).to.deep.equal({
       command: 'help',
-      configDir,
       devServer: {
-        more: 'settings',
-      },
-      dir: {
-        data: 'override/path/_data',
-        includes: 'override/as/would/be/relative',
-        output: '_site',
+        more: 'from-file',
       },
       outputDir: '_site',
       pathPrefix: '/docs',
-      themePackage: '@d4kmor/launch',
       watch: true,
+      setupUnifiedPlugins: [],
+      themes: [],
+      plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
+      eleventy: {
+        dir: {
+          data: '._merged_data',
+          includes: '._merged_includes',
+        },
+      },
     });
   });
 });

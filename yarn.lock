@@ -1869,10 +1869,10 @@
     open "^7.1.0"
     portfinder "^1.0.27"
 
-"@web/rollup-plugin-copy@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@web/rollup-plugin-copy/-/rollup-plugin-copy-0.1.1.tgz#b4c8a480251c4e880c8324f6ae906cffc024deda"
-  integrity sha512-UhUq/bpNOvE5ufw0kbb6Aa3cmtKFWkROa/qQf5Xd9kJGDduVroCyokQYdPaHjEeTHWrNQw8nCLTNWOqKrPZbKA==
+"@web/rollup-plugin-copy@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@web/rollup-plugin-copy/-/rollup-plugin-copy-0.1.2.tgz#b8a3c1d5385bda0e94a1eb37cb375455cabfc3a1"
+  integrity sha512-n41NvYQfXLS0dU7d9gHXmEIoctE+aY2bN6ZzlXi72tNsnGXY+zjAD/0Xye4O7eC5l5NOja1MTB4giwq+kGhc9g==
   dependencies:
     glob "^7.0.0"
 

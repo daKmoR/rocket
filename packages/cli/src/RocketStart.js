@@ -34,15 +34,8 @@ async function getFileWithLastUrlDir(browserPath, absRootDir) {
 const pageCache = {};
 
 function eleventyPlugin({ absRootDir }) {
-  /** @type {import('chokidar').FSWatcher} */
-  let fileWatcher;
-
   return {
     name: 'eleventyPlugin',
-
-    serverStart(args) {
-      ({ fileWatcher } = args);
-    },
 
     async serve(ctx) {
       let absFilePath;
@@ -74,7 +67,6 @@ function eleventyPlugin({ absRootDir }) {
         return undefined;
       }
 
-      fileWatcher.add(absFilePath);
       return { body: newBody, type: 'html' };
     },
   };
@@ -117,12 +109,6 @@ export class RocketStart {
       readCliArgs: true,
       readFileConfig: false,
       argv: this.__argv,
-    });
-
-    ['exit', 'SIGINT'].forEach(event => {
-      process.on(event, () => {
-        process.exit(0);
-      });
     });
   }
 }

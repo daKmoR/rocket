@@ -37,12 +37,6 @@ export class RocketCli {
     };
   }
 
-  async setup() {
-    this.config = await normalizeConfig(this.argvConfig);
-
-    setComputedConfig(this.config);
-  }
-
   async setupEleventy() {
     if (!this.eleventy) {
       const { _inputDirConfigDirRelative, outputDir } = this.config;
@@ -55,16 +49,7 @@ export class RocketCli {
             that.__finishBuild = resolve;
           });
 
-          for (const folder of ['_assets', '_data', '_includes']) {
-            const to = path.join(that.config.inputDir, `._merged${folder}`);
-            await fs.emptyDir(to);
-            for (const sourceDir of that.config._themePathes) {
-              const from = path.join(sourceDir, folder);
-              if (fs.existsSync(from)) {
-                await fs.copy(from, to);
-              }
-            }
-          }
+          await that.mergeThemes();
 
           await super.write();
           await that.update();
@@ -103,6 +88,27 @@ export class RocketCli {
     }
   }
 
+  async mergeThemes() {
+    for (const folder of ['_assets', '_data', '_includes']) {
+      const to = path.join(this.config.inputDir, `._merged${folder}`);
+      await fs.emptyDir(to);
+      for (const sourceDir of this.config._themePathes) {
+        const from = path.join(sourceDir, folder);
+        if (fs.existsSync(from)) {
+          await fs.copy(from, to);
+        }
+      }
+    }
+  }
+
+  /**
+   * Separate this so we can test it
+   */
+  async setup() {
+    this.config = await normalizeConfig(this.argvConfig);
+    setComputedConfig(this.config);
+  }
+
   async run() {
     await this.setup();
 
@@ -118,6 +124,7 @@ export class RocketCli {
       }
     }
 
+    await this.mergeThemes();
     await this.setupEleventy();
 
     if (this.config) {
@@ -161,6 +168,12 @@ export class RocketCli {
         ) {
           await plugin.inspectRenderedHtml({ html, inputPath, outputPath, layout, title, url });
         }
+      }
+    }
+
+    for (const plugin of this.config.plugins) {
+      if (this.config.command === plugin.command && typeof plugin.updated === 'function') {
+        await plugin.updated();
       }
     }
   }

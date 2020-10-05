@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.5.2
+
+### Patch Changes
+
+- 7085e98: Add themes support
+
 ## 0.5.1
 
 ### Patch Changes

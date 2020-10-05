@@ -2,9 +2,8 @@ import commandLineArgs from 'command-line-args';
 
 import path from 'path';
 import { rollup } from 'rollup';
-import clear from 'rollup-plugin-clear';
 import { copy } from '@web/rollup-plugin-copy';
-// const visualizer = require('rollup-plugin-visualizer');
+import fs from 'fs-extra';
 
 import buildingRollup from '@open-wc/building-rollup';
 
@@ -32,12 +31,6 @@ async function productionBuild(html, config) {
     injectServiceWorker: true,
   });
 
-  mpaConfig.plugins.push(
-    clear({
-      targets: [config.outputDir],
-    }),
-  );
-
   const copyPattern = '**/*.{png,gif,jpg,json,css,svg,ico,html}';
 
   mpaConfig.plugins.push(
@@ -46,8 +39,6 @@ async function productionBuild(html, config) {
       rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
     }),
   );
-
-  // mpaConfig.plugins.push(visualizer());
 
   await buildAndWrite(mpaConfig);
 }
@@ -82,6 +73,7 @@ export class RocketBuild {
   }
 
   async build() {
+    await fs.emptyDir(this.config.outputDir);
     await productionBuild(this.htmlFiles, this.config);
   }
 

@@ -45,10 +45,6 @@ async function productionBuild(html, config) {
       patterns: [copyPattern],
       rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
     }),
-    copy({
-      patterns: [`${config.templatePathPrefix.substring(1)}/${copyPattern}`],
-      rootDir: config.devServer.rootDir,
-    }),
   );
 
   // mpaConfig.plugins.push(visualizer());

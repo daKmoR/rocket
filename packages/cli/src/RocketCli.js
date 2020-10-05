@@ -45,7 +45,7 @@ export class RocketCli {
 
   async setupEleventy() {
     if (!this.eleventy) {
-      const { inputDir, outputDir } = this.config;
+      const { _inputDirConfigDirRelative, outputDir } = this.config;
 
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const that = this;
@@ -58,7 +58,7 @@ export class RocketCli {
           for (const folder of ['_assets', '_data', '_includes']) {
             const to = path.join(that.config.inputDir, `._merged${folder}`);
             await fs.emptyDir(to);
-            for (const sourceDir of that.config.themePathes) {
+            for (const sourceDir of that.config._themePathes) {
               const from = path.join(sourceDir, folder);
               if (fs.existsSync(from)) {
                 await fs.copy(from, to);
@@ -71,15 +71,11 @@ export class RocketCli {
           that.__finishBuild();
         }
       }
-      const elev = new RocketEleventy(inputDir, outputDir);
+      const elev = new RocketEleventy(_inputDirConfigDirRelative, outputDir);
       // 11ty always wants a relative path to cwd - why?
       const rel = path.relative(process.cwd(), path.join(__dirname));
       const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.cjs');
       elev.setConfigPathOverride(relCwdPathToConfig);
-
-      // if (this.config.pathPrefix !== undefined) {
-      //   elev.config.pathPrefix = this.config.pathPrefix;
-      // }
 
       elev.setDryRun(true); // do not write to file system
       await elev.init();

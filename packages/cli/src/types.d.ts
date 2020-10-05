@@ -3,19 +3,32 @@ export interface DevServerOptions {
 }
 
 export interface EleventyOptions {
-  pathPrefix: string;
-  templatePathPrefix: string;
-  dir: {
-    includes: string;
-    data: string;
+  dir?: {
+    includes?: string;
+    data?: string;
+    output?: string;
   };
 }
 
-export interface RocketCliOptions extends EleventyOptions {
+export interface RocketTheme {
+  path: string;
+  setupUnifiedPlugins: function; // TODO: improve
+  setupPlugins: function; // TODO: improve
+}
+
+export interface RocketCliOptions {
   command: string;
+  pathPrefix: string;
   configDir: string;
+  _configDirCwdRelative: string;
   inputDir: string;
-  themePath: string;
-  themePackage: string;
+  _inputDirConfigDirRelative: string;
+  outputDir: string;
+  watch: boolean;
+  themes: Array<RocketTheme>;
   devServer: DevServerOptions;
+  eleventy: EleventyOptions;
+  setupUnifiedPlugins?: function; // TODO: improve
+  setupPlugins?: function; // TODO: improve
+  _themePathes?: Array<string>;
 }

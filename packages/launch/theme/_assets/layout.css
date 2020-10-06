@@ -332,9 +332,9 @@ rocket-navigation > ul {
   text-decoration: none;
 
   /* same as header */
-  border-bottom: 1px solid var(--primary-color-darker);
-  background: linear-gradient(to bottom, var(--primary-color-lighter), var(--primary-color));
-  color: var(--contrast-color-light, #fff);
+  box-shadow: 0 0px 3px rgba(0, 0, 0, 0.3);
+  color: var(--primary-text-color);
+  font-weight: bold;
 }
 
 #sidebar-nav .logo-link span {
@@ -359,6 +359,10 @@ li.anchor {
 
 li.current > ul > li.anchor {
   display: block;
+}
+
+.sidebar-bottom {
+  padding-bottom: 10px;
 }
 
 @media screen and (min-width: 1024px) {

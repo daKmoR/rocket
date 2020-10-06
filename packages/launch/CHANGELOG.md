@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.3
+
+### Patch Changes
+
+- 6acfb29: Fix mobile drawer styles
+
 ## 0.4.2
 
 ### Patch Changes

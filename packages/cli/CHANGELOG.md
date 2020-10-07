@@ -1,5 +1,13 @@
 # @d4kmor/cli
 
+## 0.5.3
+
+### Patch Changes
+
+- e815126: Use _merged\_\_ folders instead of .*merged*_ folders as hidden folders are not deployed (by default) by netlify and potentially other services as well
+- Updated dependencies [91c781f]
+  - @d4kmor/eleventy-plugin-mdjs-unified@0.3.1
+
 ## 0.5.2
 
 ### Patch Changes

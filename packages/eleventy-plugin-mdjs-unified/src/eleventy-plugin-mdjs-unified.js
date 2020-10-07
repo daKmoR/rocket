@@ -1,5 +1,6 @@
 const { mdjsProcess } = require('@mdjs/core');
 const visit = require('unist-util-visit');
+const { init, parse } = require('es-module-lexer');
 
 const { parseTitle } = require('@d4kmor/core/title');
 
@@ -96,6 +97,41 @@ function addAdjustLinksForEleventy(plugins) {
 }
 
 /**
+ * @param {string} source
+ * @param {string} inputPath
+ */
+async function processImports(source, inputPath) {
+  if (!inputPath.endsWith('index.md')) {
+    if (source !== '' && source.includes('import')) {
+      let newSource = '';
+      let lastPos = 0;
+      await init;
+      const [imports] = parse(source);
+      for (const importObj of imports) {
+        newSource += source.substring(lastPos, importObj.s);
+        const importSrc = source.substring(importObj.s, importObj.e);
+
+        if (importSrc.startsWith('./')) {
+          newSource += '.' + importSrc;
+        } else if (importSrc.startsWith("'./")) {
+          newSource += "'." + importSrc.substring(1);
+        } else if (importSrc.startsWith('../')) {
+          newSource += '../' + importSrc;
+        } else if (importSrc.startsWith("'../")) {
+          newSource += "'../" + importSrc.substring(1);
+        } else {
+          newSource += importSrc;
+        }
+        lastPos = importObj.e;
+      }
+      newSource += source.substring(lastPos, source.length);
+      return newSource;
+    }
+  }
+  return source;
+}
+
+/**
  * @param {EleventPluginMdjsUnified} pluginOptions
  */
 function eleventyUnified(pluginOptions) {
@@ -137,6 +173,9 @@ function eleventyUnified(pluginOptions) {
         addEleventyPageToEveryPlugin,
       ],
     });
+
+    result.jsCode = await processImports(result.jsCode, eleventySettings.page.inputPath);
+
     return result;
   }
   return {

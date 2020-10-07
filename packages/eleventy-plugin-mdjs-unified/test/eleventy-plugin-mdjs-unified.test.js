@@ -83,6 +83,48 @@ describe('eleventy-plugin-mdjs-unified', () => {
     ]);
   });
 
+  it('rewrites relative import pathes', async () => {
+    const files = await renderEleventy('./test/fixtures/mdjs-import');
+    expect(files).to.deep.equal([
+      {
+        html: {
+          html: '<p>first</p>',
+          jsCode: "import '../import-me.js';\nimport('../import-me-too.js');",
+          stories: [],
+        },
+        name: 'first/index.html',
+      },
+    ]);
+  });
+
+  it('rewrites relative import pathes in subpages', async () => {
+    const files = await renderEleventy('./test/fixtures/mdjs-import-in-subpage');
+    expect(files).to.deep.equal([
+      {
+        html: {
+          html: '<p>first</p>',
+          jsCode: "import '../../import-me.js';\nimport('../../import-me-too.js');",
+          stories: [],
+        },
+        name: 'subpage/first/index.html',
+      },
+    ]);
+  });
+
+  it('does not touch relative imports of an index.md file', async () => {
+    const files = await renderEleventy('./test/fixtures/mdjs-import-index');
+    expect(files).to.deep.equal([
+      {
+        html: {
+          html: '<p>index</p>',
+          jsCode: "import './import-me.js';\nimport('./import-me-too.js');",
+          stories: [],
+        },
+        name: 'index.html',
+      },
+    ]);
+  });
+
   it('rewrites links to work with 11ty', async () => {
     const files = await renderEleventy('./test/fixtures/links');
     const sortedFiles = files.sort((a, b) => a.name.length - b.name.length);

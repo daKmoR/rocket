@@ -12,9 +12,9 @@ npm i @d4kmor/cli @d4kmor/launch
 
 ```
 ## Rocket ignore files (need to be the full relative path to the folders)
-docs/._merged_data/
-docs/._merged_assets/
-docs/._merged_includes/
+docs/_merged_data/
+docs/_merged_assets/
+docs/_merged_includes/
 ```
 
 ## Usage

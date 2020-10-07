@@ -82,8 +82,8 @@ export async function normalizeConfig(inConfig) {
     watch: true,
     eleventy: {
       dir: {
-        data: '._merged_data',
-        includes: '._merged_includes',
+        data: '_merged_data',
+        includes: '_merged_includes',
       },
     },
 

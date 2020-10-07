@@ -90,7 +90,7 @@ export class RocketCli {
 
   async mergeThemes() {
     for (const folder of ['_assets', '_data', '_includes']) {
-      const to = path.join(this.config.inputDir, `._merged${folder}`);
+      const to = path.join(this.config.inputDir, `_merged${folder}`);
       await fs.emptyDir(to);
       for (const sourceDir of this.config._themePathes) {
         const from = path.join(sourceDir, folder);

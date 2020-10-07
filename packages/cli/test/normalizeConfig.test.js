@@ -44,8 +44,8 @@ describe('normalizeConfig', () => {
       plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
       eleventy: {
         dir: {
-          data: '._merged_data',
-          includes: '._merged_includes',
+          data: '_merged_data',
+          includes: '_merged_includes',
         },
       },
     });
@@ -73,8 +73,8 @@ describe('normalizeConfig', () => {
       plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
       eleventy: {
         dir: {
-          data: '._merged_data',
-          includes: '._merged_includes',
+          data: '_merged_data',
+          includes: '_merged_includes',
         },
       },
     });
@@ -99,8 +99,8 @@ describe('normalizeConfig', () => {
       plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
       eleventy: {
         dir: {
-          data: '._merged_data',
-          includes: '._merged_includes',
+          data: '_merged_data',
+          includes: '_merged_includes',
         },
       },
     });

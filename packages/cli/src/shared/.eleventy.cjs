@@ -38,7 +38,7 @@ module.exports = function (eleventyConfig) {
   const { data, includes } = config.eleventy.dir;
 
   eleventyConfig.addFilter('asset', function (inPath) {
-    return inPath.replace('_assets/', '._merged_assets/');
+    return inPath.replace('_assets/', '_merged_assets/');
   });
 
   eleventyConfig.addFilter('toAbsPath', function (inPath) {

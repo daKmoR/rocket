@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.4
+
+### Patch Changes
+
+- 0f5b154: Add default icons
+
 ## 0.4.3
 
 ### Patch Changes

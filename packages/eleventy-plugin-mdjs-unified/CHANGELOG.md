@@ -1,5 +1,11 @@
 # @d4kmor/eleventy-plugin-mdjs-unified
 
+## 0.3.1
+
+### Patch Changes
+
+- 91c781f: You can now use relative imports in all markdown files (not just index.md). For that the import in js of markdown files gets parsed and modified if needed.
+
 ## 0.3.0
 
 ### Minor Changes

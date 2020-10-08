@@ -79,10 +79,17 @@ export class RocketBuild {
 
   async inspectRenderedHtml({ inputPath, html, outputPath }) {
     const name = path.relative(this.config.outputDir, outputPath);
+    const fileNameParts = path.basename(inputPath).split('.');
+    fileNameParts.pop();
+    const fileNameNoExt = fileNameParts.join();
+    let rootDir = path.dirname(path.resolve(inputPath));
+    if (fileNameNoExt !== 'index') {
+      rootDir = path.join(rootDir, fileNameNoExt);
+    }
     this.htmlFiles.push({
       html,
       name,
-      rootDir: path.dirname(path.resolve(inputPath)),
+      rootDir,
     });
   }
 }

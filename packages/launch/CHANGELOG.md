@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.6
+
+### Patch Changes
+
+- 37d3fc6: Use an image tag for the logo instead of inlining to prevent issues with svg ids
+
 ## 0.4.5
 
 ### Patch Changes

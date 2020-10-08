@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/cli",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "publishConfig": {
     "access": "public"
   },
@@ -51,7 +51,7 @@
     "rollup-plugin-workbox": "^5.0.1"
   },
   "devDependencies": {
-    "@d4kmor/launch": "^0.4.4",
+    "@d4kmor/launch": "^0.4.5",
     "@types/fs-extra": "^9.0.1"
   },
   "exports": {

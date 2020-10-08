@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.5
+
+### Patch Changes
+
+- a01e7b6: Provide some default styling for home
+
 ## 0.4.4
 
 ### Patch Changes

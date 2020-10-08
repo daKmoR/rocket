@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.5.4
+
+### Patch Changes
+
+- 12c2ba1: The rootDir for non index.md files need to include the markdown filename
+
 ## 0.5.3
 
 ### Patch Changes

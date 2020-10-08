@@ -6,7 +6,7 @@
     </button>
     {% if layout === "home.njk" and rocketLaunch.homeLayout === "background" %}
       <a class="logo-link" href="{{ '/' | url }}">
-        {{ '_assets/logo.svg' | asset | toAbsPath | inlineFilePath | safe }}
+        <img src="{{ '/_assets/logo.svg' | asset | url }}" alt="{{ site.logoAlt }}" />
         <span class="sr-only">{{ site.name }}</span>
       </a>
     {% else %}

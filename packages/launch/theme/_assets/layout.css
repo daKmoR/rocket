@@ -28,11 +28,10 @@ pre {
   overflow: auto;
 }
 
-.logo-link svg {
+.logo-link img {
   width: 30px;
   height: 30px;
   vertical-align: middle;
-  fill: var(--primary-color);
 }
 
 .sr-only {

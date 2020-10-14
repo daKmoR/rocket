@@ -1,10 +1,4 @@
----
-title: Launch Theme Index
-layout: with-index.njk
-eleventyNavigation:
-  key: Launch Theme
-  order: 10
----
+# Launch Theme
 
 This is the default Theme for Rocket.
 

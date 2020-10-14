@@ -32,7 +32,9 @@
   },
   "exports": {
     ".": "./index.js",
-    "./theme/": "./theme/"
+    "./theme/": "./theme/",
+    "./inline-notification": "./inline-notification/index.js",
+    "./inline-notification/inline-notification.js": "./inline-notification/inline-notification.js"
   },
   "type": "module"
 }

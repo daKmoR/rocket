@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.7
+
+### Patch Changes
+
+- 24d366c: Add inline-notification, max size for left menu
+
 ## 0.4.6
 
 ### Patch Changes

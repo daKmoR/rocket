@@ -213,10 +213,10 @@ header .light-dark-switch {
     display: block;
   }
 
-  body[layout='home'] header a {
+  body[layout='home'][home-layout='background'] header a {
     color: var(--contrast-color-light, #fff);
   }
-  body[layout='home'] .social-link {
+  body[layout='home'][home-layout='background'] .social-link {
     color: var(--contrast-color-light, #fff);
   }
 }

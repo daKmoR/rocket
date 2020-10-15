@@ -18,7 +18,8 @@
   },
   "files": [
     "*.js",
-    "theme"
+    "theme",
+    "inline-notification"
   ],
   "keywords": [
     "storybook",

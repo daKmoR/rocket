@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.9
+
+### Patch Changes
+
+- 71db6b6: Show home menu points in logo layout
+
 ## 0.4.8
 
 ### Patch Changes

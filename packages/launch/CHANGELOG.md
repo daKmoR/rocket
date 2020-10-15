@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.8
+
+### Patch Changes
+
+- 73a674d: add inline-notification to npm artifact
+
 ## 0.4.7
 
 ### Patch Changes

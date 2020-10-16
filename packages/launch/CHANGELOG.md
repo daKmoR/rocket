@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.10
+
+### Patch Changes
+
+- 91a4e07: sidebar should not push out footer
+
 ## 0.4.9
 
 ### Patch Changes

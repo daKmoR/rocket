@@ -26,7 +26,7 @@ describe('parseTitle', () => {
 
   it('can define a parent', async () => {
     expect(parseTitle('Foo >> Bar')).to.deep.equal({
-      title: 'Foo Bar',
+      title: 'Foo: Bar',
       eleventyNavigation: {
         title: 'Bar',
         key: 'Foo >> Bar',
@@ -38,7 +38,7 @@ describe('parseTitle', () => {
 
   it('keeps only the last 2 levels for the title and only the last for the navigation title', async () => {
     expect(parseTitle('Foo >> Bar >> Baz')).to.deep.equal({
-      title: 'Bar Baz',
+      title: 'Bar: Baz',
       eleventyNavigation: {
         title: 'Baz',
         key: 'Foo >> Bar >> Baz',
@@ -59,7 +59,7 @@ describe('parseTitle', () => {
     });
 
     expect(parseTitle('Foo >> Bar >> Baz ||4')).to.deep.equal({
-      title: 'Bar Baz',
+      title: 'Bar: Baz',
       eleventyNavigation: {
         title: 'Baz',
         key: 'Foo >> Bar >> Baz',

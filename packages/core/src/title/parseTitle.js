@@ -33,11 +33,12 @@ export function parseTitle(inTitle) {
     title = parts.join(' ');
     navigationTitle = parts[parts.length - 1];
     if (parts.length >= 2) {
+      title = `${parts[0]}: ${parts[1]}`;
       const parentParts = [...parts];
       parentParts.pop();
       parent = parentParts.join(' >> ');
       if (parts.length >= 3) {
-        title = `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+        title = `${parts[parts.length - 2]}: ${parts[parts.length - 1]}`;
       }
     }
   }

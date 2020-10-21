@@ -31,11 +31,9 @@ async function productionBuild(html, config) {
     injectServiceWorker: true,
   });
 
-  const copyPattern = '**/*.{png,gif,jpg,json,css,svg,ico,html}';
-
   mpaConfig.plugins.push(
     copy({
-      patterns: [copyPattern],
+      patterns: ['!(*.md|*.html)*', '*/*.{png,gif,jpg,json,css,svg,ico}'],
       rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
     }),
   );
@@ -68,12 +66,18 @@ export class RocketBuild {
 
     this.config = {
       ...config,
-      build: buildOptions,
+      build: {
+        emptyOutputDir: true,
+        ...config.build,
+        ...buildOptions,
+      },
     };
   }
 
   async build() {
-    await fs.emptyDir(this.config.outputDir);
+    if (this.config.build.emptyOutputDir) {
+      await fs.emptyDir(this.config.outputDir);
+    }
     await productionBuild(this.htmlFiles, this.config);
   }
 

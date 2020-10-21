@@ -3,4 +3,7 @@ import { rocketSearch } from '@d4kmor/search';
 
 export default {
   themes: [rocketLaunch(), rocketSearch()],
+  build: {
+    // emptyOutputDir: false,
+  },
 };

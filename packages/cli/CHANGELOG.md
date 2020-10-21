@@ -1,5 +1,13 @@
 # @d4kmor/cli
 
+## 0.5.5
+
+### Patch Changes
+
+- fe5da59: New Option build.emptyOutputDir; Copy all root doc files (not md or html)
+- Updated dependencies [9237ebc]
+  - @d4kmor/core@0.1.2
+
 ## 0.5.4
 
 ### Patch Changes

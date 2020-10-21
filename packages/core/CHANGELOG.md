@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.1.2
+
+### Patch Changes
+
+- 9237ebc: In the navigation put a ": " between parent and current page
+
 ## 0.1.1
 
 ### Patch Changes

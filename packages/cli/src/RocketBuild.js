@@ -33,7 +33,7 @@ async function productionBuild(html, config) {
 
   mpaConfig.plugins.push(
     copy({
-      patterns: ['!(*.md|*.html)*', '*/*.{png,gif,jpg,json,css,svg,ico}'],
+      patterns: ['!(*.md|*.html)*', '*/**/*.{png,gif,jpg,json,css,svg,ico}'],
       rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
     }),
   );

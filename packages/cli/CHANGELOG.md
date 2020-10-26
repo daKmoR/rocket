@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.5.6
+
+### Patch Changes
+
+- ebd5be9: Copy nested folders while building
+
 ## 0.5.5
 
 ### Patch Changes

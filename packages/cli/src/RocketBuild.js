@@ -48,6 +48,9 @@ export class RocketBuild {
   setupCommand(config) {
     config.watch = false;
     config.pathPrefix = '';
+    if (config.build && config.build.pathPrefix !== undefined) {
+      config.pathPrefix = config.build.pathPrefix;
+    }
     return config;
   }
 

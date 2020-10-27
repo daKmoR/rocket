@@ -5,5 +5,6 @@ export default {
   themes: [rocketLaunch(), rocketSearch()],
   build: {
     // emptyOutputDir: false,
+    // pathPrefix: 'subfolder-only-for-build',
   },
 };

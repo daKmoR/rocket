@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.5.7
+
+### Patch Changes
+
+- 8965b11: Enable a setting build.pathPrefix that can be used for build only
+
 ## 0.5.6
 
 ### Patch Changes

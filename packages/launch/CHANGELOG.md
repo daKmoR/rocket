@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.4.11
+
+### Patch Changes
+
+- 203a02e: Add site.gitSiteUrl to customize edit on github url
+
 ## 0.4.10
 
 ### Patch Changes

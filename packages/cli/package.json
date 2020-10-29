@@ -36,7 +36,7 @@
     "rollup"
   ],
   "dependencies": {
-    "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy": "^0.11.1",
     "@d4kmor/core": "^0.1.2",
     "@d4kmor/eleventy-plugin-mdjs-unified": "^0.3.1",
     "@d4kmor/eleventy-rocket-nav": "^0.2.1",

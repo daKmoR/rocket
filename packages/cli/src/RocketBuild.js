@@ -24,10 +24,17 @@ async function buildAndWrite(config) {
 }
 
 async function productionBuild(html, config) {
+  const serviceWorkerFileName =
+    config.build && config.build.serviceWorkerFileName
+      ? config.build.serviceWorkerFileName
+      : 'service-worker.js';
   const mpaConfig = createMpaConfig({
     outputDir: config.outputDir,
     legacyBuild: false,
     html: { html },
+    workbox: {
+      swDest: path.join(config.outputDir, serviceWorkerFileName),
+    },
     injectServiceWorker: true,
   });
 

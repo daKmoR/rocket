@@ -6,5 +6,6 @@ export default {
   build: {
     // emptyOutputDir: false,
     // pathPrefix: 'subfolder-only-for-build',
+    // serviceWorkerFileName: 'sw.js',
   },
 };

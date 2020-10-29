@@ -8,6 +8,7 @@ module.exports = function () {
         url: 'https://github.com/dakmor/rocket',
       },
     ],
+    gitSiteUrl: 'https://github.com/dakmor/rocket',
     helpUrl: 'https://github.com/daKmoR/rocket/issues',
     logoAlt: 'Rocket Logo',
     iconColorMaskIcon: '#3f93ce',

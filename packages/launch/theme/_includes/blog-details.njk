@@ -49,12 +49,7 @@
           {{ content.html | safe }}
 
           {% include 'partials/previousNext.njk' %}
-          <div class="content-footer">
-            <p>
-              Caught a mistake or want to improve the blog?
-              <a href="https://github.com/modernweb-dev/web/edit/master/{{ page.inputPath }}">Edit this blog post on GitHub!</a>
-            </p>
-          </div>
+          {% include 'partials/blog-content-footer.njk' %}
         </main>
       </div>
     </div>

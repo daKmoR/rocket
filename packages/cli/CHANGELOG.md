@@ -1,5 +1,12 @@
 # @d4kmor/cli
 
+## 0.5.8
+
+### Patch Changes
+
+- e26c14c: Change default service worker name from `sw.js` to `service-worker.js`.
+  Add an option `build.serviceWorkerFileName`.
+
 ## 0.5.7
 
 ### Patch Changes

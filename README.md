@@ -19,18 +19,10 @@ docs/_merged_includes/
 
 ## Usage
 
-```json
-"scripts": {
-  "start": "rocket start",
-  "build": "rocket build",
-}
-```
-
-## Use the launch theme
-
 Create `rocket.config.js` as es module (may need `.mdjs`)
 
 ```js
+// use an existing theme
 import { rocketLaunch } from '@d4kmor/launch';
 
 export default {
@@ -41,5 +33,11 @@ export default {
 ## Create Content
 
 ```
-echo "# My First Page" > ./docs/guides/index.md
+echo "# My First Page" > ./docs/index.md
+```
+
+## Start it up
+
+```
+npx rocket start
 ```

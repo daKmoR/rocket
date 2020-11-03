@@ -1,4 +1,4 @@
-# First Pages >> Use JavaScript ||100
+# First Pages >> Use JavaScript ||40
 
 You can use `js script` to execute javascript (type = module)
 

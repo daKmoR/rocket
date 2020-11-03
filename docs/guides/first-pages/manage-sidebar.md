@@ -1,4 +1,4 @@
-# First Pages >> Managing sidebar ||100
+# First Pages >> Managing sidebar ||30
 
 The sidebar will show all the content of the current section.
 

@@ -2,11 +2,19 @@
 
 Notification are web components that bring in some styles.
 
-To use them in Markdown you need to write the html tag and have it seprated by an empty line.
+To use them in Markdown you need to write the html tag and have it separated by an empty line.
 
 ```js script
 import '@d4kmor/launch/inline-notification/inline-notification.js';
 ```
+
+First you need to import the script
+
+````
+```js script
+import '@d4kmor/launch/inline-notification/inline-notification.js';
+```
+````
 
 ## Tip
 

@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.5.9
+
+### Patch Changes
+
+- 57d1577: feat(cli): add modifyConfig to modify eleventy config
+
 ## 0.5.8
 
 ### Patch Changes

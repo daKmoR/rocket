@@ -35,12 +35,15 @@ eleventyNavigation:
 
 You can also look at this live playground:
 
-```js preview-story
+```js story
 import { html } from 'lit-html';
 
-const headlineConverter => html`
-  <p>create a web component that has an input and out that live udpates</p>
-`
+export const headlineConverter = () => html`
+  <p>
+    <strong style="color: red;">TODO: </strong>I will become a web component that has an input and
+    out that live udpates
+  </p>
+`;
 ```
 
 How it then works is very similar to https://www.11ty.dev/docs/plugins/navigation/

@@ -53,10 +53,16 @@ describe('normalizeConfig', () => {
 
   it('can override settings via parameters', async () => {
     const configDir = path.join(__dirname, 'fixtures', 'empty');
+    const modifyConfig = () => {
+      //empty function
+    };
     const config = await normalizeConfig({
       configDir,
       devServer: {
         more: 'settings',
+      },
+      eleventy: {
+        modifyConfig,
       },
     });
 
@@ -76,6 +82,7 @@ describe('normalizeConfig', () => {
           data: '_merged_data',
           includes: '_merged_includes',
         },
+        modifyConfig,
       },
     });
   });

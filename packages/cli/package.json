@@ -10,6 +10,7 @@
   "bin": {
     "rocket": "src/cli.js"
   },
+  "type": "module",
   "scripts": {
     "build": "npm run rocket:build",
     "dev": "node ./eleventyOnly.js",
@@ -56,6 +57,5 @@
   },
   "exports": {
     "require": "./index.cjs"
-  },
-  "type": "module"
+  }
 }

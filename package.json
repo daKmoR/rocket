@@ -2,6 +2,7 @@
   "name": "@rocket/root",
   "private": true,
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "npm run build:packages && npm run build:site",
     "build:packages": "node scripts/workspaces-scripts-bin.mjs build:package",
@@ -100,7 +101,6 @@
     "printWidth": 100,
     "trailingComma": "all"
   },
-  "type": "module",
   "workspaces": [
     "packages/*"
   ]

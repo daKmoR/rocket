@@ -1,0 +1,3 @@
+# Themes >> Using theme templates
+
+Most themese have specific entry files you can override...

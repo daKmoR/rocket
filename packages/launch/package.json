@@ -8,6 +8,7 @@
   "license": "MIT",
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "web-dev-server --node-resolve --root-dir ../../ --open packages/drawer/ --watch",
     "rocket:build": "node src/build/cli.js -c demo/docs",
@@ -18,8 +19,8 @@
   },
   "files": [
     "*.js",
-    "theme",
-    "inline-notification"
+    "inline-notification",
+    "theme"
   ],
   "keywords": [
     "storybook",
@@ -36,6 +37,5 @@
     "./theme/": "./theme/",
     "./inline-notification": "./inline-notification/index.js",
     "./inline-notification/inline-notification.js": "./inline-notification/inline-notification.js"
-  },
-  "type": "module"
+  }
 }

@@ -17,6 +17,13 @@ export async function normalizeConfig(inConfig) {
     setupUnifiedPlugins: [],
     plugins: [new RocketStart(), new RocketBuild()],
     ...inConfig,
+    eleventy: {
+      dir: {
+        data: '_merged_data',
+        includes: '_merged_includes',
+      },
+      ...inConfig.eleventy,
+    },
   };
   if (!config.configDir) {
     throw new Error('You need to provide a configDir');
@@ -80,12 +87,7 @@ export async function normalizeConfig(inConfig) {
     _inputDirConfigDirRelative,
     outputDir: '_site',
     watch: true,
-    eleventy: {
-      dir: {
-        data: '_merged_data',
-        includes: '_merged_includes',
-      },
-    },
+    eleventy: config.eleventy,
 
     devServer,
   };

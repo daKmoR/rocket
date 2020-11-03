@@ -8,6 +8,7 @@ export interface EleventyOptions {
     data?: string;
     output?: string;
   };
+  modifyConfig?: function;
 }
 
 export interface RocketTheme {

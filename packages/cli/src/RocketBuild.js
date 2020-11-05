@@ -23,7 +23,7 @@ async function buildAndWrite(config) {
   }
 }
 
-async function productionBuild(html, config) {
+async function productionBuild(config) {
   const serviceWorkerFileName =
     config.build && config.build.serviceWorkerFileName
       ? config.build.serviceWorkerFileName
@@ -90,6 +90,6 @@ export class RocketBuild {
     if (this.config.build.emptyOutputDir) {
       await fs.emptyDir(this.config.build.outputDir);
     }
-    await productionBuild(this.htmlFiles, this.config);
+    await productionBuild(this.config);
   }
 }

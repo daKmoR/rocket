@@ -6,7 +6,7 @@ import { normalizeConfig } from '../src/normalizeConfig.js';
 const { expect } = chai;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function removeAllPaths(config) {
+function cleanup(config) {
   const configNoPaths = { ...config };
   delete configNoPaths.devServer.rootDir;
   delete configNoPaths.configDir;
@@ -14,6 +14,7 @@ function removeAllPaths(config) {
   delete configNoPaths.inputDir;
   delete configNoPaths._inputDirConfigDirRelative;
   delete configNoPaths._themePathes;
+  delete configNoPaths.eleventyFunction;
   return configNoPaths;
 }
 
@@ -33,56 +34,57 @@ describe('normalizeConfig', () => {
     expect(config._inputDirConfigDirRelative).to.equal('docs');
     expect(config._themePathes[0]).to.match(/empty\/docs$/);
 
-    expect(removeAllPaths(config)).to.deep.equal({
+    expect(cleanup(config)).to.deep.equal({
       command: 'help',
       devServer: {},
-      outputDir: '_site',
-      pathPrefix: '/docs',
       watch: true,
       setupUnifiedPlugins: [],
       themes: [],
-      plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
+      plugins: [{ command: 'start' }, { command: 'build' }],
       eleventy: {
         dir: {
           data: '_merged_data',
           includes: '_merged_includes',
         },
+      },
+      outputDir: '_site-dev',
+      pathPrefix: '/_site-dev',
+      build: {
+        outputDir: '_site',
+        pathPrefix: '',
       },
     });
   });
 
   it('can override settings via parameters', async () => {
     const configDir = path.join(__dirname, 'fixtures', 'empty');
-    const modifyConfig = () => {
-      //empty function
-    };
     const config = await normalizeConfig({
       configDir,
       devServer: {
         more: 'settings',
       },
-      eleventy: {
-        modifyConfig,
-      },
     });
 
-    expect(removeAllPaths(config)).to.deep.equal({
+    expect(cleanup(config)).to.deep.equal({
       command: 'help',
       devServer: {
         more: 'settings',
       },
-      outputDir: '_site',
-      pathPrefix: '/docs',
       watch: true,
       setupUnifiedPlugins: [],
       themes: [],
-      plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
+      plugins: [{ command: 'start' }, { command: 'build' }],
       eleventy: {
         dir: {
           data: '_merged_data',
           includes: '_merged_includes',
         },
-        modifyConfig,
+      },
+      outputDir: '_site-dev',
+      pathPrefix: '/_site-dev',
+      build: {
+        outputDir: '_site',
+        pathPrefix: '',
       },
     });
   });
@@ -93,22 +95,54 @@ describe('normalizeConfig', () => {
       configDir,
     });
 
-    expect(removeAllPaths(config)).to.deep.equal({
+    expect(cleanup(config)).to.deep.equal({
       command: 'help',
       devServer: {
         more: 'from-file',
       },
-      outputDir: '_site',
-      pathPrefix: '/docs',
       watch: true,
       setupUnifiedPlugins: [],
       themes: [],
-      plugins: [{ command: 'start' }, { command: 'build', htmlFiles: [] }],
+      plugins: [{ command: 'start' }, { command: 'build' }],
       eleventy: {
         dir: {
-          data: '_merged_data',
+          data: '--config-override--',
           includes: '_merged_includes',
         },
+      },
+      outputDir: '_site-dev',
+      pathPrefix: '/_site-dev',
+      build: {
+        outputDir: '_site',
+        pathPrefix: '',
+      },
+    });
+  });
+
+  it('supports an eleventy config function in rocket.config.js', async () => {
+    const configDir = path.join(__dirname, 'fixtures', 'override-eleventy-function');
+    const config = await normalizeConfig({
+      configDir,
+    });
+
+    expect(cleanup(config)).to.deep.equal({
+      command: 'help',
+      devServer: {},
+      watch: true,
+      setupUnifiedPlugins: [],
+      themes: [],
+      plugins: [{ command: 'start' }, { command: 'build' }],
+      eleventy: {
+        dir: {
+          data: '--config-function-override--',
+          includes: '_merged_includes',
+        },
+      },
+      outputDir: '_site-dev',
+      pathPrefix: '/_site-dev',
+      build: {
+        outputDir: '_site',
+        pathPrefix: '',
       },
     });
   });

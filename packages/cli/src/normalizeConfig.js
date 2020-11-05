@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+
 import path from 'path';
 
 import { readConfig } from '@web/config-loader';
@@ -22,16 +24,67 @@ export async function normalizeConfig(inConfig) {
         data: '_merged_data',
         includes: '_merged_includes',
       },
-      ...inConfig.eleventy,
     },
+    eleventyFunction: () => {},
   };
+
   if (!config.configDir) {
     throw new Error('You need to provide a configDir');
   }
 
   try {
     const fileConfig = await readConfig('rocket.config', undefined, path.resolve(config.configDir));
-    config = { ...config, ...fileConfig }; //  deepmerge(config, fileConfig);
+    if (fileConfig) {
+      let newEleventyConfig = fileConfig.eleventy || {};
+      let eleventyFunction = config.eleventyFunction;
+      if (typeof fileConfig.eleventy === 'function') {
+        newEleventyConfig = fileConfig.eleventy({
+          addLiquidFilter: () => {},
+          addNunjucksFilter: () => {},
+          addHandlebarsHelper: () => {},
+          addJavaScriptFunction: () => {},
+          addFilter: () => {},
+          addLiquidShortcode: () => {},
+          addNunjucksShortcode: () => {},
+          addHandlebarsShortcode: () => {},
+          addShortcode: () => {},
+          addLiquidTag: () => {},
+          addNunjucksTag: () => {},
+          setTemplateFormats: () => {},
+          setQuietMode: () => {},
+          addTransform: () => {},
+          addLinter: () => {},
+        });
+        eleventyFunction = fileConfig.eleventy;
+        delete fileConfig.eleventy;
+      }
+
+      const oldConfig = { ...config };
+
+      config = {
+        ...config,
+        ...fileConfig,
+        eleventyFunction,
+      };
+
+      if (newEleventyConfig) {
+        if (newEleventyConfig.dir) {
+          config.eleventy = {
+            ...oldConfig.eleventy,
+            ...newEleventyConfig,
+            dir: {
+              ...oldConfig.eleventy.dir,
+              ...newEleventyConfig.dir,
+            },
+          };
+        } else {
+          config.eleventy = {
+            ...oldConfig.eleventy,
+            ...newEleventyConfig,
+          };
+        }
+      }
+    }
   } catch (error) {
     console.error('Could not read rocket config file', error);
     // we do not require a config file
@@ -78,21 +131,22 @@ export async function normalizeConfig(inConfig) {
 
   return {
     command: 'help',
-    // pathPrefix can NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
-    pathPrefix: '/_site-dev',
+    pathPrefix: '/_site-dev', // pathPrefix can NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
+    watch: true,
+    outputDir: '_site-dev',
+    devServer,
+
     ...config,
+
+    build: {
+      outputDir: '_site',
+      pathPrefix: '',
+      ...config.build,
+    },
+
     configDir: config.configDir,
     _configDirCwdRelative,
     inputDir,
     _inputDirConfigDirRelative,
-    outputDir: '_site-dev',
-    watch: true,
-    eleventy: config.eleventy,
-
-    devServer,
-    build: {
-      outputDir: '_site',
-      pathPrefix: '',
-    },
   };
 }

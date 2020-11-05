@@ -8,4 +8,7 @@ export default {
     // pathPrefix: 'subfolder-only-for-build',
     // serviceWorkerFileName: 'sw.js',
   },
+  // eleventy: eleventyConfig => {
+  //   eleventyConfig.addFilter('foo', () => 'foo');
+  // }
 };

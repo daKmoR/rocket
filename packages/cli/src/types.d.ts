@@ -29,6 +29,10 @@ export interface RocketCliOptions {
   themes: Array<RocketTheme>;
   devServer: DevServerOptions;
   eleventy: EleventyOptions;
+  build: {
+    outputDir: string;
+    pathPrefix: string;
+  };
   setupUnifiedPlugins?: function; // TODO: improve
   setupPlugins?: function; // TODO: improve
   _themePathes?: Array<string>;

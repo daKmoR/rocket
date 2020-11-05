@@ -37,8 +37,8 @@ module.exports = function (eleventyConfig) {
   const { pathPrefix, inputDir, configDir, outputDir } = config;
   const { data, includes } = config.eleventy.dir;
 
-  if (config.eleventy.modifyConfig) {
-    config.eleventy.modifyConfig(eleventyConfig);
+  if (config.eleventyFunction) {
+    config.eleventyFunction(eleventyConfig);
   }
 
   eleventyConfig.addFilter('asset', function (inPath) {

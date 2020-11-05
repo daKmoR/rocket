@@ -62,7 +62,7 @@ export class RocketCli {
       const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.cjs');
       elev.setConfigPathOverride(relCwdPathToConfig);
 
-      elev.setDryRun(true); // do not write to file system
+      // elev.setDryRun(true); // do not write to file system
       await elev.init();
 
       if (this.config.watch) {

@@ -29,11 +29,14 @@ async function productionBuild(html, config) {
       ? config.build.serviceWorkerFileName
       : 'service-worker.js';
   const mpaConfig = createMpaConfig({
-    outputDir: config.outputDir,
+    outputDir: config.build.outputDir,
     legacyBuild: false,
-    html: { html },
+    html: {
+      rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
+      files: '**/*.html',
+    },
     workbox: {
-      swDest: path.join(config.outputDir, serviceWorkerFileName),
+      swDest: path.join(config.build.outputDir, serviceWorkerFileName),
     },
     injectServiceWorker: true,
   });
@@ -50,7 +53,6 @@ async function productionBuild(html, config) {
 
 export class RocketBuild {
   command = 'build';
-  htmlFiles = [];
 
   setupCommand(config) {
     config.watch = false;
@@ -86,24 +88,8 @@ export class RocketBuild {
 
   async build() {
     if (this.config.build.emptyOutputDir) {
-      await fs.emptyDir(this.config.outputDir);
+      await fs.emptyDir(this.config.build.outputDir);
     }
     await productionBuild(this.htmlFiles, this.config);
-  }
-
-  async inspectRenderedHtml({ inputPath, html, outputPath }) {
-    const name = path.relative(this.config.outputDir, outputPath);
-    const fileNameParts = path.basename(inputPath).split('.');
-    fileNameParts.pop();
-    const fileNameNoExt = fileNameParts.join();
-    let rootDir = path.dirname(path.resolve(inputPath));
-    if (fileNameNoExt !== 'index') {
-      rootDir = path.join(rootDir, fileNameNoExt);
-    }
-    this.htmlFiles.push({
-      html,
-      name,
-      rootDir,
-    });
   }
 }

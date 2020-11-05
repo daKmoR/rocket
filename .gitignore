@@ -24,12 +24,12 @@ packages/*/yarn.lock
 ## build output
 dist
 dist-types
-_site
 stats.html
 *.tsbuildinfo
-
 
 ## Rocket ignore files (need to be the full relative path to the folders)
 docs/_merged_data/
 docs/_merged_assets/
 docs/_merged_includes/
+_site
+_site-dev

@@ -77,18 +77,22 @@ export async function normalizeConfig(inConfig) {
   }
 
   return {
-    // pathPrefix can NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
     command: 'help',
-    pathPrefix: '/docs',
+    // pathPrefix can NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
+    pathPrefix: '/_site-dev',
     ...config,
     configDir: config.configDir,
     _configDirCwdRelative,
     inputDir,
     _inputDirConfigDirRelative,
-    outputDir: '_site',
+    outputDir: '_site-dev',
     watch: true,
     eleventy: config.eleventy,
 
     devServer,
+    build: {
+      outputDir: '_site',
+      pathPrefix: '',
+    },
   };
 }

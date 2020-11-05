@@ -1,5 +1,15 @@
 # @d4kmor/launch
 
+## 0.5.0
+
+### Minor Changes
+
+- 627a0ab: 1. simplify setup by removing abstractions
+  2. eleventy renders into `_site-dev`
+  3. rollup optimizes `_site-dev` into `_site`
+  4. this enables all kind of input templates from eleventy (e.g. use `.njk`, `.xml`, `.html` inside of your docs folder)
+  5. allow an `eleventy` config object or function in `rocket.config.js`
+
 ## 0.4.11
 
 ### Patch Changes

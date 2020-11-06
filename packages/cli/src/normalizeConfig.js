@@ -6,6 +6,7 @@ import { readConfig } from '@web/config-loader';
 
 import { RocketStart } from './RocketStart.js';
 import { RocketBuild } from './RocketBuild.js';
+import { eleventyConfigEmpty } from './shared/eleventyConfigEmpty.js';
 
 /** @typedef {import('./types').RocketCliOptions} RocketCliOptions */
 
@@ -38,23 +39,7 @@ export async function normalizeConfig(inConfig) {
       let newEleventyConfig = fileConfig.eleventy || {};
       let eleventyFunction = config.eleventyFunction;
       if (typeof fileConfig.eleventy === 'function') {
-        newEleventyConfig = fileConfig.eleventy({
-          addLiquidFilter: () => {},
-          addNunjucksFilter: () => {},
-          addHandlebarsHelper: () => {},
-          addJavaScriptFunction: () => {},
-          addFilter: () => {},
-          addLiquidShortcode: () => {},
-          addNunjucksShortcode: () => {},
-          addHandlebarsShortcode: () => {},
-          addShortcode: () => {},
-          addLiquidTag: () => {},
-          addNunjucksTag: () => {},
-          setTemplateFormats: () => {},
-          setQuietMode: () => {},
-          addTransform: () => {},
-          addLinter: () => {},
-        });
+        newEleventyConfig = fileConfig.eleventy(eleventyConfigEmpty);
         eleventyFunction = fileConfig.eleventy;
         delete fileConfig.eleventy;
       }

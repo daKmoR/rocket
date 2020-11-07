@@ -62,7 +62,7 @@ describe('rocket-navigation', () => {
     function addBlock(headline, length = 5) {
       return html`
         <h2 id="${headline}">${headline}</h2>
-        ${new Array(length).fill(html`<p>text content</p>`)}
+        ${new Array(length).fill(html` <p>text content</p> `)}
       `;
     }
 

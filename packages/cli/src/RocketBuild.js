@@ -5,7 +5,7 @@ import { rollup } from 'rollup';
 import { copy } from '@web/rollup-plugin-copy';
 import fs from 'fs-extra';
 
-import buildingRollup from '@open-wc/building-rollup';
+import buildingRollup from './_building-rollup-fork/index.cjs';
 
 const { createMpaConfig } = buildingRollup;
 
@@ -31,19 +31,19 @@ async function productionBuild(config) {
   const mpaConfig = createMpaConfig({
     outputDir: config.build.outputDir,
     legacyBuild: false,
-    html: {
-      rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
-      files: '**/*.html',
-    },
+    injectServiceWorker: true,
     workbox: {
       swDest: path.join(config.build.outputDir, serviceWorkerFileName),
     },
-    injectServiceWorker: true,
+    html: {
+      rootDir: path.join(config.devServer.rootDir, '_site-dev'),
+      input: '**/*.html',
+    },
   });
 
   mpaConfig.plugins.push(
     copy({
-      patterns: ['!(*.md|*.html)*', '*/**/*.{png,gif,jpg,json,css,svg,ico}'],
+      patterns: ['!(*.md|*.html)*', '_merged_assets/_static/**/*.{png,gif,jpg,json,css,svg,ico}'],
       rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
     }),
   );

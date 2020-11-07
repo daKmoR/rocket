@@ -41,6 +41,8 @@ export class RocketCli {
     if (!this.eleventy) {
       const { _inputDirConfigDirRelative, outputDir } = this.config;
 
+      await fs.emptyDir(outputDir);
+
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const that = this;
       class RocketEleventy extends Eleventy {

@@ -1,6 +1,5 @@
 ---
 title: Learning Rocket
-socialMediaImage: 'foo.jpg'
 description: 'foo'
 eleventyNavigation:
   key: Guides

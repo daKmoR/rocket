@@ -28,6 +28,9 @@
     "./title": {
       "require": "./dist/title.cjs",
       "default": "./src/title/index.js"
+    },
+    "./helpers": {
+      "default": "./src/helpers/index.js"
     }
   }
 }

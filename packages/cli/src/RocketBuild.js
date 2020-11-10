@@ -38,6 +38,7 @@ async function productionBuild(config) {
     html: {
       rootDir: path.join(config.devServer.rootDir, '_site-dev'),
       input: '**/*.html',
+      absoluteBaseUrl: config.build.absoluteBaseUrl,
     },
   });
 

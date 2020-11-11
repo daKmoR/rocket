@@ -1,5 +1,18 @@
 # @d4kmor/cli
 
+## 0.7.0
+
+### Minor Changes
+
+- 9cb2c19: - Hashes all assets to allow for permanent cache (and no more node_modules in `_site`)
+  - Forks @open-wc/building-rollup to use latest @web/rollup-plugin-html & @web/rollup-plugin-polyfills-loader
+
+### Patch Changes
+
+- 915a565: Add and use new option `absoluteBaseUrl` which will convert social media urls to full absolute urls where needed.
+- Updated dependencies [915a565]
+  - @d4kmor/core@0.1.3
+
 ## 0.6.0
 
 ### Minor Changes

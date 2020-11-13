@@ -1,68 +1,60 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    {% include 'partials/head-content.njk' %}
-  </head>
+{% extends 'layout.njk' %}
+
+{% block bodyTag %}
   <body layout="home" home-layout="{{rocketLaunch.homeLayout}}">
-    {% include 'partials/header.njk' %}
+{% endblock bodyTag %}
 
-    <div id="content-wrapper">
-      <div class="content-area">
-        <rocket-drawer id="sidebar">
-          <nav slot="content" id="sidebar-nav">
-            {% include 'partials/logoLink.njk' %}
-            <rocket-navigation>
-              <ul>
-                {%- for entry in collections.header %}
-                  <li>
-                    <a href="{{ entry.url | url }}" class="
-                          {% if entry.url == page.url %} current {% endif %}
-                          {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
-                        ">{{ entry.data.eleventyNavigation.key }}</a>
-                  </li>
-                {%- endfor %}
-              </ul>
-              {% include 'partials/mobile-sidebar-bottom.njk' %}
-            </rocket-navigation>
-          </nav>
-        </rocket-drawer>
-        <main class="markdown-body">
-          <img class="page-logo" src="{{ '_assets/logo.svg' | asset | url }}" alt="{{ site.title }} Logo"/>
+{% block sidebar %}
+  <rocket-drawer id="sidebar">
+    <nav slot="content" id="sidebar-nav">
+      {% include 'partials/logoLink.njk' %}
+      <rocket-navigation>
+        <ul>
+          {%- for entry in collections.header %}
+            <li>
+              <a href="{{ entry.url | url }}" class="
+                {% if entry.url == page.url %} current {% endif %}
+                {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
+              ">{{ entry.data.eleventyNavigation.key }}</a>
+            </li>
+          {%- endfor %}
+        </ul>
+        {% include 'partials/mobile-sidebar-bottom.njk' %}
+      </rocket-navigation>
+    </nav>
+  </rocket-drawer>
+{% endblock sidebar %}
 
-          {% if rocketLaunch.homeLayout === 'background' %}
-            <img class="page-background" src="{{ '_assets/home-background.svg' | asset | url }}" role="presentation"/>
-          {% endif %}
+{% block main %}
+  <main class="markdown-body">
+    <img class="page-logo" src="{{ '_assets/logo.svg' | asset | url }}" alt="{{ site.title }} Logo"/>
 
-          <h1 class="page-title">{{ title }}</h1>
+    {% if rocketLaunch.homeLayout === 'background' %}
+      <img class="page-background" src="{{ '_assets/home-background.svg' | asset | url }}" role="presentation"/>
+    {% endif %}
 
-          <p class="page-slogan">{{slogan}}</p>
+    <h1 class="page-title">{{ title }}</h1>
 
-          <div class="call-to-action-list">
-            {% for callToAction in callToActionItems %}
-              <a class="call-to-action" href="{{ callToAction.href | url }}">{{ callToAction.text | safe }}</a>
-            {% endfor %}
-          </div>
+    <p class="page-slogan">{{slogan}}</p>
 
-          <h2 class="reason-header">{{ reasonHeader }}</h2>
-
-          <div class="reasons">
-            {% for reason in reasons %}
-              <div>
-                <h3>{{ reason.header }}</h3>
-                {{ reason.text | safe }}
-              </div>
-            {% endfor %}
-          </div>
-
-          {{ content.html | safe }}
-          {% include 'partials/previousNext.njk' %}
-        </main>
-      </div>
+    <div class="call-to-action-list">
+      {% for callToAction in callToActionItems %}
+        <a class="call-to-action" href="{{ callToAction.href | url }}">{{ callToAction.text | safe }}</a>
+      {% endfor %}
     </div>
 
-    {% include 'partials/footer.njk' %}
+    <h2 class="reason-header">{{ reasonHeader }}</h2>
 
-    {% include 'partials/pageJs.njk' %}
-    {% include 'partials/mobileNavigationJs.njk' %}
-  </body>
-</html>
+    <div class="reasons">
+      {% for reason in reasons %}
+        <div>
+          <h3>{{ reason.header }}</h3>
+          {{ reason.text | safe }}
+        </div>
+      {% endfor %}
+    </div>
+
+    {{ content.html | safe }}
+    {% include 'partials/previousNext.njk' %}
+  </main>
+{% endblock main %}

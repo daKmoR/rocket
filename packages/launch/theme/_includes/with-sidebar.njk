@@ -1,42 +1,32 @@
-<!doctype html>
-<html lang="en">
+{% extends 'layout.njk' %}
 
-  <head>
-    {% include 'partials/head-content.njk' %}
-  </head>
-
+{% block bodyTag %}
   <body layout="with-sidebar">
-    {% include 'partials/header.njk' %}
+{% endblock bodyTag %}
 
-    <div id="content-wrapper">
-      <div class="content-area">
-        <rocket-drawer id="sidebar">
-          <nav slot="content" id="sidebar-nav">
-            {% include 'partials/logoLink.njk' %}
-            <rocket-navigation>
-              {{ collections[section] | rocketNav | rocketNavToHtml({
-                  listItemClass: "menu-item",
-                  activeListItemClass: "current",
-                  activeKey: eleventyNavigation.key
-              }) | safe }}
-              {% include 'partials/mobile-sidebar-bottom.njk' %}
-            </rocket-navigation>
-          </nav>
-        </rocket-drawer>
-        <main class="markdown-body">
-          {% include 'partials/addTitleHeadline.njk' %}
+{% block sidebar %}
+  <rocket-drawer id="sidebar">
+    <nav slot="content" id="sidebar-nav">
+      {% include 'partials/logoLink.njk' %}
+      <rocket-navigation>
+        {{ collections[section] | rocketNav | rocketNavToHtml({
+        listItemClass: "menu-item",
+        activeListItemClass: "current",
+        activeKey: eleventyNavigation.key
+    }) | safe }}
+        {% include 'partials/mobile-sidebar-bottom.njk' %}
+      </rocket-navigation>
+    </nav>
+  </rocket-drawer>
+{% endblock sidebar %}
 
-          {{ content.html | safe }}
+{% block main %}
+  <main class="markdown-body">
+    {% include 'partials/addTitleHeadline.njk' %}
 
-          {% include 'partials/previousNext.njk' %}
-          {% include 'partials/content-footer.njk' %}
-        </main>
-      </div>
-    </div>
+    {{ content.html | safe }}
 
-    {% include 'partials/footer.njk' %}
-
-    {% include 'partials/pageJs.njk' %}
-    {% include 'partials/mobileNavigationJs.njk' %}
-  </body>
-</html>
+    {% include 'partials/previousNext.njk' %}
+    {% include 'partials/content-footer.njk' %}
+  </main>
+{% endblock main %}

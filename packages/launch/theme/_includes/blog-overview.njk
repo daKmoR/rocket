@@ -1,65 +1,32 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    {% include 'partials/head-content.njk' %}
-  </head>
+{% extends 'home.njk' %}
+
+{% block bodyTag %}
   <body layout="blog-overview">
-    {% include 'partials/header.njk' %}
+{% endblock bodyTag %}
 
-    <div id="content-wrapper">
-      <div class="content-area">
-        <rocket-drawer id="sidebar">
-          <nav slot="content" id="sidebar-nav">
-            {% include 'partials/logoLink.njk' %}
-            <rocket-navigation>
-              <ul>
-                {%- for entry in collections.header %}
-                  <li>
-                    <a href="{{ entry.url | url }}" class="
-                          {% if entry.url == page.url %} current {% endif %}
-                          {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
-                        ">{{ entry.data.eleventyNavigation.key }}</a>
-                  </li>
-                {%- endfor %}
-              </ul>
-              <div class="sidebar-bottom">
-                <hr>
-                <launch-dark-switch class="light-dark-switch" label="Toggle darkmode"></launch-dark-switch>
-                <a href="{{ site.helpUrl | url }}">Help and Feedback</a>
-              </div>
-            </rocket-navigation>
-          </nav>
-        </rocket-drawer>
-        <main class="markdown-body">
-          {% include 'partials/addTitleHeadline.njk' %}
-          {{ content.html | safe }}
-          <div class="articles">
-            {% for post in posts %}
-              {% if post.data.published %}
-                <article>
-                  {% if post.data.cover_image %}
-                    <a href="{{ post.url | url }}">
-                      <img src="{{ post.data.cover_image | url }}" alt="">
-                    </a>
-                  {% endif %}
-                  <div class="content">
-                    <h2>
-                      <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-                    </h2>
-                    <p>{{ post.data.description }}</p>
-                    <a class="read" href="{{ post.url | url }}">...read more</a>
-                  </div>
-                </article>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </main>
-      </div>
+{% block main %}
+  <main class="markdown-body">
+    {% include 'partials/addTitleHeadline.njk' %}
+    {{ content.html | safe }}
+    <div class="articles">
+      {% for post in posts %}
+        {% if post.data.published %}
+          <article>
+            {% if post.data.cover_image %}
+              <a href="{{ post.url | url }}">
+                <img src="{{ post.data.cover_image | url }}" alt="">
+              </a>
+            {% endif %}
+            <div class="content">
+              <h2>
+                <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+              </h2>
+              <p>{{ post.data.description }}</p>
+              <a class="read" href="{{ post.url | url }}">...read more</a>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
     </div>
-
-    {% include 'partials/footer.njk' %}
-
-    {% include 'partials/pageJs.njk' %}
-    {% include 'partials/mobileNavigationJs.njk' %}
-  </body>
-</html>
+  </main>
+{% endblock main %}

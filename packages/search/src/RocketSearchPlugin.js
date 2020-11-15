@@ -2,12 +2,13 @@ import commandLineArgs from 'command-line-args';
 import MiniSearch from 'minisearch';
 import { getIdBlocksOfHtml } from './getIdBlocksOfHtml.js';
 import readline from 'readline';
-import chalk from 'chalk';
-
-const CLEAR_COMMAND = process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H';
+import fs from 'fs';
+import path from 'path';
+import { renderResults } from './renderResults.js';
 
 export class RocketSearchPlugin {
-  command = 'search';
+  commands = ['search', 'start', 'build'];
+
   excludeLayouts = ['with-index.njk'];
   documents = [];
 
@@ -32,6 +33,9 @@ export class RocketSearchPlugin {
   }
 
   async execute() {
+    if (this.config.command !== 'search') {
+      return;
+    }
     const { mode } = this.config.search;
     switch (mode) {
       case 'search':
@@ -41,17 +45,25 @@ export class RocketSearchPlugin {
     }
   }
 
-  async inspectRenderedHtml({ html, url, layout, title }) {
-    if (!this.excludeLayouts.includes(layout)) {
-      const blocks = await getIdBlocksOfHtml({ html, url });
-      for (const block of blocks) {
-        this.documents.push({
-          id: block.url,
-          title,
-          headline: block.headline,
-          body: block.text,
-        });
-      }
+  async inspectRenderedHtml({ html, url, layout, title, data, eleventy }) {
+    if (this.excludeLayouts.includes(layout)) {
+      return;
+    }
+    if (data.excludeFromSearch) {
+      return;
+    }
+
+    const urlFilter = eleventy.config.nunjucksFilters.url;
+
+    const blocks = await getIdBlocksOfHtml({ html, url });
+    for (const block of blocks) {
+      this.documents.push({
+        id: urlFilter(block.url),
+        title,
+        section: data.section,
+        headline: block.headline,
+        body: block.text,
+      });
     }
   }
 
@@ -90,56 +102,45 @@ export class RocketSearchPlugin {
   }
 
   renderCli() {
-    console.log(CLEAR_COMMAND);
-    console.log(`Searching for: ${this.config.search.term}█`);
-
     const { term } = this.config.search;
+    const results = this.miniSearch?.search(term);
 
-    let results = [];
-
-    if (this.miniSearch && term !== '') {
-      results = this.miniSearch.search(term);
+    if (results) {
+      const output = renderResults({ term, results });
+      console.log(output.join('\n'));
     }
-
-    console.log('');
-    if (results.length > 0) {
-      console.log(`  Found ${results.length} result${results.length > 2 ? 's' : ''}`);
-      console.log('');
-      let count = 0;
-      for (const result of results) {
-        count += 1;
-        if (count > 10) {
-          break;
-        }
-        console.log(`  Headline: ${result.headline}`);
-        console.log(`  Title:    ${result.title}`);
-        console.log(`  Url:      ${chalk.cyanBright(`http://localhost:8080${result.id}`)}`);
-        console.log('  ---');
-      }
-    } else {
-      console.log('  No results found. (type more or less)');
-    }
-
-    console.log('');
-    console.log(`${chalk.gray('Press')} Strg+C ${chalk.gray('to quit search.')}`);
   }
 
   async setupIndex() {
     this.miniSearch = new MiniSearch({
-      fields: ['title', 'headline', 'body'], // fields to index for full-text search
-      storeFields: ['title', 'headline'], // fields to return with search results
+      fields: ['title', 'headline', 'body', 'section'], // fields to index for full-text search
+      storeFields: ['title', 'headline', 'body', 'section'], // fields to return with search results
       searchOptions: {
         boost: { headline: 3, title: 2 },
         fuzzy: 0.2,
+        prefix: true,
       },
     });
 
     this.miniSearch.addAll(this.documents);
   }
 
-  // async saveIndex() {
-  //   await this.setupIndex();
-  //   const json = JSON.stringify(this.miniSearch);
-  //   fs.writeFileSync('./foo.json', json);
-  // }
+  async updated() {
+    await this.saveIndex();
+  }
+
+  async saveIndex() {
+    await this.setupIndex();
+    const json = JSON.stringify(this.miniSearch);
+
+    const writePath = path.join(
+      this.config.configDir,
+      this.config.outputDir,
+      '_merged_assets',
+      '_static',
+      'rocket-search-index.json',
+    );
+    fs.writeFileSync(writePath, json);
+    console.log(`Search index written - ${new TextEncoder().encode(json).byteLength} bytes`);
+  }
 }

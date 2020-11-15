@@ -9,6 +9,10 @@
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./theme/": "./theme/"
+  },
   "scripts": {
     "dev": "web-dev-server --node-resolve --root-dir ../../ --open packages/drawer/ --watch",
     "rocket:build": "node src/build/cli.js -c demo/docs",
@@ -26,9 +30,5 @@
     "demo",
     "demo-states",
     "testing"
-  ],
-  "exports": {
-    ".": "./index.js",
-    "./theme/": "./theme/"
-  }
+  ]
 }

@@ -53,7 +53,7 @@ async function productionBuild(config) {
 }
 
 export class RocketBuild {
-  command = 'build';
+  commands = ['build'];
 
   setupCommand(config) {
     config.watch = false;

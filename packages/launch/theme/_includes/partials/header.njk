@@ -22,6 +22,8 @@
 
     <launch-dark-switch class="light-dark-switch" label="Toggle darkmode"></launch-dark-switch>
 
+    {% include 'search/input.njk' %}
+
     {%- for entry in site.socialLinks %}
       <a class="social-link" href="{{ entry.url }}" aria-label="{{ site.name }} on {{ entry.name }}" rel="noopener noreferrer" target="_blank">
         <span class="sr-only">{{ entry.name }}</span>
@@ -32,7 +34,5 @@
         {% endif %}
       </a>
     {%- endfor %}
-
-    {% include 'search/input.njk' %}
   </div>
 </header>

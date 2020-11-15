@@ -8,9 +8,18 @@
   "license": "MIT",
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "type": "module",
+  "exports": {
+    ".": "./node.js",
+    "./node": "./node.js",
+    "./web": "./web.js",
+    "./rocket-search.js": "./rocket-search.js"
+  },
   "scripts": {
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:watch": "onchange 'src/**/*.{js,cjs}' 'test/**/*.js' -- npm test"
+    "debug": "cd ../../ && npm run debug -- --group search",
+    "test": "npm run test:node && npm run test:web",
+    "test:node": "mocha test-node/**/*.test.js test-node/*.test.js",
+    "test:watch": "onchange 'src/**/*.{js,cjs}' 'test-node/**/*.js' -- npm run test:node",
+    "test:web": "cd ../../ && npm run test:web -- --group search"
   },
   "files": [
     "*.js",
@@ -24,11 +33,8 @@
     "search"
   ],
   "dependencies": {
+    "@lion/combobox": "^0.1.9",
+    "@open-wc/scoped-elements": "^1.3.1",
     "minisearch": "^3.0.0"
-  },
-  "exports": {
-    ".": {
-      "default": "./index.js"
-    }
   }
 }

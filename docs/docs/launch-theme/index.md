@@ -1,3 +1,7 @@
+---
+excludeFromSearch: true
+---
+
 # Launch Theme
 
 This is the default Theme for Rocket.

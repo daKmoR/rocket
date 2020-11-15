@@ -152,6 +152,7 @@ header a {
 
   transition: color 0.3s ease-in-out;
   font-weight: bold;
+  order: 2;
 }
 
 body:not([layout='home']) header a:hover {
@@ -168,17 +169,17 @@ body:not([layout='home']) header a:hover {
 }
 
 .social-link {
-  width: 30px;
-  height: 30px;
-}
-
-.social-link img {
-  width: 100%;
+  display: none;
 }
 
 header .logo-link {
   display: none;
   color: var(--primary-color);
+  order: 0;
+}
+
+header .search { 
+  order: 2;
 }
 
 header .logo-link span {
@@ -193,12 +194,23 @@ header .light-dark-switch {
 }
 
 @media screen and (min-width: 1024px) {
-  header a {
+  .social-link {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .social-link img {
+    width: 100%;
+  }
+
+  header .content-area > * {
     margin-right: 50px;
   }
 
-  header a:nth-of-type(2) {
+  header .search {
     margin-left: auto;
+    order: 1;
   }
 
   #mobile-menu-trigger {

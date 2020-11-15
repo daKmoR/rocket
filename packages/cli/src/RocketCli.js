@@ -116,7 +116,7 @@ export class RocketCli {
 
     if (this.config) {
       for (const plugin of this.config.plugins) {
-        if (this.config.command === plugin.command) {
+        if (this.considerPlugin(plugin)) {
           await plugin.setup({ config: this.config, argv: this.subArgv });
 
           if (typeof plugin.setupCommand === 'function') {
@@ -133,7 +133,7 @@ export class RocketCli {
       await this.updateComplete;
 
       for (const plugin of this.config.plugins) {
-        if (this.config.command === plugin.command && typeof plugin.execute === 'function') {
+        if (this.considerPlugin(plugin) && typeof plugin.execute === 'function') {
           await plugin.execute();
         }
       }
@@ -157,6 +157,10 @@ export class RocketCli {
     }
   }
 
+  considerPlugin(plugin) {
+    return plugin.commands.includes(this.config.command);
+  }
+
   async update() {
     for (const page of this.eleventy.writer.templateMap._collection.items) {
       const { title, content: html, layout } = page.data;
@@ -164,17 +168,23 @@ export class RocketCli {
       const { inputPath, outputPath } = page;
 
       for (const plugin of this.config.plugins) {
-        if (
-          this.config.command === plugin.command &&
-          typeof plugin.inspectRenderedHtml === 'function'
-        ) {
-          await plugin.inspectRenderedHtml({ html, inputPath, outputPath, layout, title, url });
+        if (this.considerPlugin(plugin) && typeof plugin.inspectRenderedHtml === 'function') {
+          await plugin.inspectRenderedHtml({
+            html,
+            inputPath,
+            outputPath,
+            layout,
+            title,
+            url,
+            data: page.data,
+            eleventy: this.eleventy,
+          });
         }
       }
     }
 
     for (const plugin of this.config.plugins) {
-      if (this.config.command === plugin.command && typeof plugin.updated === 'function') {
+      if (this.considerPlugin(plugin) && typeof plugin.updated === 'function') {
         await plugin.updated();
       }
     }

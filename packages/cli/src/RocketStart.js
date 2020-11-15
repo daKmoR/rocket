@@ -1,7 +1,7 @@
 import { startDevServer } from '@web/dev-server';
 
 export class RocketStart {
-  command = 'start';
+  commands = ['start'];
 
   async setup({ config, argv }) {
     this.__argv = argv;

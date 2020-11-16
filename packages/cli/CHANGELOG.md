@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.7.1
+
+### Patch Changes
+
+- 12f97a4: Make sure going through getting started works
+
 ## 0.7.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # @d4kmor/launch
 
+## 0.7.0
+
+### Minor Changes
+
+- 5085b8e: use nunjuks blocks to define sections
+
+### Patch Changes
+
+- 12f97a4: Make sure going through getting started works
+
 ## 0.6.0
 
 ### Minor Changes

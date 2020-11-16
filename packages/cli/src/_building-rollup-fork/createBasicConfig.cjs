@@ -62,7 +62,7 @@ function createBasicConfig(userOptions = {}) {
       ),
 
       // minify js code
-      !developmentMode && pluginWithOptions(terser, opts.terser, { format: { comments: false } }),
+      !developmentMode && pluginWithOptions(terser, opts.terser),
     ].filter(isFalsy),
   };
 

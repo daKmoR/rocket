@@ -9,6 +9,12 @@
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./theme/": "./theme/",
+    "./inline-notification": "./inline-notification/index.js",
+    "./inline-notification/inline-notification.js": "./inline-notification/inline-notification.js"
+  },
   "scripts": {
     "dev": "web-dev-server --node-resolve --root-dir ../../ --open packages/drawer/ --watch",
     "rocket:build": "node src/build/cli.js -c demo/docs",
@@ -31,11 +37,5 @@
   "dependencies": {
     "@d4kmor/drawer": "^0.2.1",
     "@d4kmor/navigation": "^0.2.0"
-  },
-  "exports": {
-    ".": "./index.js",
-    "./theme/": "./theme/",
-    "./inline-notification": "./inline-notification/index.js",
-    "./inline-notification/inline-notification.js": "./inline-notification/inline-notification.js"
   }
 }

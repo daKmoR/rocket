@@ -11,6 +11,9 @@
     "rocket": "src/cli.js"
   },
   "type": "module",
+  "exports": {
+    "require": "./index.cjs"
+  },
   "scripts": {
     "build": "npm run rocket:build",
     "dev": "node ./eleventyOnly.js",
@@ -62,8 +65,5 @@
   "devDependencies": {
     "@d4kmor/launch": "^0.6.0",
     "@types/fs-extra": "^9.0.1"
-  },
-  "exports": {
-    "require": "./index.cjs"
   }
 }

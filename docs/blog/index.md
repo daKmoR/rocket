@@ -1,6 +1,6 @@
 ---
 title: Rocket Blog
-layout: blog-overview.njk
+layout: blog
 eleventyNavigation:
   key: Blog
   order: 30

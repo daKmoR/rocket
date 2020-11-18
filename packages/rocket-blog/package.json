@@ -1,10 +1,10 @@
 {
-  "name": "@d4kmor/launch",
-  "version": "0.7.0",
+  "name": "@d4kmor/rocket-blog",
+  "version": "0.0.1",
   "publishConfig": {
     "access": "public"
   },
-  "description": "Launch Theme for Rocket",
+  "description": "Blog for Rocket",
   "license": "MIT",
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
@@ -19,7 +19,6 @@
   },
   "files": [
     "*.js",
-    "inline-notification",
     "theme"
   ],
   "keywords": [
@@ -34,8 +33,6 @@
   },
   "exports": {
     ".": "./index.js",
-    "./theme/": "./theme/",
-    "./inline-notification": "./inline-notification/index.js",
-    "./inline-notification/inline-notification.js": "./inline-notification/inline-notification.js"
+    "./theme/": "./theme/"
   }
 }

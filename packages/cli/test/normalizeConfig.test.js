@@ -146,4 +146,53 @@ describe('normalizeConfig', () => {
       },
     });
   });
+
+  describe('themes', async () => {
+    let expectedConfig = {
+      command: 'help',
+      devServer: {},
+      watch: true,
+      setupUnifiedPlugins: [],
+      themes: [],
+      plugins: [{ command: 'start' }, { command: 'build' }],
+      eleventy: {
+        dir: {
+          data: '_merged_data',
+          includes: '_merged_includes',
+        },
+      },
+      outputDir: '_site-dev',
+      pathPrefix: '/_site-dev',
+      build: {
+        outputDir: '_site',
+        pathPrefix: '',
+      },
+    };
+    it('supports an eleventy config object', async () => {
+      const configDir = path.join(__dirname, 'fixtures', 'empty');
+      const themePath = path.join(__dirname, 'fixtures', 'themes', 'index.js');
+      const { eleventyObjectTheme } = await import(themePath);
+      const themeResolved = eleventyObjectTheme();
+      const config = await normalizeConfig({
+        configDir,
+        themes: [themeResolved],
+      });
+      expectedConfig.themes = [themeResolved];
+      expectedConfig.eleventy.dir.data = '--theme-config-override--';
+      expect(cleanup(config)).to.deep.equal(expectedConfig);
+    });
+    it('supports an eleventy config function', async () => {
+      const configDir = path.join(__dirname, 'fixtures', 'empty');
+      const themePath = path.join(__dirname, 'fixtures', 'themes', 'index.js');
+      const { eleventyFunctionTheme } = await import(themePath);
+      const themeResolved = eleventyFunctionTheme();
+      const config = await normalizeConfig({
+        configDir,
+        themes: [themeResolved],
+      });
+      expectedConfig.themes = [themeResolved];
+      expectedConfig.eleventy.dir.data = '--theme-config-function-override--';
+      expect(cleanup(config)).to.deep.equal(expectedConfig);
+    });
+  });
 });

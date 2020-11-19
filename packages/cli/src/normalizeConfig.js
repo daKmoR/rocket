@@ -8,6 +8,52 @@ import { RocketStart } from './RocketStart.js';
 import { RocketBuild } from './RocketBuild.js';
 import { eleventyConfigEmpty } from './shared/eleventyConfigEmpty.js';
 
+function getEleventyConfig(localConfig) {
+  let eleventyConfig = {
+    config: localConfig.eleventy || {},
+    function: localConfig.eleventyFunction || function () {},
+  };
+  if (typeof localConfig.eleventy === 'function') {
+    eleventyConfig.config = localConfig.eleventy(eleventyConfigEmpty);
+    eleventyConfig.function = localConfig.eleventy;
+    delete localConfig.eleventy;
+  }
+  return eleventyConfig;
+}
+
+function mergeEleventyConfigs(config, eleventyConfig, localConfig = {}) {
+  const oldConfig = { ...config };
+
+  const oldEleventyFunction = config.eleventyFunction;
+  config = {
+    ...config,
+    ...localConfig,
+    eleventyFunction: (...args) => {
+      oldEleventyFunction(...args);
+      eleventyConfig.function(...args);
+    },
+  };
+
+  if (eleventyConfig.config) {
+    if (eleventyConfig.config.dir) {
+      config.eleventy = {
+        ...oldConfig.eleventy,
+        ...eleventyConfig.config,
+        dir: {
+          ...oldConfig.eleventy.dir,
+          ...eleventyConfig.config.dir,
+        },
+      };
+    } else {
+      config.eleventy = {
+        ...oldConfig.eleventy,
+        ...eleventyConfig.config,
+      };
+    }
+  }
+  return config;
+}
+
 /** @typedef {import('./types').RocketCliOptions} RocketCliOptions */
 
 /**
@@ -36,39 +82,7 @@ export async function normalizeConfig(inConfig) {
   try {
     const fileConfig = await readConfig('rocket.config', undefined, path.resolve(config.configDir));
     if (fileConfig) {
-      let newEleventyConfig = fileConfig.eleventy || {};
-      let eleventyFunction = config.eleventyFunction;
-      if (typeof fileConfig.eleventy === 'function') {
-        newEleventyConfig = fileConfig.eleventy(eleventyConfigEmpty);
-        eleventyFunction = fileConfig.eleventy;
-        delete fileConfig.eleventy;
-      }
-
-      const oldConfig = { ...config };
-
-      config = {
-        ...config,
-        ...fileConfig,
-        eleventyFunction,
-      };
-
-      if (newEleventyConfig) {
-        if (newEleventyConfig.dir) {
-          config.eleventy = {
-            ...oldConfig.eleventy,
-            ...newEleventyConfig,
-            dir: {
-              ...oldConfig.eleventy.dir,
-              ...newEleventyConfig.dir,
-            },
-          };
-        } else {
-          config.eleventy = {
-            ...oldConfig.eleventy,
-            ...newEleventyConfig,
-          };
-        }
-      }
+      config = mergeEleventyConfigs(config, getEleventyConfig(fileConfig, config), fileConfig);
     }
   } catch (error) {
     console.error('Could not read rocket config file', error);
@@ -77,6 +91,12 @@ export async function normalizeConfig(inConfig) {
 
   if (!config.configDir) {
     throw new Error('You can not set the configDir in the rocket.config.js');
+  }
+
+  if (config.themes) {
+    config.themes.forEach(theme => {
+      config = mergeEleventyConfigs(config, getEleventyConfig(theme, config));
+    });
   }
 
   const devServer = {

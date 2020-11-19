@@ -37,10 +37,6 @@ module.exports = function (eleventyConfig) {
   const { pathPrefix, inputDir, configDir, outputDir } = config;
   const { data, includes } = config.eleventy.dir;
 
-  if (config.eleventyFunction) {
-    config.eleventyFunction(eleventyConfig);
-  }
-
   eleventyConfig.addFilter('asset', function (inPath) {
     return inPath.replace('_assets/', '_merged_assets/');
   });
@@ -61,15 +57,11 @@ module.exports = function (eleventyConfig) {
     if (fs.existsSync(indexSection)) {
       // add to header
       headerCollectionPaths.push(indexSection);
-
       // add to specific collection
       eleventyConfig.addCollection(section, collection => {
         let docs = [...collection.getFilteredByGlob(`${inputDir}/${section}/**/*.md`)];
         docs.forEach(page => {
           page.data.section = section;
-          if (section === 'blog') {
-            page.data.layout = 'blog-details.njk';
-          }
         });
         docs = docs.filter(page => page.inputPath !== `./${indexSection}`);
 
@@ -112,6 +104,10 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter('inlineFilePath', inlineFilePath);
   eleventyConfig.addFilter('modifySvg', modifySvg);
+
+  if (config.eleventyFunction) {
+    config.eleventyFunction(eleventyConfig);
+  }
 
   return {
     dir: {

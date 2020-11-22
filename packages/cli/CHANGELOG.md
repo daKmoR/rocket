@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.8.0
+
+### Minor Changes
+
+- d976142: Update to the latest @web releases
+
 ## 0.7.1
 
 ### Patch Changes

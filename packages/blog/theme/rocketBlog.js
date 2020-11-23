@@ -8,7 +8,7 @@ const POST_COLLECTION = 'posts';
 const isHiddenCollection = item => ['-', '_'].includes(item.charAt(0));
 const isVisibleCollection = item => !isHiddenCollection(item);
 
-export const theme = ({ section = SECTION, postCollection = POST_COLLECTION }) => {
+export function rocketBlog({ section = SECTION, postCollection = POST_COLLECTION } = {}) {
   const isNotPostCollection = collection => collection !== postCollection;
   const eleventyFunction = eleventyConfig => {
     eleventyConfig.addLayoutAlias('blog', 'blog-overview.njk');
@@ -49,4 +49,4 @@ export const theme = ({ section = SECTION, postCollection = POST_COLLECTION }) =
     path: path.resolve(__dirname),
     eleventyFunction,
   };
-};
+}

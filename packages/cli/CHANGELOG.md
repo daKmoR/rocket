@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.9.0
+
+### Minor Changes
+
+- 673bedc: Themes can configure eleventy
+
 ## 0.8.0
 
 ### Minor Changes

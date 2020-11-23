@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.8.0
+
+### Minor Changes
+
+- 673bedc: Extract blog parts into a separate theme
+
 ## 0.7.0
 
 ### Minor Changes

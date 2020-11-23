@@ -8,11 +8,6 @@
   "license": "MIT",
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "type": "module",
-  "exports": {
-    ".": {
-      "default": "./index.js"
-    }
-  },
   "scripts": {
     "test": "mocha test/**/*.test.js test/*.test.js",
     "test:watch": "onchange 'src/**/*.{js,cjs}' 'test/**/*.js' -- npm test"
@@ -30,5 +25,10 @@
   ],
   "dependencies": {
     "minisearch": "^3.0.0"
+  },
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    }
   }
 }

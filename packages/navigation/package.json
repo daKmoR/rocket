@@ -9,9 +9,6 @@
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "type": "module",
-  "exports": {
-    ".": "./index.js"
-  },
   "scripts": {
     "test": "cd ../../ && yarn test:browser \"packages/navigation2/test/**/*.test.js\"",
     "test:watch": "yarn test --watch"
@@ -26,5 +23,8 @@
     "rocket",
     "navigation"
   ],
-  "types": "dist/index.js"
+  "types": "dist/index.js",
+  "exports": {
+    ".": "./index.js"
+  }
 }

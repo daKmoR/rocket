@@ -20,8 +20,8 @@
     "rocket:build": "node src/cli.js build -c demo",
     "rocket:start": "node src/cli.js start -c demo",
     "start": "npm run rocket:start",
-    "test": "mocha test/**/*.test.{js,cjs} test/*.test.{js,cjs}",
-    "test:watch": "onchange 'src/**/*.{js,cjs}' 'test/**/*.{js,cjs}' -- npm test",
+    "test": "mocha test-node/**/*.test.{js,cjs} test-node/*.test.{js,cjs}",
+    "test:watch": "onchange 'src/**/*.{js,cjs}' 'test-node/**/*.{js,cjs}' -- npm test",
     "xtest:watch": "mocha test/**/*.test.js --parallel --watch"
   },
   "files": [

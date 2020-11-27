@@ -15,24 +15,14 @@
     "./inline-notification": "./inline-notification/index.js",
     "./inline-notification/inline-notification.js": "./inline-notification/inline-notification.js"
   },
-  "scripts": {
-    "dev": "web-dev-server --node-resolve --root-dir ../../ --open packages/drawer/ --watch",
-    "rocket:build": "node src/build/cli.js -c demo/docs",
-    "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/README.md",
-    "start": "npm run rocket:start",
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
-  },
   "files": [
     "*.js",
     "inline-notification",
     "theme"
   ],
   "keywords": [
-    "storybook",
-    "demo",
-    "demo-states",
-    "testing"
+    "rocket",
+    "theme"
   ],
   "dependencies": {
     "@d4kmor/drawer": "^0.2.1",

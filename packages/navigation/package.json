@@ -13,8 +13,9 @@
     ".": "./index.js"
   },
   "scripts": {
-    "test": "cd ../../ && yarn test:browser \"packages/navigation2/test/**/*.test.js\"",
-    "test:watch": "yarn test --watch"
+    "debug": "cd ../../ && npm run debug -- --group navigation",
+    "test": "npm run test:web",
+    "test:web": "cd ../../ && npm run test:web -- --group navigation"
   },
   "files": [
     "*.d.ts",

@@ -29,7 +29,7 @@ describe('normalizeConfig', () => {
     expect(config.devServer.rootDir).to.exist;
     expect(config.configDir).to.equal(configDir);
     expect(config._configDirCwdRelative).to.not.equal(configDir);
-    expect(config._configDirCwdRelative).to.match(/test\/fixtures\/empty$/);
+    expect(config._configDirCwdRelative).to.match(/test-node\/fixtures\/empty$/);
     expect(config.inputDir).to.match(/empty\/docs$/);
     expect(config._inputDirConfigDirRelative).to.equal('docs');
     expect(config._themePathes[0]).to.match(/empty\/docs$/);
@@ -40,7 +40,7 @@ describe('normalizeConfig', () => {
       watch: true,
       setupUnifiedPlugins: [],
       themes: [],
-      plugins: [{ command: 'start' }, { command: 'build' }],
+      plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       eleventy: {
         dir: {
           data: '_merged_data',
@@ -73,7 +73,7 @@ describe('normalizeConfig', () => {
       watch: true,
       setupUnifiedPlugins: [],
       themes: [],
-      plugins: [{ command: 'start' }, { command: 'build' }],
+      plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       eleventy: {
         dir: {
           data: '_merged_data',
@@ -103,7 +103,7 @@ describe('normalizeConfig', () => {
       watch: true,
       setupUnifiedPlugins: [],
       themes: [],
-      plugins: [{ command: 'start' }, { command: 'build' }],
+      plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       eleventy: {
         dir: {
           data: '--config-override--',
@@ -131,7 +131,7 @@ describe('normalizeConfig', () => {
       watch: true,
       setupUnifiedPlugins: [],
       themes: [],
-      plugins: [{ command: 'start' }, { command: 'build' }],
+      plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       eleventy: {
         dir: {
           data: '--config-function-override--',
@@ -154,7 +154,7 @@ describe('normalizeConfig', () => {
       watch: true,
       setupUnifiedPlugins: [],
       themes: [],
-      plugins: [{ command: 'start' }, { command: 'build' }],
+      plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       eleventy: {
         dir: {
           data: '_merged_data',

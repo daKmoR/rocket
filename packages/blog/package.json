@@ -18,8 +18,8 @@
     "rocket:build": "node src/build/cli.js -c demo/docs",
     "rocket:start": "node src/start/cli.js -c demo/docs --root-dir ../../ --open packages/cli/demo/docs/README.md",
     "start": "npm run rocket:start",
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
+    "test": "mocha test-node/**/*.test.js test-node/*.test.js",
+    "test:watch": "mocha test-node/**/*.test.js test-node/*.test.js --watch"
   },
   "files": [
     "*.js",

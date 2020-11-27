@@ -1,5 +1,6 @@
-import { aTimeout, expect, fixture as _fixture, html } from '@open-wc/testing';
+import { expect, fixture as _fixture, html } from '@open-wc/testing';
 import { setViewport } from '@web/test-runner-commands';
+import { stubMethod } from 'hanbi';
 
 import '../rocket-search.js';
 
@@ -59,9 +60,10 @@ describe('rocket-search', () => {
   it('initialize the search on focus', async () => {
     const el = await fixture(html`<rocket-search json-url=${fixtureOneResultUrl}></rocket-search>`);
     expect(el.miniSearch).to.be.null;
+
+    const stub = stubMethod(el, 'setupSearch');
     el.combobox.focus();
-    await aTimeout(20); // focus will trigger but takes a little time
-    expect(el.miniSearch).to.not.be.null;
+    expect(stub.callCount).to.equal(1);
   });
 
   it('has search results', async () => {

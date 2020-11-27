@@ -40,7 +40,7 @@ async function renderEleventy(inputDir) {
 
 describe('eleventy-plugin-mdjs-unified', () => {
   it('renders markdown', async () => {
-    const files = await renderEleventy('./test/fixtures/md');
+    const files = await renderEleventy('./test-node/fixtures/md');
     expect(files).to.deep.equal([
       {
         html: {
@@ -55,7 +55,7 @@ describe('eleventy-plugin-mdjs-unified', () => {
   });
 
   it('renders markdown with javascript', async () => {
-    const files = await renderEleventy('./test/fixtures/mdjs');
+    const files = await renderEleventy('./test-node/fixtures/mdjs');
     expect(files).to.deep.equal([
       {
         html: {
@@ -84,7 +84,7 @@ describe('eleventy-plugin-mdjs-unified', () => {
   });
 
   it('rewrites relative import pathes', async () => {
-    const files = await renderEleventy('./test/fixtures/mdjs-import');
+    const files = await renderEleventy('./test-node/fixtures/mdjs-import');
     expect(files).to.deep.equal([
       {
         html: {
@@ -98,7 +98,7 @@ describe('eleventy-plugin-mdjs-unified', () => {
   });
 
   it('rewrites relative import pathes in subpages', async () => {
-    const files = await renderEleventy('./test/fixtures/mdjs-import-in-subpage');
+    const files = await renderEleventy('./test-node/fixtures/mdjs-import-in-subpage');
     expect(files).to.deep.equal([
       {
         html: {
@@ -112,7 +112,7 @@ describe('eleventy-plugin-mdjs-unified', () => {
   });
 
   it('does not touch relative imports of an index.md file', async () => {
-    const files = await renderEleventy('./test/fixtures/mdjs-import-index');
+    const files = await renderEleventy('./test-node/fixtures/mdjs-import-index');
     expect(files).to.deep.equal([
       {
         html: {
@@ -126,7 +126,7 @@ describe('eleventy-plugin-mdjs-unified', () => {
   });
 
   it('rewrites links to work with 11ty', async () => {
-    const files = await renderEleventy('./test/fixtures/links');
+    const files = await renderEleventy('./test-node/fixtures/links');
     const sortedFiles = files.sort((a, b) => a.name.length - b.name.length);
     expect(sortedFiles).to.deep.equal([
       {
@@ -157,7 +157,7 @@ describe('eleventy-plugin-mdjs-unified', () => {
   });
 
   it('allows to configure the plugins for unity', async () => {
-    const files = await renderEleventy('./test/fixtures/plugin-configure');
+    const files = await renderEleventy('./test-node/fixtures/plugin-configure');
     expect(files).to.deep.equal([
       {
         html: {

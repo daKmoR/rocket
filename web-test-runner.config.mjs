@@ -1,5 +1,5 @@
 import fs from 'fs';
-// import { esbuildPlugin } from '@web/dev-server-esbuild';
+import { playwrightLauncher } from '@web/test-runner-playwright';
 
 const packages = fs
   .readdirSync('packages')
@@ -9,8 +9,13 @@ const packages = fs
   );
 
 export default {
+  files: 'packages/*/test-web/**/*.test.{js,ts}',
   nodeResolve: true,
-  // plugins: [esbuildPlugin({ ts: true })],
+  browsers: [
+    playwrightLauncher({ product: 'firefox' }),
+    playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({ product: 'webkit' }),
+  ],
   groups: packages.map(pkg => {
     return {
       name: pkg,

@@ -9,8 +9,8 @@
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
+    "test": "mocha test-node/**/*.test.js test-node/*.test.js",
+    "test:watch": "mocha test-node/**/*.test.js test-node/*.test.js --watch"
   },
   "files": [
     "*.js",

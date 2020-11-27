@@ -1,5 +1,6 @@
 import chai from 'chai';
 import { renderResults, renderResult } from '../src/renderResults.js';
+import chalk from 'chalk';
 
 const { expect } = chai;
 
@@ -13,12 +14,17 @@ const defaultResult = {
 };
 
 describe('renderResults', () => {
+  before(() => {
+    // ignore colors in tests as most CIs won't support it
+    chalk.level = 0;
+  });
+
   it('renders a single result', async () => {
     const result = renderResult({ result: defaultResult, search: 'more' });
     expect(result).to.deep.equal([
-      '  📖 ntation > Read \u001b[32mmore\u001b[39m',
-      '     \u001b[90m you will read \u001b[32mmore\u001b[90m about it.\u001b[39m',
-      '     \u001b[96mhttp://localhost:8080/_site-dev/docs/#content-top\u001b[39m',
+      '  📖 ntation > Read more',
+      '      you will read more about it.',
+      '     http://localhost:8080/_site-dev/docs/#content-top',
       '',
     ]);
   });
@@ -26,18 +32,18 @@ describe('renderResults', () => {
   it('renders results', async () => {
     const result = renderResults({ term: 'launch', results: [defaultResult] });
     expect(result).to.deep.equal([
-      '\u001b[2J\u001b[3J\u001b[H',
+      '\u001b[2J\u001b[3J\u001b[H', // clear command
       'Searching for: launch█',
       '',
-      '  📖 ntation > Read \u001b[32mmore\u001b[39m',
-      '     \u001b[90m you will read \u001b[32mmore\u001b[90m about it.\u001b[39m',
-      '     \u001b[96mhttp://localhost:8080/_site-dev/docs/#content-top\u001b[39m',
+      '  📖 ntation > Read more',
+      '      you will read more about it.',
+      '     http://localhost:8080/_site-dev/docs/#content-top',
       '',
       '',
       'Legend:',
-      '\u001b[90m   📜 Guides  📖 Docs  📝 Blog  ❓ Others\u001b[39m',
+      '   📜 Guides  📖 Docs  📝 Blog  ❓ Others',
       '',
-      '\u001b[90mPress\u001b[39m Strg+C \u001b[90mto quit search.\u001b[39m',
+      'Press Strg+C to quit search.',
     ]);
   });
 });

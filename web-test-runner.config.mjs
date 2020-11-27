@@ -14,7 +14,7 @@ export default {
   browsers: [
     playwrightLauncher({ product: 'firefox' }),
     playwrightLauncher({ product: 'chromium' }),
-    playwrightLauncher({ product: 'webkit' }),
+    // playwrightLauncher({ product: 'webkit' }),
   ],
   groups: packages.map(pkg => {
     return {

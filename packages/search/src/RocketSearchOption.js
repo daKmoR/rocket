@@ -3,15 +3,19 @@ import { css, html, unsafeHTML } from '@lion/core';
 import { LionOption } from '@lion/listbox';
 import { LinkMixin } from './LinkMixin.js';
 
-function textToColor(text) {
-  var hash = 0;
-  if (text.length == 0) return hash;
-  for (var i = 0; i < text.length; i++) {
-    hash = text.charCodeAt(i) + ((hash << 5) - hash);
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  var shortened = hash % 360;
-  return 'hsl(' + shortened + ',100%,80%)';
+const icons = {
+  guides: new URL('../assets/guides.svg', import.meta.url).href,
+  docs: new URL('../assets/docs.svg', import.meta.url).href,
+  blog: new URL('../assets/blog.svg', import.meta.url).href,
+  others: new URL('../assets/others.svg', import.meta.url).href,
+};
+
+/**
+ * @param {string} section
+ */
+function getIcon(section) {
+  const typedSection = /** @type {keyof icons} */ (section);
+  return icons[typedSection] ? icons[typedSection] : icons['others'];
 }
 
 // @ts-expect-error https://github.com/microsoft/TypeScript/issues/40110
@@ -55,20 +59,11 @@ export class RocketSearchOption extends LinkMixin(LionOption) {
           background: #eee !important;
         }
 
-        .circle {
-          background: #ccc;
-          padding: 10px;
-          border-radius: 25px;
-          width: 20px;
-          line-height: 20px;
-          text-align: center;
-          margin-right: 14px;
-          text-transform: uppercase;
+        .icon {
+          width: 50px;
+          margin-right: 15px;
           flex-shrink: 0;
-        }
-
-        .circle.docs {
-          background: orange;
+          align-self: start;
         }
 
         .title {
@@ -89,36 +84,9 @@ export class RocketSearchOption extends LinkMixin(LionOption) {
     ];
   }
 
-  // /**
-  //  * @configure LionCombobox
-  //  * @param {string} matchingString
-  //  */
-  // onFilterMatch(matchingString) {
-  //   this.__originalTitle = this.title;
-  //   this.__originalText = this.text;
-
-  //   this.title = processResultText(matchingString, this.__originalTitle);
-  //   this.text = processResultText(matchingString, this.__originalText);
-  // }
-
-  // /**
-  //  * @configure LionCombobox
-  //  */
-  // // eslint-disable-next-line no-unused-vars
-  // onFilterUnmatch() {
-  //   if (this.__originalTitle) {
-  //     this.title = this.__originalTitle;
-  //   }
-  //   if (this.__originalText) {
-  //     this.text = this.__originalText;
-  //   }
-  // }
-
   render() {
     return html`
-      <div class="circle ${this.section}" style="background-color: ${textToColor(this.section)};">
-        ${this.section[0]}
-      </div>
+      <img class="icon" src=${getIcon(this.section)} />
       <div class="choice-field__label">
         <div class="title">${unsafeHTML(this.title)}</div>
         <div class="text">${unsafeHTML(this.text)}</div>

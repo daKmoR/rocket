@@ -28,7 +28,7 @@
     "testing"
   ],
   "dependencies": {
-    "@lion/overlays": "^0.20.0",
+    "@lion/overlays": "^0.22.2",
     "lit-element": "^2.3.1"
   }
 }

@@ -209,7 +209,6 @@ header .light-dark-switch {
   }
 
   header .search {
-    margin-left: auto;
     order: 1;
   }
 
@@ -219,6 +218,7 @@ header .light-dark-switch {
 
   header .logo-link {
     display: block;
+    margin-right: auto;
   }
 
   header .light-dark-switch {

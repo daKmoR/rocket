@@ -1,5 +1,13 @@
 # @d4kmor/core
 
+## 0.2.0
+
+### Minor Changes
+
+- 4287d02: - create and serves a search index json file
+  - add a web component that uses a combobox to fill in the search results (from the index)
+  - highlight the appropriate search or terms (in frontend and in cli)
+
 ## 0.1.2
 
 ### Patch Changes

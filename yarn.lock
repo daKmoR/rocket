@@ -1949,6 +1949,15 @@
     glob "^7.1.6"
     parse5 "^6.0.1"
 
+"@web/rollup-plugin-import-meta-assets@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@web/rollup-plugin-import-meta-assets/-/rollup-plugin-import-meta-assets-1.0.4.tgz#32d7c381a976c8d40b9c3db861bc2f8651af849c"
+  integrity sha512-Yu1U63aMZdWY6SSRNlukuNBMB5TdDq530Bs2cFQOJ+bwWnz1OHE0JyvPRvDmG48jf1XMsIOaormbIruaRsP+KA==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    estree-walker "^2.0.1"
+    magic-string "^0.25.7"
+
 "@web/rollup-plugin-polyfills-loader@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@web/rollup-plugin-polyfills-loader/-/rollup-plugin-polyfills-loader-1.0.3.tgz#26b162c20cf22100117c154793d6be232cbb979b"
@@ -4027,6 +4036,11 @@ estree-walker@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-1.0.1.tgz#31bc5d612c96b704106b477e6dd5d8aa138cb700"
   integrity sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==
+
+estree-walker@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-2.0.1.tgz#f8e030fb21cefa183b44b7ad516b747434e7a3e0"
+  integrity sha512-tF0hv+Yi2Ot1cwj9eYHtxC0jB9bmjacjQs6ZBTj82H8JwUywFuc+7E83NWfNMwHXZc11mjfFcVXPe9gEP4B8dg==
 
 esutils@^2.0.2:
   version "2.0.3"

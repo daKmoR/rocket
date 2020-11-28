@@ -1,5 +1,11 @@
 # @d4kmor/launch
 
+## 0.9.0
+
+### Minor Changes
+
+- 4287d02: Arrange header content to allow for search to be added
+
 ## 0.8.0
 
 ### Minor Changes

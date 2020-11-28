@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.10.0
+
+### Minor Changes
+
+- 4287d02: plugins can now hook into multiple commands
+
 ## 0.9.0
 
 ### Minor Changes

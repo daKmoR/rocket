@@ -32,7 +32,6 @@ const createBabelConfigRollupBuild = ({ developmentMode, rootDir }) => ({
 
     // plugins that aren't part of @babel/preset-env should be applied regularly in
     // the rollup build phase
-    [require.resolve('babel-plugin-bundled-import-meta'), { bundleDir: rootDir }],
     !developmentMode && [
       require.resolve('babel-plugin-template-html-minifier'),
       {

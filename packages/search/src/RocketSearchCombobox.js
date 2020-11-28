@@ -1,5 +1,6 @@
 import { css } from '@lion/core';
 import { LionCombobox } from '@lion/combobox';
+import { withDropdownConfig } from '@lion/overlays';
 
 export class RocketSearchCombobox extends LionCombobox {
   static get styles() {
@@ -182,11 +183,9 @@ export class RocketSearchCombobox extends LionCombobox {
   }
 
   _defineOverlayConfig() {
-    const parentConfig = super._defineOverlayConfig();
     return {
-      ...parentConfig,
+      ...withDropdownConfig(),
       popperConfig: {
-        ...parentConfig.popperConfig,
         placement: 'bottom-center',
         // modifiers: {
         //   ...parentConfig?.popperConfig?.modifiers,

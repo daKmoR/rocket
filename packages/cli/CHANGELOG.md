@@ -1,5 +1,11 @@
 # @d4kmor/cli
 
+## 0.10.1
+
+### Patch Changes
+
+- 7df4566: Add a dependency to @rollup/plugin-node-resolve
+
 ## 0.10.0
 
 ### Minor Changes

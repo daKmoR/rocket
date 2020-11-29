@@ -1,5 +1,15 @@
 # @d4kmor/core
 
+## 0.2.1
+
+### Patch Changes
+
+- 638fe46: applied following fixies
+  - expose some css theming variables
+  - truncate text also when many terms are found
+  - show only a max of 10 results for the frontend
+  - add icons to npm artifact
+
 ## 0.2.0
 
 ### Minor Changes

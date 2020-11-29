@@ -64,7 +64,7 @@ describe('utils-shared: highlightSearchTerms', () => {
     expect(highlighted).to.equal('You should <strong>lau</strong>nch that product.');
   });
 
-  it('truncates the text to 100 characters by default', async () => {
+  it('truncates the text to 100 characters + highlight code', async () => {
     const highlighted = highlightSearchTerms({
       search: 'launch',
       terms: ['launch'],
@@ -75,6 +75,20 @@ describe('utils-shared: highlightSearchTerms', () => {
       ].join(' '),
     });
     expect(highlighted.length).to.equal(117); // 100 + 17 (the length of "<strong></strong>" to highlight the term)
+  });
+
+  it('truncates the text to 100 characters + highlight code only for the turncated text', async () => {
+    const highlighted = highlightSearchTerms({
+      search: 'l',
+      terms: ['l'],
+      text: [
+        'What lovely lego launch product you have laying around this lake of lonely lovers. Would be a shame if it would be lost.',
+      ].join(' '),
+    });
+    expect(highlighted.length).to.equal(270); // 100 + 10*17 (the length of "<strong></strong>" to highlight the term)
+    expect(highlighted).to.equal(
+      'What <strong>l</strong>ove<strong>l</strong>y <strong>l</strong>ego <strong>l</strong>aunch product you have <strong>l</strong>aying around this <strong>l</strong>ake of <strong>l</strong>one<strong>l</strong>y <strong>l</strong>overs. Wou<strong>l</strong>d be a shame ',
+    );
   });
 
   it('truncates the text around to the first found term', async () => {

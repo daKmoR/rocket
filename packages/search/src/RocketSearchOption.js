@@ -43,20 +43,34 @@ export class RocketSearchOption extends LinkMixin(LionOption) {
 
   static get styles() {
     return [
-      super.styles,
       css`
+        :host([hidden]) {
+          display: none;
+        }
+
+        :host(:hover) {
+          background-color: var(--rocket-search-hover-background-color, #eee);
+        }
+        :host([active]) {
+          background-color: var(--rocket-search-hover-background-color, #eee);
+        }
+        /* :host:hover,
+        :host([active]) {
+          background: #eee !important;
+        } */
+
+        :host([disabled]) {
+          color: #adadad;
+        }
+
         :host {
+          display: block;
+          cursor: default;
           position: relative;
           padding: 12px 10px;
           display: flex;
           align-items: center;
-          background: none;
           font-weight: normal;
-        }
-
-        :host:hover,
-        :host([active]) {
-          background: #eee !important;
         }
 
         .icon {
@@ -68,11 +82,14 @@ export class RocketSearchOption extends LinkMixin(LionOption) {
 
         .title {
           margin-bottom: 4px;
-          color: #000;
         }
 
         .text {
           font-size: 14px;
+        }
+
+        strong {
+          color: var(--rocket-search-highlight-color, #6c63ff);
         }
 
         @media screen and (min-width: 1024px) {

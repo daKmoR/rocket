@@ -25,6 +25,7 @@
     "*.js",
     "dist",
     "dist-types",
+    "assets",
     "src",
     "theme"
   ],

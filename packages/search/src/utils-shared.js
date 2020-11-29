@@ -1,3 +1,7 @@
+/**
+ * @param {string} title
+ * @param {string} headline
+ */
 export function joinTitleHeadline(title, headline) {
   if (title === headline) {
     return title;
@@ -5,6 +9,9 @@ export function joinTitleHeadline(title, headline) {
   return `${title} > ${headline}`;
 }
 
+/**
+ * @param {string} term
+ */
 function defaultHighlight(term) {
   return `<strong>${term}</strong>`;
 }
@@ -35,6 +42,8 @@ export function highlightSearchTerms({
   let newText = text;
   let searchText = newText.toLowerCase();
   let extraLength = 0;
+  let truncateStart = 0;
+
   let firstFoundIndex;
   for (const term of terms) {
     let offset = 0;
@@ -50,17 +59,15 @@ export function highlightSearchTerms({
         newText = [newText.slice(0, startIndex), highlightedTerm, newText.slice(endIndex)].join('');
         searchText = newText.toLowerCase();
         offset = startIndex + highlightedTerm.length;
-        extraLength += highlightedTerm.length - addForEnd;
         if (firstFoundIndex === undefined || startIndex < firstFoundIndex) {
           firstFoundIndex = startIndex;
+          truncateStart = firstFoundIndex - before > 0 ? firstFoundIndex - before : 0;
+        }
+        if (startIndex - truncateStart - extraLength < length) {
+          extraLength += highlightedTerm.length - addForEnd;
         }
       }
     } while (startIndex !== -1);
-  }
-
-  let truncateStart = 0;
-  if (firstFoundIndex !== undefined) {
-    truncateStart = firstFoundIndex - before > 0 ? firstFoundIndex - before : 0;
   }
 
   return newText.substr(truncateStart, length + extraLength);

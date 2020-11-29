@@ -39,6 +39,7 @@ export class RocketSearch extends ScopedElementsMixin(LitElement) {
       jsonUrl: { type: String, attribute: 'json-url' },
       search: { type: String },
       results: { type: Array },
+      maxResults: { type: Number, attribute: 'max-results' },
     };
   }
 
@@ -53,6 +54,7 @@ export class RocketSearch extends ScopedElementsMixin(LitElement) {
     super();
     this.jsonUrl = '';
     this.search = '';
+    this.maxResults = 10;
     /**
      * @type {RocketSearchResult[]}
      */
@@ -96,7 +98,9 @@ export class RocketSearch extends ScopedElementsMixin(LitElement) {
   /** @param {import('lit-element').PropertyValues } changedProperties */
   update(changedProperties) {
     if (this.miniSearch && changedProperties.has('search')) {
-      this.results = /** @type {RocketSearchResult[]} */ (this.miniSearch.search(this.search));
+      this.results = /** @type {RocketSearchResult[]} */ (this.miniSearch.search(
+        this.search,
+      )).slice(0, this.maxResults);
     }
 
     super.update(changedProperties);

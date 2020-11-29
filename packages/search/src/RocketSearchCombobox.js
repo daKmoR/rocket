@@ -7,10 +7,6 @@ export class RocketSearchCombobox extends LionCombobox {
     return [
       super.styles,
       css`
-        :host {
-          background: #fff;
-        }
-
         ::slotted([slot='label']) {
           display: none;
         }
@@ -27,6 +23,7 @@ export class RocketSearchCombobox extends LionCombobox {
           padding: 0;
           font: inherit;
           cursor: pointer;
+          fill: var(--rocket-search-fill-color, #000);
         }
 
         ::slotted([slot='prefix'][arrow-left]) {
@@ -36,6 +33,7 @@ export class RocketSearchCombobox extends LionCombobox {
 
         ::slotted([slot='listbox']) {
           max-height: calc(100vh - 70px);
+          background: var(--rocket-search-background-color, #fff);
         }
 
         .input-group__container {
@@ -62,8 +60,8 @@ export class RocketSearchCombobox extends LionCombobox {
           bottom: 0;
           left: 0;
           right: 0;
-          background: #fff;
           height: 100vh;
+          background: var(--rocket-search-background-color, #fff);
         }
 
         :host([show-input]) ::slotted([slot='prefix'][arrow-left]) {
@@ -93,9 +91,6 @@ export class RocketSearchCombobox extends LionCombobox {
             position: static !important;
             width: auto !important;
             transform: none !important;
-
-            /* height: 300px;
-            overflow: scroll; */
           }
         }
 
@@ -111,7 +106,7 @@ export class RocketSearchCombobox extends LionCombobox {
 
           .input-group__container {
             position: relative;
-            background: #fff;
+            background: var(--rocket-search-background-color, #fff);
             display: flex;
             border: 1px solid #dfe1e5;
             box-shadow: none;

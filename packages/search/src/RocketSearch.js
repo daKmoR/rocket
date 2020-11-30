@@ -112,7 +112,7 @@ export class RocketSearch extends ScopedElementsMixin(LitElement) {
         name="combo"
         label="Rocket Search"
         @input=${ev => {
-          this.search = ev.path[0].value;
+          this.search = ev.target.value;
         }}
         @focus=${() => {
           this.setupSearch();

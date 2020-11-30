@@ -1,5 +1,11 @@
 # @d4kmor/drawer
 
+## 0.2.2
+
+### Patch Changes
+
+- caaeb5e: Updated lion dependencies to by in sync with other rocket packages
+
 ## 0.2.1
 
 ### Patch Changes

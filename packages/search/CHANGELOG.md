@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.2.2
+
+### Patch Changes
+
+- caaeb5e: Ensure it also works on Safari
+
 ## 0.2.1
 
 ### Patch Changes

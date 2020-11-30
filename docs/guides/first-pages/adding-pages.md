@@ -28,14 +28,11 @@ You can read all about...
 
 Observe that this creates a section named "Guides" at the top menu bar, and a page with the same title.
 
-
 <inline-notification type="tip">
 
 Don't worry if this isn't how you would have styled or placed your menu bar or sidebar navigation, we'll get to customization of the default theme later in the tutorials.
 
 </inline-notification>
-
-
 
 > How many sections should I add?
 
@@ -82,8 +79,7 @@ _**Within**_ any page, you can still add links to your navigation!
 ```js script
 import '@d4kmor/launch/inline-notification/inline-notification.js';
 ```
+
 ## Example as a reference
 
 If implicit navigation, derived from content, is a bit too much to grasp in one sitting, feel free to examine the **docs** folder in [the rocket codebase behind the pages you are reading](https://github.com/daKmoR/rocket) for more examples.
-
-

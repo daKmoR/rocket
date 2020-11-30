@@ -27,7 +27,7 @@ export class RocketSearchCombobox extends LionCombobox {
         }
 
         ::slotted([slot='prefix'][arrow-left]) {
-          rotate: 180deg;
+          transform: rotate(180deg);
           display: none;
         }
 
@@ -44,8 +44,12 @@ export class RocketSearchCombobox extends LionCombobox {
           display: flex;
           flex-flow: column;
           justify-content: center;
+        }
+
+        ::slotted([slot='input']) {
           font-size: 25px;
           line-height: 25px;
+          margin: 0;
         }
 
         .input-group__input {

@@ -24,8 +24,8 @@
     "search": "node packages/cli/src/cli.js search",
     "start": "node packages/cli/src/cli.js start",
     "test": "yarn test:node && yarn test:web",
-    "test:web": "web-test-runner",
     "test:node": "mocha \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" --reporter dot --exit --retries 3",
+    "test:web": "web-test-runner",
     "update-dependency": "node scripts/update-dependency.js",
     "update-esm-entrypoints": "node scripts/update-esm-entrypoints.mjs && yarn format",
     "update-package-configs": "node scripts/update-package-configs.mjs && yarn format"

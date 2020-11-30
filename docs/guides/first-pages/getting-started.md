@@ -41,10 +41,6 @@ Rocket uses the .gitignore file to manage it's requirements. If you skip this st
 
 </inline-notification>
 
-
-
-
-
 4. Create a `rocket.config.mjs` (or `.js` if you have type: "module" in you package.json)
 
    ```js
@@ -70,23 +66,22 @@ All further pathes are relative to your project root (my-project in this case)
 
 Text here, like any markdown file.
 ```
+
 This tutorial assumes you are familiar with Markdown, for page authoring.
 
 Please note that the heading - text prefixed with `#` or `##` - is not optional for each page in this tutorial. Everything below that first line is optional Markdown text.
 
 ## Start up:
 
-
 👉 `package.json`
 
-Add `"start": "rocket start"` your package.json 
+Add `"start": "rocket start"` your package.json
 
-   ```json
+```json
 "scripts": {
-      ... ,
-      "start": "rocket start"
+  "start": "rocket start"
 }
-   ```
+```
 
 Now you can launch your site locally with
 

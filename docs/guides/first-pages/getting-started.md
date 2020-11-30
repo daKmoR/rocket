@@ -33,6 +33,18 @@ The fastest way to get started is by using an existing theme like the launch the
    docs/_merged_includes/
    ```
 
+<inline-notification type="danger">
+
+You may be tempted to skip the step above, because you're not ready to commit to git yet!
+
+Rocket uses the .gitignore file to manage it's requirements. If you skip this step, rocket will fail to deploy!
+
+</inline-notification>
+
+
+
+
+
 4. Create a `rocket.config.mjs` (or `.js` if you have type: "module" in you package.json)
 
    ```js
@@ -54,60 +66,47 @@ All further pathes are relative to your project root (my-project in this case)
 👉 `docs/index.md`
 
 ```md
-# Welcome to Rocket
+# Welcome to your Rocket site
+
+Text here, like any markdown file.
 ```
+This tutorial assumes you are familiar with Markdown, for page authoring.
 
-and start up with `npx rocket start`.
+Please note that the heading - text prefixed with `#` or `##` - is not optional for each page in this tutorial. Everything below that first line is optional Markdown text.
 
-## Add a section
+## Start up:
 
-In most cases you will have multiple sections in your website and each of those sections will come with it's own sidebar navigation.
 
-To create a section you need to create a folder with an `index.md`.
+👉 `package.json`
+
+Add `"start": "rocket start"` your package.json 
+
+   ```json
+"scripts": {
+      ... ,
+      "start": "rocket start"
+}
+   ```
+
+Now you can launch your site locally with
 
 ```bash
-mkdir docs/guides
+npm run start
 ```
 
-👉 `docs/guides/index.md`
+## Taking Inventory Before Adding Pages:
 
-```md
-# Guides
+We're about to add both content and navigation at the same time.
 
-You can read all about...
-```
+It can be helpful to take an inventory, before we start, to separate basic setup from the creation of content and navigation.
 
-This will mean you get a menu at the top with "Guides" and a page with the same title.
+- We built the project with basic npm commands
+- Added a couple required files manually
+- Adjusted package.json
+- **doc/index.md** to seed the content
+- Launches with a `npm start`
 
-> How many sections should I have?
-
-Generally we recommend to stay below 5 sections.
-
-## Adding a category
-
-Often each section will have multiple categories.
-
-To create a category you need to create a folder with an `index.md`.
-
-```bash
-mkdir docs/guides/first-pages/
-```
-
-👉 `docs/guides/first-pages/index.md`
-
-```md
-# First Pages
-```
-
-## Adding a page to a category
-
-👉 `docs/guides/first-pages/getting-started.md`
-
-```md
-# First Pages >> Getting Started
-
-This is how you get started.
-```
+That's all it takes to get a new super-fast and powerful site, complete with a service worker, default styling, navigation, and ready to deploy as a plain old static files.
 
 ```js script
 import '@d4kmor/launch/inline-notification/inline-notification.js';

@@ -66,13 +66,32 @@ All further pathes are relative to your project root (my-project in this case)
 👉 `docs/index.md`
 
 ```md
-# Welcome to Rocket
-```
+# Welcome to your Rocket site
 
-Start up:
+Text here, like any markdown file.
+```
+This tutorial assumes you are familiar with Markdown, for page authoring.
+
+Please note that the heading - text prefixed with `#` or `##` - is not optional for each page in this tutorial. Everything below that first line is optional Markdown text.
+
+## Start up:
+
+
+👉 `package.json`
+
+Add `"start": "rocket start"` your package.json 
+
+   ```json
+"scripts": {
+      ... ,
+      "start": "rocket start"
+}
+   ```
+
+Now you can launch your site locally with
 
 ```bash
-npx rocket start
+npm run start
 ```
 
 ## Taking Inventory Before Adding Pages:
@@ -83,8 +102,9 @@ It can be helpful to take an inventory, before we start, to separate basic setup
 
 - We built the project with basic npm commands
 - Added a couple required files manually
+- Adjusted package.json
 - **doc/index.md** to seed the content
-- Launches with a simple npx command
+- Launches with a `npm start`
 
 That's all it takes to get a new super-fast and powerful site, complete with a service worker, default styling, navigation, and ready to deploy as a plain old static files.
 

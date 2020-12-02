@@ -1,5 +1,11 @@
 # @d4kmor/drawer
 
+## 0.2.4
+
+### Patch Changes
+
+- 04f7f82: Add rendering of shadow dom back
+
 ## 0.2.3
 
 ### Patch Changes

@@ -50,6 +50,8 @@ export class RocketSearchCombobox extends LionCombobox {
           font-size: 25px;
           line-height: 25px;
           margin: 0;
+          background: transparent;
+          color: inherit;
         }
 
         .input-group__input {

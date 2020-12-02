@@ -1112,15 +1112,15 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@lion/combobox@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@lion/combobox/-/combobox-0.1.11.tgz#463231499e04b9e6a55ff35ebb209a49a8588546"
-  integrity sha512-ilVqcgQx+ED34l5BDHHqVr5Ugctvyo2ChGmzFK8Qg0up38fgGV+uKmWuYebXQ4PVQ7vsXUyoKNM05RlomP3EBw==
+"@lion/combobox@^0.1.13":
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/@lion/combobox/-/combobox-0.1.13.tgz#caa44a3d01fc2661902cfc01cf150a4639790606"
+  integrity sha512-84D//+50g/niT42yO9DeWrlYQPOoOkqjzVXW0uSKAmpv1ghT5KE/F5yBM/1OL2xPvg9mH+wz6Bavy4F7nUp6EA==
   dependencies:
     "@lion/core" "0.13.4"
-    "@lion/form-core" "0.6.11"
-    "@lion/listbox" "0.3.8"
-    "@lion/overlays" "0.22.3"
+    "@lion/form-core" "0.6.12"
+    "@lion/listbox" "0.3.10"
+    "@lion/overlays" "0.22.5"
 
 "@lion/core@0.13.4":
   version "0.13.4"
@@ -1132,21 +1132,21 @@
     lit-element "~2.4.0"
     lit-html "^1.3.0"
 
-"@lion/form-core@0.6.11":
-  version "0.6.11"
-  resolved "https://registry.yarnpkg.com/@lion/form-core/-/form-core-0.6.11.tgz#7df5679ab7c47f1be7d81b4b90de5cfe4b265043"
-  integrity sha512-95nLpYp7ZE8wsuvaqELi0g4qZfWFTek0ufoBOPuFZEUPCugacfJky9uK6NWmjyylvZBehfKuPB80p651U2r1Ow==
+"@lion/form-core@0.6.12":
+  version "0.6.12"
+  resolved "https://registry.yarnpkg.com/@lion/form-core/-/form-core-0.6.12.tgz#f49aaf490aeb8b1a24d8b7d12815b6f892b6d5fa"
+  integrity sha512-T+gVmCGfbycWBPuD0Ko7PlPhPUQM6Cv3wrcSbHjbOpEFzBra5SiRm+MG/MDAUGhmmbN9yVncPBsjUIXXn8GaJQ==
   dependencies:
     "@lion/core" "0.13.4"
     "@lion/localize" "0.15.1"
 
-"@lion/listbox@0.3.8":
-  version "0.3.8"
-  resolved "https://registry.yarnpkg.com/@lion/listbox/-/listbox-0.3.8.tgz#3f9f427c054b9e3aee7c2db122d843001a7ba9f0"
-  integrity sha512-iS8KYnvyDMrROtdIZOZmt4qgqvYfIzLc7fIm+pN/JRD1Ozrqf/MUyJYrxZnbKL2TR6Sfa1LgcCIvZBIXQkjWlQ==
+"@lion/listbox@0.3.10":
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/@lion/listbox/-/listbox-0.3.10.tgz#782db1b18fe2fa525fe5dbee63479f76dfd18ee8"
+  integrity sha512-kAddcLw5MrTeb4tQ4hsX0a8KG5VtGoI0gx+K/OX4t5zGuoiJheGa6J1DbttucO9sSs/g4LOQ9Pkzu22gHIKG7w==
   dependencies:
     "@lion/core" "0.13.4"
-    "@lion/form-core" "0.6.11"
+    "@lion/form-core" "0.6.12"
 
 "@lion/localize@0.15.1":
   version "0.15.1"
@@ -1157,10 +1157,10 @@
     "@lion/core" "0.13.4"
     singleton-manager "1.2.0"
 
-"@lion/overlays@0.22.3", "@lion/overlays@^0.22.3":
-  version "0.22.3"
-  resolved "https://registry.yarnpkg.com/@lion/overlays/-/overlays-0.22.3.tgz#78fa8eeba05851bf2d90a0b147d3c536c4719586"
-  integrity sha512-wbHTNe9hMK1z0O4SW+tvCfLudDkF45ZyZrRnQLlMvc5xFE6nreT2MAp/UhViuXTmTty0XUjxeDeS9qR6n5bVjg==
+"@lion/overlays@0.22.5", "@lion/overlays@^0.22.5":
+  version "0.22.5"
+  resolved "https://registry.yarnpkg.com/@lion/overlays/-/overlays-0.22.5.tgz#c6135aeeb597f586999644c3682fec2a282be714"
+  integrity sha512-TT6Vn+L3uFksdzvCNlV/JSMZnfN1ncUhUwv87Me+9704GdyAoAkYx/wmFHzSu9mOc97RHd4FwiUokfvBps+E6w==
   dependencies:
     "@lion/core" "0.13.4"
     popper.js "^1.15.0"

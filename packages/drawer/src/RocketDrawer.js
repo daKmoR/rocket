@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit-element';
+import { LitElement } from 'lit-element';
 import { OverlayMixin, withModalDialogConfig } from '@lion/overlays';
 
 function transitionend(el) {
@@ -94,16 +94,6 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     if (this._overlayInvokerNode) {
       this._overlayInvokerNode.removeEventListener('click', this.__toggle);
     }
-  }
-
-  render() {
-    return html`
-      <slot name="invoker"></slot>
-      <slot name="_overlay-shadow-outlet"></slot>
-      <div id="overlay-content-node-wrapper">
-        <slot name="content"></slot>
-      </div>
-    `;
   }
 
   // ********************* GESTURE ***********************

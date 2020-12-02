@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.2.3
+
+### Patch Changes
+
+- 7c1275b: Background of the input should be transparent to support dark mode
+
 ## 0.2.2
 
 ### Patch Changes

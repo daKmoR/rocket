@@ -1,5 +1,11 @@
 # @d4kmor/drawer
 
+## 0.2.3
+
+### Patch Changes
+
+- 7c1275b: Bump version of @lion/overlays so the mobile backdrop disappears on hide
+
 ## 0.2.2
 
 ### Patch Changes

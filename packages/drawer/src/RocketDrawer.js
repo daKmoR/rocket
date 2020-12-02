@@ -1,4 +1,4 @@
-import { LitElement } from 'lit-element';
+import { LitElement, html } from 'lit-element';
 import { OverlayMixin, withModalDialogConfig } from '@lion/overlays';
 
 function transitionend(el) {
@@ -119,6 +119,16 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     window.matchMedia(this.useOverlayMediaQuery).addListener(query => {
       this.useOverlay = !!query.matches;
     });
+  }
+
+  render() {
+    return html`
+      <slot name="invoker"></slot>
+      <slot name="_overlay-shadow-outlet"></slot>
+      <div id="overlay-content-node-wrapper">
+        <slot name="content"></slot>
+      </div>
+    `;
   }
 
   // eslint-disable-next-line class-methods-use-this

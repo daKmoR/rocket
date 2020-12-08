@@ -37,22 +37,22 @@
 
     <p class="page-slogan">{{slogan}}</p>
 
-    <div class="call-to-action-list">
+    <div class="call-to-action-list" role="list">
       {% for callToAction in callToActionItems %}
-        <a class="call-to-action" href="{{ callToAction.href | url }}">{{ callToAction.text | safe }}</a>
+        <a class="call-to-action" href="{{ callToAction.href | url }}" role="listitem">{{ callToAction.text | safe }}</a>
       {% endfor %}
     </div>
 
     <h2 class="reason-header">{{ reasonHeader }}</h2>
 
-    <div class="reasons">
+    <section class="reasons">
       {% for reason in reasons %}
-        <div>
+        <article>
           <h3>{{ reason.header }}</h3>
           {{ reason.text | safe }}
-        </div>
+        </article>
       {% endfor %}
-    </div>
+    </section>
 
     {{ content.html | safe }}
     {% include 'partials/previousNext.njk' %}

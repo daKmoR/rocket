@@ -14,7 +14,9 @@
   },
   "files": [
     "*.js",
-    "src"
+    "dist-types",
+    "src",
+    "types"
   ],
   "keywords": [
     "11ty",
@@ -26,5 +28,6 @@
     "@mdjs/core": "^0.4.0",
     "es-module-lexer": "^0.3.25",
     "unist-util-visit": "^2.0.3"
-  }
+  },
+  "types": "dist-types/index.d.ts"
 }

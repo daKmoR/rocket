@@ -1,19 +1,50 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import commandLineArgs from 'command-line-args';
 import { normalizeConfig } from './normalizeConfig.js';
 
-import computedConfig from './public/computedConfig.cjs';
+/** @typedef {import('../types/main').RocketPlugin} RocketPlugin */
+
+// @ts-ignore
+import computedConfigPkg from './public/computedConfig.cjs';
 
 import path from 'path';
 import Eleventy from '@11ty/eleventy';
 import { fileURLToPath } from 'url';
 import fs from 'fs-extra';
 
-const { setComputedConfig } = computedConfig;
+const { setComputedConfig } = computedConfigPkg;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+export class RocketEleventy extends Eleventy {
+  /**
+   * @param {string} input
+   * @param {string} output
+   * @param {RocketCli} cli
+   */
+  constructor(input, output, cli) {
+    super(input, output);
+    this.__rocketCli = cli;
+  }
+
+  async write() {
+    /** @type {function} */
+    let finishBuild;
+    this.__rocketCli.updateComplete = new Promise(resolve => {
+      finishBuild = resolve;
+    });
+
+    await this.__rocketCli.mergeThemes();
+
+    await super.write();
+    await this.__rocketCli.update();
+    // @ts-ignore
+    finishBuild();
+  }
+}
+
 export class RocketCli {
-  updateComplete;
+  updateComplete = new Promise(resolve => resolve(null));
 
   constructor({ argv } = { argv: undefined }) {
     const mainDefinitions = [
@@ -43,22 +74,8 @@ export class RocketCli {
 
       await fs.emptyDir(outputDir);
 
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
-      const that = this;
-      class RocketEleventy extends Eleventy {
-        async write() {
-          that.updateComplete = new Promise(resolve => {
-            that.__finishBuild = resolve;
-          });
+      const elev = new RocketEleventy(_inputDirConfigDirRelative, outputDir, this);
 
-          await that.mergeThemes();
-
-          await super.write();
-          await that.update();
-          that.__finishBuild();
-        }
-      }
-      const elev = new RocketEleventy(_inputDirConfigDirRelative, outputDir);
       // 11ty always wants a relative path to cwd - why?
       const rel = path.relative(process.cwd(), path.join(__dirname));
       const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.cjs');
@@ -138,7 +155,7 @@ export class RocketCli {
         }
       }
 
-      if (this.config.watch === false) {
+      if (this.config.watch === false && this.eleventy) {
         await this.eleventy.write();
       }
 
@@ -157,11 +174,18 @@ export class RocketCli {
     }
   }
 
+  /**
+   * @param {RocketPlugin} plugin
+   */
   considerPlugin(plugin) {
     return plugin.commands.includes(this.config.command);
   }
 
   async update() {
+    if (!this.eleventy || (this.eleventy && !this.eleventy.writer)) {
+      return;
+    }
+
     for (const page of this.eleventy.writer.templateMap._collection.items) {
       const { title, content: html, layout } = page.data;
       const url = page.data.page.url;

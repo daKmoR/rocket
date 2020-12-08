@@ -32,5 +32,5 @@
   "keywords": [
     "rocket"
   ],
-  "types": "dist-types/title/index.d.ts"
+  "types": "dist-types/src/index.d.ts"
 }

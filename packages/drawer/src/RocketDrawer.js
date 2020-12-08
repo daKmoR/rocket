@@ -1,6 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { LitElement, html } from 'lit-element';
 import { OverlayMixin, withModalDialogConfig } from '@lion/overlays';
 
+/** @typedef {import('@lion/overlays/types/OverlayConfig').OverlayConfig} OverlayConfig */
+
+/**
+ * @param {HTMLElement} el
+ */
 function transitionend(el) {
   return new Promise(resolve => {
     el.addEventListener('transitionend', resolve, { once: true });
@@ -16,8 +22,9 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
   }
 
   // eslint-disable-next-line class-methods-use-this
+  // @ts-ignore
   _defineOverlayConfig() {
-    return {
+    return /** @type {OverlayConfig} */ {
       ...withModalDialogConfig(),
       hidesOnOutsideClick: true,
       viewportConfig: {
@@ -57,9 +64,10 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     }
   }
 
-  updated(changedProps) {
-    super.updated(changedProps);
-    if (changedProps.has('opened')) {
+  /** @param {import('lit-element').PropertyValues } changedProperties */
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has('opened')) {
       if (this.opened) {
         document.body.addEventListener('touchstart', this.onGestureStart, { passive: true });
       } else {
@@ -67,7 +75,7 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
       }
     }
 
-    if (changedProps.has('useOverlay')) {
+    if (changedProperties.has('useOverlay')) {
       if (this.useOverlay) {
         this._setupOverlayCtrl();
       } else {
@@ -80,10 +88,6 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
 
   _setupOpenCloseListeners() {
     super._setupOpenCloseListeners();
-    this.__toggle = () => {
-      this.opened = !this.opened;
-    };
-
     if (this._overlayInvokerNode) {
       this._overlayInvokerNode.addEventListener('click', this.__toggle);
     }
@@ -96,12 +100,18 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     }
   }
 
+  __toggle() {
+    this.opened = !this.opened;
+  }
+
   // ********************* GESTURE ***********************
 
   constructor() {
     super();
     this.useOverlay = false;
     this.useOverlayMediaQuery = '(max-width: 1024px)';
+
+    this.__toggle = this.__toggle.bind(this);
 
     this.onGestureStart = this.onGestureStart.bind(this);
     this.onGestureMove = this.onGestureMove.bind(this);
@@ -110,7 +120,10 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
 
     this._startX = 0;
     this._currentX = 0;
+    this._velocity = 0;
+    this._left = 0;
     this.__touching = false;
+    this._timestamp = 0;
   }
 
   connectedCallback() {
@@ -131,8 +144,13 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     `;
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * @param {TouchEvent} ev
+   */
   onGestureStart(ev) {
+    if (!this.containerEl) {
+      return;
+    }
     this.__touching = true;
     this._left = this.containerEl.getBoundingClientRect().left;
     this._startX = ev.targetTouches[0].clientX;
@@ -148,8 +166,14 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     requestAnimationFrame(this.updateFromTouch);
   }
 
+  /**
+   * @param {number} dDist
+   * @param {number} dTime
+   */
   addVelocitySample(dDist, dTime) {
-    if (dTime === 0) return;
+    if (dTime === 0) {
+      return;
+    }
 
     const velocitySample = dDist / dTime;
 
@@ -159,11 +183,13 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
     this._velocity += (1 - alpha) * velocitySample;
   }
 
+  /**
+   * @param {TouchEvent} ev
+   */
   onGestureMove(ev) {
     if (!this.__touching) {
       return;
     }
-    // console.log('move', ev);
     const lastTimestamp = this._timestamp;
     this._timestamp = new Date().getTime();
     const dTime = this._timestamp - lastTimestamp;
@@ -174,7 +200,7 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
   }
 
   onGestureEnd() {
-    if (!this.__touching) {
+    if (!this.__touching || !this.containerEl) {
       this.opened = false;
       return;
     }
@@ -205,7 +231,9 @@ export class RocketDrawer extends OverlayMixin(LitElement) {
   }
 
   updateFromTouch() {
-    if (!this.__touching) return;
+    if (!this.__touching || !this.containerEl) {
+      return;
+    }
     requestAnimationFrame(this.updateFromTouch);
 
     const translateX = Math.min(0, this._currentX - this._startX + this._left);

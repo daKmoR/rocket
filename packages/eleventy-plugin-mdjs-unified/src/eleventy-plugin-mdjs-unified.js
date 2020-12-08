@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 const { mdjsProcess } = require('@mdjs/core');
 const visit = require('unist-util-visit');
 const { init, parse } = require('es-module-lexer');
 
+// @ts-ignore
 const { parseTitle } = require('@d4kmor/core/title');
 
 /** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
-/** @typedef {import('./types').EleventPluginMdjsUnified} EleventPluginMdjsUnified */
+/** @typedef {import('../types/code').EleventPluginMdjsUnified} EleventPluginMdjsUnified */
+/** @typedef {import('../types/code').NodeChildren} NodeChildren */
+/** @typedef {import('../types/code').NodeElement} NodeElement */
+/** @typedef {import('unist').Node} Node */
 
 /**
  * @param {string} link
@@ -21,10 +26,13 @@ function isInternalLink(link) {
  * @param {*} pluginOptions
  */
 function adjustLinks(pluginOptions) {
-  return tree => {
-    visit(tree, 'element', node => {
-      if (node.tagName === 'a') {
-        const href = node.properties && node.properties.href ? node.properties.href : undefined;
+  /**
+   * @param {NodeElement} node
+   */
+  const elementVisitor = node => {
+    if (node.tagName === 'a') {
+      const href = node.properties && node.properties.href ? node.properties.href : undefined;
+      if (href) {
         const { inputPath } = pluginOptions.page;
         if (isInternalLink(href) && href.endsWith('.md')) {
           if (href.endsWith('index.md')) {
@@ -42,28 +50,44 @@ function adjustLinks(pluginOptions) {
           }
         }
       }
-    });
-    return tree;
+    }
   };
+
+  /**
+   * @param {Node} tree
+   */
+  function transformer(tree) {
+    visit(tree, 'element', elementVisitor);
+    return tree;
+  }
+
+  return transformer;
 }
 
-/**
- * @param {*} pluginOptions
- */
 function cleanupTitleHeadline() {
-  return tree => {
-    visit(tree, 'heading', node => {
-      if (node.depth === 1) {
-        if (node.children && node.children.length === 1) {
-          const data = parseTitle(node.children[0].value);
-          if (data) {
-            node.children[0].value = data.title;
-          }
+  /**
+   * @param {NodeChildren} node
+   */
+  const headingVisitor = node => {
+    if (node.depth === 1) {
+      if (node.children && node.children.length === 1) {
+        const data = parseTitle(node.children[0].value);
+        if (data) {
+          node.children[0].value = data.title;
         }
       }
-    });
-    return tree;
+    }
   };
+
+  /**
+   * @param {Node} tree
+   */
+  function transformer(tree) {
+    visit(tree, 'heading', headingVisitor);
+    return tree;
+  }
+
+  return transformer;
 }
 
 /**
@@ -165,6 +189,7 @@ function eleventyUnified(pluginOptions) {
       });
     }
 
+    // @ts-ignore
     const result = await mdjsProcess(mdjs, {
       setupUnifiedPlugins: [
         addCleanupTitleHeadline,

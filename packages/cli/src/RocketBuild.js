@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import commandLineArgs from 'command-line-args';
 
 import path from 'path';

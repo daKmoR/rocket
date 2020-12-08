@@ -1,0 +1,32 @@
+{
+  "name": "@mdjs/mdjs-preview",
+  "version": "0.2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Rendering storybook story functions inside a preview window with show code capabilities",
+  "license": "MIT",
+  "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./mdjs-preview.js": "./mdjs-preview.js"
+  },
+  "scripts": {
+    "debug": "cd ../../ && npm run debug -- --group mdjs-preview",
+    "test": "npm run test:web",
+    "test:watch": "onchange 'src/**/*.{js,cjs}' 'test-node/**/*.js' -- npm run test:node",
+    "test:web": "cd ../../ && npm run test:web -- --group mdjs-preview"
+  },
+  "files": [
+    "*.js",
+    "assets",
+    "dist-types",
+    "src"
+  ],
+  "dependencies": {
+    "lit-element": "^2.3.1",
+    "lit-html": "^1.2.1"
+  },
+  "types": "dist-types/index.d.ts"
+}

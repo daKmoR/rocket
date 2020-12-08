@@ -1,4 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-empty-function */
+
+/** @typedef {import('../types/main').RocketCliOptions} RocketCliOptions */
+/** @typedef {import('@web/dev-server').DevServerConfig} DevServerConfig */
 
 import path from 'path';
 
@@ -8,6 +12,9 @@ import { RocketStart } from './RocketStart.js';
 import { RocketBuild } from './RocketBuild.js';
 import { eleventyConfigEmpty } from './shared/eleventyConfigEmpty.js';
 
+/**
+ * @param {*} localConfig
+ */
 function getEleventyConfig(localConfig) {
   let eleventyConfig = {
     config: localConfig.eleventy || {},
@@ -21,6 +28,12 @@ function getEleventyConfig(localConfig) {
   return eleventyConfig;
 }
 
+/**
+ *
+ * @param {*} config
+ * @param {*} eleventyConfig
+ * @param {*} localConfig
+ */
 function mergeEleventyConfigs(config, eleventyConfig, localConfig = {}) {
   const oldConfig = { ...config };
 
@@ -28,6 +41,7 @@ function mergeEleventyConfigs(config, eleventyConfig, localConfig = {}) {
   config = {
     ...config,
     ...localConfig,
+    // @ts-ignore
     eleventyFunction: (...args) => {
       oldEleventyFunction(...args);
       eleventyConfig.function(...args);
@@ -53,8 +67,6 @@ function mergeEleventyConfigs(config, eleventyConfig, localConfig = {}) {
   }
   return config;
 }
-
-/** @typedef {import('./types').RocketCliOptions} RocketCliOptions */
 
 /**
  * @param {Partial<RocketCliOptions>} inConfig
@@ -82,7 +94,7 @@ export async function normalizeConfig(inConfig) {
   try {
     const fileConfig = await readConfig('rocket.config', undefined, path.resolve(config.configDir));
     if (fileConfig) {
-      config = mergeEleventyConfigs(config, getEleventyConfig(fileConfig, config), fileConfig);
+      config = mergeEleventyConfigs(config, getEleventyConfig(fileConfig), fileConfig);
     }
   } catch (error) {
     console.error('Could not read rocket config file', error);
@@ -95,10 +107,11 @@ export async function normalizeConfig(inConfig) {
 
   if (config.themes) {
     config.themes.forEach(theme => {
-      config = mergeEleventyConfigs(config, getEleventyConfig(theme, config));
+      config = mergeEleventyConfigs(config, getEleventyConfig(theme));
     });
   }
 
+  /** @type {Partial<DevServerConfig>} */
   const devServer = {
     rootDir: process.cwd(),
     ...config.devServer,
@@ -139,6 +152,7 @@ export async function normalizeConfig(inConfig) {
     pathPrefix: '/_site-dev', // pathPrefix can NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
     watch: true,
     outputDir: '_site-dev',
+    // @ts-ignore
     devServer,
 
     ...config,

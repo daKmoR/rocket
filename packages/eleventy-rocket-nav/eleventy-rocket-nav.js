@@ -1,12 +1,19 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-bitwise */
 const { DepGraph } = require('dependency-graph');
+
+const urlFilter = require('@11ty/eleventy/src/Filters/Url.js');
 
 const fs = require('fs');
 const { SaxEventType, SAXParser } = require('sax-wasm');
 
 const saxPath = require.resolve('sax-wasm/lib/sax-wasm.wasm');
 const saxWasmBuffer = fs.readFileSync(saxPath);
+
+/** @typedef {import('./types').NavigationNode} NavigationNode */
+/** @typedef {import('./types').Heading} Heading */
+/** @typedef {import('./types').SaxData} SaxData */
 
 // Instantiate
 const parser = new SAXParser(
@@ -15,11 +22,17 @@ const parser = new SAXParser(
 );
 parser.prepareWasm(saxWasmBuffer);
 
+/**
+ * @param {string} html
+ */
 function getHeadingsOfHtml(html) {
+  /** @type {Heading[]} */
   const headings = [];
   let capture = false;
+  /** @type {Heading} */
   let captured = { text: '' };
-  parser.eventHandler = (ev, data) => {
+  parser.eventHandler = (ev, _data) => {
+    const data = /** @type {SaxData} */ (/** @type {any} */ (_data));
     if (ev === SaxEventType.OpenTag) {
       if (data.name === 'h2') {
         capture = true;
@@ -51,6 +64,10 @@ function getHeadingsOfHtml(html) {
 
 const headingsCache = new Map();
 
+/**
+ * @param {NavigationNode[]} nodes
+ * @param {string} key
+ */
 function findNavigationEntries(nodes = [], key = '') {
   const pages = [];
   for (const entry of nodes) {
@@ -83,7 +100,7 @@ function findNavigationEntries(nodes = [], key = '') {
             getHeadingsOfHtml(entry.templateContent.html),
           );
         }
-        const headings = headingsCache.get(entry.templateContent.html);
+        const headings = /** @type {Heading[]} */ (headingsCache.get(entry.templateContent.html));
         const anchors = headings.map(heading => ({
           key: heading.text + Math.random(),
           parent: entry.key,
@@ -93,12 +110,18 @@ function findNavigationEntries(nodes = [], key = '') {
           title: heading.text,
           anchor: true,
         }));
+        // @ts-ignore
         entry.children = [...anchors, ...findNavigationEntries(nodes, entry.key)];
       }
       return entry;
     });
 }
 
+/**
+ * @param {NavigationNode[]} nodes
+ * @param {object} options
+ * @param {string} options.title
+ */
 function rocketPageAnchors(nodes, { title }) {
   for (const entry of nodes) {
     if (entry.data && entry.data.title === title) {
@@ -108,7 +131,7 @@ function rocketPageAnchors(nodes, { title }) {
           getHeadingsOfHtml(entry.templateContent.html),
         );
       }
-      const headings = headingsCache.get(entry.templateContent.html);
+      const headings = /** @type {Heading[]} */ (headingsCache.get(entry.templateContent.html));
       const anchors = headings.map(heading => ({
         key: heading.text + Math.random(),
         parent: entry.key,
@@ -124,6 +147,11 @@ function rocketPageAnchors(nodes, { title }) {
   return [];
 }
 
+/**
+ * @param {NavigationNode[]} pages
+ * @param {*} depGraph
+ * @param {string} [parentKey]
+ */
 function findDependencies(pages, depGraph, parentKey) {
   for (const page of pages) {
     depGraph.addNode(page.key, page);
@@ -136,6 +164,10 @@ function findDependencies(pages, depGraph, parentKey) {
   }
 }
 
+/**
+ * @param {NavigationNode[]} nodes
+ * @param {string} activeKey
+ */
 function findBreadcrumbEntries(nodes, activeKey) {
   const pages = findNavigationEntries(nodes);
   const graph = new DepGraph();
@@ -151,8 +183,13 @@ function findBreadcrumbEntries(nodes, activeKey) {
     : [];
 }
 
-function navigationToHtml(pages, options = {}) {
-  options = {
+/**
+ * @param {NavigationNode[]} pages
+ * @param {*} _options
+ * @return {string}
+ */
+function navigationToHtml(pages, _options = {}) {
+  const options = {
     listElement: 'ul',
     listItemElement: 'li',
     listClass: '',
@@ -166,9 +203,10 @@ function navigationToHtml(pages, options = {}) {
     activeAnchorListClass: 'active',
     showExcerpt: false,
     isChildList: false,
-    ...options,
+    ..._options,
   };
 
+  /** @type {Array<string>} */
   let activePages = [];
   if (options.activeKey) {
     const graph = new DepGraph();
@@ -182,21 +220,6 @@ function navigationToHtml(pages, options = {}) {
   }
   const isChildList = !!options.isChildList;
   options.isChildList = true;
-
-  let urlFilter;
-  if ('getFilter' in this) {
-    // v0.10.0 and above
-    urlFilter = this.getFilter('url');
-  } else if ('nunjucksFilters' in this) {
-    // backwards compat, hardcoded key
-    urlFilter = this.nunjucksFilters.url;
-  } else {
-    // Theoretically we could just move on here with a `url => url` but then `pathPrefix`
-    // would not work and it wouldn’t be obvious why—so let’s fail loudly to avoid that.
-    throw new Error(
-      'Could not find a `url` filter for the eleventy-navigation plugin in eleventyNavigationToHtml filter.',
-    );
-  }
 
   if (pages.length && pages[0].pluginType !== 'eleventy-navigation') {
     throw new Error(
@@ -245,7 +268,7 @@ function navigationToHtml(pages, options = {}) {
           }><a href="${urlFilter(entry.url)}"${
             aClass.length ? ` class="${aClass.join(' ')}"` : ''
           }>${entry.title}</a>${options.showExcerpt && entry.excerpt ? `: ${entry.excerpt}` : ''}${
-            entry.children ? navigationToHtml.call(this, entry.children, options) : ''
+            entry.children ? navigationToHtml(entry.children, options) : ''
           }</${options.listItemElement}>`;
         })
         .join('\n')}</${options.listElement}>`

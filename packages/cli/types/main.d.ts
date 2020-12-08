@@ -1,6 +1,4 @@
-export interface DevServerOptions {
-  rootDir?: string;
-}
+import { DevServerConfig } from '@web/dev-server';
 
 export interface EleventyOptions {
   dir?: {
@@ -27,7 +25,7 @@ export interface RocketCliOptions {
   outputDir: string;
   watch: boolean;
   themes: Array<RocketTheme>;
-  devServer: DevServerOptions;
+  devServer: DevServerConfig;
   eleventy: EleventyOptions;
   build: {
     outputDir: string;
@@ -36,4 +34,8 @@ export interface RocketCliOptions {
   setupUnifiedPlugins?: function; // TODO: improve
   setupPlugins?: function; // TODO: improve
   _themePathes?: Array<string>;
+}
+
+export interface RocketPlugin {
+  commands: Array<string>;
 }

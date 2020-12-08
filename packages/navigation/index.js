@@ -1,1 +1,1 @@
-export { RocketNavigation } from 'src/RocketNavigation.js';
+export { RocketNavigation } from './src/RocketNavigation.js';

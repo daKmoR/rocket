@@ -18,7 +18,7 @@
   },
   "files": [
     "*.js",
-    "docs",
+    "dist-types",
     "src"
   ],
   "keywords": [
@@ -30,5 +30,6 @@
   "dependencies": {
     "@lion/overlays": "^0.22.5",
     "lit-element": "^2.3.1"
-  }
+  },
+  "types": "dist-types/index.d.ts"
 }

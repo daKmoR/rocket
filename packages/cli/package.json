@@ -29,6 +29,7 @@
     "*.js",
     "*.mjs",
     "dist",
+    "dist-types",
     "src"
   ],
   "keywords": [

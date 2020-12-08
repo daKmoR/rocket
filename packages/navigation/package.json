@@ -20,12 +20,12 @@
   "files": [
     "*.d.ts",
     "*.js",
-    "dist",
+    "dist-types",
     "src"
   ],
   "keywords": [
     "rocket",
     "navigation"
   ],
-  "types": "dist/index.js"
+  "types": "dist-types/index.js"
 }

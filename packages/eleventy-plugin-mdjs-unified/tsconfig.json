@@ -4,20 +4,31 @@
   "extends": "../../tsconfig.node-base.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "./dist-types",
+    "rootDir": ".",
     "composite": true,
     "allowJs": true,
     "checkJs": true,
     "emitDeclarationOnly": true
   },
-  "references": [],
+  "references": [
+    {
+      "path": "../mdjs-preview/tsconfig.json"
+    },
+    {
+      "path": "../mdjs-story/tsconfig.json"
+    },
+    {
+      "path": "../mdjs-core/tsconfig.json"
+    }
+  ],
   "include": [
-    "src"
+    "src",
+    "*.js",
+    "types"
   ],
   "exclude": [
-    "src/browser",
-    "tests",
-    "dist"
+    "dist",
+    "dist-types"
   ]
 }

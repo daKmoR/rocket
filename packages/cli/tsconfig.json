@@ -3,9 +3,9 @@
 {
   "extends": "../../tsconfig.node-base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "module": "ESNext",
+    "outDir": "./dist-types",
+    "rootDir": ".",
     "composite": true,
     "allowJs": true,
     "checkJs": true,
@@ -13,21 +13,31 @@
   },
   "references": [
     {
+      "path": "../mdjs-preview/tsconfig.json"
+    },
+    {
+      "path": "../mdjs-story/tsconfig.json"
+    },
+    {
+      "path": "../mdjs-core/tsconfig.json"
+    },
+    {
+      "path": "../core/tsconfig.json"
+    },
+    {
       "path": "../eleventy-plugin-mdjs-unified/tsconfig.json"
     },
     {
       "path": "../eleventy-rocket-nav/tsconfig.json"
-    },
-    {
-      "path": "../core/tsconfig.json"
     }
   ],
   "include": [
-    "src"
+    "src",
+    "*.js",
+    "types"
   ],
   "exclude": [
-    "src/browser",
-    "tests",
-    "dist"
+    "dist",
+    "dist-types"
   ]
 }

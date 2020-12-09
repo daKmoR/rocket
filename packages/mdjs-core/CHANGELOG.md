@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.5.0
+
+### Minor Changes
+
+- 15e0abe: Remove of resolveToUnpkg.js and mdjsTransformer.js - add Types
+
+### Patch Changes
+
+- Updated dependencies [15e0abe]
+  - @mdjs/mdjs-preview@0.3.0
+  - @mdjs/mdjs-story@0.1.0
+
 ## 0.4.1
 
 ### Patch Changes

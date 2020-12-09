@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/eleventy-plugin-mdjs-unified",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "publishConfig": {
     "access": "public"
   },
@@ -25,7 +25,7 @@
     "mdjs"
   ],
   "dependencies": {
-    "@mdjs/core": "^0.4.0",
+    "@mdjs/core": "^0.5.0",
     "es-module-lexer": "^0.3.25",
     "unist-util-visit": "^2.0.3"
   },

@@ -1,5 +1,16 @@
 # @d4kmor/eleventy-plugin-mdjs-unified
 
+## 0.4.0
+
+### Minor Changes
+
+- 15e0abe: Add Types
+
+### Patch Changes
+
+- Updated dependencies [15e0abe]
+  - @mdjs/core@0.5.0
+
 ## 0.3.1
 
 ### Patch Changes

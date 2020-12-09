@@ -1,5 +1,17 @@
 # @d4kmor/launch
 
+## 0.10.0
+
+### Minor Changes
+
+- 15e0abe: Bump versions because dependencies changed
+
+### Patch Changes
+
+- Updated dependencies [15e0abe]
+  - @d4kmor/drawer@0.3.0
+  - @d4kmor/navigation@0.3.0
+
 ## 0.9.0
 
 ### Minor Changes

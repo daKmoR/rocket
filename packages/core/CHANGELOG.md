@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.2.0
+
+### Minor Changes
+
+- 15e0abe: Add Types
+
 ## 0.1.3
 
 ### Patch Changes

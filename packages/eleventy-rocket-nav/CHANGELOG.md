@@ -1,5 +1,11 @@
 # @d4kmor/eleventy-rocket-nav
 
+## 0.3.0
+
+### Minor Changes
+
+- 15e0abe: Add Types
+
 ## 0.2.1
 
 ### Patch Changes

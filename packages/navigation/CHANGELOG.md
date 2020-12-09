@@ -1,5 +1,11 @@
 # @d4kmor/navigation
 
+## 0.3.0
+
+### Minor Changes
+
+- 15e0abe: Add Types
+
 ## 0.2.0
 
 ### Minor Changes

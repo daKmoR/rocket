@@ -1,5 +1,18 @@
 # @d4kmor/cli
 
+## 0.11.0
+
+### Minor Changes
+
+- 15e0abe: Add Types
+
+### Patch Changes
+
+- Updated dependencies [15e0abe]
+  - @d4kmor/core@0.2.0
+  - @d4kmor/eleventy-plugin-mdjs-unified@0.4.0
+  - @d4kmor/eleventy-rocket-nav@0.3.0
+
 ## 0.10.1
 
 ### Patch Changes

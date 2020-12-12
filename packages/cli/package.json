@@ -12,7 +12,8 @@
   },
   "type": "module",
   "exports": {
-    "require": "./index.cjs"
+    "require": "./index.cjs",
+    "default": "./index.js"
   },
   "scripts": {
     "build": "npm run rocket:build",
@@ -22,6 +23,7 @@
     "start": "npm run rocket:start",
     "test": "mocha test-node/**/*.test.{js,cjs} test-node/*.test.{js,cjs}",
     "test:watch": "onchange 'src/**/*.{js,cjs}' 'test-node/**/*.{js,cjs}' -- npm test",
+    "types:copy": "copyfiles \"./types/**/*.d.ts\" dist-types/",
     "xtest:watch": "mocha test/**/*.test.js --parallel --watch"
   },
   "files": [
@@ -67,6 +69,8 @@
   },
   "devDependencies": {
     "@d4kmor/launch": "^0.10.0",
-    "@types/fs-extra": "^9.0.1"
-  }
+    "@types/fs-extra": "^9.0.1",
+    "remark-emoji": "^2.1.0"
+  },
+  "types": "dist-types/index.d.ts"
 }

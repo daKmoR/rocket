@@ -14,6 +14,12 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/mdjs",
   "main": "./index.js",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "default": "./index.mjs"
+    }
+  },
   "scripts": {
     "start": "npm run start:stories",
     "start:script": "web-dev-server -c demo/script/server.js --root-dir ../../",

@@ -13,6 +13,8 @@ declare module '@11ty/eleventy' {
     init(): Promise<void>;
     write(): Promise<void>;
 
+    isVerbose: boolean;
+
     writer: {
       templateMap: {
         _collection: {

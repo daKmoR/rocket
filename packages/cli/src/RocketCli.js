@@ -66,15 +66,17 @@ export class RocketCli {
       command: options.command,
       configDir: options['config-dir'],
     };
+    this.__isSetup = false;
   }
 
   async setupEleventy() {
     if (!this.eleventy) {
-      const { _inputDirConfigDirRelative, outputDir } = this.config;
+      const { inputDir, outputDir } = this.config;
 
       await fs.emptyDir(outputDir);
 
-      const elev = new RocketEleventy(_inputDirConfigDirRelative, outputDir, this);
+      const elev = new RocketEleventy(inputDir, outputDir, this);
+      elev.isVerbose = false;
 
       // 11ty always wants a relative path to cwd - why?
       const rel = path.relative(process.cwd(), path.join(__dirname));
@@ -124,8 +126,11 @@ export class RocketCli {
    * Separate this so we can test it
    */
   async setup() {
-    this.config = await normalizeConfig(this.argvConfig);
-    setComputedConfig(this.config);
+    if (this.__isSetup === false) {
+      this.config = await normalizeConfig(this.argvConfig);
+      setComputedConfig(this.config);
+      this.__isSetup = true;
+    }
   }
 
   async run() {
@@ -134,7 +139,9 @@ export class RocketCli {
     if (this.config) {
       for (const plugin of this.config.plugins) {
         if (this.considerPlugin(plugin)) {
-          await plugin.setup({ config: this.config, argv: this.subArgv });
+          if (typeof plugin.setup === 'function') {
+            await plugin.setup({ config: this.config, argv: this.subArgv });
+          }
 
           if (typeof plugin.setupCommand === 'function') {
             this.config = plugin.setupCommand(this.config);

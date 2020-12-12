@@ -75,7 +75,7 @@ Please note that the heading - text prefixed with `#` or `##` - is not optional 
 
 👉 `package.json`
 
-Add `"start": "rocket start"` your package.json
+Add `"start": "rocket start"` to your package.json
 
 ```json
 "scripts": {
@@ -99,7 +99,7 @@ It can be helpful to take an inventory, before we start, to separate basic setup
 - Added a couple required files manually
 - Adjusted package.json
 - **doc/index.md** to seed the content
-- Launches with a `npm start`
+- Launches with `npm start`
 
 That's all it takes to get a new super-fast and powerful site, complete with a service worker, default styling, navigation, and ready to deploy as a plain old static files.
 

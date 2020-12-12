@@ -33,3 +33,8 @@ docs/_merged_assets/
 docs/_merged_includes/
 _site
 _site-dev
+
+## Ignore Rocket Test Builds
+_merged_data
+_merged_assets
+_merged_includes

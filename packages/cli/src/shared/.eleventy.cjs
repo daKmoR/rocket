@@ -111,6 +111,7 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
+      // no input: inputDir as we set this when we create the eleventy instance
       includes,
       data,
       output: outputDir,

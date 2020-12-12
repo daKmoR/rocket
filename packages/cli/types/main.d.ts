@@ -30,6 +30,9 @@ export interface RocketCliOptions {
   build: {
     outputDir: string;
     pathPrefix: string;
+    absoluteBaseUrl?: function;
+    emptyOutputDir?: boolen;
+    serviceWorkerFileName?: string;
   };
   setupUnifiedPlugins?: function; // TODO: improve
   setupPlugins?: function; // TODO: improve

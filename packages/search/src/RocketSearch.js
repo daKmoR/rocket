@@ -141,6 +141,10 @@ export class RocketSearch extends ScopedElementsMixin(LitElement) {
       :host {
         display: block;
       }
+
+      ::slotted(input.form-control) {
+        caret-color: var(--rocket-search-caret-color, initial);
+      }
     `;
   }
 }

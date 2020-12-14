@@ -80,7 +80,7 @@ export class RocketSearchCombobox extends LionCombobox {
 
         :host([show-input]) .input-group {
           height: 70px;
-          border-bottom: 1px solid #ccc;
+          border-bottom: 1px solid var(--rocket-search-input-overlay-border-color, #ccc);
         }
 
         :host([show-input]) .input-group__prefix {
@@ -114,7 +114,7 @@ export class RocketSearchCombobox extends LionCombobox {
             position: relative;
             background: var(--rocket-search-background-color, #fff);
             display: flex;
-            border: 1px solid #dfe1e5;
+            border: 1px solid var(--rocket-search-input-border-color, #dfe1e5);
             box-shadow: none;
             border-radius: 24px;
             padding: 5px 0;

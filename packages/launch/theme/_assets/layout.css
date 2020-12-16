@@ -434,7 +434,8 @@ rocket-navigation h3 {
 }
 
 .sidebar-tags .tag {
-  background: #ccc;
+  background: var(--sidebar-tag-background-color, #ccc);
+  color: var(--sidebar-tag-color, var(--text-color));
   margin: 5px 0 0 5px;
   padding: 5px 10px;
   box-sizing: content-box;

@@ -61,9 +61,11 @@ pre {
   height: calc(100% - 2px);
   background-color: white;
 }
+
 .light-dark-switch[checked]::part(thumb) {
-  right: 0px;
+  right: 0;
 }
+
 .light-dark-switch::part(track) {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -90,6 +92,7 @@ pre {
 
 .light-dark-switch {
   margin-right: 50px;
+
   --generic-switch-focus: 0 0 2px 3px #e63a46;
 }
 
@@ -133,7 +136,7 @@ hr {
 }
 
 body:not([layout='home']) #main-header {
-  box-shadow: 0 0px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
 body[layout='home'] #main-header {
@@ -149,7 +152,6 @@ body[layout='home'] #main-header {
 #main-header a {
   text-decoration: none;
   color: var(--primary-text-color);
-
   transition: color 0.3s ease-in-out;
   font-weight: bold;
   order: 2;
@@ -160,6 +162,7 @@ body:not([layout='home']) #main-header a:hover {
 }
 
 #mobile-menu-trigger {
+  color: inherit;
   border: none;
   width: 20px;
   height: 20px;
@@ -178,7 +181,7 @@ body:not([layout='home']) #main-header a:hover {
   order: 0;
 }
 
-#main-header .search { 
+#main-header .search {
   order: 2;
 }
 
@@ -199,7 +202,7 @@ body:not([layout='home']) #main-header a:hover {
     width: 30px;
     height: 30px;
   }
-  
+
   .social-link img {
     width: 100%;
   }
@@ -228,6 +231,7 @@ body:not([layout='home']) #main-header a:hover {
   body[layout='home'][home-layout='background'] #main-header a {
     color: var(--contrast-color-light, #fff);
   }
+
   body[layout='home'][home-layout='background'] .social-link {
     color: var(--contrast-color-light, #fff);
   }
@@ -343,7 +347,7 @@ rocket-navigation > ul {
   text-decoration: none;
 
   /* same as header */
-  box-shadow: 0 0px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   color: var(--primary-text-color);
   font-weight: bold;
 }
@@ -454,6 +458,7 @@ body[layout='home'] #content-wrapper {
 main {
   width: 100%;
   position: relative;
+
   /* makes sure that code blocks don't grow bigger then main => see https://css-tricks.com/preventing-a-grid-blowout/ */
   min-width: 0;
   margin-top: 40px;

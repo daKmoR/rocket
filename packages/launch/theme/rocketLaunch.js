@@ -47,5 +47,23 @@ export function rocketLaunch() {
   return {
     path: path.resolve(__dirname),
     setupUnifiedPlugins: [addOcticonToHeadlines],
+    eleventy(eleventyConfig) {
+      // 11ty is somehow forbidding <noscript><link>, even though that is
+      // legitimate HTML, when placed in the <head>
+      /**
+       * ## Regexp: match:
+       *
+       * - `(\s+)?`: any amount of whitespace or none
+       * - `(&.*;)`: any html entity e.g. &#25;
+       * - `link`: the literal string 'link'
+       *
+       * In other words, the URL-encoded double-encoded string `<link`
+       */
+      const ENCODED_LINK_TAG_RE = /((\s+)?(&.*;)link)/;
+
+      eleventyConfig.addTransform('fix-noscript-style', content =>
+        content.replace(ENCODED_LINK_TAG_RE, '<link'),
+      );
+    },
   };
 }

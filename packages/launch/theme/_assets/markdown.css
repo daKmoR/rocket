@@ -41,6 +41,12 @@
   text-decoration: none;
 }
 
+.markdown-body h1:focus-within .anchor .octicon-link,
+.markdown-body h2:focus-within .anchor .octicon-link,
+.markdown-body h3:focus-within .anchor .octicon-link,
+.markdown-body h4:focus-within .anchor .octicon-link,
+.markdown-body h5:focus-within .anchor .octicon-link,
+.markdown-body h6:focus-within .anchor .octicon-link,
 .markdown-body h1:hover .anchor .octicon-link,
 .markdown-body h2:hover .anchor .octicon-link,
 .markdown-body h3:hover .anchor .octicon-link,

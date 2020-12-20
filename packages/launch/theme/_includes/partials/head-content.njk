@@ -45,9 +45,7 @@
 <link rel="stylesheet" href="{{ '/_assets/variables.css' | asset | url }}">
 <link rel="stylesheet" href="{{ '/_assets/layout.css' | asset | url }}">
 <link rel="stylesheet" href="{{ '/_assets/markdown.css' | asset | url }}">
-
-<!-- TODO: skip adding if not overwritten in user page -->
 <link rel="stylesheet" href="{{ '/_assets/style.css' | asset | url }}">
+<noscript><link rel="stylesheet" href="{{ '/_assets/noscript.css' | asset | url }}"/></noscript>
 
-{% set headHtmlFile = '/_assets/head.html' | asset | toAbsPath %}
-{% include headHtmlFile %}
+{% include 'partials/head.njk' %}

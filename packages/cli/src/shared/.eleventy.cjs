@@ -45,7 +45,7 @@ module.exports = function (eleventyConfig) {
     return path.join(inputDir, inPath);
   });
 
-  eleventyConfig.addPassthroughCopy(`${inputDir}/**/*.{png,gif,jpg,svg,css,xml,json,js}`);
+  eleventyConfig.addPassthroughCopy(`${inputDir}/**/*.{png,gif,jpg,jpeg,svg,css,xml,json,js}`);
   eleventyConfig.addPlugin(pluginMdjs, { setupUnifiedPlugins: config.setupUnifiedPlugins });
   eleventyConfig.addPlugin(eleventyRocketNav);
 

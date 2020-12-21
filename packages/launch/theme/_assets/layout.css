@@ -482,7 +482,7 @@ main > * {
 }
 
 /** FOOTER ****************************************************************************************/
-footer {
+#main-footer {
   margin-top: 50px;
   border-top: 1px solid #eaeaea;
   background-color: var(--footer-background, rgba(0, 0, 0, 0.1));

@@ -46,4 +46,5 @@ export const eleventyConfigEmpty = {
   setQuietMode: () => {},
   addExtension: () => {},
   addDataExtension: () => {},
+  on: () => {},
 };

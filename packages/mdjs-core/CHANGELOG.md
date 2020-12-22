@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.5.1
+
+### Patch Changes
+
+- 6cf6ef2: Adds a helper for adding remark plugins
+
 ## 0.5.0
 
 ### Minor Changes

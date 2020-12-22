@@ -1,5 +1,13 @@
 # @d4kmor/launch
 
+## 0.10.1
+
+### Patch Changes
+
+- bac8860: add css variables for colors
+- 5b3dfae: use ids for headers, footers
+- b565f22: Replace modern-web social media image by rocket one
+
 ## 0.10.0
 
 ### Minor Changes

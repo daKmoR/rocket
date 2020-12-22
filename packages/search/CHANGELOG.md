@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.3.1
+
+### Patch Changes
+
+- 98721f9: add css vars for combobox
+
 ## 0.3.0
 
 ### Minor Changes

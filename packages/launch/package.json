@@ -4,25 +4,25 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "Launch Theme for Rocket",
+  "description": "Launch Preset for Rocket",
   "license": "MIT",
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "type": "module",
   "exports": {
     ".": "./index.js",
-    "./theme/": "./theme/",
+    "./preset/": "./preset/",
     "./inline-notification": "./inline-notification/index.js",
     "./inline-notification/inline-notification.js": "./inline-notification/inline-notification.js"
   },
   "files": [
     "*.js",
     "inline-notification",
-    "theme"
+    "preset"
   ],
   "keywords": [
     "rocket",
-    "theme"
+    "preset"
   ],
   "dependencies": {
     "@d4kmor/drawer": "^0.3.0",

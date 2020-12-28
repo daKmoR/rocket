@@ -8,7 +8,7 @@ Make sure they are installed before proceeding.
 
 ## Setup
 
-The fastest way to get started is by using an existing theme like the launch theme.
+The fastest way to get started is by using an existing preset like the launch preset.
 
 1. Start with an empty new folder
 
@@ -47,7 +47,7 @@ Rocket uses the .gitignore file to manage it's requirements. If you skip this st
    import { rocketLaunch } from '@d4kmor/launch';
 
    export default {
-     themes: [rocketLaunch()],
+     presets: [rocketLaunch()],
    };
    ```
 

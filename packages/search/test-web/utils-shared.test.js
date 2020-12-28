@@ -3,16 +3,16 @@ import { joinTitleHeadline, highlightSearchTerms } from '../src/utils-shared.js'
 
 describe('utils-shared: joinTitleHeadline', () => {
   it('joins title and headline with a ">"', async () => {
-    const joined = joinTitleHeadline('Launch Theme: Inline Notification', 'Danger');
-    expect(joined).to.equal('Launch Theme: Inline Notification > Danger');
+    const joined = joinTitleHeadline('Launch Preset: Inline Notification', 'Danger');
+    expect(joined).to.equal('Launch Preset: Inline Notification > Danger');
   });
 
   it('shows only title if headline is the same', async () => {
     const joined = joinTitleHeadline(
-      'Launch Theme: Inline Notification',
-      'Launch Theme: Inline Notification',
+      'Launch Preset: Inline Notification',
+      'Launch Preset: Inline Notification',
     );
-    expect(joined).to.equal('Launch Theme: Inline Notification');
+    expect(joined).to.equal('Launch Preset: Inline Notification');
   });
 });
 

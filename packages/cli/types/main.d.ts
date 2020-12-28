@@ -1,6 +1,6 @@
 import { DevServerConfig } from '@web/dev-server';
 
-export interface RocketTheme {
+export interface RocketPreset {
   path: string;
 
   // TODO: improve all setup functions
@@ -22,7 +22,7 @@ export interface RocketCliOptions {
   _inputDirConfigDirRelative: string;
   outputDir: string;
   watch: boolean;
-  themes: Array<RocketTheme>;
+  presets: Array<RocketPreset>;
   devServer: DevServerConfig;
   eleventy: function; // TODO: improve
   build: {
@@ -32,7 +32,7 @@ export interface RocketCliOptions {
     emptyOutputDir?: boolen;
     serviceWorkerFileName?: string;
   };
-  _themePathes?: Array<string>;
+  _presetPathes?: Array<string>;
   plugins: RocketPlugin[];
 
   // TODO: improve all setup functions

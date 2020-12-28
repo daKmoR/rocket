@@ -30,7 +30,7 @@ Observe that this creates a section named "Guides" at the top menu bar, and a pa
 
 <inline-notification type="tip">
 
-Don't worry if this isn't how you would have styled or placed your menu bar or sidebar navigation, we'll get to customization of the default theme later in the tutorials.
+Don't worry if this isn't how you would have styled or placed your menu bar or sidebar navigation, we'll get to customization of the default preset later in the tutorials.
 
 </inline-notification>
 

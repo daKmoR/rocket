@@ -21,7 +21,7 @@ import { RocketBuild } from './RocketBuild.js';
 export async function normalizeConfig(inConfig) {
   let config = {
     configDir: process.cwd(),
-    themes: [],
+    presets: [],
     setupUnifiedPlugins: [],
     setupDevAndBuildPlugins: [],
     setupDevPlugins: [],
@@ -75,34 +75,37 @@ export async function normalizeConfig(inConfig) {
   const inputDir = path.join(_configDirCwdRelative, './docs');
   const _inputDirConfigDirRelative = path.relative(config.configDir, inputDir);
 
-  config._themePathes = [];
-  for (const theme of config.themes) {
-    config._themePathes.push(theme.path);
+  config._presetPathes = [];
+  for (const preset of config.presets) {
+    config._presetPathes.push(preset.path);
 
-    if (theme.setupUnifiedPlugins) {
-      config.setupUnifiedPlugins = [...config.setupUnifiedPlugins, ...theme.setupUnifiedPlugins];
+    if (preset.setupUnifiedPlugins) {
+      config.setupUnifiedPlugins = [...config.setupUnifiedPlugins, ...preset.setupUnifiedPlugins];
     }
-    if (theme.setupDevAndBuildPlugins) {
+    if (preset.setupDevAndBuildPlugins) {
       config.setupDevAndBuildPlugins = [
         ...config.setupDevAndBuildPlugins,
-        ...theme.setupDevAndBuildPlugins,
+        ...preset.setupDevAndBuildPlugins,
       ];
     }
-    if (theme.setupDevPlugins) {
-      config.setupDevPlugins = [...config.setupDevPlugins, ...theme.setupDevPlugins];
+    if (preset.setupDevPlugins) {
+      config.setupDevPlugins = [...config.setupDevPlugins, ...preset.setupDevPlugins];
     }
-    if (theme.setupBuildPlugins) {
-      config.setupBuildPlugins = [...config.setupBuildPlugins, ...theme.setupBuildPlugins];
+    if (preset.setupBuildPlugins) {
+      config.setupBuildPlugins = [...config.setupBuildPlugins, ...preset.setupBuildPlugins];
     }
-    if (theme.setupEleventyPlugins) {
-      config.setupEleventyPlugins = [...config.setupEleventyPlugins, ...theme.setupEleventyPlugins];
+    if (preset.setupEleventyPlugins) {
+      config.setupEleventyPlugins = [
+        ...config.setupEleventyPlugins,
+        ...preset.setupEleventyPlugins,
+      ];
     }
-    if (theme.setupCliPlugins) {
-      config.setupCliPlugins = [...config.setupCliPlugins, ...theme.setupCliPlugins];
+    if (preset.setupCliPlugins) {
+      config.setupCliPlugins = [...config.setupCliPlugins, ...preset.setupCliPlugins];
     }
   }
-  // add "local" theme
-  config._themePathes.push(path.resolve(inputDir));
+  // add "local" preset
+  config._presetPathes.push(path.resolve(inputDir));
 
   /** @type {MetaPlugin[]} */
   let pluginsMeta = [

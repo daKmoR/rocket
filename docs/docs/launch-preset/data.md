@@ -1,4 +1,4 @@
-# Launch Theme >> Data ||20
+# Launch Preset >> Data ||20
 
 Most data comes from `site.cjs`.
 

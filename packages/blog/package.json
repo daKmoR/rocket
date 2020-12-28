@@ -30,5 +30,8 @@
     "demo",
     "demo-states",
     "testing"
-  ]
+  ],
+  "dependencies": {
+    "plugins-manager": "^0.0.0"
+  }
 }

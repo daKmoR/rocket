@@ -10,7 +10,8 @@
   "main": "index.js",
   "type": "module",
   "exports": {
-    ".": "./index.js"
+    ".": "./index.js",
+    "./rocket-navigation.js": "./rocket-navigation.js"
   },
   "scripts": {
     "debug": "cd ../../ && npm run debug -- --group navigation",

@@ -2,15 +2,12 @@
 // @ts-nocheck
 
 import commandLineArgs from 'command-line-args';
-
-import path from 'path';
 import { rollup } from 'rollup';
-import { copy } from '@web/rollup-plugin-copy';
 import fs from 'fs-extra';
+import { copy } from '@web/rollup-plugin-copy';
 
-import buildingRollup from './_building-rollup-fork/index.cjs';
-
-const { createMpaConfig } = buildingRollup;
+import { createMpaConfig } from '@d4kmor/building-rollup';
+import { addPlugin } from 'plugins-manager';
 
 /**
  * @param {object} config
@@ -27,30 +24,35 @@ async function buildAndWrite(config) {
 }
 
 async function productionBuild(config) {
-  const serviceWorkerFileName =
-    config.build && config.build.serviceWorkerFileName
-      ? config.build.serviceWorkerFileName
-      : 'service-worker.js';
-  const mpaConfig = createMpaConfig({
-    outputDir: config.build.outputDir,
-    legacyBuild: false,
-    injectServiceWorker: true,
-    workbox: {
-      swDest: path.join(config.build.outputDir, serviceWorkerFileName),
-    },
-    html: {
-      rootDir: path.join(config.devServer.rootDir, '_site-dev'),
-      input: '**/*.html',
-      absoluteBaseUrl: config.build.absoluteBaseUrl,
-    },
-  });
+  // const serviceWorkerFileName =
+  //   config.build && config.build.serviceWorkerFileName
+  //     ? config.build.serviceWorkerFileName
+  //     : 'service-worker.js';
 
-  mpaConfig.plugins.push(
-    copy({
-      patterns: ['!(*.md|*.html)*', '_merged_assets/_static/**/*.{png,gif,jpg,json,css,svg,ico}'],
-      rootDir: path.join(config.devServer.rootDir, config.pathPrefix),
-    }),
-  );
+  const mpaConfig = createMpaConfig({
+    input: '**/*.html',
+    output: {
+      dir: config.build.outputDir,
+    },
+    // custom
+    rootDir: config.outputDir, // config.outputDir = 11ty output = rollup input
+    // absoluteBaseUrl: config.build.absoluteBaseUrl,
+    setupPlugins: [
+      addPlugin({
+        name: 'copy',
+        plugin: copy,
+        options: {
+          patterns: [
+            '!(*.md|*.html)*',
+            '_merged_assets/_static/**/*.{png,gif,jpg,json,css,svg,ico}',
+          ],
+          rootDir: config.outputDir,
+        },
+      }),
+      ...config.setupDevAndBuildPlugins,
+      ...config.setupBuildPlugins,
+    ],
+  });
 
   await buildAndWrite(mpaConfig);
 }

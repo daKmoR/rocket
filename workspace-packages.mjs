@@ -1,5 +1,6 @@
 const packages = [
   { name: 'cli', type: 'js', environment: 'node-esm' },
+  { name: 'plugins-manager', type: 'js', environment: 'node-esm' },
   { name: 'core', type: 'js', environment: 'node' },
   { name: 'eleventy-plugin-mdjs-unified', type: 'js', environment: 'node' },
   { name: 'eleventy-rocket-nav', type: 'js', environment: 'node' },

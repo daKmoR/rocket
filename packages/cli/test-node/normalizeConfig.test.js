@@ -14,7 +14,7 @@ function cleanup(config) {
   delete configNoPaths.inputDir;
   delete configNoPaths._inputDirConfigDirRelative;
   delete configNoPaths._themePathes;
-  delete configNoPaths.eleventyFunction;
+  delete configNoPaths.eleventy;
   return configNoPaths;
 }
 
@@ -39,14 +39,13 @@ describe('normalizeConfig', () => {
       devServer: {},
       watch: true,
       setupUnifiedPlugins: [],
+      setupBuildPlugins: [],
+      setupDevAndBuildPlugins: [],
+      setupDevPlugins: [],
+      setupEleventyPlugins: [],
+      setupCliPlugins: [],
       themes: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      eleventy: {
-        dir: {
-          data: '_merged_data',
-          includes: '_merged_includes',
-        },
-      },
       outputDir: '_site-dev',
       pathPrefix: '/_site-dev',
       build: {
@@ -72,14 +71,13 @@ describe('normalizeConfig', () => {
       },
       watch: true,
       setupUnifiedPlugins: [],
+      setupBuildPlugins: [],
+      setupDevAndBuildPlugins: [],
+      setupDevPlugins: [],
+      setupEleventyPlugins: [],
+      setupCliPlugins: [],
       themes: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      eleventy: {
-        dir: {
-          data: '_merged_data',
-          includes: '_merged_includes',
-        },
-      },
       outputDir: '_site-dev',
       pathPrefix: '/_site-dev',
       build: {
@@ -102,14 +100,13 @@ describe('normalizeConfig', () => {
       },
       watch: true,
       setupUnifiedPlugins: [],
+      setupBuildPlugins: [],
+      setupDevAndBuildPlugins: [],
+      setupDevPlugins: [],
+      setupEleventyPlugins: [],
+      setupCliPlugins: [],
       themes: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      eleventy: {
-        dir: {
-          data: '--config-override--',
-          includes: '_merged_includes',
-        },
-      },
       outputDir: '_site-dev',
       pathPrefix: '/_site-dev',
       build: {
@@ -130,69 +127,19 @@ describe('normalizeConfig', () => {
       devServer: {},
       watch: true,
       setupUnifiedPlugins: [],
+      setupBuildPlugins: [],
+      setupDevAndBuildPlugins: [],
+      setupDevPlugins: [],
+      setupEleventyPlugins: [],
+      setupCliPlugins: [],
       themes: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      eleventy: {
-        dir: {
-          data: '--config-function-override--',
-          includes: '_merged_includes',
-        },
-      },
       outputDir: '_site-dev',
       pathPrefix: '/_site-dev',
       build: {
         outputDir: '_site',
         pathPrefix: '',
       },
-    });
-  });
-
-  describe('themes', async () => {
-    let expectedConfig = {
-      command: 'help',
-      devServer: {},
-      watch: true,
-      setupUnifiedPlugins: [],
-      themes: [],
-      plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      eleventy: {
-        dir: {
-          data: '_merged_data',
-          includes: '_merged_includes',
-        },
-      },
-      outputDir: '_site-dev',
-      pathPrefix: '/_site-dev',
-      build: {
-        outputDir: '_site',
-        pathPrefix: '',
-      },
-    };
-    it('supports an eleventy config object', async () => {
-      const configDir = path.join(__dirname, 'fixtures', 'empty');
-      const themePath = path.join(__dirname, 'fixtures', 'themes', 'index.js');
-      const { eleventyObjectTheme } = await import(themePath);
-      const themeResolved = eleventyObjectTheme();
-      const config = await normalizeConfig({
-        configDir,
-        themes: [themeResolved],
-      });
-      expectedConfig.themes = [themeResolved];
-      expectedConfig.eleventy.dir.data = '--theme-config-override--';
-      expect(cleanup(config)).to.deep.equal(expectedConfig);
-    });
-    it('supports an eleventy config function', async () => {
-      const configDir = path.join(__dirname, 'fixtures', 'empty');
-      const themePath = path.join(__dirname, 'fixtures', 'themes', 'index.js');
-      const { eleventyFunctionTheme } = await import(themePath);
-      const themeResolved = eleventyFunctionTheme();
-      const config = await normalizeConfig({
-        configDir,
-        themes: [themeResolved],
-      });
-      expectedConfig.themes = [themeResolved];
-      expectedConfig.eleventy.dir.data = '--theme-config-function-override--';
-      expect(cleanup(config)).to.deep.equal(expectedConfig);
     });
   });
 });

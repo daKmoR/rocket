@@ -13,6 +13,7 @@ async function renderEleventy(inputDir) {
   const rel = path.relative(process.cwd(), resolvedInputDir);
   const relCwdPathToConfig = path.join(rel, '.eleventy.cjs');
   elev.setConfigPathOverride(relCwdPathToConfig);
+  elev.config.filters = {};
 
   elev.setDryRun(true);
   await elev.init();

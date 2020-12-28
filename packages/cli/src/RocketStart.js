@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { startDevServer } from '@web/dev-server';
+import { fromRollup } from '@web/dev-server-rollup';
+import { metaConfigToWebDevServerConfig } from 'plugins-manager';
 
 /** @typedef {import('../types/main').RocketCliOptions} RocketCliOptions */
 /** @typedef {import('@web/dev-server').DevServerConfig} DevServerConfig */
@@ -28,20 +30,32 @@ export class RocketStart {
     }
 
     /** @type {DevServerConfig} */
-    const devServerConfig = {
-      nodeResolve: true,
-      watch: true,
-      ...this.config.devServer,
-      // @ts-ignore
-      open: this.config.devServer.open ? this.config.devServer.open : `${this.config.pathPrefix}/`,
-      clearTerminalOnReload: false,
-    };
+    const devServerConfig = metaConfigToWebDevServerConfig(
+      {
+        nodeResolve: true,
+        watch: this.config.watch !== undefined ? this.config.watch : true,
+        // @ts-ignore
+        open: `${this.config.pathPrefix}/`,
+        clearTerminalOnReload: false,
+        ...this.config.devServer,
 
-    await startDevServer({
+        setupPlugins: [...this.config.setupDevAndBuildPlugins, ...this.config.setupDevPlugins],
+      },
+      [],
+      { wrapperFunction: fromRollup },
+    );
+
+    this.devServer = await startDevServer({
       config: devServerConfig,
       readCliArgs: true,
       readFileConfig: false,
       argv: this.__argv,
     });
+  }
+
+  async stop() {
+    if (this.devServer) {
+      await this.devServer.stop();
+    }
   }
 }

@@ -12,6 +12,7 @@ declare module '@11ty/eleventy' {
     setConfigPathOverride(path: string);
     init(): Promise<void>;
     write(): Promise<void>;
+    finish(): void;
 
     isVerbose: boolean;
 

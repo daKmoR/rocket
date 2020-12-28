@@ -1,10 +1,6 @@
 import chai from 'chai';
 import { RocketCli } from '../src/RocketCli.js';
 import computedConfig from '../src/public/computedConfig.cjs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const { expect } = chai;
 
@@ -35,24 +31,5 @@ describe('RocketCli', () => {
     cli = new RocketCli();
     await cli.setup();
     expect(getComputedConfig()).to.not.deep.equal({});
-  });
-
-  it('can add a unified plugin via the config', async () => {
-    cli = new RocketCli({
-      argv: ['test', '--config-dir', path.join(__dirname, 'fixtures', 'unified-plugin')],
-    });
-    await cli.setup();
-
-    let htmlOutput = '';
-    cli.config.watch = false;
-    cli.config.plugins.push({
-      commands: ['test'],
-      inspectRenderedHtml: ({ html }) => {
-        htmlOutput = html;
-      },
-    });
-    await cli.run();
-
-    expect(htmlOutput).to.equal('<p>See a 🐶</p>\n');
   });
 });

@@ -13,7 +13,7 @@ function cleanup(config) {
   delete configNoPaths._configDirCwdRelative;
   delete configNoPaths.inputDir;
   delete configNoPaths._inputDirConfigDirRelative;
-  delete configNoPaths._themePathes;
+  delete configNoPaths._presetPathes;
   delete configNoPaths.eleventy;
   return configNoPaths;
 }
@@ -32,7 +32,7 @@ describe('normalizeConfig', () => {
     expect(config._configDirCwdRelative).to.match(/test-node\/fixtures\/empty$/);
     expect(config.inputDir).to.match(/empty\/docs$/);
     expect(config._inputDirConfigDirRelative).to.equal('docs');
-    expect(config._themePathes[0]).to.match(/empty\/docs$/);
+    expect(config._presetPathes[0]).to.match(/empty\/docs$/);
 
     expect(cleanup(config)).to.deep.equal({
       command: 'help',
@@ -44,7 +44,7 @@ describe('normalizeConfig', () => {
       setupDevPlugins: [],
       setupEleventyPlugins: [],
       setupCliPlugins: [],
-      themes: [],
+      presets: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       outputDir: '_site-dev',
       pathPrefix: '/_site-dev',
@@ -76,7 +76,7 @@ describe('normalizeConfig', () => {
       setupDevPlugins: [],
       setupEleventyPlugins: [],
       setupCliPlugins: [],
-      themes: [],
+      presets: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       outputDir: '_site-dev',
       pathPrefix: '/_site-dev',
@@ -105,7 +105,7 @@ describe('normalizeConfig', () => {
       setupDevPlugins: [],
       setupEleventyPlugins: [],
       setupCliPlugins: [],
-      themes: [],
+      presets: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       outputDir: '_site-dev',
       pathPrefix: '/_site-dev',
@@ -132,7 +132,7 @@ describe('normalizeConfig', () => {
       setupDevPlugins: [],
       setupEleventyPlugins: [],
       setupCliPlugins: [],
-      themes: [],
+      presets: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
       outputDir: '_site-dev',
       pathPrefix: '/_site-dev',

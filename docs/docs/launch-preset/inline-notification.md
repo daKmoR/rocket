@@ -1,4 +1,4 @@
-# Launch Theme >> Inline Notification ||20
+# Launch Preset >> Inline Notification ||20
 
 Notification are web components that bring in some styles.
 

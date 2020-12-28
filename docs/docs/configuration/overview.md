@@ -8,7 +8,7 @@ The config files consists of the following parts:
 import { rocketLaunch } from '@d4kmor/launch';
 
 export default {
-  themes: [rocketLaunch()],
+  presets: [rocketLaunch()],
   build: {
     emptyOutputDir: true,
     pathPrefix: 'subfolder-only-for-build',

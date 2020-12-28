@@ -11,6 +11,6 @@
     "checkJs": true
   },
   "references": [],
-  "include": ["src", "theme", "node.js"],
+  "include": ["src", "preset", "node.js"],
   "exclude": ["src/browser", "tests", "dist"]
 }

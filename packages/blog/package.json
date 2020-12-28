@@ -11,7 +11,7 @@
   "type": "module",
   "exports": {
     ".": "./index.js",
-    "./theme/": "./theme/"
+    "./preset/": "./preset/"
   },
   "scripts": {
     "dev": "web-dev-server --node-resolve --root-dir ../../ --open packages/drawer/ --watch",
@@ -23,7 +23,7 @@
   },
   "files": [
     "*.js",
-    "theme"
+    "preset"
   ],
   "keywords": [
     "storybook",

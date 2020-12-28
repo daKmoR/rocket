@@ -34,7 +34,7 @@ export class RocketEleventy extends Eleventy {
       finishBuild = resolve;
     });
 
-    await this.__rocketCli.mergeThemes();
+    await this.__rocketCli.mergePresets();
 
     await super.write();
     await this.__rocketCli.update();
@@ -105,11 +105,11 @@ export class RocketCli {
     }
   }
 
-  async mergeThemes() {
+  async mergePresets() {
     for (const folder of ['_assets', '_data', '_includes']) {
       const to = path.join(this.config.inputDir, `_merged${folder}`);
       await fs.emptyDir(to);
-      for (const sourceDir of this.config._themePathes) {
+      for (const sourceDir of this.config._presetPathes) {
         const from = path.join(sourceDir, folder);
         if (fs.existsSync(from)) {
           await fs.copy(from, to);
@@ -146,7 +146,7 @@ export class RocketCli {
       }
     }
 
-    await this.mergeThemes();
+    await this.mergePresets();
     await this.setupEleventy();
 
     if (this.config) {

@@ -1,21 +1,5 @@
 import cjsEntrypoint from './index.js';
 
-const {
-  mdjsParse,
-  mdjsStoryParse,
-  mdjsDocPage,
-  mdjsProcess,
-  mdjsProcessPlugins,
-  isMdjsContent,
-  addPluginAfter,
-} = cjsEntrypoint;
+const { mdjsParse, mdjsStoryParse, mdjsDocPage, mdjsProcess, isMdjsContent } = cjsEntrypoint;
 
-export {
-  mdjsParse,
-  mdjsStoryParse,
-  mdjsDocPage,
-  mdjsProcess,
-  mdjsProcessPlugins,
-  isMdjsContent,
-  addPluginAfter,
-};
+export { mdjsParse, mdjsStoryParse, mdjsDocPage, mdjsProcess, isMdjsContent };

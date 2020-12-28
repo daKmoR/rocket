@@ -1,23 +1,21 @@
 import { DevServerConfig } from '@web/dev-server';
 
-export interface EleventyOptions {
-  dir?: {
-    includes?: string;
-    data?: string;
-    output?: string;
-  };
-  modifyConfig?: function;
-}
-
 export interface RocketTheme {
   path: string;
-  setupUnifiedPlugins: function; // TODO: improve
-  setupPlugins: function; // TODO: improve
+
+  // TODO: improve all setup functions
+  setupUnifiedPlugins?: function[];
+  setupDevAndBuildPlugins: function[];
+  setupBuildPlugins: function[];
+  setupDevPlugins: function[];
+  setupCliPlugins: function[];
+  setupEleventyPlugins: function[];
 }
 
 export interface RocketCliOptions {
   command: string;
   pathPrefix: string;
+  configFile?: string;
   configDir: string;
   _configDirCwdRelative: string;
   inputDir: string;
@@ -26,7 +24,7 @@ export interface RocketCliOptions {
   watch: boolean;
   themes: Array<RocketTheme>;
   devServer: DevServerConfig;
-  eleventy: EleventyOptions;
+  eleventy: function; // TODO: improve
   build: {
     outputDir: string;
     pathPrefix: string;
@@ -34,9 +32,16 @@ export interface RocketCliOptions {
     emptyOutputDir?: boolen;
     serviceWorkerFileName?: string;
   };
-  setupUnifiedPlugins?: function; // TODO: improve
-  setupPlugins?: function; // TODO: improve
   _themePathes?: Array<string>;
+  plugins: RocketPlugin[];
+
+  // TODO: improve all setup functions
+  setupUnifiedPlugins?: function[];
+  setupDevAndBuildPlugins: function[];
+  setupBuildPlugins: function[];
+  setupDevPlugins: function[];
+  setupCliPlugins: function[];
+  setupEleventyPlugins: function[];
 }
 
 export interface RocketPlugin {

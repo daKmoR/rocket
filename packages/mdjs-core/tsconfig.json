@@ -17,6 +17,9 @@
     },
     {
       "path": "../mdjs-story/tsconfig.json"
+    },
+    {
+      "path": "../plugins-manager/tsconfig.json"
     }
   ],
   "include": [

@@ -27,4 +27,18 @@ describe('mdjsParse', () => {
     );
     expect(/** @type {MDJSVFileData} */ (result.data).jsCode).to.equal('const bar = 22;');
   });
+
+  // TODO: fix this bug
+  it.skip('handling only "js script" code blocks', async () => {
+    const input = [
+      //
+      '```js script',
+      'const bar = 22;',
+      '```',
+    ].join('\n');
+    const parser = unified().use(markdown).use(mdjsParse).use(html);
+    const result = await parser.process(input);
+    expect(result.contents).to.equal('');
+    expect(/** @type {MDJSVFileData} */ (result.data).jsCode).to.equal('const bar = 22;');
+  });
 });

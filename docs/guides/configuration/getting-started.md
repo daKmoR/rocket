@@ -2,7 +2,7 @@
 
 The main config file is `rocket.config.js` or `rocket.config.mjs`.
 
-It typcially looks something like this
+It typically looks something like this
 
 ```js
 import { rocketLaunch } from '@d4kmor/launch';
@@ -30,15 +30,15 @@ If you want to a plugin to the markdown processing you can use `setupUnifiedPlug
 
 ```js
 import emoji from 'remark-emoji';
-import { addPluginAfter } from '@mdjs/core';
+import { addPlugin } from 'plugins-manager';
 
 /** @type {Partial<import('@d4kmor/cli').RocketCliOptions>} */
 const config = {
-  setupUnifiedPlugins: [addPluginAfter('markdown', 'emoji', emoji)],
+  setupUnifiedPlugins: [addPlugin({ location: 'markdown', name: 'emoji', plugin: emoji })],
 };
 
 export default config;
 ```
 
-For plugins that should handle the markdown ast you should use `addPluginAfter('markdown', 'my-plugin', MyPlugin)`. <br>
-While for the rehype ast you should use `addPluginAfter('remark2rehype', 'my-plugin', MyPlugin)`.
+For plugins that should handle the markdown <abbr title="Abstract Syntax Tree">AST</abbr> you should use `addPlugin({ location: 'markdown', name: 'my-plugin', plugin: MyPlugin})`. <br>
+While for the rehype ast you should use `addPlugin({ location: 'remark2rehype', name: 'my-plugin', plugin: MyPlugin})`.

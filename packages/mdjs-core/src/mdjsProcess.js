@@ -12,12 +12,14 @@ const htmlStringify = require('rehype-stringify');
 const htmlSlug = require('rehype-slug');
 const htmlHeading = require('rehype-autolink-headings');
 const rehypePrism = require('rehype-prism-template');
+// @ts-ignore
+const { executeSetupFunctions } = require('plugins-manager');
 
 const { mdjsParse } = require('./mdjsParse.js');
 const { mdjsStoryParse } = require('./mdjsStoryParse.js');
 
 /** @type {MdjsProcessPlugin[]} */
-const mdjsProcessPlugins = [
+const defaultMetaPlugins = [
   { name: 'markdown', plugin: markdown },
   { name: 'mdjsParse', plugin: mdjsParse },
   { name: 'mdjsStoryParse', plugin: mdjsStoryParse },
@@ -36,13 +38,6 @@ const mdjsProcessPlugins = [
 ];
 
 /**
- * @param {MdjsProcessPlugin[]} plugins
- */
-function defaultSetupUnifiedPlugins(plugins) {
-  return plugins;
-}
-
-/**
  * Processes mdjs to html/js/stories
  *
  * Js code includes the linking between js and stories
@@ -50,36 +45,19 @@ function defaultSetupUnifiedPlugins(plugins) {
  * @param {string} mdjs
  * @param {object} options
  * @param {string} [options.rootNodeQueryCode]
- * @param {function | function[]} [options.setupUnifiedPlugins]
+ * @param {function[]} [options.setupUnifiedPlugins]
  * @param {MdjsProcessPlugin[]} [options.plugins] deprecated option use setupUnifiedPlugins instead
  */
 async function mdjsProcess(
   mdjs,
-  {
-    rootNodeQueryCode = 'document',
-    setupUnifiedPlugins = [defaultSetupUnifiedPlugins],
-    /** @deprecated */
-    plugins = mdjsProcessPlugins,
-  } = {},
+  { rootNodeQueryCode = 'document', setupUnifiedPlugins = [] } = {},
 ) {
   const parser = unified();
 
-  let setupPlugins = plugins;
-  /** @type {function[]} */
-  let userSetupUnifiedPlugins = [];
-  if (setupUnifiedPlugins) {
-    if (typeof setupUnifiedPlugins === 'function') {
-      userSetupUnifiedPlugins = [setupUnifiedPlugins];
-    }
-    if (Array.isArray(setupUnifiedPlugins)) {
-      userSetupUnifiedPlugins = setupUnifiedPlugins;
-    }
-  }
-  for (const setupFn of userSetupUnifiedPlugins) {
-    setupPlugins = setupFn(setupPlugins);
-  }
+  const metaPlugins = executeSetupFunctions(setupUnifiedPlugins, defaultMetaPlugins);
 
-  for (const pluginObj of setupPlugins) {
+  // @ts-ignore
+  for (const pluginObj of metaPlugins) {
     parser.use(pluginObj.plugin, pluginObj.options);
   }
 
@@ -93,10 +71,12 @@ async function mdjsProcess(
   if (stories && stories.length > 0) {
     const storiesCode = stories.map(story => story.code).join('\n');
 
-    const codePlugins = setupPlugins.filter(pluginObj =>
+    // @ts-ignore
+    const codePlugins = metaPlugins.filter(pluginObj =>
       ['markdown', 'remark2rehype', 'rehypePrism', 'htmlStringify'].includes(pluginObj.name),
     );
     const codeParser = unified();
+    // @ts-ignore
     for (const pluginObj of codePlugins) {
       codeParser.use(pluginObj.plugin, pluginObj.options);
     }
@@ -144,6 +124,4 @@ async function mdjsProcess(
 
 module.exports = {
   mdjsProcess,
-  /** @deprecated use setupUnifiedPlugins option on mdjsProcess instead */
-  mdjsProcessPlugins,
 };

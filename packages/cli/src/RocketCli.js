@@ -50,10 +50,9 @@ export class RocketCli {
     const mainDefinitions = [
       { name: 'command', defaultOption: true, defaultValue: 'help' },
       {
-        name: 'config-dir',
+        name: 'config-file',
         alias: 'c',
         type: String,
-        defaultValue: '.',
         description: 'Location of rocket configuration',
       },
     ];
@@ -64,7 +63,7 @@ export class RocketCli {
     this.subArgv = options._unknown || [];
     this.argvConfig = {
       command: options.command,
-      configDir: options['config-dir'],
+      configFile: options['config-file'],
     };
     this.__isSetup = false;
   }
@@ -74,15 +73,12 @@ export class RocketCli {
       const { inputDir, outputDir } = this.config;
 
       await fs.emptyDir(outputDir);
-
       const elev = new RocketEleventy(inputDir, outputDir, this);
       elev.isVerbose = false;
-
       // 11ty always wants a relative path to cwd - why?
       const rel = path.relative(process.cwd(), path.join(__dirname));
       const relCwdPathToConfig = path.join(rel, 'shared', '.eleventy.cjs');
       elev.setConfigPathOverride(relCwdPathToConfig);
-
       // elev.setDryRun(true); // do not write to file system
       await elev.init();
 
@@ -219,5 +215,22 @@ export class RocketCli {
         await plugin.updated();
       }
     }
+  }
+
+  async stop() {
+    for (const plugin of this.config.plugins) {
+      if (this.considerPlugin(plugin) && typeof plugin.stop === 'function') {
+        await plugin.stop();
+      }
+    }
+  }
+
+  async cleanup() {
+    setComputedConfig({});
+    if (this.eleventy) {
+      this.eleventy.finish();
+      // this.eleventy.stopWatch();
+    }
+    this.stop();
   }
 }

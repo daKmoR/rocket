@@ -1,119 +1,79 @@
-const path = require('path');
-const fs = require('fs');
-const { readdirSync } = require('fs');
-
-const pluginMdjs = require('@d4kmor/eleventy-plugin-mdjs-unified');
+const eleventyPluginMdjsUnified = require('@d4kmor/eleventy-plugin-mdjs-unified');
 const eleventyRocketNav = require('@d4kmor/eleventy-rocket-nav');
-const { processContentWithTitle } = require('@d4kmor/core/title');
 
 const { getComputedConfig } = require('../public/computedConfig.cjs');
-
-function getDirectories(source) {
-  return readdirSync(source, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
-}
-
-function inlineFilePath(filePath) {
-  let data = fs.readFileSync(filePath, function (err, contents) {
-    if (err) {
-      throw new Error(err);
-    }
-    return contents;
-  });
-  return data.toString('utf8');
-}
-
-function modifySvg(svgText, options) {
-  const insertAt = svgText.indexOf('<svg') + 4;
-  return `${svgText.substr(0, insertAt)} class="${options.addRootClass}" ${svgText.substr(
-    insertAt,
-  )}`;
-}
+const rocketFilters = require('../eleventy-plugins/rocketFilters.cjs');
+const rocketCopy = require('../eleventy-plugins/rocketCopy.cjs');
+const rocketCollections = require('../eleventy-plugins/rocketCollections.cjs');
 
 module.exports = function (eleventyConfig) {
   const config = getComputedConfig();
+  const { pathPrefix, inputDir, outputDir } = config;
 
-  const { pathPrefix, inputDir, configDir, outputDir } = config;
-  const { data, includes } = config.eleventy.dir;
+  let metaPlugins = [
+    {
+      name: 'rocket-filters',
+      plugin: rocketFilters,
+      options: { inputDir },
+    },
+    {
+      name: 'rocket-copy',
+      plugin: rocketCopy,
+      options: {
+        inputDir,
+        filesExtensionsToCopy: 'png,gif,jpg,jpeg,svg,css,xml,json,js',
+      },
+    },
+    {
+      name: 'eleventy-plugin-mdjs-unified',
+      plugin: eleventyPluginMdjsUnified,
+      options: { setupUnifiedPlugins: config.setupUnifiedPlugins },
+    },
+    {
+      name: 'eleventy-rocket-nav',
+      plugin: eleventyRocketNav,
+    },
+    {
+      name: 'rocket-collections',
+      plugin: rocketCollections,
+      options: { inputDir },
+    },
+  ];
 
-  eleventyConfig.addFilter('asset', function (inPath) {
-    return inPath.replace('_assets/', '_merged_assets/');
-  });
-
-  eleventyConfig.addFilter('toAbsPath', function (inPath) {
-    return path.join(inputDir, inPath);
-  });
-
-  eleventyConfig.addPassthroughCopy(`${inputDir}/**/*.{png,gif,jpg,jpeg,svg,css,xml,json,js}`);
-  eleventyConfig.addPlugin(pluginMdjs, { setupUnifiedPlugins: config.setupUnifiedPlugins });
-  eleventyConfig.addPlugin(eleventyRocketNav);
-
-  const sectionNames = getDirectories(inputDir);
-  const headerCollectionPaths = [];
-  for (const section of sectionNames) {
-    const fullPath = path.join(inputDir, section);
-    const indexSection = path.join(fullPath, 'index.md');
-    if (fs.existsSync(indexSection)) {
-      // add to header
-      headerCollectionPaths.push(indexSection);
-      // add to specific collection
-      eleventyConfig.addCollection(section, collection => {
-        let docs = [...collection.getFilteredByGlob(`${inputDir}/${section}/**/*.md`)];
-        docs.forEach(page => {
-          page.data.section = section;
-        });
-        docs = docs.filter(page => page.inputPath !== `./${indexSection}`);
-
-        // docs = addPrevNextUrls(docs);
-        return docs;
-      });
+  if (Array.isArray(config.setupEleventyPlugins)) {
+    for (const setupFn of config.setupEleventyPlugins) {
+      metaPlugins = setupFn(metaPlugins);
     }
   }
 
-  // adds title from markdown headline to all pages
-  eleventyConfig.addCollection('--workaround-to-get-all-pages--', collection => {
-    const docs = collection.getAll();
-    docs.forEach(page => {
-      page.data.addTitleHeadline = true;
-      const titleData = processContentWithTitle(
-        page.template.inputContent,
-        page.template._templateRender._engineName,
-      );
-      if (titleData) {
-        page.data.title = titleData.title;
-        page.data.eleventyNavigation = { ...titleData.eleventyNavigation };
-        page.data.addTitleHeadline = false;
-      }
-    });
-    return docs;
-  });
-
-  eleventyConfig.addCollection('header', collection => {
-    let headers = [];
-    for (const headerCollectionPath of headerCollectionPaths) {
-      headers = [...headers, ...collection.getFilteredByGlob(headerCollectionPath)];
+  for (const pluginObj of metaPlugins) {
+    if (pluginObj.options) {
+      eleventyConfig.addPlugin(pluginObj.plugin, pluginObj.options);
+    } else {
+      eleventyConfig.addPlugin(pluginObj.plugin);
     }
-    headers = headers.sort((a, b) => {
-      const aOrder = (a.data && a.data.eleventyNavigation && a.data.eleventyNavigation.order) || 0;
-      const bOrder = (b.data && b.data.eleventyNavigation && b.data.eleventyNavigation.order) || 0;
-      return aOrder - bOrder;
-    });
-    return headers;
-  });
+  }
 
-  eleventyConfig.addFilter('inlineFilePath', inlineFilePath);
-  eleventyConfig.addFilter('modifySvg', modifySvg);
-
-  if (config.eleventyFunction) {
-    config.eleventyFunction(eleventyConfig);
+  if (config.eleventy) {
+    const returnValue = config.eleventy(eleventyConfig);
+    if (returnValue) {
+      const returnString = JSON.stringify(returnValue, null, 2);
+      const msg = [
+        'Error: Setting eleventy values from within a rocket.config.mjs file is not allowed.',
+        'All settings should be available at the root of the config.',
+        'If something is missing then please open an issue. You are trying to set:',
+        returnString,
+      ].join('\n');
+      console.error(msg);
+      throw new Error(msg);
+    }
   }
 
   return {
     dir: {
       // no input: inputDir as we set this when we create the eleventy instance
-      includes,
-      data,
+      data: '_merged_data',
+      includes: '_merged_includes',
       output: outputDir,
     },
     pathPrefix,

@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 
 const chai = require('chai');
-const { mdjsProcess, mdjsProcessPlugins } = require('../src/mdjsProcess.js');
+const { mdjsProcess } = require('../src/mdjsProcess.js');
 
 const { expect } = chai;
 
@@ -77,35 +77,6 @@ describe('mdjsProcess', () => {
     expect(result.jsCode).to.equal('const bar = 2;');
   });
 
-  it('[deprecated] allows to fully configure the plugin list', async () => {
-    const expected = [
-      '<p>Intro</p>',
-      '<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>',
-      '</code></pre>',
-      '<my-story mdjs-story-name="fooStory"></my-story>',
-      '<my-preview mdjs-story-name="fooPreviewStory"></my-preview>',
-    ].join('\n');
-
-    const plugins = mdjsProcessPlugins.map(pluginObj => {
-      if (pluginObj.name === 'mdjsStoryParse') {
-        return {
-          ...pluginObj,
-          options: {
-            storyTag: name => `<my-story mdjs-story-name="${name}"></my-story>`,
-            previewStoryTag: name => `<my-preview mdjs-story-name="${name}"></></my-preview>`,
-          },
-        };
-      }
-      return pluginObj;
-    });
-
-    const result = await mdjsProcess(input, {
-      plugins,
-    });
-
-    expect(result.html).to.equal(expected);
-  });
-
   it('can setup all unified plugins via "setupUnifiedPlugins" which accepts a single function or an array of functions', async () => {
     const expected = [
       '<p>Intro</p>',
@@ -131,7 +102,7 @@ describe('mdjsProcess', () => {
     }
 
     const result = await mdjsProcess(input, {
-      setupUnifiedPlugins: replaceStoryTag,
+      setupUnifiedPlugins: [replaceStoryTag],
     });
     expect(result.html).to.equal(expected);
 

@@ -8,3 +8,5 @@ CHANGELOG.md
 .changeset
 _site
 _site-dev
+__output
+__output-dev

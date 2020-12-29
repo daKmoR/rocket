@@ -49,7 +49,7 @@ export async function getIdBlocksOfHtml({ html, url }) {
     }
 
     if (insideHeading && ev === SaxEventType.Attribute) {
-      if (data.name === 'id') {
+      if (data.name.toString() === 'id') {
         block.url += `#${data.value}`;
       }
     }

@@ -7172,10 +7172,10 @@ safe-buffer@^5.1.0, safe-buffer@~5.2.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sax-wasm@^1.4.5:
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/sax-wasm/-/sax-wasm-1.4.6.tgz#2e74c0d25c658299b77c5965e81dc15307bed59e"
-  integrity sha512-XL/7rKPcSvxMwuF+nTF2RQ+vMRvxyT1n/fE8C3Myh89YG0hERvxnKt7E06pmlItiAWl8Nb4JP8ZnqQvlKN8s1g==
+sax-wasm@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/sax-wasm/-/sax-wasm-2.0.0.tgz#be6d2d53bb1785fcb3e2f29624554cc7a4bea566"
+  integrity sha512-u2LwHmhmF0r8PlwRk4QPWRwAtdR4tH8NCYP1gsNRPOn1x137tf+DIoGfvBebL0BDYHP19exDmVGYoWBkv1mInw==
 
 section-matter@^1.0.0:
   version "1.0.0"

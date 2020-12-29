@@ -42,6 +42,12 @@
 <meta name="description" content="{{ _description }}"/>
 <meta property="og:description" content="{{ _description }}"/>
 
+<script type="module">
+  if (localStorage.getItem('darkmode') === 'true') {
+    document.getElementsByTagName('html')[0].classList.add('dark');
+  }
+</script>
+
 <link rel="stylesheet" href="{{ '/_assets/variables.css' | asset | url }}">
 <link rel="stylesheet" href="{{ '/_assets/layout.css' | asset | url }}">
 <link rel="stylesheet" href="{{ '/_assets/markdown.css' | asset | url }}">

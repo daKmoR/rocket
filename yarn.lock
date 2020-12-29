@@ -45,6 +45,11 @@
     time-require "^0.1.2"
     valid-url "^1.0.9"
 
+"@a11y/focus-trap@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@a11y/focus-trap/-/focus-trap-1.0.5.tgz#0748189c37ca21255c702aa5de3ee00ed4821d22"
+  integrity sha512-3JOd6g+BALysWS8LNf0qdB8ltR651H/RCLAvUmfS0LIHwHO579XfjZUIZbURYiAZrcbp1CBAq4QZ2YwKNQZ1hw==
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -1386,6 +1391,13 @@
   dependencies:
     ejs "^2.6.1"
     magic-string "^0.25.0"
+
+"@thepassle/generic-components@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@thepassle/generic-components/-/generic-components-0.2.1.tgz#87b6f8222e76aed421644d847975bd873c53ada1"
+  integrity sha512-Dg31p+6Agnyt98tHrtvyFXQY37tm8ZknaCO8uq9/SQrYz9pQcyrVGgXrA/qm0b/M7ADVE0WKk9x4iEk3dr5gjA==
+  dependencies:
+    "@a11y/focus-trap" "^1.0.5"
 
 "@types/accepts@*":
   version "1.3.5"
@@ -6636,6 +6648,11 @@ puppeteer@^5.5.0:
     tar-fs "^2.0.0"
     unbzip2-stream "^1.3.3"
     ws "^7.2.3"
+
+pwa-helper-components@^0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/pwa-helper-components/-/pwa-helper-components-0.2.10.tgz#c3e2c4f9dec7d204ddd61e1fc5ac99cc0ac97f89"
+  integrity sha512-0qxa/mFM4ssqFHNB1ka+MPefBh/lAVp+fAkWTxfqPsLXaKMt1g0PHQ8OVAr4qOWPQqYW4wuUpf6ljD/YQGmlzQ==
 
 qs@6.2.3:
   version "6.2.3"

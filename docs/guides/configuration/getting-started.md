@@ -18,9 +18,6 @@ export default /** @type {Partial<import('@d4kmor/cli').RocketCliOptions>} */ ({
     // pathPrefix: 'subfolder-only-for-build',
     // serviceWorkerFileName: 'sw.js',
   },
-  // eleventy: eleventyConfig => {
-  //   eleventyConfig.addFilter('foo', () => 'foo');
-  // }
 });
 ```
 

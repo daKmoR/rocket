@@ -56,7 +56,7 @@ describe('mdjsProcess', () => {
   it('has no js code if there are no stories', async () => {
     const result = await mdjsProcess('## Intro');
     expect(result.html).to.equal(
-      '<h2 id="intro"><a aria-hidden="true" href="#intro"><span class="icon icon-link"></span></a>Intro</h2>',
+      '<h2 id="intro"><a aria-hidden="true" tabindex="-1" href="#intro"><span class="icon icon-link"></span></a>Intro</h2>',
     );
     expect(result.jsCode).to.equal('');
   });
@@ -72,7 +72,7 @@ describe('mdjsProcess', () => {
 
     const result = await mdjsProcess(md);
     expect(result.html).to.equal(
-      '<h2 id="intro"><a aria-hidden="true" href="#intro"><span class="icon icon-link"></span></a>Intro</h2>',
+      '<h2 id="intro"><a aria-hidden="true" tabindex="-1" href="#intro"><span class="icon icon-link"></span></a>Intro</h2>',
     );
     expect(result.jsCode).to.equal('const bar = 2;');
   });

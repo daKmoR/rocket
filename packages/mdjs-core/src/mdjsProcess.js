@@ -24,7 +24,7 @@ const defaultMetaPlugins = [
   { name: 'mdjsParse', plugin: mdjsParse },
   { name: 'mdjsStoryParse', plugin: mdjsStoryParse },
   // @ts-ignore
-  { name: 'remark2rehype', plugin: remark2rehype, options: { allowDangerousHTML: true } },
+  { name: 'remark2rehype', plugin: remark2rehype, options: { allowDangerousHtml: true } },
   // @ts-ignore
   { name: 'rehypePrism', plugin: rehypePrism },
   // @ts-ignore

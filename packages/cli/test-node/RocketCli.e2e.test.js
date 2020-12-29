@@ -107,7 +107,7 @@ describe('RocketCli e2e', () => {
       expect(indexHtml).to.equal(
         [
           '# BEFORE #',
-          '<h1 id="some"><a aria-hidden="true" href="#some"><span class="icon icon-link"></span></a>Some</h1>',
+          '<h1 id="some"><a aria-hidden="true" tabindex="-1" href="#some"><span class="icon icon-link"></span></a>Some</h1>',
           '<p>Content</p>',
         ].join('\n'),
       );

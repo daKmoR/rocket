@@ -40,8 +40,8 @@ describe('Integration', () => {
     ].join('\n');
 
     const expected = [
-      '<h2 id="intro"><a aria-hidden="true" href="#intro"><span class="icon icon-link"></span></a>Intro</h2>',
-      '<h2 id="intro-1"><a aria-hidden="true" href="#intro-1"><span class="icon icon-link"></span></a>Intro</h2>',
+      '<h2 id="intro"><a aria-hidden="true" tabindex="-1" href="#intro"><span class="icon icon-link"></span></a>Intro</h2>',
+      '<h2 id="intro-1"><a aria-hidden="true" tabindex="-1" href="#intro-1"><span class="icon icon-link"></span></a>Intro</h2>',
       '<pre><code class="language-js">const foo = 1;',
       '</code></pre>',
       '<mdjs-story mdjs-story-name="fooStory"></mdjs-story>',
@@ -52,7 +52,7 @@ describe('Integration', () => {
       .use(markdown)
       .use(mdjsParse)
       .use(mdjsStoryParse)
-      .use(remark2rehype, { allowDangerousHTML: true })
+      .use(remark2rehype, { allowDangerousHtml: true })
       .use(raw)
       .use(htmlSlug)
       .use(htmlHeading)
@@ -79,8 +79,8 @@ describe('Integration', () => {
     ].join('\n');
 
     const expected = [
-      '<h2 id="intro"><a href="#intro" aria-hidden="true"><span class="icon icon-link"></span></a>Intro</h2>',
-      '<h2 id="intro-1"><a href="#intro-1" aria-hidden="true"><span class="icon icon-link"></span></a>Intro</h2>',
+      '<h2 id="intro"><a href="#intro" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>Intro</h2>',
+      '<h2 id="intro-1"><a href="#intro-1" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>Intro</h2>',
       '<pre><code class="language-js">const foo = 1;',
       '</code></pre>',
       '<Story name="fooStory"></Story>',

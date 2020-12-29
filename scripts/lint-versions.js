@@ -1,5 +1,5 @@
 /* eslint-disable */
-const { readdirSync, existsSync, readFileSync } = require('fs');
+import { readdirSync, existsSync, readFileSync } from 'fs';
 
 const getDirectories = source =>
   readdirSync(source, { withFileTypes: true })
@@ -53,7 +53,7 @@ let currentVersions = readPackageJsonDeps('./package.json');
 let endReturn = 0;
 
 // find all versions in the monorepo
-['./packages', './demo/projects'].forEach(rootDir => {
+['./packages'].forEach(rootDir => {
   getDirectories(rootDir).forEach(subPackage => {
     const filePath = `${rootDir}/${subPackage}/package.json`;
     currentVersions = { ...currentVersions, ...readPackageJsonNameVersion(filePath) };
@@ -61,7 +61,7 @@ let endReturn = 0;
 });
 
 // lint all versions in packages
-['./packages', './demo/projects'].forEach(rootDir => {
+['./packages'].forEach(rootDir => {
   getDirectories(rootDir).forEach(subPackage => {
     const filePath = `${rootDir}/${subPackage}/package.json`;
     const subPackageVersions = readPackageJsonDeps(filePath);

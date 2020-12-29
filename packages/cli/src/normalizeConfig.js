@@ -148,7 +148,7 @@ export async function normalizeConfig(inConfig) {
 
     configDir: config.configDir,
     _configDirCwdRelative,
-    inputDir,
+    inputDir: config.inputDir ? config.inputDir : inputDir,
     _inputDirConfigDirRelative,
   };
 }

@@ -28,7 +28,7 @@
     "setup:ts-configs": "node scripts/generate-ts-configs.mjs",
     "start": "node packages/cli/src/cli.js start",
     "test": "yarn test:node && yarn test:web",
-    "test:node": "mocha \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" --reporter dot --exit --retries 3",
+    "test:node": "mocha \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" --reporter dot --exit --retries 3 --timeout 10000",
     "test:web": "web-test-runner",
     "types": "run-s types:clear types:copy types:build",
     "types:build": "tsc --build",

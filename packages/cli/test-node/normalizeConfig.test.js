@@ -62,7 +62,10 @@ describe('normalizeConfig', () => {
       devServer: {
         more: 'settings',
       },
+      inputDir: 'my-docs',
     });
+
+    expect(config.inputDir).to.equal('my-docs');
 
     expect(cleanup(config)).to.deep.equal({
       command: 'help',

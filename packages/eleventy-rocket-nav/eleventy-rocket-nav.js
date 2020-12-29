@@ -43,8 +43,8 @@ function getHeadingsOfHtml(html) {
       captured.text += data.value;
     }
     if (ev === SaxEventType.Attribute) {
-      if (data.name === 'id') {
-        captured.id = data.value;
+      if (data.name.toString() === 'id') {
+        captured.id = data.value.toString();
       }
     }
 

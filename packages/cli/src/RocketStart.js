@@ -34,8 +34,8 @@ export class RocketStart {
       {
         nodeResolve: true,
         watch: this.config.watch !== undefined ? this.config.watch : true,
-        // @ts-ignore
-        open: `${this.config.pathPrefix}/`,
+        rootDir: this.config.outputDevDir,
+        open: true,
         clearTerminalOnReload: false,
         ...this.config.devServer,
 

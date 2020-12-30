@@ -13,27 +13,13 @@ export interface RocketPreset {
 }
 
 export interface RocketCliOptions {
-  command: string;
-  pathPrefix: string;
-  configFile?: string;
-  configDir: string;
-  _configDirCwdRelative: string;
-  inputDir: string;
-  _inputDirConfigDirRelative: string;
-  outputDir: string;
-  watch: boolean;
   presets: Array<RocketPreset>;
-  devServer: DevServerConfig;
-  eleventy: function; // TODO: improve
-  build: {
-    outputDir: string;
-    pathPrefix: string;
-    absoluteBaseUrl?: function;
-    emptyOutputDir?: boolen;
-    serviceWorkerFileName?: string;
-  };
-  _presetPathes?: Array<string>;
-  plugins: RocketPlugin[];
+  pathPrefix?: string;
+  inputDir: string;
+  outputDir: string;
+  emptyOutputDir?: boolen;
+  absoluteBaseUrl?: string;
+  watch: boolean;
 
   // TODO: improve all setup functions
   setupUnifiedPlugins?: function[];
@@ -42,6 +28,19 @@ export interface RocketCliOptions {
   setupDevPlugins: function[];
   setupCliPlugins: function[];
   setupEleventyPlugins: function[];
+
+  // advanced
+  devServer: DevServerConfig;
+  eleventy: function; // TODO: improve
+  plugins: RocketPlugin[];
+
+  // rarely used
+  command: string;
+  configFile?: string;
+  outputDevDir: string;
+
+  private _inputDirCwdRelative: string;
+  private _presetPathes?: Array<string>;
 }
 
 export interface RocketPlugin {

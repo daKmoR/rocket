@@ -3,9 +3,9 @@ import { html, LitElement, css } from 'lit-element';
 import MiniSearch from 'minisearch';
 import { repeat } from 'lit-html/directives/repeat.js';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { RocketSearchCombobox } from './RocketSearchCombobox';
-import { RocketSearchOption } from './RocketSearchOption';
-import { highlightSearchTerms, joinTitleHeadline } from './utils-shared';
+import { RocketSearchCombobox } from './RocketSearchCombobox.js';
+import { RocketSearchOption } from './RocketSearchOption.js';
+import { highlightSearchTerms, joinTitleHeadline } from './utils-shared.js';
 
 /** @typedef {import('./types').RocketSearchResult} RocketSearchResult */
 

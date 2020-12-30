@@ -8,19 +8,19 @@ const rocketCollections = require('../eleventy-plugins/rocketCollections.cjs');
 
 module.exports = function (eleventyConfig) {
   const config = getComputedConfig();
-  const { pathPrefix, inputDir, outputDir } = config;
+  const { pathPrefix, _inputDirCwdRelative, outputDevDir } = config;
 
   let metaPlugins = [
     {
       name: 'rocket-filters',
       plugin: rocketFilters,
-      options: { inputDir },
+      options: { _inputDirCwdRelative },
     },
     {
       name: 'rocket-copy',
       plugin: rocketCopy,
       options: {
-        inputDir,
+        _inputDirCwdRelative,
         filesExtensionsToCopy: 'png,gif,jpg,jpeg,svg,css,xml,json,js',
       },
     },
@@ -36,7 +36,7 @@ module.exports = function (eleventyConfig) {
     {
       name: 'rocket-collections',
       plugin: rocketCollections,
-      options: { inputDir },
+      options: { _inputDirCwdRelative },
     },
   ];
 
@@ -74,7 +74,7 @@ module.exports = function (eleventyConfig) {
       // no input: inputDir as we set this when we create the eleventy instance
       data: '_merged_data',
       includes: '_merged_includes',
-      output: outputDir,
+      output: outputDevDir,
     },
     pathPrefix,
     passthroughFileCopy: true,

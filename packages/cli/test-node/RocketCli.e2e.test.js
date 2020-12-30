@@ -38,7 +38,7 @@ describe('RocketCli e2e', () => {
       type = 'build',
     } = {},
   ) {
-    const outputDir = type === 'build' ? cli.config.build.outputDir : cli.config.outputDir;
+    const outputDir = type === 'build' ? cli.config.outputDir : cli.config.outputDevDir;
     let text = await fs.promises.readFile(path.join(outputDir, fileName));
     text = text.toString();
     if (stripToBody) {
@@ -59,12 +59,11 @@ describe('RocketCli e2e', () => {
 
   async function execute() {
     await cli.setup();
-    cli.config.outputDir = path.join(__dirname, 'e2e-fixtures', '__output-dev');
+    cli.config.outputDevDir = path.join(__dirname, 'e2e-fixtures', '__output-dev');
     cli.config.devServer.open = false;
     cli.config.devServer.port = 8080;
-    cli.config.devServer.rootDir = cli.config.outputDir;
     cli.config.watch = false;
-    cli.config.build.outputDir = path.join(__dirname, 'e2e-fixtures', '__output');
+    cli.config.outputDir = path.join(__dirname, 'e2e-fixtures', '__output');
     await cli.run();
   }
 
@@ -105,11 +104,7 @@ describe('RocketCli e2e', () => {
         type: 'start',
       });
       expect(indexHtml).to.equal(
-        [
-          '# BEFORE #',
-          '<h1 id="some"><a aria-hidden="true" tabindex="-1" href="#some"><span class="icon icon-link"></span></a>Some</h1>',
-          '<p>Content</p>',
-        ].join('\n'),
+        ['# BEFORE #', '<p>Content inside <code>docs/index.md</code></p>'].join('\n'),
       );
     });
 
@@ -172,5 +167,53 @@ describe('RocketCli e2e', () => {
 
     const swCode = await readOutput('my-service-worker.js');
     expect(swCode).to.not.be.undefined;
+  });
+
+  it('can adjust the inputDir', async () => {
+    cli = new RocketCli({
+      argv: [
+        'start',
+        '--config-file',
+        path.join(__dirname, 'e2e-fixtures', 'change-input-dir', 'rocket.config.js'),
+      ],
+    });
+    await execute();
+
+    const indexHtml = await readOutput('index.html', {
+      type: 'start',
+    });
+    expect(indexHtml).to.equal('<p>Markdown in <code>docs/page/index.md</code></p>');
+  });
+
+  it.skip('can add a pathprefix for the build output', async () => {
+    cli = new RocketCli({
+      argv: [
+        'build',
+        '--config-file',
+        path.join(__dirname, 'e2e-fixtures', 'content', 'eleventy.rocket.config.js'),
+      ],
+    });
+    await execute();
+
+    // const indexHtml = await readOutput('index.html', {
+    //   type: 'start',
+    // });
+    // expect(indexHtml).to.equal("<p>Markdown in 'docs/page/index.md'</p>");
+  });
+
+  it.skip('works with an empty object in rocket.config.js', async () => {
+    cli = new RocketCli({
+      argv: [
+        'build',
+        '--config-file',
+        path.join(__dirname, 'e2e-fixtures', 'content', 'empty.rocket.config.js'),
+      ],
+    });
+    await execute();
+
+    // const indexHtml = await readOutput('index.html', {
+    //   type: 'start',
+    // });
+    // expect(indexHtml).to.equal("<p>Markdown in 'docs/page/index.md'</p>");
   });
 });

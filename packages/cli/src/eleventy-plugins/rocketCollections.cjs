@@ -36,18 +36,20 @@ function setTitleForAll(collection) {
 }
 
 const rocketCollections = {
-  configFunction: (eleventyConfig, { inputDir }) => {
-    const sectionNames = getDirectories(inputDir);
+  configFunction: (eleventyConfig, { _inputDirCwdRelative }) => {
+    const sectionNames = getDirectories(_inputDirCwdRelative);
     const headerCollectionPaths = [];
     for (const section of sectionNames) {
-      const fullPath = path.join(inputDir, section);
+      const fullPath = path.join(_inputDirCwdRelative, section);
       const indexSection = path.join(fullPath, 'index.md');
       if (fs.existsSync(indexSection)) {
         // add to header
         headerCollectionPaths.push(indexSection);
         // add to specific collection
         eleventyConfig.addCollection(section, collection => {
-          let docs = [...collection.getFilteredByGlob(`${inputDir}/${section}/**/*.md`)];
+          let docs = [
+            ...collection.getFilteredByGlob(`${_inputDirCwdRelative}/${section}/**/*.md`),
+          ];
           docs.forEach(page => {
             page.data.section = section;
           });

@@ -20,7 +20,6 @@ import { RocketBuild } from './RocketBuild.js';
  */
 export async function normalizeConfig(inConfig) {
   let config = {
-    configDir: process.cwd(),
     presets: [],
     setupUnifiedPlugins: [],
     setupDevAndBuildPlugins: [],
@@ -29,27 +28,31 @@ export async function normalizeConfig(inConfig) {
     setupEleventyPlugins: [],
     setupCliPlugins: [],
     eleventy: () => {},
-    ...inConfig,
+    command: 'help',
+    watch: true,
+    inputDir: 'docs',
+    outputDir: '_site',
+    outputDevDir: path.resolve('_site-dev'),
+    build: {},
+    devServer: {},
 
-    devServer: {
-      rootDir: process.cwd(),
-      ...inConfig.devServer,
-    },
+    ...inConfig,
   };
 
+  if (inConfig && inConfig.devServer) {
+    config.devServer = { ...config.devServer, ...inConfig.devServer };
+  }
+
   let userConfigFile;
+  let __configDir = process.cwd();
   if (config.configFile) {
     const pathParts = path.parse(path.resolve(config.configFile));
-    config.configDir = pathParts.dir;
+    __configDir = pathParts.dir;
     userConfigFile = pathParts.base;
   }
 
   try {
-    const fileConfig = await readConfig(
-      'rocket.config',
-      userConfigFile,
-      path.resolve(config.configDir),
-    );
+    const fileConfig = await readConfig('rocket.config', userConfigFile, path.resolve(__configDir));
     if (fileConfig) {
       config = {
         ...config,
@@ -69,11 +72,8 @@ export async function normalizeConfig(inConfig) {
     // we do not require a config file
   }
 
-  config.configDir = path.resolve(config.configDir);
-  const _configDirCwdRelative = path.relative(process.cwd(), config.configDir);
-
-  const inputDir = path.join(_configDirCwdRelative, './docs');
-  const _inputDirConfigDirRelative = path.relative(config.configDir, inputDir);
+  const _configDirCwdRelative = path.relative(process.cwd(), path.resolve(__configDir));
+  const _inputDirCwdRelative = path.join(_configDirCwdRelative, config.inputDir);
 
   config._presetPathes = [];
   for (const preset of config.presets) {
@@ -105,7 +105,7 @@ export async function normalizeConfig(inConfig) {
     }
   }
   // add "local" preset
-  config._presetPathes.push(path.resolve(inputDir));
+  config._presetPathes.push(path.resolve(_inputDirCwdRelative));
 
   /** @type {MetaPlugin[]} */
   let pluginsMeta = [
@@ -129,26 +129,11 @@ export async function normalizeConfig(inConfig) {
     plugins.push(pluginInst);
   }
 
+  // TODO: check pathPrefix to NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
+
   return {
-    command: 'help',
-    pathPrefix: '/_site-dev', // pathPrefix can NOT have a '/' at the end as it will mean it may get ignored by 11ty 🤷‍♂️
-    watch: true,
-    outputDir: '_site-dev',
     plugins,
-    // @ts-ignore
-    devServer: config.devServer,
-
+    _inputDirCwdRelative,
     ...config,
-
-    build: {
-      outputDir: '_site',
-      pathPrefix: '',
-      ...config.build,
-    },
-
-    configDir: config.configDir,
-    _configDirCwdRelative,
-    inputDir,
-    _inputDirConfigDirRelative,
   };
 }

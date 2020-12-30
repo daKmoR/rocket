@@ -134,13 +134,15 @@ export class RocketSearchPlugin {
     const json = JSON.stringify(this.miniSearch);
 
     const writePath = path.join(
-      this.config.configDir,
-      this.config.outputDir,
+      this.config.outputDevDir,
       '_merged_assets',
       '_static',
       'rocket-search-index.json',
     );
+    const relPath = path.relative(process.cwd(), writePath);
     fs.writeFileSync(writePath, json);
-    console.log(`Search index written - ${new TextEncoder().encode(json).byteLength} bytes`);
+    console.log(
+      `Search index written to ${relPath} - ${new TextEncoder().encode(json).byteLength} bytes`,
+    );
   }
 }

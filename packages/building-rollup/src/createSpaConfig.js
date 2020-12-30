@@ -31,6 +31,13 @@ export function createSpaMetaConfig(userConfig = { output: {} }) {
     delete config.rootDir;
   }
 
+  // base url
+  let absoluteBaseUrl;
+  if (config.absoluteBaseUrl) {
+    absoluteBaseUrl = config.absoluteBaseUrl;
+  }
+  delete config.absoluteBaseUrl;
+
   const spaPluginsArray = [
     ...pluginsArray,
     {
@@ -38,6 +45,7 @@ export function createSpaMetaConfig(userConfig = { output: {} }) {
       plugin: rollupPluginHTML,
       options: {
         rootDir,
+        absoluteBaseUrl,
         transformHtml: [injectServiceWorker(swDest, config.output.dir)],
       },
     },

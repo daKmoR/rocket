@@ -49,28 +49,24 @@ export class RocketSearchOption extends LinkMixin(LionOption) {
         }
 
         :host(:hover) {
-          background-color: var(--rocket-search-hover-background-color, #eee);
+          filter: brightness(0.9);
         }
         :host([active]) {
-          background-color: var(--rocket-search-hover-background-color, #eee);
+          filter: brightness(0.9);
         }
-        /* :host:hover,
-        :host([active]) {
-          background: #eee !important;
-        } */
 
         :host([disabled]) {
           color: #adadad;
         }
 
         :host {
-          display: block;
           cursor: default;
           position: relative;
           padding: 12px 10px;
           display: flex;
           align-items: center;
           font-weight: normal;
+          background-color: var(--page-background, white);
         }
 
         .icon {
@@ -89,7 +85,7 @@ export class RocketSearchOption extends LinkMixin(LionOption) {
         }
 
         strong {
-          color: var(--rocket-search-highlight-color, #6c63ff);
+          color: var(--rocket-search-highlight-color, var(--markdown-link-color, #6c63ff));
         }
 
         @media screen and (min-width: 1024px) {

@@ -2,36 +2,49 @@
   import {installDarkModeHandler} from 'pwa-helper-components';
   import {GenericSwitch} from '@thepassle/generic-components/generic-switch/GenericSwitch.js';
 
-  const htmlClassList = document
-    .getElementsByTagName('html')[0]
-    .classList;
+  const $html = document.getElementsByTagName('html')[0];
+  const htmlClassList = $html.classList;
 
   class LaunchDarkSwitch extends GenericSwitch {
-    connectedCallback() {
-      super.connectedCallback();
-      this.setupDarkModeHandler();
-      this.addEventListener('checked-changed', this.checkedChangedHandler);
-    }
+    constructor() {
+      super();
 
-    setupDarkModeHandler() {
-      installDarkModeHandler((darkmode) => {
-        if (darkmode) {
+      if (htmlClassList.contains('dark')) {
+        this.setAttribute('checked', '');
+      } else {
+        this.removeAttribute('checked');
+      }
+
+      this.observer = new MutationObserver(() => {
+        if (htmlClassList.contains('dark')) {
           this.setAttribute('checked', '');
-          htmlClassList.add('dark');
         } else {
           this.removeAttribute('checked');
-          htmlClassList.remove('dark');
         }
       });
     }
 
+    connectedCallback() {
+      super.connectedCallback();
+      installDarkModeHandler();
+      this.addEventListener('checked-changed', this.checkedChangedHandler);
+      this.observer.observe($html, {
+        attributes: true, childList: false, characterData: false
+      });
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      this.observer.disconnect();
+    }
+
     checkedChangedHandler() {
-      if (htmlClassList.contains('dark')) {
-        htmlClassList.remove('dark');
-        localStorage.setItem('darkmode', 'false');
-      } else {
+      if (this.__checked) {
         htmlClassList.add('dark');
         localStorage.setItem('darkmode', 'true');
+      } else {
+        htmlClassList.remove('dark');
+        localStorage.setItem('darkmode', 'false');
       }
     }
   }

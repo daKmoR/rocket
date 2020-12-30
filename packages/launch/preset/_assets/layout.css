@@ -5,6 +5,10 @@
   }
 }
 
+html.dark {
+  filter: brightness(.85) contrast(1.15);
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
@@ -41,11 +45,6 @@ pre {
   width: 1px;
   height: 1px;
   overflow: hidden;
-}
-
-.light-dark-switch {
-  /* disabled for now */
-  display: none !important;
 }
 
 .light-dark-switch::part(button) {

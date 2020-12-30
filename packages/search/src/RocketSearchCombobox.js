@@ -32,7 +32,7 @@ export class RocketSearchCombobox extends LionCombobox {
           padding: 0;
           font: inherit;
           cursor: pointer;
-          fill: var(--rocket-search-fill-color, #000);
+          fill: currentColor;
         }
 
         ::slotted([slot='prefix'][arrow-left]) {
@@ -76,7 +76,7 @@ export class RocketSearchCombobox extends LionCombobox {
           left: 0;
           right: 0;
           height: 100vh;
-          background: var(--rocket-search-background-color, #fff);
+          background: var(--page-background, #fff);
         }
 
         :host([show-input]) ::slotted([slot='prefix'][arrow-left]) {
@@ -135,6 +135,7 @@ export class RocketSearchCombobox extends LionCombobox {
             margin: auto;
             font-size: 20px;
             line-height: 20px;
+            color: var(--dark-text-color, inherit);
           }
 
           .input-group__prefix,

@@ -31,22 +31,23 @@ function adjustLinks(pluginOptions) {
    */
   const elementVisitor = node => {
     if (node.tagName === 'a') {
-      const href = node.properties && node.properties.href ? node.properties.href : undefined;
-      if (href) {
-        const { inputPath } = pluginOptions.page;
-        if (isInternalLink(href) && href.endsWith('.md')) {
-          if (href.endsWith('index.md')) {
-            node.properties.href = href.substring(0, href.lastIndexOf('/') + 1);
-          } else {
-            node.properties.href = `${href.substring(0, href.length - 3)}/`;
-          }
+      const fullHref = node.properties && node.properties.href ? node.properties.href : undefined;
+      const [href, anchor] = fullHref.split('#');
+      const suffix = anchor ? `#${anchor}` : '';
+      const { inputPath } = pluginOptions.page;
 
-          if (inputPath.endsWith('.md')) {
-            if (inputPath.endsWith('index.md')) {
-              // nothing
-            } else {
-              node.properties.href = `../${node.properties.href}`;
-            }
+      if (isInternalLink(href) && href.endsWith('.md')) {
+        if (href.endsWith('index.md')) {
+          node.properties.href = `${href.substring(0, href.lastIndexOf('/') + 1)}${suffix}`;
+        } else {
+          node.properties.href = `${href.substring(0, href.length - 3)}/${suffix}`;
+        }
+
+        if (inputPath.endsWith('.md')) {
+          if (inputPath.endsWith('index.md')) {
+            // nothing
+          } else {
+            node.properties.href = `../${node.properties.href}`;
           }
         }
       }

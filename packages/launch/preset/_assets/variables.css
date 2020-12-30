@@ -33,6 +33,7 @@ html.dark {
   --footer-background: #4f4f4f;
 
   --text-color: white;
+  --dark-text-color: black;
 
   --markdown-octicon-link: white;
   --markdown-syntax-background-color: #a0a0a0;

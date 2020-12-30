@@ -1,6 +1,6 @@
 const rocketCopy = {
-  configFunction: (eleventyConfig, { inputDir, filesExtensionsToCopy }) => {
-    eleventyConfig.addPassthroughCopy(`${inputDir}/**/*.{${filesExtensionsToCopy}}`);
+  configFunction: (eleventyConfig, { _inputDirCwdRelative, filesExtensionsToCopy }) => {
+    eleventyConfig.addPassthroughCopy(`${_inputDirCwdRelative}/**/*.{${filesExtensionsToCopy}}`);
   },
 };
 

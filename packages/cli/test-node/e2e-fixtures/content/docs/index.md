@@ -2,6 +2,4 @@
 layout: layout.njk
 ---
 
-# Some
-
-Content
+Content inside `docs/index.md`

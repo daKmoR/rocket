@@ -8,35 +8,28 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function cleanup(config) {
   const configNoPaths = { ...config };
-  delete configNoPaths.devServer.rootDir;
-  delete configNoPaths.configDir;
-  delete configNoPaths._configDirCwdRelative;
-  delete configNoPaths.inputDir;
-  delete configNoPaths._inputDirConfigDirRelative;
+  delete configNoPaths._inputDirCwdRelative;
+  delete configNoPaths.configFile;
   delete configNoPaths._presetPathes;
   delete configNoPaths.eleventy;
+  delete configNoPaths.outputDevDir;
   return configNoPaths;
 }
 
 describe('normalizeConfig', () => {
   it('makes sure essential settings are there', async () => {
-    const configDir = path.join(__dirname, 'fixtures', 'empty');
-    const config = await normalizeConfig({
-      configDir,
-    });
+    const configFile = path.join(__dirname, 'fixtures', 'empty', 'rocket.config.js');
+    const config = await normalizeConfig({ configFile });
 
     // testing pathes is always a little more complicted 😅
-    expect(config.devServer.rootDir).to.exist;
-    expect(config.configDir).to.equal(configDir);
-    expect(config._configDirCwdRelative).to.not.equal(configDir);
-    expect(config._configDirCwdRelative).to.match(/test-node\/fixtures\/empty$/);
-    expect(config.inputDir).to.match(/empty\/docs$/);
-    expect(config._inputDirConfigDirRelative).to.equal('docs');
+    expect(config._inputDirCwdRelative).to.match(/empty\/docs$/);
     expect(config._presetPathes[0]).to.match(/empty\/docs$/);
+    expect(config.outputDevDir).to.match(/_site-dev$/);
 
     expect(cleanup(config)).to.deep.equal({
       command: 'help',
       devServer: {},
+      build: {},
       watch: true,
       setupUnifiedPlugins: [],
       setupBuildPlugins: [],
@@ -46,19 +39,15 @@ describe('normalizeConfig', () => {
       setupCliPlugins: [],
       presets: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      outputDir: '_site-dev',
-      pathPrefix: '/_site-dev',
-      build: {
-        outputDir: '_site',
-        pathPrefix: '',
-      },
+      inputDir: 'docs',
+      outputDir: '_site',
     });
   });
 
   it('can override settings via parameters', async () => {
-    const configDir = path.join(__dirname, 'fixtures', 'empty');
+    const configFile = path.join(__dirname, 'fixtures', 'empty', 'rocket.config.js');
     const config = await normalizeConfig({
-      configDir,
+      configFile,
       devServer: {
         more: 'settings',
       },
@@ -69,6 +58,7 @@ describe('normalizeConfig', () => {
       devServer: {
         more: 'settings',
       },
+      build: {},
       watch: true,
       setupUnifiedPlugins: [],
       setupBuildPlugins: [],
@@ -78,19 +68,15 @@ describe('normalizeConfig', () => {
       setupCliPlugins: [],
       presets: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      outputDir: '_site-dev',
-      pathPrefix: '/_site-dev',
-      build: {
-        outputDir: '_site',
-        pathPrefix: '',
-      },
+      inputDir: 'docs',
+      outputDir: '_site',
     });
   });
 
   it('respects a rocket.config.js file', async () => {
-    const configDir = path.join(__dirname, 'fixtures', 'overrides');
+    const configFile = path.join(__dirname, 'fixtures', 'overrides', 'rocket.config.js');
     const config = await normalizeConfig({
-      configDir,
+      configFile,
     });
 
     expect(cleanup(config)).to.deep.equal({
@@ -98,6 +84,7 @@ describe('normalizeConfig', () => {
       devServer: {
         more: 'from-file',
       },
+      build: {},
       watch: true,
       setupUnifiedPlugins: [],
       setupBuildPlugins: [],
@@ -107,24 +94,26 @@ describe('normalizeConfig', () => {
       setupCliPlugins: [],
       presets: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      outputDir: '_site-dev',
-      pathPrefix: '/_site-dev',
-      build: {
-        outputDir: '_site',
-        pathPrefix: '',
-      },
+      inputDir: 'docs',
+      outputDir: '_site',
     });
   });
 
   it('supports an eleventy config function in rocket.config.js', async () => {
-    const configDir = path.join(__dirname, 'fixtures', 'override-eleventy-function');
+    const configFile = path.join(
+      __dirname,
+      'fixtures',
+      'override-eleventy-function',
+      'rocket.config.js',
+    );
     const config = await normalizeConfig({
-      configDir,
+      configFile,
     });
 
     expect(cleanup(config)).to.deep.equal({
       command: 'help',
       devServer: {},
+      build: {},
       watch: true,
       setupUnifiedPlugins: [],
       setupBuildPlugins: [],
@@ -134,12 +123,8 @@ describe('normalizeConfig', () => {
       setupCliPlugins: [],
       presets: [],
       plugins: [{ commands: ['start'] }, { commands: ['build'] }],
-      outputDir: '_site-dev',
-      pathPrefix: '/_site-dev',
-      build: {
-        outputDir: '_site',
-        pathPrefix: '',
-      },
+      inputDir: 'docs',
+      outputDir: '_site',
     });
   });
 });

@@ -70,10 +70,10 @@ export class RocketCli {
 
   async setupEleventy() {
     if (!this.eleventy) {
-      const { inputDir, outputDir } = this.config;
+      const { _inputDirCwdRelative, outputDevDir } = this.config;
 
-      await fs.emptyDir(outputDir);
-      const elev = new RocketEleventy(inputDir, outputDir, this);
+      await fs.emptyDir(outputDevDir);
+      const elev = new RocketEleventy(_inputDirCwdRelative, outputDevDir, this);
       elev.isVerbose = false;
       // 11ty always wants a relative path to cwd - why?
       const rel = path.relative(process.cwd(), path.join(__dirname));
@@ -107,7 +107,7 @@ export class RocketCli {
 
   async mergePresets() {
     for (const folder of ['_assets', '_data', '_includes']) {
-      const to = path.join(this.config.inputDir, `_merged${folder}`);
+      const to = path.join(this.config._inputDirCwdRelative, `_merged${folder}`);
       await fs.emptyDir(to);
       for (const sourceDir of this.config._presetPathes) {
         const from = path.join(sourceDir, folder);

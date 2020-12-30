@@ -12,13 +12,13 @@ function inlineFilePath(filePath) {
 }
 
 const rocketFilters = {
-  configFunction: (eleventyConfig, { inputDir }) => {
+  configFunction: (eleventyConfig, { _inputDirCwdRelative }) => {
     eleventyConfig.addFilter('asset', function (inPath) {
       return inPath.replace('_assets/', '_merged_assets/');
     });
 
     eleventyConfig.addFilter('toAbsPath', function (inPath) {
-      return path.join(inputDir, inPath);
+      return path.join(_inputDirCwdRelative, inPath);
     });
 
     eleventyConfig.addFilter('inlineFilePath', inlineFilePath);

@@ -12,12 +12,8 @@ import { absoluteBaseUrlNetlify } from '@d4kmor/core/helpers';
 
 export default /** @type {Partial<import('@d4kmor/cli').RocketCliOptions>} */ ({
   presets: [rocketLaunch(), rocketBlog(), rocketSearch()],
-  build: {
-    absoluteBaseUrl: absoluteBaseUrlNetlify('http://localhost:8080'),
-    // emptyOutputDir: false,
-    // pathPrefix: 'subfolder-only-for-build',
-    // serviceWorkerFileName: 'sw.js',
-  },
+  emptyOutputDir: false,
+  absoluteBaseUrl: absoluteBaseUrlNetlify('http://localhost:8080'),
 });
 ```
 

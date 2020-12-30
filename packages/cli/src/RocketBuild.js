@@ -32,11 +32,11 @@ async function productionBuild(config) {
   const mpaConfig = createMpaConfig({
     input: '**/*.html',
     output: {
-      dir: config.build.outputDir,
+      dir: config.outputDir,
     },
     // custom
-    rootDir: config.outputDir, // config.outputDir = 11ty output = rollup input
-    // absoluteBaseUrl: config.build.absoluteBaseUrl,
+    rootDir: config.outputDevDir,
+    absoluteBaseUrl: config.absoluteBaseUrl,
     setupPlugins: [
       addPlugin({
         name: 'copy',
@@ -46,7 +46,7 @@ async function productionBuild(config) {
             '!(*.md|*.html)*',
             '_merged_assets/_static/**/*.{png,gif,jpg,json,css,svg,ico}',
           ],
-          rootDir: config.outputDir,
+          rootDir: config.outputDevDir,
         },
       }),
       ...config.setupDevAndBuildPlugins,
@@ -62,10 +62,6 @@ export class RocketBuild {
 
   setupCommand(config) {
     config.watch = false;
-    config.pathPrefix = '';
-    if (config.build && config.build.pathPrefix !== undefined) {
-      config.pathPrefix = config.build.pathPrefix;
-    }
     return config;
   }
 
@@ -84,8 +80,8 @@ export class RocketBuild {
 
     this.config = {
       ...config,
+      emptyOutputDir: true,
       build: {
-        emptyOutputDir: true,
         ...config.build,
         ...buildOptions,
       },
@@ -93,8 +89,8 @@ export class RocketBuild {
   }
 
   async build() {
-    if (this.config.build.emptyOutputDir) {
-      await fs.emptyDir(this.config.build.outputDir);
+    if (this.config.emptyOutputDir) {
+      await fs.emptyDir(this.config.outputDir);
     }
     await productionBuild(this.config);
   }

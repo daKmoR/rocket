@@ -5,6 +5,10 @@
   }
 }
 
+html.dark {
+  filter: brightness(.85) contrast(1.15);
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;

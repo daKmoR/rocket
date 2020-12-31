@@ -132,7 +132,12 @@ describe('eleventy-plugin-mdjs-unified', () => {
     expect(sortedFiles).to.deep.equal([
       {
         html: {
-          html: '<p><a href="./file/">file</a>\n<a href="./folder/folderfile/">folder file</a></p>',
+          html: [
+            '<p><a href="./file/">file</a>',
+            '<a href="./folder/folderfile/">folder file</a>',
+            '<a href="./file/#my-anchor">file with my anchor</a>',
+            '<a href="./folder/folderfile/#my-anchor">folder file with my anchor</a></p>',
+          ].join('\n'),
           jsCode: '',
           stories: [],
         },

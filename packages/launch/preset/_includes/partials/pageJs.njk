@@ -5,14 +5,14 @@
 {% endif %}
 
 {% if site.analytics %}
-  <script type="module">
-    window.ga = window.ga || ((...args) => (ga.q = ga.q || []).push(args));
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    ga('create', '{{ site.analytics }}', 'auto');
-    ga('set', 'transport', 'beacon');
-    ga('send', 'pageview');
-  </script>
-  <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+  gtag('config', '{{ site.analytics }}');
+</script>
 {% endif %}
 
 <script>

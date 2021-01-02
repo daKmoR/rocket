@@ -22,6 +22,8 @@ As mdjs does return html AND javascript at the same time we need to have a templ
 
 👉 `_includes/layout.njk`
 
+{% raw %}
+
 ```js
 <main>
   {{ content.html | safe }}
@@ -31,6 +33,8 @@ As mdjs does return html AND javascript at the same time we need to have a templ
   {{ content.jsCode | safe }}
 </script>
 ```
+
+{% endraw %}
 
 And in our content we then need to make sure to use that template.
 

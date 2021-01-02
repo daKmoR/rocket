@@ -1,5 +1,21 @@
 # Change Log
 
+## 0.6.0
+
+### Minor Changes
+
+- b9a6274: Use new dependency [plugins-manager](https://www.npmjs.com/package/plugins-manager) to add, remove or adjust plugins.
+
+  Removals:
+
+  - Removed own add plugin helper again
+  - Removed deprecated export of `mdjsProcessPlugins` please us `setupPlugins` option instead
+
+### Patch Changes
+
+- Updated dependencies [b9a6274]
+  - plugins-manager@0.1.0
+
 ## 0.5.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@d4kmor/launch",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,7 @@
     "preset"
   ],
   "dependencies": {
-    "@d4kmor/drawer": "^0.3.0",
-    "@d4kmor/navigation": "^0.3.0"
+    "@d4kmor/drawer": "^0.4.0",
+    "@d4kmor/navigation": "^0.4.0"
   }
 }

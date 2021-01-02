@@ -1,5 +1,30 @@
 # @d4kmor/cli
 
+## 0.12.0
+
+### Minor Changes
+
+- b9a6274: Prepare release before moving npm scope and repo.
+
+  - Have building-rollup as a dedicated package
+  - Serve dev output as server root
+  - Rename `themes` to `presets`
+  - Move eleventy settings in to dedicated eleventy plugins
+  - Introduce `setup-*` function which can be used to add, remove and adjust plugins for all systems
+
+### Patch Changes
+
+- Updated dependencies [b9a6274]
+- Updated dependencies [8228cf0]
+- Updated dependencies [b9a6274]
+- Updated dependencies [b9a6274]
+- Updated dependencies [542ca63]
+  - @d4kmor/eleventy-plugin-mdjs-unified@0.5.0
+  - @d4kmor/building-rollup@0.1.0
+  - @d4kmor/core@0.3.0
+  - @d4kmor/eleventy-rocket-nav@0.4.0
+  - plugins-manager@0.1.0
+
 ## 0.11.1
 
 ### Patch Changes

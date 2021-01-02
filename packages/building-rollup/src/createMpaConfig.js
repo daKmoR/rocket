@@ -12,10 +12,10 @@ export function createMpaMetaConfig(userConfig = { output: {}, setupPlugins: [] 
   const { config, pluginsArray } = createSpaMetaConfig(userConfig);
 
   config.setupPlugins = [
-    adjustPluginOptions('rollup-plugin-html', {
+    adjustPluginOptions('html', {
       flattenOutput: false,
     }),
-    adjustPluginOptions('generate-sw', {
+    adjustPluginOptions('workbox', {
       navigateFallback: '/404.html',
     }),
     ...config.setupPlugins,

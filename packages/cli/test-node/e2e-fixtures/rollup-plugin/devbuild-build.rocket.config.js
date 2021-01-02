@@ -12,7 +12,7 @@ const outputDir = path.join(__dirname, '..', '__output');
 const config = {
   setupDevAndBuildPlugins: [addPlugin({ name: 'json', plugin: json, location: 'top' })],
   setupBuildPlugins: [
-    adjustPluginOptions('generate-sw', { swDest: path.join(outputDir, 'my-service-worker.js') }),
+    adjustPluginOptions('workbox', { swDest: path.join(outputDir, 'my-service-worker.js') }),
   ],
 };
 

@@ -8,12 +8,12 @@ import { metaConfigToRollupConfig } from 'plugins-manager';
 import { createBasicMetaConfig } from './createBasicConfig.js';
 
 export function createSpaConfig(userConfig) {
-  const { config, pluginsArray } = createSpaMetaConfig(userConfig);
-  return metaConfigToRollupConfig(config, pluginsArray);
+  const { config, metaPlugins } = createSpaMetaConfig(userConfig);
+  return metaConfigToRollupConfig(config, metaPlugins);
 }
 
 export function createSpaMetaConfig(userConfig = { output: {} }) {
-  const { config, pluginsArray, developmentMode } = createBasicMetaConfig(userConfig);
+  const { config, metaPlugins, developmentMode } = createBasicMetaConfig(userConfig);
 
   // root dir
   let rootDir = process.cwd();
@@ -29,8 +29,8 @@ export function createSpaMetaConfig(userConfig = { output: {} }) {
   }
   delete config.absoluteBaseUrl;
 
-  const spaPluginsArray = [
-    ...pluginsArray,
+  const spaMetaPlugins = [
+    ...metaPlugins,
     {
       name: 'html',
       plugin: rollupPluginHTML,
@@ -78,5 +78,5 @@ export function createSpaMetaConfig(userConfig = { output: {} }) {
     },
   ];
 
-  return { config, pluginsArray: spaPluginsArray };
+  return { config, metaPlugins: spaMetaPlugins, developmentMode };
 }

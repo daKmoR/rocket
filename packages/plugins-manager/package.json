@@ -6,6 +6,11 @@
   },
   "description": "Helper for handling Plugins",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daKmoR/rocket.git",
+    "directory": "packages/plugins-manager"
+  },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "type": "module",
   "exports": {

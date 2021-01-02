@@ -9,9 +9,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
-    "directory": "packages/mdjs"
+    "directory": "packages/mdjs-core"
   },
-  "author": "open-wc",
+  "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/mdjs",
   "main": "./index.js",
   "exports": {

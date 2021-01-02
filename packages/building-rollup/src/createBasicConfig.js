@@ -7,8 +7,8 @@ import { metaConfigToRollupConfig } from 'plugins-manager';
 const { babel } = babelPkg;
 
 export function createBasicConfig(userConfig) {
-  const { config, pluginsArray } = createBasicMetaConfig(userConfig);
-  return metaConfigToRollupConfig(config, pluginsArray);
+  const { config, metaPlugins } = createBasicMetaConfig(userConfig);
+  return metaConfigToRollupConfig(config, metaPlugins);
 }
 
 export function createBasicMetaConfig(userConfig = { output: {} }) {
@@ -37,7 +37,7 @@ export function createBasicMetaConfig(userConfig = { output: {} }) {
     },
   };
 
-  let pluginsArray = [
+  let metaPlugins = [
     {
       name: 'node-resolve',
       plugin: resolve,
@@ -78,5 +78,5 @@ export function createBasicMetaConfig(userConfig = { output: {} }) {
     },
   ];
 
-  return { config, pluginsArray, developmentMode };
+  return { config, metaPlugins, developmentMode };
 }

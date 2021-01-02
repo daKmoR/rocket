@@ -4,8 +4,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "Search Plugin for Rocket",
+  "description": "Search Preset for Rocket",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daKmoR/rocket.git",
+    "directory": "packages/search"
+  },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "type": "module",
   "exports": {

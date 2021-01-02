@@ -12,7 +12,7 @@
     "directory": "packages/mdjs-core"
   },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
-  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/mdjs",
+  "homepage": "http://wip-rocket.netlify.app/docs/markdown-javascript/overview/",
   "main": "./index.js",
   "exports": {
     ".": {

@@ -1,4 +1,4 @@
-# Mdjs >> Preview ||20
+# Markdown JavaScript >> Preview ||20
 
 You can showcase live running code by annotating a code block with `js preview-story`.
 

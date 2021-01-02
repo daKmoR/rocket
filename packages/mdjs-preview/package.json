@@ -12,6 +12,7 @@
     "directory": "packages/mdjs-preview"
   },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
+  "homepage": "http://wip-rocket.netlify.app/docs/markdown-javascript/preview/",
   "type": "module",
   "exports": {
     ".": "./index.js",

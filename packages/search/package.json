@@ -12,6 +12,7 @@
     "directory": "packages/search"
   },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
+  "homepage": "http://wip-rocket.netlify.app/docs/presets/search/",
   "type": "module",
   "exports": {
     ".": "./node.js",

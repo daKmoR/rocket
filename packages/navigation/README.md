@@ -1,6 +1,6 @@
-# Rocket Drawer
+# Rocket Navigation
 
-For mobile navigation on [Rocket Sites](http://wip-rocket.netlify.app/).
+For navigation on [Rocket Sites](http://wip-rocket.netlify.app/).
 
 --
 

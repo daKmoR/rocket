@@ -1,4 +1,32 @@
-# Launch Preset >> Inline Notification ||20
+# Presets >> Launch ||10
+
+Rocket comes with a preset you will love. Simple, Responsive and behaving like native it sure is going to be a hit among your users.
+
+## Installation
+
+```bash
+npm i @d4kmor/launch
+```
+
+👉 `rocket.config.mjs`
+
+```js
+import { rocketLaunch } from '@d4kmor/launch';
+
+export default {
+  presets: [rocketLaunch()],
+};
+```
+
+## Data
+
+Most data comes from `site.cjs`.
+
+There is also a specific `rocketLaunch.json`.
+
+The footer data comes from `footer.json`
+
+## Inline Notification
 
 Notification are web components that bring in some styles.
 
@@ -16,7 +44,7 @@ import '@d4kmor/launch/inline-notification/inline-notification.js';
 ```
 ````
 
-## Tip
+### Tip
 
 <inline-notification type="tip">
 
@@ -34,7 +62,7 @@ I am a tip
 </inline-notification>
 ```
 
-## Modify the title
+### Modify the title
 
 To override the title you can provide a property success.
 
@@ -54,7 +82,7 @@ I am a success message
 </inline-notification>
 ```
 
-## Warning
+### Warning
 
 <inline-notification type="warning">
 
@@ -72,7 +100,7 @@ I am a warning
 </inline-notification>
 ```
 
-## Danger
+### Danger
 
 <inline-notification type="danger">
 

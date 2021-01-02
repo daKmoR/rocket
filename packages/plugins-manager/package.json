@@ -12,6 +12,7 @@
     "directory": "packages/plugins-manager"
   },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
+  "homepage": "http://wip-rocket.netlify.app/docs/tools/plugins-manager/",
   "type": "module",
   "exports": {
     ".": {

@@ -1,3 +1,3 @@
 # Launch Preset for Rocket
 
-See https://github.com/dakmor/rocket for details
+For docs please see our homepage [http://wip-rocket.netlify.app/docs/presets/launch/](http://wip-rocket.netlify.app/docs/presets/launch/).

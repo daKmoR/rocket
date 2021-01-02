@@ -6,6 +6,11 @@
   },
   "description": "A plugin for creating hierarchical navigation in Eleventy projects. Supports breadcrumbs too!",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daKmoR/rocket.git",
+    "directory": "packages/eleventy-rocket-nav"
+  },
   "main": ".eleventy.js",
   "scripts": {
     "test": "mocha test-node/**/*.test.js test-node/*.test.js",

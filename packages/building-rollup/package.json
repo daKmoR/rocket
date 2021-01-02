@@ -6,6 +6,11 @@
   },
   "description": "Default configuration for working with rollup",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daKmoR/rocket.git",
+    "directory": "packages/building-rollup"
+  },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/building-rollup",
   "type": "module",
@@ -17,7 +22,6 @@
     "build:basic": "rimraf dist && rollup -c demo/js/rollup.basic.config.js",
     "build:cjs": "rimraf dist && rollup -c demo/cjs/rollup.spa.config.js",
     "build:modify-babel-plugin": "rimraf dist && rollup -c demo/modify-babel-plugin/rollup.config.js",
-    "build:mpa": "rimraf dist && rollup -c demo/mpa/rollup.mpa.config.mjs",
     "build:spa": "rimraf dist && rollup -c demo/js/rollup.spa.config.mjs",
     "build:spa-js-input": "rimraf dist && rollup -c demo/js/rollup.spa-js-input.config.js",
     "build:spa-nomodule": "rimraf dist && rollup -c demo/js/rollup.spa-nomodule.config.js",
@@ -27,14 +31,13 @@
     "start:cjs": "npm run build:cjs && npm run start:build",
     "start:demo": "web-dev-server --app-index demo/js/index.html --open --compatibility none",
     "start:modify-babel-plugin": "npm run build:modify-babel-plugin && npm run start:build",
-    "start:mpa": "npm run build:mpa && npm run start:build",
     "start:spa": "npm run build:spa && npm run start:build",
     "start:spa-js-input": "npm run build:spa-js-input && npm run start:build",
     "start:spa-nomodule": "npm run build:spa-nomodule && npm run start:build",
     "start:ts": "npm run build:ts && npm run start:build",
     "start:watch": "npm run build:spa-nomodule -- --watch & npm run start:build",
     "test": "npm run test:node",
-    "test:node": "mocha test-node"
+    "test:node": "mocha test-node/**/*.test.js --timeout 5000"
   },
   "files": [
     "*.js",

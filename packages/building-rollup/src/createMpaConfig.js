@@ -2,14 +2,14 @@ import { createSpaMetaConfig } from './createSpaConfig.js';
 import { adjustPluginOptions, metaConfigToRollupConfig } from 'plugins-manager';
 
 export function createMpaConfig(userConfig) {
-  const { config, pluginsArray } = createMpaMetaConfig(userConfig);
+  const { config, metaPlugins } = createMpaMetaConfig(userConfig);
 
-  const final = metaConfigToRollupConfig(config, pluginsArray);
+  const final = metaConfigToRollupConfig(config, metaPlugins);
   return final;
 }
 
 export function createMpaMetaConfig(userConfig = { output: {}, setupPlugins: [] }) {
-  const { config, pluginsArray } = createSpaMetaConfig(userConfig);
+  const { config, metaPlugins } = createSpaMetaConfig(userConfig);
 
   config.setupPlugins = [
     adjustPluginOptions('html', {
@@ -21,5 +21,5 @@ export function createMpaMetaConfig(userConfig = { output: {}, setupPlugins: [] 
     ...config.setupPlugins,
   ];
 
-  return { config, pluginsArray };
+  return { config, metaPlugins };
 }

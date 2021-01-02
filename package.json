@@ -2,6 +2,10 @@
   "name": "@rocket/root",
   "private": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daKmoR/rocket.git"
+  },
   "type": "module",
   "scripts": {
     "build": "npm run build:packages && npm run build:site",
@@ -22,7 +26,6 @@
     "postinstall": "npm run setup",
     "release": "changeset publish && yarn format",
     "rocket:build": "node packages/cli/src/cli.js build",
-    "rocket:build:site": "node packages/cli/src/cli.js build --mode=site",
     "search": "node packages/cli/src/cli.js search",
     "setup": "npm run setup:ts-configs",
     "setup:ts-configs": "node scripts/generate-ts-configs.mjs",

@@ -6,6 +6,11 @@
   },
   "description": "Rendering storybook story functions inside a preview window with show code capabilities",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daKmoR/rocket.git",
+    "directory": "packages/mdjs-preview"
+  },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "type": "module",
   "exports": {

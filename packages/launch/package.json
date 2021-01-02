@@ -6,6 +6,11 @@
   },
   "description": "Launch Preset for Rocket",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daKmoR/rocket.git",
+    "directory": "packages/launch"
+  },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
   "main": "index.js",
   "type": "module",

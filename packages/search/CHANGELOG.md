@@ -1,5 +1,11 @@
 # @d4kmor/core
 
+## 0.4.1
+
+### Patch Changes
+
+- 391a103: Add preset folder to npm artifact
+
 ## 0.4.0
 
 ### Minor Changes

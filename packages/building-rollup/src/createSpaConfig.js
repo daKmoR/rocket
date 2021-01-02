@@ -5,7 +5,6 @@ import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
 import { polyfillsLoader } from '@web/rollup-plugin-polyfills-loader';
 import { metaConfigToRollupConfig } from 'plugins-manager';
 
-import { injectServiceWorker } from './utils.js';
 import { createBasicMetaConfig } from './createBasicConfig.js';
 
 export function createSpaConfig(userConfig) {
@@ -15,14 +14,6 @@ export function createSpaConfig(userConfig) {
 
 export function createSpaMetaConfig(userConfig = { output: {} }) {
   const { config, pluginsArray, developmentMode } = createBasicMetaConfig(userConfig);
-
-  // service worker
-  let serviceWorkerFileName = 'service-worker.js';
-  if (config.serviceWorkerFileName) {
-    serviceWorkerFileName = config.serviceWorkerFileName;
-    delete config.serviceWorkerFileName;
-  }
-  const swDest = path.join(config.output.dir, serviceWorkerFileName);
 
   // root dir
   let rootDir = process.cwd();
@@ -41,16 +32,17 @@ export function createSpaMetaConfig(userConfig = { output: {} }) {
   const spaPluginsArray = [
     ...pluginsArray,
     {
-      name: 'rollup-plugin-html',
+      name: 'html',
       plugin: rollupPluginHTML,
       options: {
         rootDir,
         absoluteBaseUrl,
-        transformHtml: [injectServiceWorker(swDest, config.output.dir)],
+        injectServiceWorker: true,
+        serviceWorkerPath: path.join(config.output.dir, 'service-worker.js'),
       },
     },
     {
-      name: 'generate-sw',
+      name: 'workbox',
       plugin: generateSW,
       options: {
         // Keep 'legacy-*.js' just for retro compatibility

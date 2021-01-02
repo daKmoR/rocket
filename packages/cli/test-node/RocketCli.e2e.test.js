@@ -47,7 +47,7 @@ describe('RocketCli e2e', () => {
       text = text.substring(bodyOpenTagEnd, bodyCloseTagStart);
     }
     if (stripServiceWorker) {
-      const scriptOpenTagEnd = text.indexOf('<script inject-service-worker>');
+      const scriptOpenTagEnd = text.indexOf('<script inject-service-worker');
       const scriptCloseTagStart = text.indexOf('</script>', scriptOpenTagEnd) + 9;
       text = text.substring(0, scriptOpenTagEnd) + text.substring(scriptCloseTagStart);
     }

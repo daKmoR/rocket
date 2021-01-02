@@ -78,10 +78,10 @@ Basic, SPA and MPA plugins:
 SPA and MPA plugins:
 
 - [babel](https://github.com/rollup/plugins/tree/master/packages/babel#readme)
-- [rollup-plugin-html](https://modern-web.dev/docs/building/rollup-plugin-html/)
+- [html](https://modern-web.dev/docs/building/rollup-plugin-html/)
 - [import-meta-assets](https://modern-web.dev/docs/building/rollup-plugin-import-meta-assets/)
 - [polyfills-loader](https://modern-web.dev/docs/building/rollup-plugin-polyfills-loader/)
-- [generate-sw](https://www.npmjs.com/package/rollup-plugin-workbox)
+- [workbox](https://www.npmjs.com/package/rollup-plugin-workbox)
 
 You can customize options for these plugins by using [adjustPluginOptions](../plugins-manager/overview.md#adjusting-plugin-options).
 

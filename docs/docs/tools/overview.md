@@ -1,4 +1,4 @@
-# Plugins Manager >> Overview ||10
+# Tools >> Plugins Manager ||10
 
 The Plugins Manager replaces the specific registration/execution (with options) in a given plugin system by an intend to use a plugin (with these options).
 This allows your users to adjust the options before actually applying the plugins.

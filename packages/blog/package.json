@@ -12,6 +12,7 @@
     "directory": "packages/blog"
   },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
+  "homepage": "http://wip-rocket.netlify.app/docs/presets/blog/",
   "main": "index.js",
   "type": "module",
   "exports": {

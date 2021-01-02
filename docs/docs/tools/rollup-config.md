@@ -1,4 +1,4 @@
-# Building >> Rollup Config
+# Tools >> Rollup Config
 
 Rollup configuration to help you get started building modern web applications.
 You write modern javascript using the latest browser-features, rollup will optimize your code for production and ensure it runs on all supported browsers.

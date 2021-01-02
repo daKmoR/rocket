@@ -12,6 +12,7 @@
     "directory": "packages/cli"
   },
   "author": "Modern Web <hello@modern-web.dev> (https://modern-web.dev/)",
+  "homepage": "http://wip-rocket.netlify.app/",
   "bin": {
     "rocket": "src/cli.js"
   },

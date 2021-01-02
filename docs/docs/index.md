@@ -9,4 +9,4 @@ Here you will find all the details for each of the packages/systems we offer.
 
 You should check out13:
 
-- [@rocket/launch](./launch-preset/index.md) which is our default preset
+- [@d4kmor/launch](./launch-preset/index.md) which is our default preset

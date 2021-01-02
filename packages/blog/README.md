@@ -1,3 +1,5 @@
 # Blog Preset for Rocket
 
-See https://github.com/dakmor/rocket for details
+Add blog posts to your rocket site.
+
+For docs please see our homepage [http://wip-rocket.netlify.app/docs/presets/blog/](http://wip-rocket.netlify.app/docs/presets/blog/).

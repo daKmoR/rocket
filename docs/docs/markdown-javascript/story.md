@@ -1,4 +1,4 @@
-# Mdjs >> Story ||30
+# Markdown JavaScript >> Story ||30
 
 You can showcase live running code by annotating a code block with `js story`.
 

@@ -32,22 +32,24 @@ function adjustLinks(pluginOptions) {
   const elementVisitor = node => {
     if (node.tagName === 'a') {
       const fullHref = node.properties && node.properties.href ? node.properties.href : undefined;
-      const [href, anchor] = fullHref.split('#');
-      const suffix = anchor ? `#${anchor}` : '';
-      const { inputPath } = pluginOptions.page;
+      if (fullHref) {
+        const [href, anchor] = fullHref.split('#');
+        const suffix = anchor ? `#${anchor}` : '';
+        const { inputPath } = pluginOptions.page;
 
-      if (isInternalLink(href) && href.endsWith('.md')) {
-        if (href.endsWith('index.md')) {
-          node.properties.href = `${href.substring(0, href.lastIndexOf('/') + 1)}${suffix}`;
-        } else {
-          node.properties.href = `${href.substring(0, href.length - 3)}/${suffix}`;
-        }
-
-        if (inputPath.endsWith('.md')) {
-          if (inputPath.endsWith('index.md')) {
-            // nothing
+        if (isInternalLink(href) && href.endsWith('.md')) {
+          if (href.endsWith('index.md')) {
+            node.properties.href = `${href.substring(0, href.lastIndexOf('/') + 1)}${suffix}`;
           } else {
-            node.properties.href = `../${node.properties.href}`;
+            node.properties.href = `${href.substring(0, href.length - 3)}/${suffix}`;
+          }
+
+          if (inputPath.endsWith('.md')) {
+            if (inputPath.endsWith('index.md')) {
+              // nothing
+            } else {
+              node.properties.href = `../${node.properties.href}`;
+            }
           }
         }
       }

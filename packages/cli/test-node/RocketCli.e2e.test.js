@@ -185,6 +185,24 @@ describe('RocketCli e2e', () => {
     expect(indexHtml).to.equal('<p>Markdown in <code>docs/page/index.md</code></p>');
   });
 
+  it('can access main rocket config values via {{rocketConfig.value}}', async () => {
+    cli = new RocketCli({
+      argv: [
+        'start',
+        '--config-file',
+        path.join(__dirname, 'e2e-fixtures', 'rocket-config-in-template', 'rocket.config.js'),
+      ],
+    });
+    await execute();
+
+    const indexHtml = await readOutput('index.html', {
+      type: 'start',
+    });
+    expect(indexHtml).to.equal(
+      '<p>You can show rocket config data like rocketConfig.absoluteBaseUrl = http://test-domain.com/</p>',
+    );
+  });
+
   it.skip('can add a pathprefix for the build output', async () => {
     cli = new RocketCli({
       argv: [

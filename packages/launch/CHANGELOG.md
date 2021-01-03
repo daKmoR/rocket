@@ -1,5 +1,12 @@
 # @d4kmor/launch
 
+## 0.11.1
+
+### Patch Changes
+
+- c3a157c: Add a generic 404 page with absolute urls
+- f561b14: Expose rocket config via {{ rocketConfig.value }}
+
 ## 0.11.0
 
 ### Minor Changes

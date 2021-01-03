@@ -15,8 +15,9 @@ export function createMpaMetaConfig(userConfig = { output: {}, setupPlugins: [] 
     adjustPluginOptions('html', {
       flattenOutput: false,
     }),
-    adjustPluginOptions('workbox', {
-      navigateFallback: '/404.html',
+    adjustPluginOptions('workbox', config => {
+      delete config.navigateFallback;
+      return config;
     }),
     ...config.setupPlugins,
   ];

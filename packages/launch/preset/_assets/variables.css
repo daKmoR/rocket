@@ -1,4 +1,4 @@
-html {
+:root {
   --primary-color: #e63946;
   --primary-color-lighter: #e25761;
   --primary-color-darker: #a22831;
@@ -18,25 +18,24 @@ html {
 }
 
 html.dark {
-  --primary-color: #e63946;
-  --primary-color-lighter: #e25761;
-  --primary-color-darker: #a22831;
-  --primary-color-accent: #cee5f6;
   --primary-text-color: #eee;
-
-  /* Contrast colors */
-  --contrast-color-light: #fff;
-  --contrast-color-dark: #1d3557;
 
   /* background-colors */
   --page-background: #333;
   --footer-background: #4f4f4f;
 
   --text-color: white;
-  --dark-text-color: black;
 
   --markdown-octicon-link: white;
   --markdown-syntax-background-color: #a0a0a0;
   --markdown-link-color: #fb7881;
   --markdown-blockquote-color: #c9e3ff;
+
+  /* search */
+  --rocket-search-background-color: #6e6e6e;
+  --rocket-search-highlight-color: var(--primary-color-lighter);
+  /*--rocket-search-fill-color: #6e6e6e;*/
+  /*--rocket-search-hover-background-color: var(--near-black);*/
+  --rocket-search-input-border-color: var(--text-color);
+  --rocket-search-input-overlay-border-color: var(--page-background);
 }

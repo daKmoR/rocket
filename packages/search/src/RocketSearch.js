@@ -137,6 +137,7 @@ export class RocketSearch extends ScopedElementsMixin(LitElement) {
   }
 
   static get styles() {
+    // language=CSS
     return css`
       :host {
         display: block;

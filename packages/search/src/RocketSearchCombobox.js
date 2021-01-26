@@ -15,6 +15,7 @@ export class RocketSearchCombobox extends LionCombobox {
   static get styles() {
     return [
       super.styles,
+      // language=CSS
       css`
         ::slotted([slot='label']) {
           display: none;

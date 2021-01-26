@@ -43,6 +43,7 @@ export class RocketSearchOption extends LinkMixin(LionOption) {
 
   static get styles() {
     return [
+      // language=CSS
       css`
         :host([hidden]) {
           display: none;
